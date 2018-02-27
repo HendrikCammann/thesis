@@ -54,7 +54,6 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.GET_ACTIVITY_STREAMS]: (state: State, {item}) => {
-    console.log('in mutation', item);
     state.activityList.forEach((activity, i) => {
       if (activity.id === state.selectedActivityId) {
         let obj = {

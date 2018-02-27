@@ -18,10 +18,17 @@ const getters: GetterTree<State, State> = {
       }
     }
   },
-  getSelectedActivityDetails: (state) => {
+  getSelectedActivityStreams: (state) => {
     for (let i = 0; i < state.activityList.length; i++) {
-      if (state.selectedActivityId === state.activityList[i].id) {
-        return state.activityList[i].details;
+      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
+        return state.activityList[i].streams[2];
+      }
+    }
+  },
+  getSelectedActivityStreamsDistance: (state) => {
+    for (let i = 0; i < state.activityList.length; i++) {
+      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
+        return state.activityList[i].streams[0];
       }
     }
   }

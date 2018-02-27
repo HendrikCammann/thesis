@@ -18,3 +18,51 @@
     border-radius: 2px;
   }
 }
+
+
+$color-red: #E12D53;
+/* tell the SVG path to be a thin blue line without any area fill */
+.heartrate {
+  stroke: $color-red;
+  stroke-width: 1;
+  fill: none;
+
+  &__avg {
+    stroke: $color-red;
+    stroke-width: 1;
+    stroke-dasharray: 5,5;
+    stroke-opacity: 0.5;
+  }
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: lightgrey;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  // display: none;
+}
+
+.y.axis {
+  .tick text {
+    fill: $color-red;
+  }
+}
+
+.x.axis text {
+  transform: translate(0, 10px);
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
+

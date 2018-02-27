@@ -7,7 +7,7 @@ import * as stravaAPI from '../api/stravaAPI';
 let token = '386bced857a83a6a4575b2308a3de25b95fa9116';
 let page = 1;
 let per_page = 200;
-let streams = ['cadence', 'altitude', 'velocity_smooth'];
+let streams = ['cadence', 'altitude', 'velocity_smooth', 'heartrate'];
 // let activityID = 990422410;
 
 const actions: ActionTree<State, State> = {

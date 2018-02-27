@@ -1,10 +1,16 @@
 <div>
   <h1>Name</h1>
-  {{ getSelectedActivity.name }} <br>
+  {{ getSelectedActivityTest.name }} <br>
 
   <h1>Details</h1>
-  <span v-if="getSelectedActivity.details">{{ getSelectedActivity.details }}</span>
+  <span v-if="getSelectedActivityTest.details">{{ getSelectedActivityTest.details }}</span>
 
   <h1>Streams</h1>
-  <span v-if="getSelectedActivity.streams">{{ getSelectedActivity.streams }}</span>
+  <div v-if="getSelectedActivityTest.streams">
+    <linechart
+      :valueDATA="getSelectedActivityStreamsTest"
+      :distanceDATA="getSelectedActivityStreamsDistanceTest"
+      :averageHR="getSelectedActivityTest.average_heartrate"
+    ></linechart>
+  </div>
 </div>

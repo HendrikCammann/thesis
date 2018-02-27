@@ -14,6 +14,6 @@ new Vue({
   store,
   router: router,
   components: {
-    'navbar': Navbar
+    'navbar': Navbar,
   }
 });

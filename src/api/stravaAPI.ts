@@ -108,7 +108,6 @@ export function getStreamsForActivity(activityId, streams, accessToken, cb) {
     types: streams
   }, function (err, payload, limits) {
     if (!err) {
-      console.log('streams', payload);
       cb(payload);
     }
     else {

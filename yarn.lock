@@ -5751,7 +5751,7 @@ request-progress@~2.0.1:
   dependencies:
     throttleit "^1.0.0"
 
-request@2, request@^2.65.0, request@^2.67.0, request@^2.79.0:
+request@2, request@^2.64.0, request@^2.65.0, request@^2.67.0, request@^2.79.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -6376,6 +6376,12 @@ stdout-stream@^1.4.0:
   resolved "https://registry.yarnpkg.com/stdout-stream/-/stdout-stream-1.4.0.tgz#a2c7c8587e54d9427ea9edb3ac3f2cd522df378b"
   dependencies:
     readable-stream "^2.0.1"
+
+strava-v3@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/strava-v3/-/strava-v3-1.14.0.tgz#c24160a1770f7003942d83fa2e63cfaa3d2f9580"
+  dependencies:
+    request "^2.64.0"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

@@ -1,0 +1,10 @@
+<div>
+  <h1>Name</h1>
+  {{ getSelectedActivity.name }} <br>
+
+  <h1>Details</h1>
+  <span v-if="getSelectedActivity.details">{{ getSelectedActivity.details }}</span>
+
+  <h1>Streams</h1>
+  <span v-if="getSelectedActivity.streams">{{ getSelectedActivity.streams }}</span>
+</div>

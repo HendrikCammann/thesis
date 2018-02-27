@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="content col-md-4">
+      <h1>Trainings</h1>
+      <ul>
+       <li v-for="item in activityItem"
+           @click="logActivity(item.id)"
+       > {{ item.name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

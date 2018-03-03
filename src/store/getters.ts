@@ -31,6 +31,13 @@ const getters: GetterTree<State, State> = {
         return state.activityList[i].streams[0];
       }
     }
+  },
+  getSelectedActivityStreamsPace: (state) => {
+    for (let i = 0; i < state.activityList.length; i++) {
+      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
+        return state.activityList[i].streams[4];
+      }
+    }
   }
 };
 

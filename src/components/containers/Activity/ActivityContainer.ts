@@ -11,7 +11,8 @@ import { LineChart } from '../../../components/modules/LineChart/';
   computed: mapGetters({
     getSelectedActivityTest: 'getSelectedActivity',
     getSelectedActivityStreamsTest: 'getSelectedActivityStreams',
-    getSelectedActivityStreamsDistanceTest: 'getSelectedActivityStreamsDistance'
+    getSelectedActivityStreamsDistanceTest: 'getSelectedActivityStreamsDistance',
+    getSelectedActivityStreamsPaceTest: 'getSelectedActivityStreamsPace'
   }),
   components: {
     'linechart': LineChart

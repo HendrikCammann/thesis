@@ -27,6 +27,12 @@ $color-red: #E12D53;
   stroke-width: 1;
   fill: none;
 
+  &__scale {
+    text {
+      fill: $color-red;
+    }
+  }
+
   &__avg {
     stroke: $color-red;
     stroke-width: 1;
@@ -35,34 +41,19 @@ $color-red: #E12D53;
   }
 }
 
-.axis {
-  shape-rendering: crispEdges;
-}
+.pace {
+  stroke: blue;
+  stroke-width: 1;
+  fill: none;
 
-.x.axis line {
-  stroke: lightgrey;
-}
-
-.x.axis .minor {
-  stroke-opacity: .5;
-}
-
-.x.axis path {
-  // display: none;
-}
-
-.y.axis {
-  .tick text {
-    fill: $color-red;
+  &__scale {
+    text {
+      fill: blue;
+    }
   }
 }
 
-.x.axis text {
-  transform: translate(0, 10px);
-}
-
-.y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000;
+.axis {
+  shape-rendering: crispEdges;
 }
 

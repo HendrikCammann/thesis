@@ -14,84 +14,104 @@ export class LineChart extends Vue {
   distanceDATA: any;
 
   @Prop()
+  paceDATA: any;
+
+  @Prop()
   averageHR: number;
 
+  @Prop()
+  maxHR: number;
+
+  @Prop()
+  maxPace: number;
+
   mounted() {
-    let m = [80, 80, 80, 80]; // margins
-    let w = 1000 - m[1] - m[3]; // width
-    let h = 400 - m[0] - m[2]; // height
-
-    // create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
-    let data = {
-      values: this.valueDATA.data,
-      scale: this.distanceDATA.data
-    };
-
-    let avgLine = {
-      values: [],
-      scale: this.distanceDATA.data
-    };
-
     let displayedData = [];
+    let that = this;
 
-    for (let i = 0; i < this.distanceDATA.data.length; i++) {
+    for (let i = 0; i < this.distanceDATA.data.length; i = i + 4) {
       let obj = {
         value: this.valueDATA.data[i],
-        distance: this.distanceDATA.data[i]
+        scales: this.distanceDATA.data[i] / 1000,
+        avg: this.averageHR,
+        pace: this.paceDATA.data[i]
       };
       displayedData.push(obj);
-
-      avgLine.values[i] = this.averageHR;
     }
 
-    console.log(displayedData);
+    let margin = {top: 20, right: 50, bottom: 30, left: 50};
+    let width = 960 - margin.left - margin.right;
+    let height = 500 - margin.top - margin.bottom;
 
-    // X scale will fit all values from data[] within pixels 0-w
-    let x = d3.scaleLinear().domain([0, displayedData.length]).range([0, w]);
-    // Y scale will fit values from 0-10 within pixels h-0 (Note the inverted domain for the y-scale: bigger is up!)
-    let y = d3.scaleLinear().domain([0, Math.max(...this.valueDATA.data) + 10]).range([h, 10]);
-    // automatically determining max range can work something like this
-    // let y = d3.scale.linear().domain([0, d3.max(data)]).range([h, 0]);
+    let x = d3.scaleLinear().range([0, width]);
+    let y = d3.scaleLinear().range([height, 0]);
+    let y2 = d3.scaleLinear().range([height, 0]);
 
-    // create a line function that can convert data[] into x and y points
-    let line = d3.line()
-    // assign the X function to plot our line as we wish
-      .x(function(d, i) {
-        return x(i);
-      })
-      .y(function(d) {
-        // verbose logging to show what's actually being done
-        // console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + ' using our yScale.');
-        // return the Y coordinate where we want to plot this datapoint
-        return y(d);
+    let heartrateLine = d3.line()
+      .x(function(d) { return x(d.scales); })
+      .y(function(d) { return y(d.value); });
+
+    let averageLine = d3.line()
+      .x(function(d) { return x(d.scales); })
+      .y(function(d) { return y(d.avg); });
+
+    let paceLine = d3.line()
+      .x(function(d) { return x(d.scales); })
+      .y(function(d) { return y2(d.pace); });
+
+    let svg = d3.select('#tests').append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    function draw (data) {
+      // format the data
+      data.forEach(function(d) {
+        d.scales = +d.scales;
+        d.value = +d.value;
+        d.avg = +d.avg;
+        d.pace = +d.pace;
       });
 
-    // Add an SVG element with the desired dimensions and margin.
-    let graph = d3.select('#tests').append('svg:svg')
-      .attr('width', w + m[1] + m[3])
-      .attr('height', h + m[0] + m[2])
-      .append('svg:g')
-      .attr('transform', 'translate(' + m[3] + ',' + m[0] + ')');
+      // Scale the range of the data
+      x.domain([data[0].scales, data[data.length - 1].scales]);
+      y.domain([0, that.maxHR + 10]);
+      y2.domain([0, that.maxPace + 1]);
 
-    // create yAxis
-    let xAxis = d3.axisBottom(x).tickSize(-h);
-    // Add the x-axis.
-    graph.append('svg:g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + (h + 0) + ')')
-      .call(xAxis);
+      // Add the valueline path.
+      svg.append('path')
+        .data([data])
+        .attr('class', 'heartrate')
+        .attr('d', heartrateLine(data));
+      svg.append('path')
+        .data([data])
+        .attr('class', 'heartrate__avg')
+        .attr('d', averageLine(data));
+      svg.append('path')
+        .data([data])
+        .attr('class', 'pace')
+        .attr('d', paceLine(data));
 
+      svg.append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        // .call(d3.axisBottom(x).ticks(14).tickSize(-height));
+        .call(d3.axisBottom(x));
 
-    // create left yAxis
-    let yAxisLeft = d3.axisLeft(y).ticks(10);
-    // Add the y-axis to the left
-    graph.append('svg:g')
-      .attr('class', 'y axis')
-      .call(yAxisLeft);
+      // Add the Y Axis
+      svg.append('g')
+        // .call(d3.axisLeft(y).ticks(6).tickSize(-width))
+        .attr('class', 'heartrate__scale')
+        .call(d3.axisLeft(y));
 
-    // Add the line by appending an svg:path element with the data line we created above
-    // do this AFTER the axes above so that the line is above the tick-lines
-    graph.append('svg:path').attr('class', 'heartrate').attr('d', line(data.values));
-    // graph.append('svg:path').attr('class', 'heartrate__avg').attr('d', line(avgLine.values));
+      // Add the Y Axis
+      svg.append('g')
+        .attr('transform', 'translate(' + width + ', 0)')
+        .attr('class', 'pace__scale')
+        .call(d3.axisRight(y2));
+    }
+
+    draw(displayedData);
+
   }
 }

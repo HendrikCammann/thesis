@@ -26,6 +26,7 @@ $color-red: #E12D53;
   stroke: $color-red;
   stroke-width: 1;
   fill: none;
+  opacity: 0.3;
 
   &__scale {
     text {
@@ -45,6 +46,7 @@ $color-red: #E12D53;
   stroke: blue;
   stroke-width: 1;
   fill: none;
+  opacity: 0.3;
 
   &__scale {
     text {

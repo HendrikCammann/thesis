@@ -1,3 +1,4 @@
+/* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
 import * as d3 from 'd3';
@@ -29,7 +30,7 @@ export class LineChart extends Vue {
     let displayedData = [];
     let that = this;
 
-    for (let i = 0; i < this.distanceDATA.data.length; i = i + 4) {
+    for (let i = 0; i < this.distanceDATA.data.length; i = i + 1) {
       let obj = {
         value: this.valueDATA.data[i],
         scales: this.distanceDATA.data[i] / 1000,
@@ -79,6 +80,17 @@ export class LineChart extends Vue {
       y.domain([0, that.maxHR + 10]);
       y2.domain([0, that.maxPace + 1]);
 
+      let area = d3.area()
+      // Same x axis (could use .x0 and .x1 to set different ones)
+        .x(function(d, i) { return x(data[i].scales); })
+        .y0(function(d, i) { return y(data[i].value); })
+        .y1(function(d, i) { return y2(data[i].pace); });
+
+      svg.append("path")
+        .datum(data)
+        .attr("d", area)
+        .attr("fill", "none");
+
       // Add the valueline path.
       svg.append('path')
         .data([data])
@@ -109,6 +121,7 @@ export class LineChart extends Vue {
         .attr('transform', 'translate(' + width + ', 0)')
         .attr('class', 'pace__scale')
         .call(d3.axisRight(y2));
+
     }
 
     draw(displayedData);

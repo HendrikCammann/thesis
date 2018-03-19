@@ -35,7 +35,14 @@ function sortActivities (array, bucket) {
         activities: [],
         stats: {
           distance: 0,
-          time: null
+          time: null,
+          typeCount: {
+            run: 0,
+            longRun: 0,
+            interval: 0,
+            competiton: 0,
+            uncategorized: 0
+          }
         }
       };
     }
@@ -43,7 +50,23 @@ function sortActivities (array, bucket) {
     // Todo only push Id
     acc[timeRange].activities.push(activity);
     acc[timeRange].stats.distance += activity.distance;
-
+    acc[timeRange].stats.time += activity.elapsed_time;
+    switch (activity.workout_type) {
+      case 0:
+        acc[timeRange].stats.typeCount.run += 1;
+        break;
+      case 1:
+        acc[timeRange].stats.typeCount.competiton += 1;
+        break;
+      case 2:
+        acc[timeRange].stats.typeCount.longRun += 1;
+        break;
+      case 3:
+        acc[timeRange].stats.typeCount.interval += 1;
+        break;
+      default:
+        acc[timeRange].stats.typeCount.uncategorized += 1;
+    }
     return acc;
 
   }, {});

@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions.ts" afterPath="$PROJECT_DIR$/src/store/actions.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/getters.ts" afterPath="$PROJECT_DIR$/src/store/getters.ts" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" afterPath="$PROJECT_DIR$/src/store/mutations.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,17 +48,22 @@
       <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+            <state relative-caret-position="225">
+              <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#timeRanges#0" expanded="false" />
                 <element signature="n#!!block;n#sortActivities#0" expanded="false" />
-                <element signature="e#1570#1750#0" expanded="false" />
-                <element signature="e#2449#2886#0" expanded="false" />
-                <element signature="e#2955#3214#0" expanded="false" />
-                <element signature="e#3290#3423#0" expanded="false" />
-                <element signature="e#3517#3549#0" expanded="false" />
-                <element signature="e#3631#3756#0" expanded="false" />
+                <element signature="e#440#848#0" expanded="false" />
+                <element signature="e#936#1233#0" expanded="false" />
+                <element signature="e#1422#1862#0" expanded="false" />
+                <element signature="e#1932#4421#0" expanded="false" />
+                <element signature="e#2231#2411#0" expanded="false" />
+                <element signature="e#3110#3547#0" expanded="false" />
+                <element signature="e#3616#3875#0" expanded="false" />
+                <element signature="e#3951#4084#0" expanded="false" />
+                <element signature="e#4178#4210#0" expanded="false" />
+                <element signature="e#4292#4417#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -394,12 +394,12 @@
       <workItem from="1521115763782" duration="690000" />
       <workItem from="1521118654112" duration="1051000" />
       <workItem from="1521453120200" duration="660000" />
-      <workItem from="1521455443521" duration="7688000" />
+      <workItem from="1521455443521" duration="8681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54411000" />
+    <option name="totallyTimeSpent" value="55404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -830,17 +830,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        <state relative-caret-position="225">
+          <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#timeRanges#0" expanded="false" />
             <element signature="n#!!block;n#sortActivities#0" expanded="false" />
-            <element signature="e#1570#1750#0" expanded="false" />
-            <element signature="e#2449#2886#0" expanded="false" />
-            <element signature="e#2955#3214#0" expanded="false" />
-            <element signature="e#3290#3423#0" expanded="false" />
-            <element signature="e#3517#3549#0" expanded="false" />
-            <element signature="e#3631#3756#0" expanded="false" />
+            <element signature="e#440#848#0" expanded="false" />
+            <element signature="e#936#1233#0" expanded="false" />
+            <element signature="e#1422#1862#0" expanded="false" />
+            <element signature="e#1932#4421#0" expanded="false" />
+            <element signature="e#2231#2411#0" expanded="false" />
+            <element signature="e#3110#3547#0" expanded="false" />
+            <element signature="e#3616#3875#0" expanded="false" />
+            <element signature="e#3951#4084#0" expanded="false" />
+            <element signature="e#4178#4210#0" expanded="false" />
+            <element signature="e#4292#4417#0" expanded="false" />
           </folding>
         </state>
       </provider>

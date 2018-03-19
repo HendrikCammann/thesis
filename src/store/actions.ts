@@ -32,17 +32,17 @@ const actions: ActionTree<State, State> = {
   },
 
   [MutationTypes.GET_ACTIVITIES]: ({commit}) => {
-    if (localStorage.getItem('activities') === null) {
+    /*if (localStorage.getItem('activities') === null) {*/
       stravaAPI.getActivityPages(page, per_page, token, (items) => {
         commit(MutationTypes.GET_ACTIVITIES, {
           items
         });
       });
-    } else {
+    /*} else {
       commit(MutationTypes.SET_ACTIVITIES_FROM_LOCALSTORAGE, {
         items: localStorage.getItem('activities')
       });
-    }
+    }*/
   },
 
   [MutationTypes.GET_ACTIVITY]: ({commit}, activityId) => {

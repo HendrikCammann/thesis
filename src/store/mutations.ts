@@ -3,6 +3,43 @@ import {MutationTree} from 'vuex';
 import {MutationTypes} from './mutation-types';
 import {State} from './state';
 import * as _ from 'lodash';
+import * as moment from 'moment';
+
+enum timeRanges {
+  Week = 'week',
+  Month = 'month',
+  Year = 'year'
+}
+
+// Todo set start of week monday instead of sunday
+function sortActivities (array, bucket) {
+  let timeRange;
+
+  return array.reduce( function (acc, activity) {
+
+    switch (bucket) {
+      case timeRanges.Week:
+        timeRange = moment(activity.start_date).year() + '-' + moment(activity.start_date).week();
+        break;
+      case timeRanges.Month:
+        timeRange = moment(activity.start_date).year() + '-' + moment(activity.start_date).month();
+        break;
+      case timeRanges.Year:
+        timeRange = moment(activity.start_date).year();
+        break;
+    }
+
+    // check if the week number exists
+    if (typeof acc[timeRange] === 'undefined') {
+      acc[timeRange] = [];
+    }
+
+    acc[timeRange].push(activity.id);
+
+    return acc;
+
+  }, {});
+}
 
 const mutations: MutationTree<State> = {
   [MutationTypes.INCREMENT_VALUE]: (state: State) => {
@@ -33,7 +70,12 @@ const mutations: MutationTree<State> = {
           ...item
         });
       });
-      localStorage.setItem('activities', JSON.stringify(state.activityList));
+
+      state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
+      state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
+      state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
+      
+      // localStorage.setItem('activities', JSON.stringify(state.activityList));
     }
   },
 

@@ -31,10 +31,18 @@ function sortActivities (array, bucket) {
 
     // check if the week number exists
     if (typeof acc[timeRange] === 'undefined') {
-      acc[timeRange] = [];
+      acc[timeRange] = {
+        activities: [],
+        stats: {
+          distance: 0,
+          time: null
+        }
+      };
     }
 
-    acc[timeRange].push(activity.id);
+    // Todo only push Id
+    acc[timeRange].activities.push(activity);
+    acc[timeRange].stats.distance += activity.distance;
 
     return acc;
 
@@ -66,15 +74,17 @@ const mutations: MutationTree<State> = {
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
       items.forEach(item => {
-        state.activityList.push({
-          ...item
-        });
+        if (item.type === 'Run') {
+          state.activityList.push({
+            ...item
+          });
+        }
       });
 
       state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
       state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
       state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
-      
+
       // localStorage.setItem('activities', JSON.stringify(state.activityList));
     }
   },

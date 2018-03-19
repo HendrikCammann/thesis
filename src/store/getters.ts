@@ -8,6 +8,15 @@ const getters: GetterTree<State, State> = {
       return state.activityList.length;
     }
   },
+  getActivities: (state) => {
+      return state.activityList;
+  },
+  getActivity: (state) => {
+      let id = 1459320043;
+      return state.activityList.find((item) => {
+          return item.id === id;
+      });
+  },
   getSelectedActivityId: (state) => {
       return state.selectedActivityId;
   },

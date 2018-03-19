@@ -1,7 +1,7 @@
 <div class="container">
   <div
     class="row activity"
-    v-for="item in activityItem">
+    v-for="item in activityItems">
     <span>{{ new Date(item.start_date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ item.name }}</h3>
     <table class="table">
       <thead>

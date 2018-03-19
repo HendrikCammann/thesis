@@ -18,7 +18,7 @@ export class ActivitiesContainer extends Vue {
     });
   }
 
-  get activityItem() {
-    return this.$store.state.activityList;
+  get activityItems() {
+    return this.$store.getters.getActivities;
   }
 }

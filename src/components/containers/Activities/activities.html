@@ -1,12 +1,41 @@
 <div class="container">
-  <div class="row">
-    <div class="content col-md-4">
-      <h1>Trainings</h1>
-      <ul>
-       <li v-for="item in activityItem"
-           @click="logActivity(item.id)"
-       > {{ item.name }}</li>
-      </ul>
-    </div>
+  <div
+    class="row activity"
+    v-for="item in activityItem">
+    <span>{{ new Date(item.start_date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ item.name }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">distance</th>
+          <th scope="col">time</th>
+          <th scope="col">ø heartrate</th>
+          <th scope="col">max. heartrate</th>
+          <th scope="col">ø cadence</th>
+          <th scope="col">max. speed</th>
+          <th scope="col">ø speed</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ (item.distance / 1000).toFixed(2) }}km</td>
+          <td>{{ item.elapsed_time }}</td>
+          <td>{{ item.average_heartrate }}</td>
+          <td>{{ item.max_heartrate }}</td>
+          <td>{{ item.average_cadence * 2 }}</td>
+          <td>{{ (item.max_speed * 3.6).toFixed(2) }}km/h</td>
+          <td>{{ (item.average_speed * 3.6).toFixed(2) }}km/h</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="logActivity(item.id)">
+              Show Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <div class="circle" v-bind:style="{ height: item.average_speed*50 + 'px', width: item.average_heartrate + 'px' }">hi</div> -->
+    <hr class="activity__line">
   </div>
 </div>

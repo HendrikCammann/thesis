@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap": "4.0.0",
     "d3": "^4.13.0",
+    "google-code-prettify": "^1.0.5",
     "strava-v3": "^1.14.0",
     "vue": "^2.5.2",
     "vue-class-component": "^6.0.0",

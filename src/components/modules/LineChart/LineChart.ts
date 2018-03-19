@@ -44,22 +44,6 @@ export class LineChart extends Vue {
     let width = 960 - margin.left - margin.right;
     let height = 500 - margin.top - margin.bottom;
 
-    let x = d3.scaleLinear().range([0, width]);
-    let y = d3.scaleLinear().range([height, 0]);
-    let y2 = d3.scaleLinear().range([height, 0]);
-
-    let heartrateLine = d3.line()
-      .x(function(d) { return x(d.scales); })
-      .y(function(d) { return y(d.value); });
-
-    let averageLine = d3.line()
-      .x(function(d) { return x(d.scales); })
-      .y(function(d) { return y(d.avg); });
-
-    let paceLine = d3.line()
-      .x(function(d) { return x(d.scales); })
-      .y(function(d) { return y2(d.pace); });
-
     let svg = d3.select('#tests').append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
@@ -74,6 +58,22 @@ export class LineChart extends Vue {
         d.avg = +d.avg;
         d.pace = +d.pace;
       });
+
+      let x = d3.scaleLinear().range([0, width]);
+      let y = d3.scaleLinear().range([height, 0]);
+      let y2 = d3.scaleLinear().range([height, 0]);
+
+      let heartrateLine = d3.line()
+        .x(function(d, i) { return x(data[i].scales); })
+        .y(function(d, i) { return y(data[i].value); });
+
+      let averageLine = d3.line()
+        .x(function(d, i) { return x(data[i].scales); })
+        .y(function(d, i) { return y(data[i].avg); });
+
+      let paceLine = d3.line()
+        .x(function(d, i) { return x(data[i].scales); })
+        .y(function(d, i) { return y2(data[i].pace); });
 
       // Scale the range of the data
       x.domain([data[0].scales, data[data.length - 1].scales]);

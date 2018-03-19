@@ -1,0 +1,17 @@
+.activity {
+  margin-bottom: 10px;
+
+  &__line {
+    margin-top: 40px;
+  }
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  .circle {
+    background-color: red;
+    // height: 40px;
+    // width: 40px;
+  }
+}

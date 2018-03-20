@@ -1,6 +1,6 @@
 /* tslint:disable */
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 
 let test = require('./gates_money.json');
@@ -10,6 +10,17 @@ let test = require('./gates_money.json');
   template: require('./BubbleChart.html'),
 })
 export class BubbleChart extends Vue {
+
+  @Prop()
+  valueData: any;
+
+  @Watch('valueData')
+  onPropertyChanged(val: any, oldVal: any) {
+    let myBubbleChart = this.bubbleChart();
+
+    myBubbleChart('#bubbles', this.valueData);
+    this.setupButtons(myBubbleChart);
+  }
 
   public bubbleChart() {
     let width = 940;
@@ -21,24 +32,24 @@ export class BubbleChart extends Vue {
     };
 
     let yearCenters = {
-      2008: {
+      2016: {
         x: width / 3,
         y: height / 2
       },
-      2009: {
+      2017: {
         x: width / 2,
         y: height / 2
       },
-      2010: {
+      2018: {
         x: 2 * width / 3,
         y: height / 2
       }
     };
 
     let yearTitleX = {
-      2008: 160,
-      2009: width / 2,
-      2010: width - 160
+      2016: 160,
+      2017: width / 2,
+      2018: width - 160
     };
 
     let forceStrength = 0.03;
@@ -61,12 +72,12 @@ export class BubbleChart extends Vue {
     simulation.stop();
 
     let fillColor = d3.scaleOrdinal()
-      .domain(['low', 'medium', 'high'])
-      .range(['#d84b2a', '#beccae', '#7aa25c']);
+      .domain(['0', '1', '2', '3'])
+      .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939']);
 
     function createNodes(rawData) {
       let maxAmount = d3.max(rawData, function(d, i) {
-        return +rawData[i].total_amount;
+        return +rawData[i].distance;
       });
 
       let radiusScale = d3.scalePow()
@@ -77,12 +88,11 @@ export class BubbleChart extends Vue {
       let myNodes = rawData.map(function (d) {
         return {
           id: d.id,
-          radius: radiusScale(+d.total_amount),
-          value: +d.total_amount,
-          name: d.grant_title,
-          org: d.organization,
-          group: d.group,
-          year: d.start_year,
+          radius: radiusScale(+d.distance / 20),
+          value: d.distance,
+          name: d.name,
+          group: d.workout_type,
+          year: new Date(d.start_date).getFullYear(),
           x: Math.random() * 900,
           y: Math.random() * 800
         }
@@ -207,9 +217,12 @@ export class BubbleChart extends Vue {
   }
 
   mounted() {
-    let myBubbleChart = this.bubbleChart();
+    /*let myBubbleChart = this.bubbleChart();
+
+    let array = [this.valueData];
 
     myBubbleChart('#bubbles', test);
-    this.setupButtons(myBubbleChart);
+    myBubbleChart('#bubbles', array);
+    this.setupButtons(myBubbleChart);*/
   }
 }

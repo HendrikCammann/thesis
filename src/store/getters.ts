@@ -11,6 +11,12 @@ const getters: GetterTree<State, State> = {
   getActivities: (state) => {
       return state.activityList;
   },
+  getSortedActivities: (state) => {
+      return state.acitvitySortedLists;
+  },
+  getSortedActivitiesYears: (state) => {
+    return state.acitvitySortedLists.byYears;
+  },
   getActivity: (state) => {
       let id = 1459320043;
       return state.activityList.find((item) => {

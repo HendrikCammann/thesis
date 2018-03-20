@@ -25,4 +25,12 @@ export class ActivitiesContainer extends Vue {
   get activityItems() {
     return this.$store.getters.getActivities;
   }
+
+  get sortedActivityItems() {
+    return this.$store.getters.getSortedActivities;
+  }
+
+  get sortedActivityYears() {
+    return this.$store.getters.getSortedActivitiesYears;
+  }
 }

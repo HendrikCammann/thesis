@@ -190,27 +190,26 @@ export class BubbleChart extends Vue {
     return chart;
   }
 
+  public setupButtons(chartObject) {
+    d3.select('#toolbar')
+      .selectAll('.button')
+      .on('click', function () {
+        d3.selectAll('.button').classed('active', false);
+
+        let button = d3.select(this);
+
+        button.classed('active', true);
+
+        let buttonId = button.attr('id');
+
+        chartObject.toggleDisplay(buttonId);
+      });
+  }
+
   mounted() {
     let myBubbleChart = this.bubbleChart();
 
-    function setupButtons() {
-      d3.select('#toolbar')
-        .selectAll('.button')
-        .on('click', function () {
-          d3.selectAll('.button').classed('active', false);
-
-          let button = d3.select(this);
-
-          button.classed('active', true);
-
-          let buttonId = button.attr('id');
-
-          myBubbleChart.toggleDisplay(buttonId);
-        });
-    }
-
     myBubbleChart('#bubbles', test);
-
-    setupButtons();
+    this.setupButtons(myBubbleChart);
   }
 }

@@ -16,10 +16,11 @@
       <file leaf-file-name="BubbleChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+            <state relative-caret-position="525">
+              <caret line="212" column="37" lean-forward="true" selection-start-line="212" selection-start-column="37" selection-end-line="212" selection-end-column="37" />
               <folding>
                 <element signature="e#21#43#0" expanded="true" />
+                <element signature="n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -392,12 +393,12 @@
       <workItem from="1521118654112" duration="1051000" />
       <workItem from="1521453120200" duration="660000" />
       <workItem from="1521455443521" duration="11703000" />
-      <workItem from="1521531443149" duration="4617000" />
+      <workItem from="1521531443149" duration="4749000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63043000" />
+    <option name="totallyTimeSpent" value="63175000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -840,10 +841,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        <state relative-caret-position="525">
+          <caret line="212" column="37" lean-forward="true" selection-start-line="212" selection-start-column="37" selection-end-line="212" selection-end-column="37" />
           <folding>
             <element signature="e#21#43#0" expanded="true" />
+            <element signature="n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
           </folding>
         </state>
       </provider>

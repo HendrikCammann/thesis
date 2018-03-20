@@ -2,9 +2,13 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {State} from '../../../store/state';
+import {BubbleChart} from '../../modules/BubbleChart';
 
 @Component({
-  template: require('./activities.html')
+  template: require('./activities.html'),
+  components: {
+    'bubbleChart': BubbleChart
+  }
 })
 export class ActivitiesContainer extends Vue {
   mounted() {

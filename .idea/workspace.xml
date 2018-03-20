@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/gates_money.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/index.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" afterPath="$PROJECT_DIR$/src/styles/main.scss" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +16,8 @@
       <file leaf-file-name="BubbleChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="126" column="30" lean-forward="false" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+            <state relative-caret-position="435">
+              <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
               <folding>
                 <element signature="e#21#43#0" expanded="true" />
               </folding>
@@ -62,6 +54,8 @@
       <find>var</find>
       <find>myBubbleChart</find>
       <find>rawData</find>
+      <find>2010</find>
+      <find>2008</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -398,12 +392,12 @@
       <workItem from="1521118654112" duration="1051000" />
       <workItem from="1521453120200" duration="660000" />
       <workItem from="1521455443521" duration="11703000" />
-      <workItem from="1521531443149" duration="3631000" />
+      <workItem from="1521531443149" duration="4617000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62057000" />
+    <option name="totallyTimeSpent" value="63043000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -775,14 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/gates_money.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42090">
-          <caret line="2806" column="1" lean-forward="false" selection-start-line="2806" selection-start-column="1" selection-end-line="2806" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -844,10 +830,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/gates_money.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="1858" column="22" lean-forward="false" selection-start-line="1858" selection-start-column="18" selection-end-line="1858" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="126" column="30" lean-forward="false" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+        <state relative-caret-position="435">
+          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding>
             <element signature="e#21#43#0" expanded="true" />
           </folding>

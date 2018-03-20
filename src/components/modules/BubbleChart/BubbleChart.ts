@@ -26,7 +26,7 @@ export class BubbleChart extends Vue {
         y: height / 2
       },
       2009: {
-        x: width / 3,
+        x: width / 2,
         y: height / 2
       },
       2010: {
@@ -114,6 +114,7 @@ export class BubbleChart extends Vue {
         .attr('fill', function (d) {
           return fillColor(d.group);
         })
+        .attr('stroke', 'black')
         .attr('stroke-width', 2);
 
       bubbles = bubbles.merge(bubblesE);
@@ -178,13 +179,13 @@ export class BubbleChart extends Vue {
         });
     }
 
-    /*chart.toggleDisplay = function (displayName) {
+    chart.toggleDisplay = function (displayName) {
       if (displayName === 'year') {
         splitBubbles();
       } else {
         groupBubbles();
       }
-    };*/
+    };
 
     return chart;
   }
@@ -204,7 +205,7 @@ export class BubbleChart extends Vue {
 
           let buttonId = button.attr('id');
 
-          /*myBubbleChart.toggleDisplay(buttonId);*/
+          myBubbleChart.toggleDisplay(buttonId);
         });
     }
 

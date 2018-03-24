@@ -3,9 +3,13 @@ import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {State} from '../../../store/state';
 import {BubbleChart} from '../../modules/BubbleChart';
+import {mapGetters} from 'vuex';
 
 @Component({
   template: require('./activities.html'),
+  computed: mapGetters({
+    activities: 'getActivities',
+  }),
   components: {
     'bubbleChart': BubbleChart
   }
@@ -23,6 +27,7 @@ export class ActivitiesContainer extends Vue {
     });
   }
 
+  /*
   get activityItems() {
     return this.$store.getters.getActivities;
   }
@@ -34,4 +39,5 @@ export class ActivitiesContainer extends Vue {
   get sortedActivityYears() {
     return this.$store.getters.getSortedActivitiesYears;
   }
+  */
 }

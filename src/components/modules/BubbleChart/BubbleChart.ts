@@ -157,7 +157,7 @@ export class BubbleChart extends Vue {
 
     function createNodes(rawData) {
       let maxAmount = d3.max(rawData, function(d, i) {
-        return +rawData[i].distance;
+        return +rawData[i].base_data.distance;
       });
 
       let radiusScale = d3.scalePow()
@@ -168,14 +168,14 @@ export class BubbleChart extends Vue {
       let myNodes = rawData.map(function (d) {
         return {
           id: d.id,
-          radius: radiusScale(+d.distance / 20),
-          value: d.distance,
+          radius: radiusScale(+d.base_data.distance / 20),
+          value: d.base_data.distance,
           name: d.name,
-          group: d.workout_type,
-          year: new Date(d.start_date).getFullYear(),
-          month: new Date(d.start_date).getMonth(),
-          clusterAnchorMonth: d.clusterAnchorMonth,
-          clusterAnchorYear: d.clusterAnchorYear,
+          group: d.categorization.activity_type,
+          year: new Date(d.date).getFullYear(),
+          month: new Date(d.date).getMonth(),
+          clusterAnchorMonth: d.categorization.cluster_anchor_month,
+          clusterAnchorYear: d.categorization.cluster_anchor_year,
           x: Math.random() * 900,
           y: Math.random() * 800
         }
@@ -269,10 +269,11 @@ export class BubbleChart extends Vue {
       hideYearTitles();
       // howMonthTitles();
       for (let i = 0; i < that.valueData.length; i++) {
-        if(that.valueData[i].clusterAnchorMonth in clusterAreas) {
+        console.log()
+        if(that.valueData[i].categorization.cluster_anchor_month in clusterAreas) {
 
         } else {
-          clusterAreas[that.valueData[i].clusterAnchorMonth] = {
+          clusterAreas[that.valueData[i].categorization.cluster_anchor_month] = {
             x: null,
             y: null
           }
@@ -291,8 +292,6 @@ export class BubbleChart extends Vue {
       function nodePos(d) {
         return clusterAreas[d.clusterAnchorMonth].x;
       }
-
-      console.log(clusterAreas);
 
       simulation.force('x', d3.forceX().strength(forceStrength).x(nodePos));
       simulation.alpha(1).restart();

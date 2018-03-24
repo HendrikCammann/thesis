@@ -1,10 +1,10 @@
 <div class="container">
-  <!-- <bubble-chart
-    :valueData="activityItems"
-  ></bubble-chart> -->
+  <bubble-chart
+    :valueData="activities"
+  ></bubble-chart>
   <div
     class="row activity"
-    v-for="item in activityItems">
+    v-for="item in activities">
     <span>{{ new Date(item.date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ item.name }}</h3>
     <table class="table">
       <thead>
@@ -38,7 +38,6 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div class="circle" v-bind:style="{ height: item.average_speed*50 + 'px', width: item.average_heartrate + 'px' }">hi</div> -->
     <hr class="activity__line">
   </div>
 </div>

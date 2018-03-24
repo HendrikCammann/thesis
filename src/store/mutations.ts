@@ -2,7 +2,6 @@ import Vue from 'vue';
 import {MutationTree} from 'vuex';
 import {MutationTypes} from './mutation-types';
 import {State} from './state';
-import * as _ from 'lodash';
 import * as moment from 'moment';
 import {ActivityModel} from '../models/ActivityModel';
 import {ActivityDetailModel} from '../models/ActivityDetailModel';
@@ -204,9 +203,8 @@ const mutations: MutationTree<State> = {
     if (!state.activityList.length) {
       items.forEach(item => {
         if (item.type === 'Run') {
-          let activity = applyActivityModelStructure(item);
           state.activityList.push({
-            ...activity
+            ...applyActivityModelStructure(item)
           });
         }
       });
@@ -237,16 +235,6 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_SELECTED_ACTIVITY]: (state: State, {activityId}) => {
     state.selectedActivityId = activityId;
-    localStorage.setItem('selectedActivityId', state.selectedActivityId.toString());
-  },
-
-  [MutationTypes.SET_SELECTED_ACTIVITY_FROM_LOCALSTORAGE]: (state: State, {activityId}) => {
-    console.log('shaidh');
-  },
-
-  [MutationTypes.SET_ACTIVITIES_FROM_LOCALSTORAGE]: (state: State, {items}) => {
-    state.activityList = JSON.parse(items);
-    localStorage.setItem('activities', JSON.stringify(state.activityList));
   },
 
 };

@@ -4,11 +4,49 @@ import {MutationTypes} from './mutation-types';
 import {State} from './state';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {ActivityModel} from '../models/ActivityModel';
 
 enum timeRanges {
   Week = 'week',
   Month = 'month',
   Year = 'year'
+}
+
+function applyActivityModelStructure(item): ActivityModel {
+  let activity = new ActivityModel();
+  activity.id = item.id;
+  activity.name = item.name;
+  activity.date = item.start_date;
+
+  activity.controls.has_heartrate = item.has_heartrate;
+
+  activity.average_data.heartrate = item.average_heartrate;
+  activity.average_data.speed = item.average_speed;
+  activity.average_data.cadence = item.average_cadence;
+
+  activity.base_data.distance = item.distance;
+  activity.base_data.duration = item.moving_time;
+  activity.base_data.elevation_up = item.elev_high;
+  activity.base_data.elevation_down = item.elev_low;
+  activity.base_data.elevation_gain = item.total_elevation_gain;
+
+  activity.max_data.heartrate = item.max_heartrate;
+  activity.max_data.speed = item.max_speed;
+
+  activity.categorization.cluster_anchor_month = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
+  activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
+  activity.categorization.type = item.type;
+  activity.categorization.activity_type = item.workout_type;
+
+  activity.map.map = item.map;
+  activity.map.start_latlng = item.start_latlng;
+  activity.map.end_latlng = item.end_latlng;
+
+  activity.details = null;
+
+  activity.streams = null;
+
+  return activity;
 }
 
 // Todo set start of week monday instead of sunday
@@ -110,6 +148,8 @@ const mutations: MutationTree<State> = {
         item.clusterAnchorMonth = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
         item.clusterAnchorYear = new Date(item.start_date).getFullYear().toString();
         if (item.type === 'Run') {
+          let activity = applyActivityModelStructure(item);
+          console.log(activity);
           state.activityList.push({
             ...item
           });

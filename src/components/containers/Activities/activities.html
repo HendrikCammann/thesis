@@ -4,8 +4,8 @@
   ></bubble-chart>
   <div v-for="timeRange in sortedActivities.byWeeks">
     <div class="row">
-      <h1>{{ timeRange.stats.rangeName }}</h1>
-      <span>TotalDistance: {{ timeRange.stats.distance }}</span> |
+      <h1 style="display: inline-block">{{ timeRange.stats.rangeName }}</h1>
+      <span>TotalDistance: {{ timeRange.stats.distance / 1000 }}</span> |
       <span>Time: {{ timeRange.stats.time }}</span> |
       <span>Run: {{ timeRange.stats.typeCount.run }}</span> |
       <span>longRun: {{ timeRange.stats.typeCount.longRun }}</span> |

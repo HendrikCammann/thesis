@@ -138,7 +138,6 @@ function applyActivityZoneModelStructure(item): ActivityZoneModel {
   return zones;
 }
 
-// Todo set start of week monday instead of sunday
 function sortActivities (array, bucket) {
   let timeRange;
 
@@ -146,7 +145,7 @@ function sortActivities (array, bucket) {
 
     switch (bucket) {
       case timeRanges.Week:
-        timeRange = moment(activity.date).year() + '-' + moment(activity.date).week();
+        timeRange = moment(activity.date).year() + '-' + moment(activity.date).isoWeek();
         break;
       case timeRanges.Month:
         timeRange = moment(activity.date).year() + '-' + moment(activity.date).month();
@@ -175,7 +174,6 @@ function sortActivities (array, bucket) {
       };
     }
 
-    // Todo only push Id
     acc[timeRange].activities.push(activity.id);
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;

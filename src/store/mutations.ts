@@ -7,6 +7,7 @@ import {ActivityModel} from '../models/ActivityModel';
 import {ActivityDetailModel} from '../models/ActivityDetailModel';
 import {ActivityStreamModel} from '../models/ActivityStreamModel';
 import {ActivityZoneModel} from '../models/ActivityZoneModel';
+import {ActivityClusterModel} from '../models/ActivityClusterModel';
 
 enum timeRanges {
   Week = 'week',
@@ -155,26 +156,13 @@ function sortActivities (array, bucket) {
         break;
     }
 
-    // check if the week number exists
+    // check if the cluster already exists
     if (typeof acc[timeRange] === 'undefined') {
-      acc[timeRange] = {
-        activities: [],
-        stats: {
-          rangeName: timeRange,
-          distance: 0,
-          time: null,
-          typeCount: {
-            run: 0,
-            longRun: 0,
-            interval: 0,
-            competiton: 0,
-            uncategorized: 0
-          }
-        }
-      };
+      acc[timeRange] = new ActivityClusterModel();
     }
 
     acc[timeRange].activities.push(activity.id);
+    acc[timeRange].rangeName = timeRange;
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;
     switch (activity.categorization.activity_type) {

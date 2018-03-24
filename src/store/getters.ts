@@ -14,15 +14,18 @@ const getters: GetterTree<State, State> = {
   getSortedActivities: (state) => {
       return state.acitvitySortedLists;
   },
+  getSortedActivitiesMonth: (state) => {
+    return state.acitvitySortedLists.byMonths;
+  },
   getSortedActivitiesYears: (state) => {
     return state.acitvitySortedLists.byYears;
   },
-  getActivity: (state) => {
+  /*getActivity: (state) => {
       let id = 1459320043;
       return state.activityList.find((item) => {
           return item.id === id;
       });
-  },
+  },*/
   getSelectedActivityId: (state) => {
       return state.selectedActivityId;
   },
@@ -35,22 +38,8 @@ const getters: GetterTree<State, State> = {
   },
   getSelectedActivityStreams: (state) => {
     for (let i = 0; i < state.activityList.length; i++) {
-      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
-        return state.activityList[i].streams[2];
-      }
-    }
-  },
-  getSelectedActivityStreamsDistance: (state) => {
-    for (let i = 0; i < state.activityList.length; i++) {
-      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
-        return state.activityList[i].streams[0];
-      }
-    }
-  },
-  getSelectedActivityStreamsPace: (state) => {
-    for (let i = 0; i < state.activityList.length; i++) {
-      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== undefined) {
-        return state.activityList[i].streams[4];
+      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== null) {
+        return state.activityList[i].streams;
       }
     }
   }

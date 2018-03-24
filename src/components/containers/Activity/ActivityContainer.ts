@@ -9,10 +9,8 @@ import { LineChart } from '../../../components/modules/LineChart/';
 @Component({
   template: require('./activity.html'),
   computed: mapGetters({
-    getSelectedActivityTest: 'getSelectedActivity',
-    getSelectedActivityStreamsTest: 'getSelectedActivityStreams',
-    getSelectedActivityStreamsDistanceTest: 'getSelectedActivityStreamsDistance',
-    getSelectedActivityStreamsPaceTest: 'getSelectedActivityStreamsPace'
+    getSelectedActivity: 'getSelectedActivity',
+    getSelectedActivityStreams: 'getSelectedActivityStreams',
   }),
   components: {
     'linechart': LineChart

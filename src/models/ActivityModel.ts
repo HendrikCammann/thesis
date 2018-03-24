@@ -1,3 +1,5 @@
+import {ActivityDetailModel} from './ActivityDetailModel';
+
 class ActivityControls {
   public has_heartrate: boolean;
 
@@ -24,6 +26,7 @@ class ActivityBaseData {
   public elevation_up: number;
   public elevation_down: number;
   public elevation_gain: number;
+  public suffer_score: number;
 
   constructor() {
     this.distance = null;
@@ -31,6 +34,7 @@ class ActivityBaseData {
     this.elevation_up = null;
     this.elevation_down = null;
     this.elevation_gain = null;
+    this.suffer_score = null;
   }
 }
 
@@ -80,7 +84,7 @@ export class ActivityModel {
   public max_data: ActivityMaxData;
   public categorization: ActivityCategorization;
   public map: ActivityMap;
-  public details: object;
+  public details: ActivityDetailModel;
   public streams: any;
 
   constructor() {

@@ -16,6 +16,7 @@ export class ActivitiesContainer extends Vue {
   }
 
   private logActivity(activityId) {
+    console.log(activityId);
     this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activityId);
     this.$router.push({
       path: '/activity/' + activityId

@@ -5,6 +5,8 @@ import {State} from './state';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import {ActivityModel} from '../models/ActivityModel';
+import {ActivityDetailModel} from '../models/ActivityDetailModel';
+import {ActivityStreamModel} from '../models/ActivityStreamModel';
 
 enum timeRanges {
   Week = 'week',
@@ -14,6 +16,7 @@ enum timeRanges {
 
 function applyActivityModelStructure(item): ActivityModel {
   let activity = new ActivityModel();
+
   activity.id = item.id;
   activity.name = item.name;
   activity.date = item.start_date;
@@ -29,6 +32,7 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.base_data.elevation_up = item.elev_high;
   activity.base_data.elevation_down = item.elev_low;
   activity.base_data.elevation_gain = item.total_elevation_gain;
+  activity.base_data.suffer_score = item.suffer_score;
 
   activity.max_data.heartrate = item.max_heartrate;
   activity.max_data.speed = item.max_speed;
@@ -49,6 +53,60 @@ function applyActivityModelStructure(item): ActivityModel {
   return activity;
 }
 
+function applyActivityDetailModelStructure(item): ActivityDetailModel {
+  let details = new ActivityDetailModel();
+  details.id = item.id;
+  details.description = item.description;
+  details.date = item.start_date;
+
+  details.controls.has_heartrate = item.has_heartrate;
+
+  details.categorization.activity_type = item.workout_type;
+  details.categorization.type = item.type;
+
+  details.average_data.heartrate = item.average_heartrate;
+  details.average_data.speed = item.average_speed;
+  details.average_data.cadence = item.average_cadence;
+
+  details.base_data.calories = item.calories;
+  details.base_data.distance = item.distance;
+  details.base_data.duration = item.moving_time;
+  details.base_data.elevation_up = item.elev_high;
+  details.base_data.elevation_down = item.elev_low;
+  details.base_data.elevation_gain = item.total_elevation_gain;
+  details.base_data.suffer_score = item.suffer_score;
+
+  details.max_data.heartrate = item.max_heartrate;
+  details.max_data.speed = item.max_speed;
+
+  details.map.map = item.map;
+  details.map.start_latlng = item.start_latlng;
+  details.map.end_latlng = item.end_latlng;
+
+  details.distance_efforts = item.best_efforts;
+
+  details.laps = item.laps;
+
+  details.similar_activities = item.similar_activities;
+
+  details.splits.metric = item.splits_metric;
+  details.splits.standard = item.splits_standard;
+
+  return details;
+}
+
+function applyActivityStreamModelStructure(item): ActivityStreamModel {
+  let streams = new ActivityStreamModel();
+
+  streams.distance = item[0];
+  streams.altitude = item[1];
+  streams.heartrate = item[2];
+  streams.cadence = item[3];
+  streams.speed = item[4];
+
+  return streams;
+}
+
 // Todo set start of week monday instead of sunday
 function sortActivities (array, bucket) {
   let timeRange;
@@ -57,13 +115,13 @@ function sortActivities (array, bucket) {
 
     switch (bucket) {
       case timeRanges.Week:
-        timeRange = moment(activity.start_date).year() + '-' + moment(activity.start_date).week();
+        timeRange = moment(activity.date).year() + '-' + moment(activity.date).week();
         break;
       case timeRanges.Month:
-        timeRange = moment(activity.start_date).year() + '-' + moment(activity.start_date).month();
+        timeRange = moment(activity.date).year() + '-' + moment(activity.date).month();
         break;
       case timeRanges.Year:
-        timeRange = moment(activity.start_date).year();
+        timeRange = moment(activity.date).year();
         break;
     }
 
@@ -87,9 +145,9 @@ function sortActivities (array, bucket) {
 
     // Todo only push Id
     acc[timeRange].activities.push(activity);
-    acc[timeRange].stats.distance += activity.distance;
-    acc[timeRange].stats.time += activity.elapsed_time;
-    switch (activity.workout_type) {
+    acc[timeRange].stats.distance += activity.base_data.distance;
+    acc[timeRange].stats.time += activity.base_data.duration;
+    switch (activity.categorization.activity_type) {
       case 0:
         acc[timeRange].stats.typeCount.run += 1;
         break;
@@ -145,13 +203,10 @@ const mutations: MutationTree<State> = {
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
       items.forEach(item => {
-        item.clusterAnchorMonth = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
-        item.clusterAnchorYear = new Date(item.start_date).getFullYear().toString();
         if (item.type === 'Run') {
           let activity = applyActivityModelStructure(item);
-          console.log(activity);
           state.activityList.push({
-            ...item
+            ...activity
           });
         }
       });
@@ -159,22 +214,14 @@ const mutations: MutationTree<State> = {
       state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
       state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
       state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
-
-      // localStorage.setItem('activities', JSON.stringify(state.activityList));
-    }
+      }
   },
 
   [MutationTypes.GET_ACTIVITY]: (state: State, {item}) => {
     if (state.activityList.length !== 0) {
       state.activityList.forEach((activity, i) => {
         if (activity.id === item.id ) {
-          let obj = {
-            details: item
-          };
-          // item = {...item, details: item};
-
-          state.activityList.splice(i, 1,  _.merge(state.activityList[i], obj));
-          localStorage.setItem('activities', JSON.stringify(state.activityList));
+          state.activityList[i].details = applyActivityDetailModelStructure(item);
         }
       });
     }
@@ -183,10 +230,7 @@ const mutations: MutationTree<State> = {
   [MutationTypes.GET_ACTIVITY_STREAMS]: (state: State, {item}) => {
     state.activityList.forEach((activity, i) => {
       if (activity.id === state.selectedActivityId) {
-        let obj = {
-          streams: item
-        };
-        state.activityList.splice(i, 1,  _.merge(state.activityList[i], obj));
+        state.activityList[i].streams = applyActivityStreamModelStructure(item);
       }
     });
   },

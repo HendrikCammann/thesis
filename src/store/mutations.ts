@@ -97,11 +97,25 @@ function applyActivityDetailModelStructure(item): ActivityDetailModel {
 function applyActivityStreamModelStructure(item): ActivityStreamModel {
   let streams = new ActivityStreamModel();
 
-  streams.distance = item[0];
-  streams.altitude = item[1];
-  streams.heartrate = item[2];
-  streams.cadence = item[3];
-  streams.speed = item[4];
+  item.map(item => {
+    switch (item.type) {
+      case 'distance':
+        streams.distance = item;
+        break;
+      case 'heartrate':
+        streams.heartrate = item;
+        break;
+      case 'altitude':
+        streams.altitude = item;
+        break;
+      case 'cadence':
+        streams.cadence = item;
+        break;
+      case 'velocity_smooth':
+        streams.speed = item;
+
+    }
+  });
 
   return streams;
 }

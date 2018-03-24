@@ -9,7 +9,7 @@ const getters: GetterTree<State, State> = {
     }
   },
   getActivities: (state) => {
-      return state.activityList;
+    return state.activityList;
   },
   getSortedActivities: (state) => {
       return state.acitvitySortedLists;

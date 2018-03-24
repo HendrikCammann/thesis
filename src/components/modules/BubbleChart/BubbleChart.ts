@@ -4,16 +4,13 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {MutationTypes} from '../../../store/mutation-types';
 
-let test = require('./gates_money.json');
-
-
 @Component({
   template: require('./BubbleChart.html'),
 })
 export class BubbleChart extends Vue {
 
   @Prop()
-  valueData: any;
+  valueData: any[];
 
   @Watch('valueData')
   onPropertyChanged(val: any, oldVal: any) {
@@ -176,6 +173,7 @@ export class BubbleChart extends Vue {
           month: new Date(d.date).getMonth(),
           clusterAnchorMonth: d.categorization.cluster_anchor_month,
           clusterAnchorYear: d.categorization.cluster_anchor_year,
+          date: d.date,
           x: Math.random() * 900,
           y: Math.random() * 800
         }
@@ -212,10 +210,7 @@ export class BubbleChart extends Vue {
         })
         .attr('stroke-width', 2)
         .on('click', function(d) {
-          that.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, d.id);
-          that.$router.push({
-            path: '/activity/' + d.id
-          });
+          handleClick(d.id);
         });
 
       bubbles = bubbles.merge(bubblesE);
@@ -339,6 +334,13 @@ export class BubbleChart extends Vue {
         });
     }*/
 
+    function handleClick(id) {
+      that.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, id);
+      that.$router.push({
+        path: '/activity/' + id
+      });
+    }
+
     chart.toggleDisplay = function (displayName) {
       if (displayName === 'year') {
         splitBubbles();
@@ -369,12 +371,10 @@ export class BubbleChart extends Vue {
   }
 
   mounted() {
-    /*let myBubbleChart = this.bubbleChart();
-
-    let array = [this.valueData];
-
-    myBubbleChart('#bubbles', test);
-    myBubbleChart('#bubbles', array);
-    this.setupButtons(myBubbleChart);*/
+    if(this.valueData.length !== 0) {
+      let myBubbleChart = this.bubbleChart();
+      myBubbleChart('#bubbles', this.valueData);
+      this.setupButtons(myBubbleChart);
+    }
   }
 }

@@ -1,3 +1,5 @@
+import {ActivityModel} from '../models/ActivityModel';
+
 export interface ListItem {
   id: number;
   name: string;
@@ -7,7 +9,7 @@ export class State {
   public count: number;
   public listItem: ListItem[];
   public runningRaces: any[];
-  public activityList: any[];
+  public activityList: ActivityModel[];
   public selectedActivityId: number;
   public acitvitySortedLists: {
     byMonths: null,

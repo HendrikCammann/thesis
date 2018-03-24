@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/models/ActivityZoneModel.ts" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/api/stravaAPI.ts" afterPath="$PROJECT_DIR$/src/api/stravaAPI.ts" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" />
-      <change beforePath="$PROJECT_DIR$/src/models/ActivityModel.ts" afterPath="$PROJECT_DIR$/src/models/ActivityModel.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions.ts" afterPath="$PROJECT_DIR$/src/store/actions.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutation-types.ts" afterPath="$PROJECT_DIR$/src/store/mutation-types.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" afterPath="$PROJECT_DIR$/src/store/mutations.ts" />
+      <change beforePath="$PROJECT_DIR$/src/store/state.ts" afterPath="$PROJECT_DIR$/src/store/state.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityModel.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActivityModel.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="89" column="38" lean-forward="false" selection-start-line="89" selection-start-column="37" selection-end-line="89" selection-end-column="38" />
+            <state relative-caret-position="495">
+              <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
                 <element signature="n#ActivityControls#0" expanded="false" />
@@ -130,6 +123,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="state.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/store/state.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -226,7 +229,6 @@
         <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/index.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.html" />
-        <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/App/AppContainer.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityDetailModel.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityStreamModel.ts" />
@@ -242,6 +244,7 @@
         <option value="$PROJECT_DIR$/src/models/ActivityZoneModel.ts" />
         <option value="$PROJECT_DIR$/src/store/mutations.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityModel.ts" />
+        <option value="$PROJECT_DIR$/src/store/state.ts" />
       </list>
     </option>
   </component>
@@ -480,7 +483,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90212000" />
+    <option name="totallyTimeSpent" value="90614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -772,14 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/App/AppContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1002,8 +997,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="89" column="38" lean-forward="false" selection-start-line="89" selection-start-column="37" selection-end-line="89" selection-end-column="38" />
+        <state relative-caret-position="495">
+          <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
             <element signature="n#ActivityControls#0" expanded="false" />
@@ -1013,6 +1008,14 @@
             <element signature="n#ActivityCategorization#0" expanded="false" />
             <element signature="n#ActivityMap#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

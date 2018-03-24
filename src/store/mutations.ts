@@ -161,6 +161,7 @@ function sortActivities (array, bucket) {
       acc[timeRange] = {
         activities: [],
         stats: {
+          rangeName: timeRange,
           distance: 0,
           time: null,
           typeCount: {
@@ -175,7 +176,7 @@ function sortActivities (array, bucket) {
     }
 
     // Todo only push Id
-    acc[timeRange].activities.push(activity);
+    acc[timeRange].activities.push(activity.id);
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;
     switch (activity.categorization.activity_type) {

@@ -1,0 +1,36 @@
+<div class="row activity">
+  <span>{{ new Date(activity.date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ activity.name }}</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">distance</th>
+      <th scope="col">time</th>
+      <th scope="col">ø heartrate</th>
+      <th scope="col">max. heartrate</th>
+      <th scope="col">ø cadence</th>
+      <th scope="col">max. speed</th>
+      <th scope="col">ø speed</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{ (activity.base_data.distance / 1000).toFixed(2) }}km</td>
+      <td>{{ activity.base_data.duration }}</td>
+      <td>{{ activity.average_data.heartrate }}</td>
+      <td>{{ activity.max_data.heartrate }}</td>
+      <td>{{ activity.average_data.cadence * 2 }}</td>
+      <td>{{ (activity.max_data.speed * 3.6).toFixed(2) }}km/h</td>
+      <td>{{ (activity.average_data.speed * 3.6).toFixed(2) }}km/h</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-primary"
+          @click="logActivity(activity.id)">
+          Show Details</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <hr class="activity__line">
+</div>

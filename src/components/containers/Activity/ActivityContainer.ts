@@ -20,6 +20,7 @@ export class ActivityContainer extends Vue {
   mounted() {
     this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
     this.$store.dispatch(MutationTypes.GET_ACTIVITY_STREAMS, this.$store.getters.getSelectedActivityId);
+    this.$store.dispatch(MutationTypes.GET_ACTIVITY_ZONES, this.$store.getters.getSelectedActivityId);
   }
 
 }

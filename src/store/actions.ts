@@ -60,6 +60,14 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.GET_ACTIVITY_ZONES]: ({commit}, activityId) => {
+    stravaAPI.getZonesForActivity(activityId, token, (item) => {
+      commit(MutationTypes.GET_ACTIVITY_ZONES, {
+        item
+      });
+    });
+  },
+
   [MutationTypes.SET_SELECTED_ACTIVITY]: ({commit}, activityId) => {
     commit(MutationTypes.SET_SELECTED_ACTIVITY, {
       activityId

@@ -1,4 +1,6 @@
 import {ActivityDetailModel} from './ActivityDetailModel';
+import {ActivityStreamModel} from './ActivityStreamModel';
+import {ActivityZoneModel} from './ActivityZoneModel';
 
 class ActivityControls {
   public has_heartrate: boolean;
@@ -85,7 +87,8 @@ export class ActivityModel {
   public categorization: ActivityCategorization;
   public map: ActivityMap;
   public details: ActivityDetailModel;
-  public streams: any;
+  public streams: ActivityStreamModel;
+  public zones: ActivityZoneModel;
 
   constructor() {
     this.id = null;
@@ -106,5 +109,6 @@ export class ActivityModel {
 
     this.details = null;
     this.streams = null;
+    this.zones = null;
   }
 }

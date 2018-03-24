@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import {ActivityModel} from '../models/ActivityModel';
 import {ActivityDetailModel} from '../models/ActivityDetailModel';
 import {ActivityStreamModel} from '../models/ActivityStreamModel';
+import {ActivityZoneModel} from '../models/ActivityZoneModel';
 
 enum timeRanges {
   Week = 'week',
@@ -118,6 +119,23 @@ function applyActivityStreamModelStructure(item): ActivityStreamModel {
   });
 
   return streams;
+}
+
+function applyActivityZoneModelStructure(item): ActivityZoneModel {
+  let zones = new ActivityZoneModel();
+
+  item.map(item => {
+    switch (item.type) {
+      case 'heartrate':
+        zones.heartrate = item;
+        break;
+      case 'pace':
+        zones.pace = item;
+        break;
+    }
+  });
+
+  return zones;
 }
 
 // Todo set start of week monday instead of sunday
@@ -243,6 +261,14 @@ const mutations: MutationTree<State> = {
     state.activityList.forEach((activity, i) => {
       if (activity.id === state.selectedActivityId) {
         state.activityList[i].streams = applyActivityStreamModelStructure(item);
+      }
+    });
+  },
+
+  [MutationTypes.GET_ACTIVITY_ZONES]: (state: State, {item}) => {
+    state.activityList.forEach((activity, i) => {
+      if (activity.id === state.selectedActivityId) {
+        state.activityList[i].zones = applyActivityZoneModelStructure(item);
       }
     });
   },

@@ -79,13 +79,13 @@ export function getActivityPages(page, per_page, accessToken, cb) {
  * gives all heartrate/pace etc. zones for a single activity
  */
 
-export function getZonesForActivity(activityId, accessToken) {
+export function getZonesForActivity(activityId, accessToken, cb) {
   strava.activities.listZones({
     access_token: accessToken,
     id: activityId
   }, function (err, payload, limits) {
     if (!err) {
-      console.log('zones', payload);
+      cb(payload);
     }
     else {
       console.log(err);

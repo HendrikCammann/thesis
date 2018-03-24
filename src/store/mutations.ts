@@ -15,7 +15,7 @@ enum timeRanges {
 function sortActivities (array, bucket) {
   let timeRange;
 
-  return array.reduce( function (acc, activity) {
+  return array.reduce( function (acc, activity, i) {
 
     switch (bucket) {
       case timeRanges.Week:
@@ -94,9 +94,21 @@ const mutations: MutationTree<State> = {
     }
   },
 
+  [MutationTypes.GET_RACE]: (state: State, {items}) => {
+    if (!state.runningRaces.length) {
+      items.forEach(item => {
+        state.runningRaces.push({
+          ...item
+        });
+      });
+    }
+  },
+
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
       items.forEach(item => {
+        item.clusterAnchorMonth = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
+        item.clusterAnchorYear = new Date(item.start_date).getFullYear().toString();
         if (item.type === 'Run') {
           state.activityList.push({
             ...item

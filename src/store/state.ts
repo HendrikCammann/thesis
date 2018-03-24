@@ -6,6 +6,7 @@ export interface ListItem {
 export class State {
   public count: number;
   public listItem: ListItem[];
+  public runningRaces: any[];
   public activityList: any[];
   public selectedActivityId: number;
   public acitvitySortedLists: {
@@ -17,6 +18,7 @@ export class State {
   constructor() {
     this.count = 0;
     this.listItem = [];
+    this.runningRaces = [];
     this.activityList = [];
     this.acitvitySortedLists = {
       byMonths: null,

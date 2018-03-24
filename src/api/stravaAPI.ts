@@ -118,3 +118,24 @@ export function getStreamsForActivity(activityId, streams, accessToken, cb) {
     }
   });
 }
+
+/**
+ * gives a running race
+ */
+
+export function getRunningRace(raceId, accessToken, cb) {
+  strava.runningRaces.get({
+    access_token: accessToken,
+    id: raceId,
+  }, function (err, payload, limits) {
+    if (!err) {
+      cb(payload);
+    }
+    else {
+      console.log(err);
+    }
+    if (limits) {
+      console.log(limits);
+    }
+  });
+}

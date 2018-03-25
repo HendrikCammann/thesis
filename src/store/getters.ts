@@ -14,12 +14,6 @@ const getters: GetterTree<State, State> = {
   getSortedActivities: (state) => {
       return state.acitvitySortedLists;
   },
-  getSortedActivitiesMonth: (state) => {
-    return state.acitvitySortedLists.byMonths;
-  },
-  getSortedActivitiesYears: (state) => {
-    return state.acitvitySortedLists.byYears;
-  },
   getActivity: (state, getters) =>  {
     return (id) => {
       return state.activityList.find(item => item.id === id);
@@ -41,6 +35,10 @@ const getters: GetterTree<State, State> = {
         return state.activityList[i].streams;
       }
     }
+  },
+
+  getSelectedRunType: (state) => {
+    return state.selectedRunType;
   }
 };
 

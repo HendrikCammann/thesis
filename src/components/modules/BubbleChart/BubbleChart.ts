@@ -3,6 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {MutationTypes} from '../../../store/mutation-types';
+import {RunType} from '../../../store/state';
 
 @Component({
   template: require('./BubbleChart.html'),
@@ -12,12 +13,21 @@ export class BubbleChart extends Vue {
   @Prop()
   valueData: any[];
 
-  @Watch('valueData')
-  onPropertyChanged(val: any, oldVal: any) {
-    let myBubbleChart = this.bubbleChart();
+  @Prop()
+  displayedData: Object;
 
-    myBubbleChart('#bubbles', this.valueData);
-    this.setupButtons(myBubbleChart);
+  @Prop()
+  runType: RunType;
+
+  @Watch('valueData')
+  @Watch('runType')
+  onPropertyChanged(val: any, oldVal: any) {
+    let type = typeof val;
+    if (type == 'object') {
+      this.drawDiagramm('#bubbles', this.valueData, this.displayedData, this.runType);
+    } else {
+      console.log('changed from ' + oldVal + ' to ' + val);
+    }
   }
 
   public bubbleChart() {
@@ -102,22 +112,6 @@ export class BubbleChart extends Vue {
       2017: width / 2,
       2018: width - 260
     };
-
-    /*let factor = width / 13 / 2;
-    let monthTitleX = {
-      0: width / 13 - factor,
-      1: 2 * width / 13 - (factor / 2),
-      2: 3 * width / 13 - (factor / 3),
-      3: 4 * width / 13 - (factor / 4),
-      4: 5 * width / 13 - (factor / 5),
-      5: 6 * width / 13 - (factor / 6),
-      6: 7 * width / 13 + (factor / 6),
-      7: 8 * width / 13 + (factor / 5),
-      8: 9 * width / 13 + (factor / 4),
-      9: 10 * width / 13 + (factor / 3),
-      10: 11 * width / 13 + (factor / 2),
-      11: 12 * width / 13 + factor
-    };*/
 
     let forceStrength = 0.05;
 
@@ -296,10 +290,6 @@ export class BubbleChart extends Vue {
       svg.selectAll('.year').remove();
     }
 
-    /*function hideMonthTitles() {
-      svg.selectAll('.month').remove();
-    }*/
-
     function showYearTitles() {
       let yearsData = d3.keys(yearTitleX);
       let years = svg.selectAll('.year')
@@ -316,23 +306,6 @@ export class BubbleChart extends Vue {
           return d;
         });
     }
-
-    /*function showMonthTitles() {
-      let monthData = d3.keys(monthTitleX);
-      let years = svg.selectAll('.month')
-        .data(monthData);
-
-      years.enter().append('text')
-        .attr('class', 'month')
-        .attr('x', function (d) {
-          return monthTitleX[d];
-        })
-        .attr('y', 40)
-        .attr('text-anchor', 'middle')
-        .text(function (d) {
-          return monthsNames(d);
-        });
-    }*/
 
     function handleClick(id) {
       that.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, id);
@@ -370,11 +343,19 @@ export class BubbleChart extends Vue {
       });
   }
 
+  public drawDiagramm(domRoot, data, displayedData, type) {
+    console.log('displayedData', displayedData);
+    for (let key in displayedData) {
+      console.log(key);
+    }
+    let myBubbleChart = this.bubbleChart();
+    myBubbleChart(domRoot, data);
+    this.setupButtons(myBubbleChart);
+  }
+
   mounted() {
     if(this.valueData.length !== 0) {
-      let myBubbleChart = this.bubbleChart();
-      myBubbleChart('#bubbles', this.valueData);
-      this.setupButtons(myBubbleChart);
+      this.drawDiagramm('#bubbles', this.valueData, this.displayedData, this.runType);
     }
   }
 }

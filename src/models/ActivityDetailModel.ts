@@ -1,3 +1,5 @@
+import {RunType} from '../store/state';
+
 class ActivityDetailAverageData {
   public heartrate: number;
   public speed: number;
@@ -66,11 +68,11 @@ class ActivityDetailSplits {
 }
 
 class ActivityDetailCategorization {
-  public type: string;
+  public type: any;
   public activity_type: number;
 
   constructor() {
-    this.type = null;
+    this.type = RunType.Uncategorized;
     this.activity_type = null;
   }
 }

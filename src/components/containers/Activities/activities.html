@@ -1,7 +1,22 @@
 <div class="container">
   <bubble-chart
     :valueData="activities"
+    :runType="selectedRunType"
+    :displayedData="sortedActivities"
   ></bubble-chart>
+
+  <div id="filter" @click="selectRunType($event)">
+    <a href="#" id="allActivities" class="button active">All</a>
+    <a href="#" id="run" class="button">Runs</a>
+    <a href="#" id="tempo-run" class="button">TDL</a>
+    <a href="#" id="long-run" class="button">Langer DL</a>
+    <a href="#" id="short-intervals" class="button">Kurze IV</a>
+    <a href="#" id="long-intervals" class="button">Lange IV</a>
+    <a href="#" id="competition" class="button">Wettkampf</a>
+    <a href="#" id="regeneration" class="button">Regeneration</a>
+  </div>
+
+  <hr>
   <div v-for="timeRange in sortedActivities.byWeeks">
     <div class="row">
       <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>

@@ -170,7 +170,7 @@ function sortActivities (array, bucket) {
         acc[timeRange].stats.typeCount.run += 1;
         break;
       case 1:
-        acc[timeRange].stats.typeCount.competiton += 1;
+        acc[timeRange].stats.typeCount.competition += 1;
         break;
       case 2:
         acc[timeRange].stats.typeCount.longRun += 1;
@@ -262,6 +262,10 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_SELECTED_ACTIVITY]: (state: State, {activityId}) => {
     state.selectedActivityId = activityId;
+  },
+
+  [MutationTypes.SET_SELECTED_RUNTYPE]: (state: State, {runType}) => {
+    state.selectedRunType = runType;
   },
 
 };

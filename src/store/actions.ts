@@ -74,6 +74,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_SELECTED_RUNTYPE]: ({commit}, runType) => {
+    commit(MutationTypes.SET_SELECTED_RUNTYPE, {
+      runType
+    });
+  },
+
   [MutationTypes.GET_RACE]: ({commit}, raceId) => {
     stravaAPI.getRunningRace(raceId, token, (item) => {
       commit(MutationTypes.GET_RACE, {

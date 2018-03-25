@@ -5,6 +5,18 @@ export interface ListItem {
   name: string;
 }
 
+export enum RunType {
+  All = 'All',
+  Run = 'Run',
+  TempoRun = 'Tempo run',
+  LongRun = 'Long run',
+  ShortIntervals = 'Short intervals',
+  LongIntervals = 'Long intervals',
+  Competition = 'Competition',
+  Regeneration = 'Regeneration',
+  Uncategorized = 'Uncategorized',
+}
+
 export class State {
   public count: number;
   public listItem: ListItem[];
@@ -17,6 +29,8 @@ export class State {
     byYears: null
   };
 
+  public selectedRunType: RunType;
+
   constructor() {
     this.count = 0;
     this.listItem = [];
@@ -28,6 +42,8 @@ export class State {
       byYears: null
     };
     this.selectedActivityId = null;
+
+    this.selectedRunType = RunType.All;
   }
 }
 

@@ -3,7 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {MutationTypes} from '../../../store/mutation-types';
-import {RunType} from '../../../store/state';
+import {ClusterType, RunType} from '../../../store/state';
 
 @Component({
   template: require('./BubbleChart.html'),
@@ -19,18 +19,23 @@ export class BubbleChart extends Vue {
   @Prop()
   runType: RunType;
 
+  @Prop()
+  clusterType: ClusterType;
+
   @Watch('valueData')
   @Watch('runType')
+  @Watch('clusterType')
   onPropertyChanged(val: any, oldVal: any) {
     let type = typeof val;
     if (type == 'object') {
-      this.drawDiagramm('#bubbles', this.valueData, this.displayedData, this.runType);
+      console.log('changed');
+      this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
     } else {
-      console.log('changed from ' + oldVal + ' to ' + val);
+      this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
     }
   }
 
-  public bubbleChart() {
+  public bubbleChart(titles) {
     let that = this;
     let width = 1200;
     let height = 600;
@@ -40,86 +45,25 @@ export class BubbleChart extends Vue {
       y: height / 2
     };
 
-    let yearCenters = {
-      2016: {
-        x: width / 3,
-        y: height / 2
-      },
-      2017: {
-        x: width / 2,
-        y: height / 2
-      },
-      2018: {
-        x: 2 * width / 3,
-        y: height / 2
-      }
-    };
+    let clusterPositions = {};
+    let clusterTitlePositions = {};
 
-    let factorBubbles = width / 13 / 1.05;
-    let monthCenters = {
-      0: {
-        x: width / 13 + factorBubbles,
+    for (let i = 0; i < titles.length; i++) {
+      clusterTitlePositions[titles[i]] = (width / (titles.length + 1)) * (i + 1);
+      clusterPositions[titles[i]] = {
+        x: (width / (titles.length + 1)) * (i + 1),
         y: height / 2
-      },
-      1: {
-        x: 2 * width / 13 + (factorBubbles / 2),
-        y: height / 2
-      },
-      2: {
-        x: 3 * width / 13 + (factorBubbles / 3),
-        y: height / 2
-      },
-      3: {
-        x: 4 * width / 13 + (factorBubbles / 4),
-        y: height / 2
-      },
-      4: {
-        x: 5 * width / 13 + (factorBubbles / 5),
-        y: height / 2
-      },
-      5: {
-        x: 6 * width / 13 + (factorBubbles / 6),
-        y: height / 2
-      },
-      6: {
-        x: 7 * width / 13 - (factorBubbles / 6),
-        y: height / 2
-      },
-      7: {
-        x: 8 * width / 13 - (factorBubbles / 5),
-        y: height / 2
-      },
-      8: {
-        x: 9 * width / 13 - (factorBubbles / 4),
-        y: height / 2
-      },
-      9: {
-        x: 10 * width / 13 - (factorBubbles / 3),
-        y: height / 2
-      },
-      10: {
-        x: 11 * width / 13 - (factorBubbles / 2),
-        y: height / 2
-      },
-      11: {
-        x: 12 * width / 13 - factorBubbles,
-        y: height / 2
-      }
-    };
+      };
+    }
 
-    let yearTitleX = {
-      2016: 260,
-      2017: width / 2,
-      2018: width - 260
-    };
+    console.log(clusterPositions);
+    console.log(clusterTitlePositions);
 
     let forceStrength = 0.05;
 
     let svg = null;
     let bubbles = null;
     let nodes = [];
-
-    let clusterAreas: any = {};
 
     function charge(d) {
       return -Math.pow(d.radius, 2) * forceStrength;
@@ -137,14 +81,6 @@ export class BubbleChart extends Vue {
     let fillColor = d3.scaleOrdinal()
       .domain([RunType.Run, RunType.Competition, RunType.LongRun, RunType.ShortIntervals])
       .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939']);
-
-    let strokeColor = d3.scaleOrdinal()
-      .domain(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'])
-      .range(['red', 'blue', 'orange', 'black', 'green', 'yellow', 'brown', '#D90866', '#F0A7C2', '#8EAFB4', '#380303', '#030537']);
-
-    let monthsNames = d3.scaleOrdinal()
-      .domain(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'])
-      .range(['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']);
 
     function createNodes(rawData) {
       let maxAmount = d3.max(rawData, function(d, i) {
@@ -217,7 +153,16 @@ export class BubbleChart extends Vue {
 
       simulation.nodes(nodes);
 
-      splitBubbles();
+      switch(that.clusterType) {
+        case ClusterType.All:
+          groupBubbles();
+          break;
+        case ClusterType.ByYears:
+          splitBubbles();
+          break;
+        case ClusterType.ByMonths:
+          break;
+      }
     };
 
     function ticked() {
@@ -231,11 +176,7 @@ export class BubbleChart extends Vue {
     }
 
     function nodeYearPos(d) {
-      return yearCenters[d.year].x;
-    }
-
-    function nodeMonthPos(d) {
-      return monthCenters[d.month].x;
+      return clusterPositions[d.year].x;
     }
 
     function groupBubbles() {
@@ -254,51 +195,19 @@ export class BubbleChart extends Vue {
       simulation.alpha(1).restart();
     }
 
-    function splitBubblesMonth() {
-      hideYearTitles();
-      // howMonthTitles();
-      for (let i = 0; i < that.valueData.length; i++) {
-        console.log()
-        if(that.valueData[i].categorization.cluster_anchor_month in clusterAreas) {
-
-        } else {
-          clusterAreas[that.valueData[i].categorization.cluster_anchor_month] = {
-            x: null,
-            y: null
-          }
-        }
-      }
-
-      let length = Object.keys(clusterAreas).length;
-
-      let i = 1;
-      for (let key in clusterAreas) {
-        clusterAreas[key].x = (width / length) * i;
-        clusterAreas[key].y = height / 2;
-        i++;
-      }
-
-      function nodePos(d) {
-        return clusterAreas[d.clusterAnchorMonth].x;
-      }
-
-      simulation.force('x', d3.forceX().strength(forceStrength).x(nodePos));
-      simulation.alpha(1).restart();
-    }
-
     function hideYearTitles() {
       svg.selectAll('.year').remove();
     }
 
     function showYearTitles() {
-      let yearsData = d3.keys(yearTitleX);
+      let yearsData = d3.keys(clusterTitlePositions);
       let years = svg.selectAll('.year')
         .data(yearsData);
 
       years.enter().append('text')
         .attr('class', 'year')
         .attr('x', function (d) {
-          return yearTitleX[d];
+          return clusterTitlePositions[d];
         })
         .attr('y', 40)
         .attr('text-anchor', 'middle')
@@ -317,8 +226,6 @@ export class BubbleChart extends Vue {
     chart.toggleDisplay = function (displayName) {
       if (displayName === 'year') {
         splitBubbles();
-      } else if (displayName === 'month') {
-        splitBubblesMonth();
       } else {
         groupBubbles();
       }
@@ -327,7 +234,24 @@ export class BubbleChart extends Vue {
     return chart;
   }
 
+  public handleClusterChange(id) {
+    let clusterType: ClusterType;
+
+    switch (id) {
+      case 'year':
+        clusterType = ClusterType.ByYears;
+        break;
+      case 'month':
+        clusterType = ClusterType.ByMonths;
+        break;
+      default:
+        clusterType = ClusterType.All;
+    }
+    this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
+  }
+
   public setupButtons(chartObject) {
+    let that = this;
     d3.select('#toolbar')
       .selectAll('.button')
       .on('click', function () {
@@ -339,17 +263,52 @@ export class BubbleChart extends Vue {
 
         let buttonId = button.attr('id');
 
+        that.handleClusterChange(buttonId);
+
         chartObject.toggleDisplay(buttonId);
       });
   }
 
-  public drawDiagramm(domRoot, data, displayedData, type) {
-    console.log('displayedData', displayedData);
-    for (let key in displayedData) {
-      console.log(key);
+  public selectClusterData(data, cluster) {
+    switch (cluster) {
+    case ClusterType.ByYears:
+      return data.byYears;
+    case ClusterType.ByMonths:
+      return data.byMonths;
+    case ClusterType.ByWeeks:
+      return data.byWeeks;
+    case ClusterType.All:
+      return data.all;
     }
-    let myBubbleChart = this.bubbleChart();
-    myBubbleChart(domRoot, data);
+  }
+
+  public generateTitles(array, title) {
+    if (!array.includes(title)) {
+      array.push(title);
+    }
+  }
+
+  public drawDiagramm(domRoot, data, type, cluster) {
+    d3.select("svg").remove();
+    let copyData = this.selectClusterData(data, cluster);
+    let filteredData = [];
+    let titles = [];
+
+    for (let bucket in copyData) {
+      for(let i = 0; i < copyData[bucket].activities.length; i++) {
+        let activity = this.$store.getters.getActivity(copyData[bucket].activities[i]);
+        if (type === RunType.All) {
+          this.generateTitles(titles, copyData[bucket].rangeName);
+          filteredData.push(activity);
+        } else if (activity.categorization.activity_type === type) {
+          this.generateTitles(titles, copyData[bucket].rangeName);
+          filteredData.push(activity);
+        }
+      }
+    }
+
+    let myBubbleChart = this.bubbleChart(titles);
+    myBubbleChart(domRoot, filteredData);
     this.setupButtons(myBubbleChart);
   }
 

@@ -11,7 +11,8 @@ import {ActivityListItem} from '../../modules/ActivityListItem';
   computed: mapGetters({
     activities: 'getActivities',
     sortedActivities: 'getSortedActivities',
-    selectedRunType: 'getSelectedRunType'
+    selectedRunType: 'getSelectedRunType',
+    selectedCluster: 'getSelectedClusterType'
   }),
   components: {
     'bubbleChart': BubbleChart,

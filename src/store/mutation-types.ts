@@ -12,6 +12,7 @@ export class MutationTypes {
 
   public static SET_SELECTED_ACTIVITY = '[Store] SET_SELECTED_ACTIVITY';
   public static SET_SELECTED_RUNTYPE = '[Store] SET_SELECTED_RUNTYPE';
+  public static SET_SELECTED_CLUSTER = '[Store] SET_SELECTED_CLUSTER';
 
   public static GET_RACE = '[Strava-API] GET_RACE';
 }

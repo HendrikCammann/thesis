@@ -10,6 +10,7 @@ import {ActivityZoneModel} from '../models/ActivityZoneModel';
 import {ActivityClusterModel} from '../models/ActivityClusterModel';
 
 enum timeRanges {
+  All = 'all',
   Week = 'week',
   Month = 'month',
   Year = 'year'
@@ -175,6 +176,9 @@ function sortActivities (array, bucket) {
   return array.reduce( function (acc, activity, i) {
 
     switch (bucket) {
+      case timeRanges.All:
+        timeRange = 'All';
+        break;
       case timeRanges.Week:
         timeRange = moment(activity.date).year() + '-' + moment(activity.date).isoWeek();
         break;
@@ -261,6 +265,7 @@ const mutations: MutationTree<State> = {
       state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
       state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
       state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
+      state.acitvitySortedLists.all = sortActivities(state.activityList, timeRanges.All);
       }
   },
 
@@ -296,6 +301,10 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_SELECTED_RUNTYPE]: (state: State, {runType}) => {
     state.selectedRunType = runType;
+  },
+
+  [MutationTypes.SET_SELECTED_CLUSTER]: (state: State, {clusterType}) => {
+    state.selectedCluster = clusterType;
   },
 
 };

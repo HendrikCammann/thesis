@@ -39,6 +39,10 @@ const getters: GetterTree<State, State> = {
 
   getSelectedRunType: (state) => {
     return state.selectedRunType;
+  },
+
+  getSelectedClusterType: (state) => {
+    return state.selectedCluster;
   }
 };
 

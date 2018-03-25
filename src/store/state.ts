@@ -17,6 +17,13 @@ export enum RunType {
   Uncategorized = 'Uncategorized',
 }
 
+export enum ClusterType {
+  All = 'All',
+  ByYears = 'ByYears',
+  ByMonths = 'ByMonths',
+  ByWeeks = 'ByWeeks'
+}
+
 export class State {
   public count: number;
   public listItem: ListItem[];
@@ -26,10 +33,12 @@ export class State {
   public acitvitySortedLists: {
     byMonths: null,
     byWeeks: null,
-    byYears: null
+    byYears: null,
+    all: null
   };
 
   public selectedRunType: RunType;
+  public selectedCluster: ClusterType;
 
   constructor() {
     this.count = 0;
@@ -39,11 +48,14 @@ export class State {
     this.acitvitySortedLists = {
       byMonths: null,
       byWeeks: null,
-      byYears: null
+      byYears: null,
+      all: null
     };
     this.selectedActivityId = null;
 
     this.selectedRunType = RunType.All;
+
+    this.selectedCluster = ClusterType.ByYears;
   }
 }
 

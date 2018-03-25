@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {MutationTree} from 'vuex';
 import {MutationTypes} from './mutation-types';
-import {State} from './state';
+import {RunType, State} from './state';
 import * as moment from 'moment';
 import {ActivityModel} from '../models/ActivityModel';
 import {ActivityDetailModel} from '../models/ActivityDetailModel';
@@ -41,7 +41,22 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.categorization.cluster_anchor_month = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
   activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
   activity.categorization.type = item.type;
-  activity.categorization.activity_type = item.workout_type;
+  switch (item.workout_type) {
+    case 0:
+      activity.categorization.activity_type = RunType.Run;
+      break;
+    case 1:
+      activity.categorization.activity_type = RunType.Competition;
+      break;
+    case 2:
+      activity.categorization.activity_type = RunType.LongRun;
+      break;
+    case 3:
+      activity.categorization.activity_type = RunType.ShortIntervals;
+      break;
+    default:
+      activity.categorization.activity_type = RunType.Uncategorized;
+  }
 
   activity.map.map = item.map;
   activity.map.start_latlng = item.start_latlng;
@@ -62,7 +77,22 @@ function applyActivityDetailModelStructure(item): ActivityDetailModel {
 
   details.controls.has_heartrate = item.has_heartrate;
 
-  details.categorization.activity_type = item.workout_type;
+  switch (item.workout_type) {
+    case 0:
+      details.categorization.activity_type = RunType.Run;
+      break;
+    case 1:
+      details.categorization.activity_type = RunType.Competition;
+      break;
+    case 2:
+      details.categorization.activity_type = RunType.LongRun;
+      break;
+    case 3:
+      details.categorization.activity_type = RunType.ShortIntervals;
+      break;
+    default:
+      details.categorization.activity_type = RunType.Uncategorized;
+  }
   details.categorization.type = item.type;
 
   details.average_data.heartrate = item.average_heartrate;
@@ -166,16 +196,16 @@ function sortActivities (array, bucket) {
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;
     switch (activity.categorization.activity_type) {
-      case 0:
+      case RunType.Run:
         acc[timeRange].stats.typeCount.run += 1;
         break;
-      case 1:
+      case RunType.Competition:
         acc[timeRange].stats.typeCount.competition += 1;
         break;
-      case 2:
+      case RunType.LongRun:
         acc[timeRange].stats.typeCount.longRun += 1;
         break;
-      case 3:
+      case RunType.ShortIntervals:
         acc[timeRange].stats.typeCount.interval += 1;
         break;
       default:

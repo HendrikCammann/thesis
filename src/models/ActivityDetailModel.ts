@@ -68,12 +68,12 @@ class ActivityDetailSplits {
 }
 
 class ActivityDetailCategorization {
-  public type: any;
-  public activity_type: number;
+  public type: string;
+  public activity_type: RunType;
 
   constructor() {
-    this.type = RunType.Uncategorized;
-    this.activity_type = null;
+    this.type = null;
+    this.activity_type = RunType.Uncategorized;
   }
 }
 

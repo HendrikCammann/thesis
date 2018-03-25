@@ -135,7 +135,7 @@ export class BubbleChart extends Vue {
     simulation.stop();
 
     let fillColor = d3.scaleOrdinal()
-      .domain(['0', '1', '2', '3'])
+      .domain([RunType.Run, RunType.Competition, RunType.LongRun, RunType.ShortIntervals])
       .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939']);
 
     let strokeColor = d3.scaleOrdinal()

@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
       <change beforePath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
       <change beforePath="$PROJECT_DIR$/src/models/ActivityDetailModel.ts" afterPath="$PROJECT_DIR$/src/models/ActivityDetailModel.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions.ts" afterPath="$PROJECT_DIR$/src/store/actions.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/getters.ts" afterPath="$PROJECT_DIR$/src/store/getters.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutation-types.ts" afterPath="$PROJECT_DIR$/src/store/mutation-types.ts" />
+      <change beforePath="$PROJECT_DIR$/src/models/ActivityModel.ts" afterPath="$PROJECT_DIR$/src/models/ActivityModel.ts" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" afterPath="$PROJECT_DIR$/src/store/mutations.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.ts" afterPath="$PROJECT_DIR$/src/store/state.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,20 +28,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BubbleChart.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BubbleChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="348" column="23" lean-forward="true" selection-start-line="348" selection-start-column="23" selection-end-line="348" selection-end-column="23" />
+            <state relative-caret-position="378">
+              <caret line="134" column="22" lean-forward="true" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
               <folding>
-                <element signature="n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="e#859#906#0" expanded="false" />
                 <element signature="e#931#1142#0" expanded="false" />
                 <element signature="e#1211#2298#0" expanded="false" />
                 <element signature="e#2322#2393#0" expanded="false" />
                 <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#createNodes#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-                <element signature="e#4590#5466#0" expanded="false" />
+                <element signature="e#4645#5521#0" expanded="false" />
                 <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#nodeYearPos#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#nodeMonthPos#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
@@ -57,22 +50,65 @@
                 <element signature="n#!!block;n#hideYearTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#showYearTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityDetailModel.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActivityDetailModel.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/ActivityDetailModel.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="73" column="17" lean-forward="true" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
+            <state relative-caret-position="510">
+              <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="n#ActivityDetailAverageData#0" expanded="false" />
                 <element signature="n#ActivityDetailControls#0" expanded="false" />
                 <element signature="n#ActivityDetailMaxData#0" expanded="false" />
                 <element signature="n#ActivityDetailMap#0" expanded="false" />
                 <element signature="n#ActivityDetailSplits#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityModel.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+                <element signature="n#ActivityControls#0" expanded="false" />
+                <element signature="n#ActivityAverageData#0" expanded="false" />
+                <element signature="n#ActivityBaseData#0" expanded="false" />
+                <element signature="n#ActivityMaxData#0" expanded="false" />
+                <element signature="n#ActivityMap#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!block;n#applyActivityDetailModelStructure#0" expanded="false" />
+                <element signature="n#!!block;n#applyActivityStreamModelStructure#0" expanded="false" />
+                <element signature="n#!!block;n#applyActivityZoneModelStructure#0" expanded="false" />
+                <element signature="e#5127#6431#0" expanded="false" />
+                <element signature="e#6535#6562#0" expanded="false" />
+                <element signature="e#6617#6644#0" expanded="false" />
+                <element signature="e#6695#6721#0" expanded="false" />
+                <element signature="e#6779#6959#0" expanded="false" />
+                <element signature="e#7017#7170#0" expanded="false" />
+                <element signature="e#7234#7757#0" expanded="false" />
+                <element signature="e#7818#8067#0" expanded="false" />
+                <element signature="e#8136#8342#0" expanded="false" />
+                <element signature="e#8409#8611#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -178,7 +214,6 @@
         <option value="$PROJECT_DIR$/src/api/stravaAPI.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityZoneModel.ts" />
-        <option value="$PROJECT_DIR$/src/models/ActivityModel.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ActivityListItem/index.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ActivityListItem/ActivityListItem.html" />
         <option value="$PROJECT_DIR$/src/models/ActivityClusterModel.ts" />
@@ -186,13 +221,14 @@
         <option value="$PROJECT_DIR$/src/components/modules/ActivityListItem/ActivityListItem.ts" />
         <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
         <option value="$PROJECT_DIR$/src/store/actions.ts" />
-        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
-        <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityDetailModel.ts" />
+        <option value="$PROJECT_DIR$/src/models/ActivityModel.ts" />
+        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
+        <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
       </list>
     </option>
   </component>
@@ -442,12 +478,12 @@
       <workItem from="1521531443149" duration="19808000" />
       <workItem from="1521796122657" duration="1048000" />
       <workItem from="1521878344813" duration="8221000" />
-      <workItem from="1521979159237" duration="4980000" />
+      <workItem from="1521979159237" duration="5886000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100587000" />
+    <option name="totallyTimeSpent" value="101493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -770,22 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="n#ActivityControls#0" expanded="false" />
-            <element signature="n#ActivityAverageData#0" expanded="false" />
-            <element signature="n#ActivityBaseData#0" expanded="false" />
-            <element signature="n#ActivityMaxData#0" expanded="false" />
-            <element signature="n#ActivityCategorization#0" expanded="false" />
-            <element signature="n#ActivityMap#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/LineChart/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -838,31 +858,6 @@
           <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
           <folding>
             <element signature="e#906#1270#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="268" column="4" lean-forward="true" selection-start-line="268" selection-start-column="4" selection-end-line="268" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="n#timeRanges#0" expanded="false" />
-            <element signature="n#!!block;n#applyActivityModelStructure#0" expanded="false" />
-            <element signature="n#!!block;n#applyActivityDetailModelStructure#0" expanded="false" />
-            <element signature="n#!!block;n#applyActivityStreamModelStructure#0" expanded="false" />
-            <element signature="n#!!block;n#applyActivityZoneModelStructure#0" expanded="false" />
-            <element signature="n#!!block;n#sortActivities#0" expanded="false" />
-            <element signature="e#5637#5664#0" expanded="false" />
-            <element signature="e#5719#5746#0" expanded="false" />
-            <element signature="e#5797#5823#0" expanded="false" />
-            <element signature="e#5881#6061#0" expanded="false" />
-            <element signature="e#6119#6272#0" expanded="false" />
-            <element signature="e#6336#6859#0" expanded="false" />
-            <element signature="e#6920#7169#0" expanded="false" />
-            <element signature="e#7238#7444#0" expanded="false" />
-            <element signature="e#7511#7713#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -929,19 +924,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/ActivityDetailModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+          <folding>
+            <element signature="n#ActivityDetailAverageData#0" expanded="false" />
+            <element signature="n#ActivityDetailControls#0" expanded="false" />
+            <element signature="n#ActivityDetailMaxData#0" expanded="false" />
+            <element signature="n#ActivityDetailMap#0" expanded="false" />
+            <element signature="n#ActivityDetailSplits#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="n#ActivityControls#0" expanded="false" />
+            <element signature="n#ActivityAverageData#0" expanded="false" />
+            <element signature="n#ActivityBaseData#0" expanded="false" />
+            <element signature="n#ActivityMaxData#0" expanded="false" />
+            <element signature="n#ActivityMap#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#applyActivityDetailModelStructure#0" expanded="false" />
+            <element signature="n#!!block;n#applyActivityStreamModelStructure#0" expanded="false" />
+            <element signature="n#!!block;n#applyActivityZoneModelStructure#0" expanded="false" />
+            <element signature="e#5127#6431#0" expanded="false" />
+            <element signature="e#6535#6562#0" expanded="false" />
+            <element signature="e#6617#6644#0" expanded="false" />
+            <element signature="e#6695#6721#0" expanded="false" />
+            <element signature="e#6779#6959#0" expanded="false" />
+            <element signature="e#7017#7170#0" expanded="false" />
+            <element signature="e#7234#7757#0" expanded="false" />
+            <element signature="e#7818#8067#0" expanded="false" />
+            <element signature="e#8136#8342#0" expanded="false" />
+            <element signature="e#8409#8611#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="348" column="23" lean-forward="true" selection-start-line="348" selection-start-column="23" selection-end-line="348" selection-end-column="23" />
+        <state relative-caret-position="378">
+          <caret line="134" column="22" lean-forward="true" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
           <folding>
-            <element signature="n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="e#859#906#0" expanded="false" />
             <element signature="e#931#1142#0" expanded="false" />
             <element signature="e#1211#2298#0" expanded="false" />
             <element signature="e#2322#2393#0" expanded="false" />
             <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#createNodes#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="e#4590#5466#0" expanded="false" />
+            <element signature="e#4645#5521#0" expanded="false" />
             <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#nodeYearPos#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#nodeMonthPos#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
@@ -951,20 +997,7 @@
             <element signature="n#!!block;n#hideYearTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#showYearTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/ActivityDetailModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="73" column="17" lean-forward="true" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
-          <folding>
-            <element signature="n#ActivityDetailAverageData#0" expanded="false" />
-            <element signature="n#ActivityDetailControls#0" expanded="false" />
-            <element signature="n#ActivityDetailMaxData#0" expanded="false" />
-            <element signature="n#ActivityDetailMap#0" expanded="false" />
-            <element signature="n#ActivityDetailSplits#0" expanded="false" />
+            <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
           </folding>
         </state>
       </provider>

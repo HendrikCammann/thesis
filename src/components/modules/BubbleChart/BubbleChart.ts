@@ -39,6 +39,7 @@ export class BubbleChart extends Vue {
     let that = this;
     let width = 1200;
     let height = 600;
+    let padding = 10;
 
     let center = {
       x: width / 2,
@@ -73,6 +74,7 @@ export class BubbleChart extends Vue {
       .velocityDecay(0.2)
       .force('x', d3.forceX().strength(forceStrength).x(center.x))
       .force('y', d3.forceY().strength(forceStrength).y(center.y))
+      // .force('collide', d3.forceCollide(function (d) { return padding; }))
       .force('charge', d3.forceManyBody().strength(charge))
       .on('tick', ticked);
 
@@ -136,7 +138,7 @@ export class BubbleChart extends Vue {
           return fillColor(d.group);
         })
         .attr('stroke', function (d) {
-          return 'black';
+          return 'none';
         })
         .attr('stroke-width', 2)
         .on('click', function(d) {
@@ -224,11 +226,22 @@ export class BubbleChart extends Vue {
     }
 
     chart.toggleDisplay = function (displayName) {
-      if (displayName === 'year') {
-        splitBubbles();
-      } else {
-        groupBubbles();
+      let cluster: ClusterType;
+      switch (displayName) {
+        case 'year':
+          cluster = ClusterType.ByYears;
+          break;
+        case 'month':
+          cluster = ClusterType.ByMonths;
+          break;
+        case 'week':
+          cluster = ClusterType.ByWeeks;
+          break;
+        case 'all':
+          cluster = ClusterType.All;
+          break;
       }
+      that.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, cluster);
     };
 
     return chart;

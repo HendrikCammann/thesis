@@ -38,7 +38,7 @@ export class BubbleChart extends Vue {
     let that = this;
     let width = 1200;
     let height = 600;
-    let padding = 10;
+    let padding = 1.5;
 
     let center = {
       x: width / 2,
@@ -48,11 +48,47 @@ export class BubbleChart extends Vue {
     let clusterPositions = {};
     let clusterTitlePositions = {};
 
+    function calcYTitlePos(index) {
+      if (index < 10) {
+        return 40;
+      } else if (index < 20){
+        return 240;
+      } else {
+        return 440;
+      }
+    }
+
+    function calcYCenterPos(index, length) {
+      if (length < 10) {
+        return height / 2;
+      }
+      if (index < 10) {
+        return 120;
+      } else if (index < 20 && index >= 10){
+        return 320;
+      } else {
+        return 520;
+      }
+    }
+
+    function calcXPos(index, length) {
+      let maxLength;
+      if (length > 10) {
+        maxLength = 10;
+      } else {
+        maxLength = length;
+      }
+      return (width / (maxLength + 1)) * ((index % maxLength) + 1)
+    }
+
     for (let i = 0; i < titles.length; i++) {
-      clusterTitlePositions[titles[i]] = (width / (titles.length + 1)) * (i + 1);
+      clusterTitlePositions[titles[i]] = {
+        x: calcXPos(i, titles.length),
+        y: calcYTitlePos(i),
+      };
       clusterPositions[titles[i]] = {
-        x: (width / (titles.length + 1)) * (i + 1),
-        y: height / 2
+        x: calcXPos(i, titles.length),
+        y: calcYCenterPos(i, titles.length)
       };
     }
 
@@ -70,7 +106,7 @@ export class BubbleChart extends Vue {
       .velocityDecay(0.2)
       .force('x', d3.forceX().strength(forceStrength).x(center.x))
       .force('y', d3.forceY().strength(forceStrength).y(center.y))
-      // .force('collide', d3.forceCollide(function (d) { return padding; }))
+      .force('collide', d3.forceCollide(function (d) { return d.radius + padding; }))
       .force('charge', d3.forceManyBody().strength(charge))
       .on('tick', ticked);
 
@@ -108,15 +144,15 @@ export class BubbleChart extends Vue {
       function setCircleSizes(cluster) {
         switch(cluster) {
           case ClusterType.All:
-            return 20;
+            return 60;
           case ClusterType.ByYears:
-            return 20;
+            return 60;
           case ClusterType.ByMonths:
-            return 40;
+            return 240;
           case ClusterType.ByWeeks:
-            return 40;
+            return 240;
           default:
-            return 20;
+            return 60;
         }
       }
 
@@ -133,8 +169,8 @@ export class BubbleChart extends Vue {
           clusterAnchorYear: d.categorization.cluster_anchor_year,
           usedAnchor: setCluster(cluster, d),
           date: d.date,
-          x: Math.random() * 900,
-          y: Math.random() * 800
+          // x: Math.random() * 900,
+          // y: Math.random() * 800
         }
       });
 
@@ -165,7 +201,7 @@ export class BubbleChart extends Vue {
           return fillColor(d.group);
         })
         .attr('stroke', function (d) {
-          return 'black';
+          return 'none';
         })
         .attr('stroke-width', 2)
         .on('click', function(d) {
@@ -205,21 +241,27 @@ export class BubbleChart extends Vue {
         });
     }
 
-    function nodePos(d) {
+    function nodePosX(d) {
       return clusterPositions[d.usedAnchor].x;
+    }
+
+    function nodePosY(d) {
+      return clusterPositions[d.usedAnchor].y;
     }
 
     function groupBubbles() {
       hideTitles();
 
       simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
+      simulation.force('y', d3.forceY().strength(forceStrength).y(center.y));
       simulation.alpha(1).restart();
     }
 
     function splitBubbles() {
       showTitles();
 
-      simulation.force('x', d3.forceX().strength(forceStrength).x(nodePos));
+      simulation.force('x', d3.forceX().strength(forceStrength).x(nodePosX));
+      simulation.force('y', d3.forceY().strength(forceStrength).y(nodePosY));
       simulation.alpha(1).restart();
     }
 
@@ -235,9 +277,11 @@ export class BubbleChart extends Vue {
       years.enter().append('text')
         .attr('class', 'year')
         .attr('x', function (d) {
-          return clusterTitlePositions[d];
+          return clusterTitlePositions[d].x;
         })
-        .attr('y', 40)
+        .attr('y', function (d) {
+          return clusterTitlePositions[d].y;
+        })
         .attr('text-anchor', 'middle')
         .text(function (d) {
           return d;

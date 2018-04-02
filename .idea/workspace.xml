@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
       <change beforePath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" afterPath="$PROJECT_DIR$/src/store/mutations.ts" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" afterPath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,22 +20,11 @@
       <file leaf-file-name="ActivitiesContainer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+            <state relative-caret-position="195">
+              <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
               <folding>
+                <element signature="e#0#22#0" expanded="true" />
                 <element signature="n#!!block;n#selectRunType#0;n#ActivitiesContainer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-              <folding>
-                <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,12 +33,55 @@
       <file leaf-file-name="BubbleChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+            <state relative-caret-position="351">
+              <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
               <folding>
+                <element signature="e#21#43#0" expanded="true" />
+                <element signature="n#!!block;n#onPropertyChanged#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#splitBubbles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#hideTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#showTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+                <element signature="e#6511#6973#0" expanded="false" />
                 <element signature="n#!!block;n#handleClusterChange#0;n#BubbleChart#0" expanded="false" />
                 <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#selectClusterData#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#generateTitles#0;n#BubbleChart#0" expanded="false" />
+                <element signature="n#!!block;n#drawDiagramm#0;n#BubbleChart#0" expanded="false" />
+                <element signature="e#8450#8948#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mutation-types.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,8 +91,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="TypeScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -66,7 +101,6 @@
       <find>strava</find>
       <find>avgLine</find>
       <find>&lt;/h4&gt;</find>
-      <find>&quot;</find>
       <find>myBubbleChart</find>
       <find>rawData</find>
       <find>2010</find>
@@ -76,18 +110,26 @@
       <find>yearsData</find>
       <find>console</find>
       <find>clusterAreas</find>
-      <find>var</find>
       <find>valueDAta</find>
       <find>value</find>
       <find>valueData</find>
       <find>2016</find>
       <find>yearCenters</find>
       <find>yearTitleX</find>
+      <find>z</find>
+      <find>&quot;</find>
+      <find>var</find>
+      <find>sjowTitles</find>
+      <find>createNodes</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
-      <replace>'</replace>
       <replace>name</replace>
+      <replace>public</replace>
+      <replace>'</replace>
       <replace>let</replace>
+      <replace>showTitles</replace>
+      <replace>nodePos</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -119,10 +161,6 @@
         <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/index.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/gates_money.csv" />
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
-        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.ts" />
-        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.html" />
-        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/index.ts" />
-        <option value="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/containers/App/AppContainer.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityStreamModel.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activity/activity.html" />
@@ -139,10 +177,14 @@
         <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
         <option value="$PROJECT_DIR$/src/store/actions.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
-        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
+        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/index.ts" />
+        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.html" />
+        <option value="$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
+        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
+        <option value="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts" />
       </list>
     </option>
@@ -178,6 +220,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -214,39 +257,7 @@
               <item name="my-project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Activities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="ActivityListItem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="BubbleChart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
@@ -294,9 +305,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -441,14 +451,16 @@
       <workItem from="1521878344813" duration="8221000" />
       <workItem from="1521979159237" duration="13984000" />
       <workItem from="1522598876137" duration="912000" />
+      <workItem from="1522654537009" duration="7629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110789000" />
+    <option name="totallyTimeSpent" value="118418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -463,7 +475,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22151224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22364217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18903089" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -666,16 +678,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/gates_money.json" />
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.html" />
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.ts" />
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/index.ts" />
-    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/App/AppContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -753,14 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityListItem/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -789,13 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/state.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -818,27 +805,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="265" column="96" lean-forward="true" selection-start-line="265" selection-start-column="96" selection-end-line="265" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/ActivityModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="63" column="22" lean-forward="false" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!block;n#selectRunType#0;n#ActivitiesContainer#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -856,38 +826,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityListItem/ActivityListItem.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="23" />
+        <state relative-caret-position="105">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="540">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="27" lean-forward="true" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ClusterChart/ClusterChart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
           <folding>
-            <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#selectRunType#0;n#ActivitiesContainer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityListItem/ActivityListItem.ts">
+    <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="59" />
+        <state relative-caret-position="210">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+        <state relative-caret-position="351">
+          <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
           <folding>
+            <element signature="e#21#43#0" expanded="true" />
+            <element signature="n#!!block;n#onPropertyChanged#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#splitBubbles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#hideTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#showTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="e#6511#6973#0" expanded="false" />
             <element signature="n#!!block;n#handleClusterChange#0;n#BubbleChart#0" expanded="false" />
             <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#selectClusterData#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#generateTitles#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#drawDiagramm#0;n#BubbleChart#0" expanded="false" />
+            <element signature="e#8450#8948#0" expanded="false" />
           </folding>
         </state>
       </provider>

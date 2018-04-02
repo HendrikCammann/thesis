@@ -39,7 +39,7 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.max_data.heartrate = item.max_heartrate;
   activity.max_data.speed = item.max_speed;
 
-  activity.categorization.cluster_anchor_month = new Date(item.start_date).getMonth() + '/' + new Date(item.start_date).getFullYear();
+  activity.categorization.cluster_anchor_month = new Date(item.start_date).getFullYear() + '-' + new Date(item.start_date).getMonth();
   activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
   activity.categorization.type = item.type;
   switch (item.workout_type) {

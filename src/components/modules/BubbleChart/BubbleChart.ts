@@ -28,7 +28,6 @@ export class BubbleChart extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     let type = typeof val;
     if (type == 'object') {
-      console.log('changed');
       this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
     } else {
       this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
@@ -57,9 +56,6 @@ export class BubbleChart extends Vue {
       };
     }
 
-    console.log(clusterPositions);
-    console.log(clusterTitlePositions);
-
     let forceStrength = 0.05;
 
     let svg = null;
@@ -84,7 +80,7 @@ export class BubbleChart extends Vue {
       .domain([RunType.Run, RunType.Competition, RunType.LongRun, RunType.ShortIntervals])
       .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939']);
 
-    function createNodes(rawData) {
+    function createNodes(rawData, cluster) {
       let maxAmount = d3.max(rawData, function(d, i) {
         return +rawData[i].base_data.distance;
       });
@@ -94,10 +90,40 @@ export class BubbleChart extends Vue {
         .range([2, 85])
         .domain([0, maxAmount]);
 
+      function setCluster(cluster, d) {
+        switch(cluster) {
+          case ClusterType.All:
+            return null;
+          case ClusterType.ByYears:
+            return d.categorization.cluster_anchor_year;
+          case ClusterType.ByMonths:
+            return d.categorization.cluster_anchor_month;
+          case ClusterType.ByWeeks:
+            return null;
+          default:
+            return null;
+        }
+      }
+
+      function setCircleSizes(cluster) {
+        switch(cluster) {
+          case ClusterType.All:
+            return 20;
+          case ClusterType.ByYears:
+            return 20;
+          case ClusterType.ByMonths:
+            return 40;
+          case ClusterType.ByWeeks:
+            return 40;
+          default:
+            return 20;
+        }
+      }
+
       let myNodes = rawData.map(function (d) {
         return {
           id: d.id,
-          radius: radiusScale(+d.base_data.distance / 20),
+          radius: radiusScale(+d.base_data.distance / setCircleSizes(cluster)),
           value: d.base_data.distance,
           name: d.name,
           group: d.categorization.activity_type,
@@ -105,6 +131,7 @@ export class BubbleChart extends Vue {
           month: new Date(d.date).getMonth(),
           clusterAnchorMonth: d.categorization.cluster_anchor_month,
           clusterAnchorYear: d.categorization.cluster_anchor_year,
+          usedAnchor: setCluster(cluster, d),
           date: d.date,
           x: Math.random() * 900,
           y: Math.random() * 800
@@ -118,8 +145,8 @@ export class BubbleChart extends Vue {
       return myNodes;
     }
 
-    let chart = function chart(selector, rawData) {
-      nodes = createNodes(rawData);
+    let chart = function chart(selector, rawData, cluster) {
+      nodes = createNodes(rawData, cluster);
 
       svg = d3.select(selector)
         .append('svg')
@@ -138,7 +165,7 @@ export class BubbleChart extends Vue {
           return fillColor(d.group);
         })
         .attr('stroke', function (d) {
-          return 'none';
+          return 'black';
         })
         .attr('stroke-width', 2)
         .on('click', function(d) {
@@ -163,6 +190,7 @@ export class BubbleChart extends Vue {
           splitBubbles();
           break;
         case ClusterType.ByMonths:
+          splitBubbles();
           break;
       }
     };
@@ -177,31 +205,29 @@ export class BubbleChart extends Vue {
         });
     }
 
-    function nodeYearPos(d) {
-      return clusterPositions[d.year].x;
+    function nodePos(d) {
+      return clusterPositions[d.usedAnchor].x;
     }
 
     function groupBubbles() {
-      hideYearTitles();
-      // hideMonthTitles();
+      hideTitles();
 
       simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
       simulation.alpha(1).restart();
     }
 
     function splitBubbles() {
-      // hideMonthTitles();
-      showYearTitles();
+      showTitles();
 
-      simulation.force('x', d3.forceX().strength(forceStrength).x(nodeYearPos));
+      simulation.force('x', d3.forceX().strength(forceStrength).x(nodePos));
       simulation.alpha(1).restart();
     }
 
-    function hideYearTitles() {
+    function hideTitles() {
       svg.selectAll('.year').remove();
     }
 
-    function showYearTitles() {
+    function showTitles() {
       let yearsData = d3.keys(clusterTitlePositions);
       let years = svg.selectAll('.year')
         .data(yearsData);
@@ -319,9 +345,8 @@ export class BubbleChart extends Vue {
         }
       }
     }
-
     let myBubbleChart = this.bubbleChart(titles);
-    myBubbleChart(domRoot, filteredData);
+    myBubbleChart(domRoot, filteredData, cluster);
     this.setupButtons(myBubbleChart);
   }
 

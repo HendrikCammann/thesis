@@ -5,6 +5,7 @@ import {RunType, State} from '../../../store/state';
 import {BubbleChart} from '../../modules/BubbleChart';
 import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
+// import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
   template: require('./activities.html'),

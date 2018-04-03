@@ -1,16 +1,30 @@
-class ActivityClusterTypeCountModel {
-  run: number;
-  longRun: number;
-  interval: number;
-  competition: number;
-  uncategorized: number;
+import {RunType} from '../store/state';
+
+class TypeCountModel {
+  amount: number;
+  distance: number;
+  type: RunType;
 
   constructor() {
-    this.run = 0;
-    this.longRun = 0;
-    this.interval = 0;
-    this.competition = 0;
-    this.uncategorized = 0;
+    this.amount = 0;
+    this.distance = 0;
+    this.type = null;
+  }
+}
+
+class ActivityClusterTypeCountModel {
+  run: TypeCountModel;
+  longRun: TypeCountModel;
+  interval: TypeCountModel;
+  competition: TypeCountModel;
+  uncategorized: TypeCountModel;
+
+  constructor() {
+    this.run = new TypeCountModel();
+    this.longRun = new TypeCountModel();
+    this.interval = new TypeCountModel();
+    this.competition = new TypeCountModel();
+    this.uncategorized = new TypeCountModel();
   }
 }
 

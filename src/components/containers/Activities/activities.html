@@ -6,6 +6,10 @@
     :clusterType="selectedCluster"
   ></bubble-chart>
 
+  <swoosh-chart
+    :data="sortedActivities"
+  ></swoosh-chart>
+
   <div id="filter" @click="selectRunType($event)">
     <a href="#" id="allActivities" class="button active">All</a>
     <a href="#" id="run" class="button">Runs</a>

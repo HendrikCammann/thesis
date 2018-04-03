@@ -77,7 +77,6 @@ function applyActivityDetailModelStructure(item): ActivityDetailModel {
   details.date = item.start_date;
 
   details.controls.has_heartrate = item.has_heartrate;
-
   switch (item.workout_type) {
     case 0:
       details.categorization.activity_type = RunType.Run;
@@ -201,19 +200,29 @@ function sortActivities (array, bucket) {
     acc[timeRange].stats.time += activity.base_data.duration;
     switch (activity.categorization.activity_type) {
       case RunType.Run:
-        acc[timeRange].stats.typeCount.run += 1;
+        acc[timeRange].stats.typeCount.run.amount += 1;
+        acc[timeRange].stats.typeCount.run.distance += activity.base_data.distance;
+        acc[timeRange].stats.typeCount.run.type = RunType.Run;
         break;
       case RunType.Competition:
-        acc[timeRange].stats.typeCount.competition += 1;
+        acc[timeRange].stats.typeCount.competition.amount += 1;
+        acc[timeRange].stats.typeCount.competition.distance += activity.base_data.distance;
+        acc[timeRange].stats.typeCount.competition.type = RunType.Competition;
         break;
       case RunType.LongRun:
-        acc[timeRange].stats.typeCount.longRun += 1;
+        acc[timeRange].stats.typeCount.longRun.amount += 1;
+        acc[timeRange].stats.typeCount.longRun.distance += activity.base_data.distance;
+        acc[timeRange].stats.typeCount.longRun.type = RunType.LongRun;
         break;
       case RunType.ShortIntervals:
-        acc[timeRange].stats.typeCount.interval += 1;
+        acc[timeRange].stats.typeCount.interval.amount += 1;
+        acc[timeRange].stats.typeCount.interval.distance += activity.base_data.distance;
+        acc[timeRange].stats.typeCount.interval.type = RunType.ShortIntervals;
         break;
       default:
-        acc[timeRange].stats.typeCount.uncategorized += 1;
+        acc[timeRange].stats.typeCount.uncategorized.amount += 1;
+        acc[timeRange].stats.typeCount.uncategorized.distance += activity.base_data.distance;
+        acc[timeRange].stats.typeCount.uncategorized.type = RunType.Uncategorized;
     }
     return acc;
 

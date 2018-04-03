@@ -113,8 +113,8 @@ export class BubbleChart extends Vue {
     simulation.stop();
 
     let fillColor = d3.scaleOrdinal()
-      .domain([RunType.Run, RunType.Competition, RunType.LongRun, RunType.ShortIntervals])
-      .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939']);
+      .domain([RunType.Run, RunType.Competition, RunType.LongRun, RunType.ShortIntervals, RunType.Uncategorized])
+      .range(['#1280B2', '#B2AB09', '#00AFFF', '#FF1939', 'violet']);
 
     function createNodes(rawData, cluster) {
       let maxAmount = d3.max(rawData, function(d, i) {

@@ -5,6 +5,7 @@ import {RunType, State} from '../../../store/state';
 import {BubbleChart} from '../../modules/BubbleChart';
 import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
+import {SwooshChart} from '../../modules/SwooshChart';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -17,6 +18,7 @@ import {ActivityListItem} from '../../modules/ActivityListItem';
   }),
   components: {
     'bubbleChart': BubbleChart,
+    'swooshChart': SwooshChart,
     'activityListItem': ActivityListItem
   }
 })

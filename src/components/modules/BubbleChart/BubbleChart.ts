@@ -372,7 +372,7 @@ export class BubbleChart extends Vue {
   }
 
   public drawDiagramm(domRoot, data, type, cluster) {
-    d3.select("svg").remove();
+    d3.select(domRoot + " > svg").remove();
     let copyData = this.selectClusterData(data, cluster);
     let filteredData = [];
     let titles = [];

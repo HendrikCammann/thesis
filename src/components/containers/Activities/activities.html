@@ -1,13 +1,14 @@
 <div class="container">
-  <bubble-chart
+  <!--<bubble-chart
     :valueData="activities"
     :runType="selectedRunType"
     :displayedData="sortedActivities"
     :clusterType="selectedCluster"
-  ></bubble-chart>
+  ></bubble-chart>-->
 
   <swoosh-chart
     :data="sortedActivities"
+    :runType="selectedRunType"
   ></swoosh-chart>
 
   <div id="filter" @click="selectRunType($event)">
@@ -27,10 +28,10 @@
       <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>
       <span>TotalDistance: {{ timeRange.stats.distance / 1000 }}</span> |
       <span>Time: {{ timeRange.stats.time }}</span> |
-      <span>Run: {{ timeRange.stats.typeCount.run }}</span> |
-      <span>longRun: {{ timeRange.stats.typeCount.longRun }}</span> |
-      <span>interval: {{ timeRange.stats.typeCount.interval }}</span> |
-      <span>competiton: {{ timeRange.stats.typeCount.competition }}</span>
+      <span>Run: {{ timeRange.stats.typeCount.run.amount }} ({{ timeRange.stats.typeCount.run.distance / 1000 }}km)</span> |
+      <span>longRun: {{ timeRange.stats.typeCount.longRun.amount }} ({{ timeRange.stats.typeCount.longRun.distance / 1000 }}km)</span> |
+      <span>interval: {{ timeRange.stats.typeCount.interval.amount }} ({{ timeRange.stats.typeCount.interval.distance / 1000 }}km)</span> |
+      <span>competiton: {{ timeRange.stats.typeCount.competition.amount }} ({{ timeRange.stats.typeCount.competition.distance / 1000 }}km)</span>
     </div>
     <activity-list-item
       v-for="item in timeRange.activities"

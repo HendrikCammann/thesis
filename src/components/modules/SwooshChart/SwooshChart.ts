@@ -11,9 +11,14 @@ export class SwooshChart extends Vue {
   @Prop()
   data: Object;
 
+  @Prop()
+  runType: RunType;
+
 
   @Watch('data.byMonths')
+  @Watch('runType')
   onPropertyChanged(val: any, oldVal: any) {
+    console.log('changed');
     this.swooshChart(this.data);
   }
 
@@ -69,11 +74,22 @@ export class SwooshChart extends Vue {
     return distance;
   }
 
+  public calaculateOpacity(type) {
+    if(this.runType === RunType.All) {
+      return 1;
+    }
+    if(type === this.runType) {
+      return 1;
+    }
+    return 0.2;
+  }
+
   public swooshChart(dataset) {
-    let data = dataset.byYears;
+    let data = dataset.byMonths;
     let visualMeasurements = this.setupVisualVariables(data);
     let rectXPos = 0;
     let barPositions = [];
+    d3.select("svg").remove();
     let svg = d3.select('#swoosh')
       .append('svg')
       .attr('width', visualMeasurements.width)
@@ -90,7 +106,7 @@ export class SwooshChart extends Vue {
           distance: data[key].stats.typeCount[anchor].distance,
           width: parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
           color: this.getColor(data[key].stats.typeCount[anchor].type),
-          type: anchor,
+          type: data[key].stats.typeCount[anchor].type,
           cluster: key,
         };
 
@@ -102,6 +118,7 @@ export class SwooshChart extends Vue {
           .attr('width', element.width)
           .attr('height', element.height)
           .attr('fill', element.color)
+          .attr('opacity', this.calaculateOpacity(element.type))
           .on('mouseenter', function() {
             // console.log(anchor)
           });
@@ -120,7 +137,6 @@ export class SwooshChart extends Vue {
     }
 
     for (let i = 0; i < keys.length - 1; i++) {
-      // console.log(barPositions[keys[i]]);
       for (let j = 0; j < barPositions[keys[i]].length; j++) {
 
         let outerArc = {
@@ -134,23 +150,22 @@ export class SwooshChart extends Vue {
         };
 
         let upper = barPositions[keys[i + 1]][j].width > barPositions[keys[i]][j].width;
+        let hasChanged = (barPositions[keys[i + 1]][j].width - barPositions[keys[i]][j].width) != 0;
 
-        if (true) {
-          console.log(barPositions[keys[i + 1]][j].width + 'vs.' + barPositions[keys[i]][j].width);
-          console.log(upper);
+        if (hasChanged) {
+          // console.log(barPositions[keys[i + 1]][j].width + ' vs. ' + barPositions[keys[i]][j].width);
           svg.append('path')
             .attr('d', this.createOuterBezierpath(outerArc.start, barPositions[keys[i]][j].y, outerArc.end, barPositions[keys[i + 1]][j].y, upper))
             .attr('fill', 'none')
             .attr('stroke-width', '1')
             .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', 0.5);
+            .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
           svg.append('path')
             .attr('d', this.createInnerBezierpath(innerArc.start, barPositions[keys[i]][j].y, innerArc.end, barPositions[keys[i + 1]][j].y, upper))
             .attr('fill', 'none')
             .attr('stroke-width', '1')
             .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', 0.5)
-
+            .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
         }
       }
 

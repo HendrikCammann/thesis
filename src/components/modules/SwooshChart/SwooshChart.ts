@@ -159,44 +159,77 @@ export class SwooshChart extends Vue {
 
     for (let i = 0; i < keys.length - 1; i++) {
       for (let j = 0; j < barPositions[keys[i]].length; j++) {
-        let outerArc;
-        let innerArc;
-        let indexOfItemToConnectTo: number = 1;
+        let indexOfItemToConnectTo = 1;
 
         while (((i + indexOfItemToConnectTo) < keys.length - 1) && (barPositions[keys[i + indexOfItemToConnectTo]][j].width === 0)) {
           indexOfItemToConnectTo++;
         }
 
         let drawArc = true;
+
         if ((i + indexOfItemToConnectTo) === keys.length - 1) {
           drawArc = barPositions[keys[i + indexOfItemToConnectTo]][j].width !== 0;
         }
 
-        outerArc = {
-          start: barPositions[keys[i]][j].start,
-          end: barPositions[keys[i + indexOfItemToConnectTo]][j].end
-        };
-
-        innerArc = {
-          start: barPositions[keys[i]][j].end,
-          end: barPositions[keys[i + indexOfItemToConnectTo]][j].start
-        };
-
         let upper = barPositions[keys[i + indexOfItemToConnectTo]][j].width > barPositions[keys[i]][j].width;
         let change = barPositions[keys[i + indexOfItemToConnectTo]][j].width - barPositions[keys[i]][j].width;
-        console.log(barPositions[keys[i + indexOfItemToConnectTo]][j].width / 100 * barPositions[keys[i]][j].width);
 
-        if (drawArc) {
-          svg.append('path')
-            .attr('d', this.createOuterBezierpath(outerArc.start, barPositions[keys[i]][j].y, outerArc.end, barPositions[keys[i + indexOfItemToConnectTo]][j].y, upper, change))
+        let arcAttributes = {
+          outer: {
+            startX: barPositions[keys[i]][j].start,
+            startY: barPositions[keys[i]][j].y,
+            endX: barPositions[keys[i + indexOfItemToConnectTo]][j].end,
+            endY: barPositions[keys[i + indexOfItemToConnectTo]][j].y,
+            height: Math.abs(change * 7),
+            offset: barPositions[keys[i + indexOfItemToConnectTo]][j].height,
+            centerX: (barPositions[keys[i + indexOfItemToConnectTo]][j].end + barPositions[keys[i]][j].start) / 2,
+            centerY: (barPositions[keys[i]][j].y - (Math.abs(change) * 5))
+          },
+          inner: {
+            startX: barPositions[keys[i]][j].end,
+            startY: barPositions[keys[i]][j].y,
+            endX: barPositions[keys[i + indexOfItemToConnectTo]][j].start,
+            endY: barPositions[keys[i + indexOfItemToConnectTo]][j].y,
+            height: Math.abs(change),
+            offset: barPositions[keys[i + indexOfItemToConnectTo]][j].height,
+            centerX: (barPositions[keys[i + indexOfItemToConnectTo]][j].start + barPositions[keys[i]][j].end) / 2,
+            centerY: (barPositions[keys[i]][j].y - (Math.abs(change) * 2))
+          }
+        };
+
+        let interpolateTypes = [d3.curveLinear,d3.curveStepBefore,d3.curveStepAfter,d3.curveBasis,d3.curveBasisOpen, d3.curveBasisClosed, d3.curveBundle,d3.curveCardinal,d3.curveCardinal,d3.curveCardinalOpen,d3.curveCardinalClosed,d3.curveNatural];
+        let lineGenerator = d3.line().curve(d3.curveCardinal);
+        let outerline = lineGenerator(this.createLine(arcAttributes.outer, upper));
+        let innerline = lineGenerator(this.createLine(arcAttributes.inner, upper));
+
+        if (drawArc && upper) {
+          /*svg.append('path')
+            .attr('d', this.createBezierpath(arcAttributes.outer, upper))
             .attr('fill', 'none')
             .attr('stroke-width', '1')
+            .attr('stroke-alignment', 'inner')
             .attr('stroke', barPositions[keys[i]][j].color)
             .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
           svg.append('path')
-            .attr('d', this.createInnerBezierpath(innerArc.start, barPositions[keys[i]][j].y, innerArc.end, barPositions[keys[i + indexOfItemToConnectTo]][j].y, upper, change))
+            .attr('d', this.createBezierpath(arcAttributes.inner, upper))
             .attr('fill', 'none')
             .attr('stroke-width', '1')
+            .attr('stroke-alignment', 'inner')
+            .attr('stroke', barPositions[keys[i]][j].color)
+            .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));*/
+
+          svg.append('path')
+            .attr('d', outerline)
+            .attr('fill', 'none')
+            .attr('stroke-width', '1')
+            .attr('stroke-alignment', 'inner')
+            .attr('stroke', barPositions[keys[i]][j].color)
+            .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
+          svg.append('path')
+            .attr('d', innerline)
+            .attr('fill', 'none')
+            .attr('stroke-width', '1')
+            .attr('stroke-alignment', 'inner')
             .attr('stroke', barPositions[keys[i]][j].color)
             .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
         }
@@ -204,48 +237,34 @@ export class SwooshChart extends Vue {
     }
   }
 
-  public createOuterBezierpath(startX, startY, endX, endY, upper, change) {
-    change = Math.abs(change * 7);
-    let start = 'M' + startX + ',' + startY;
-    let end = endX  + ',' + endY;
-    let startBezier;
-    let endBezier;
-
+  public createLine(path, upper): [number, number][] {
     if(!upper) {
-      start = 'M' + startX + ',' + (startY + 15);
-      end = endX  + ',' + (endY + 15);
-      startBezier = 'C' + startX + ',' + (startY + 15 + change);
-      endBezier = endX + ',' + (endY + 15 + change);
+      return [[path.startX, path.startY + path.offset], [path.centerX, path.centerY + path.offset], [path.endX, path.endY + path.offset]];
     } else {
-      startBezier = 'C' + startX + ',' + (startY - change);
-      endBezier = endX + ',' + (endY - change);
+      return [[path.startX, path.startY], [path.centerX, path.centerY], [path.endX, path.endY]];
     }
 
-    return start + ' ' + startBezier + ' ' + endBezier + ' ' + end;
   }
 
-  public createInnerBezierpath(startX, startY, endX, endY, upper, change) {
-    change = Math.abs(change);
-    let start = 'M' + startX + ',' + startY;
-    let end = endX  + ',' + endY;
-    let startBezier;
-    let endBezier;
+  public createBezierpath(path, upper) {
+    let start, end, startBezier, endBezier;
 
     if(!upper) {
-      start = 'M' + startX + ',' + (startY + 15);
-      end = endX  + ',' + (endY + 15);
-      startBezier = 'C' + startX + ',' + (startY + 15 + change);
-      endBezier = endX + ',' + (endY + 15 + change);
+      start = 'M' + path.startX + ',' + (path.startY + path.offset);
+      end = path.endX  + ',' + (path.endY + path.offset);
+      startBezier = 'C' + path.startX + ',' + (path.startY + path.offset + path.height);
+      endBezier = path.endX + ',' + (path.endY + path.offset + path.height);
     } else {
-      startBezier = 'C' + startX + ',' + (startY - change);
-      endBezier = endX + ',' + (endY - change);
+      start = 'M' + path.startX + ',' + path.startY;
+      end = path.endX  + ',' + path.endY;
+      startBezier = 'C' + path.startX + ',' + (path.startY - path.height);
+      endBezier = path.endX + ',' + (path.endY - path.height);
     }
 
     return start + ' ' + startBezier + ' ' + endBezier + ' ' + end;
   }
 
   mounted() {
-    console.log('hi');
     // this.swooshChart(this.width, this.height, this.margin, this.data);
   }
 }

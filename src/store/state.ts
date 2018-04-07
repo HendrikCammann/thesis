@@ -55,7 +55,7 @@ export class State {
 
     this.selectedRunType = RunType.All;
 
-    this.selectedCluster = ClusterType.ByYears;
+    this.selectedCluster = ClusterType.ByMonths;
   }
 }
 

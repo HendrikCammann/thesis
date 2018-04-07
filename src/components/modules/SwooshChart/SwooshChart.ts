@@ -2,8 +2,7 @@
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
-import {RunType} from '../../../store/state';
-import {mapGetters} from 'vuex';
+import {ClusterType, RunType} from '../../../store/state';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -15,12 +14,14 @@ export class SwooshChart extends Vue {
   @Prop()
   runType: RunType;
 
+  @Prop()
+  clusterType: ClusterType;
 
   @Watch('data.byMonths')
   @Watch('runType')
+  @Watch('clusterType')
   onPropertyChanged(val: any, oldVal: any) {
-    console.log('changed');
-    this.swooshChart(this.data);
+    this.swooshChart('#swoosh', this.data, this.clusterType);
   }
 
   public getColor(type) {
@@ -90,13 +91,27 @@ export class SwooshChart extends Vue {
     return 0.15;
   }
 
-  public swooshChart(dataset) {
-    let data = dataset.byMonths;
+  public selectDataset(dataset, type) {
+    switch (type) {
+      case ClusterType.All:
+        return dataset.all;
+      case ClusterType.ByYears:
+        return dataset.byYears;
+      case ClusterType.ByMonths:
+        return dataset.byMonths;
+      case ClusterType.ByWeeks:
+        return dataset.byWeeks;
+    }
+  }
+
+  public swooshChart(root, dataset, clusterType) {
+    let data = this.selectDataset(dataset, clusterType);
     let visualMeasurements = this.setupVisualVariables(data);
     let rectXPos = 0;
     let barPositions = [];
-    d3.select("#swoosh > svg").remove();
-    let svg = d3.select('#swoosh')
+
+    d3.select(root + " > svg").remove();
+    let svg = d3.select(root)
       .append('svg')
       .attr('width', visualMeasurements.width)
       .attr('height', visualMeasurements.height);
@@ -186,9 +201,7 @@ export class SwooshChart extends Vue {
             .attr('opacity', this.calaculateOpacity(barPositions[keys[i]][j].type));
         }
       }
-
     }
-
   }
 
   public createOuterBezierpath(startX, startY, endX, endY, upper, change) {

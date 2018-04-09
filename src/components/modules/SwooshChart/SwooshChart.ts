@@ -3,6 +3,8 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
+import {area} from 'd3-shape';
+import {scaleLinear} from 'd3-scale';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -63,7 +65,7 @@ export class SwooshChart extends Vue {
    * @param root
    * @param metrics
    */
-  public setupSvg(root, metrics): any {
+  public setupSvg(root: string, metrics): any {
     d3.select(root + " > svg").remove();
     return d3.select(root)
       .append('svg')
@@ -178,42 +180,43 @@ export class SwooshChart extends Vue {
           drawArc = diagram[keys[i + indexOfItemToConnectTo]][j].width !== 0;
         }
 
-        let upper = diagram[keys[i + indexOfItemToConnectTo]][j].width > diagram[keys[i]][j].width;
-        let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
-
-        let arcAttributes = {
-          outer: {
-            startX: diagram[keys[i]][j].start,
-            startY: diagram[keys[i]][j].y,
-            endX: diagram[keys[i + indexOfItemToConnectTo]][j].end,
-            endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-            height: Math.abs(change * 7),
-            offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-            centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].end + diagram[keys[i]][j].start) / 2,
-            centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 5))
-          },
-          inner: {
-            startX: diagram[keys[i]][j].end,
-            startY: diagram[keys[i]][j].y,
-            endX: diagram[keys[i + indexOfItemToConnectTo]][j].start,
-            endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-            height: Math.abs(change),
-            offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-            centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].start + diagram[keys[i]][j].end) / 2,
-            centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 1.5))
-          }
-        };
-
-        if(!upper) {
-          arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
-          arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
-        }
-
-        let lineGenerator = d3.line().curve(d3.curveNatural);
-        let outerLine = lineGenerator(this.createLine(arcAttributes.outer, upper));
-        let innerLine = lineGenerator(this.createLine(arcAttributes.inner, upper));
-
         if (drawArc) {
+          let upper = diagram[keys[i + indexOfItemToConnectTo]][j].width > diagram[keys[i]][j].width;
+          let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
+
+          let arcAttributes = {
+            outer: {
+              startX: diagram[keys[i]][j].start,
+              startY: diagram[keys[i]][j].y,
+              endX: diagram[keys[i + indexOfItemToConnectTo]][j].end,
+              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
+              height: Math.abs(change * 7),
+              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
+              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].end + diagram[keys[i]][j].start) / 2,
+              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 5))
+            },
+            inner: {
+              startX: diagram[keys[i]][j].end,
+              startY: diagram[keys[i]][j].y,
+              endX: diagram[keys[i + indexOfItemToConnectTo]][j].start,
+              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
+              height: Math.abs(change),
+              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
+              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].start + diagram[keys[i]][j].end) / 2,
+              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 1.5))
+            }
+          };
+
+          if(!upper) {
+            arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
+            arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
+          }
+
+          let lineGenerator = d3.line().curve(d3.curveNatural);
+          let outerLine = lineGenerator(this.createLine(arcAttributes.outer, upper));
+          let innerLine = lineGenerator(this.createLine(arcAttributes.inner, upper));
+          let swoosh = this.createSwooshArea(arcAttributes, upper);
+
           /*svg.append('path')
             .attr('d', this.createBezierpath(arcAttributes.outer, upper))
             .attr('fill', 'none')
@@ -243,6 +246,11 @@ export class SwooshChart extends Vue {
             .attr('stroke-alignment', 'inner')
             .attr('stroke', diagram[keys[i]][j].color)
             .attr('opacity', this.calculateCategoryOpacity(diagram[keys[i]][j].type));
+          svg.append('path')
+            .datum(swoosh.data)
+            .attr('d', swoosh.area)
+            .attr('fill', diagram[keys[i]][j].color)
+            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
         }
       }
     }
@@ -253,7 +261,7 @@ export class SwooshChart extends Vue {
    * @param path
    * @param upper
    */
-  public createLine(path, upper): [number, number][] {
+  public createLine(path, upper: boolean): [number, number][] {
     if(!upper) {
       return [[path.startX, path.startY + path.offset], [path.centerX, path.centerY + path.offset], [path.endX, path.endY + path.offset]];
     } else {
@@ -266,7 +274,7 @@ export class SwooshChart extends Vue {
    * @param path
    * @param upper
    */
-  public createBezierpath(path, upper): string {
+  public createBezierpath(path, upper: boolean): string {
     let start, end, startBezier, endBezier;
 
     if(!upper) {
@@ -282,6 +290,48 @@ export class SwooshChart extends Vue {
     }
 
     return start + ' ' + startBezier + ' ' + endBezier + ' ' + end;
+  }
+
+  /**
+   * returns the fill of a swoosh
+   * @param attributes
+   * @param upper
+   */
+  public createSwooshArea(attributes, upper: boolean): any {
+    let outer = this.createLine(attributes.outer, upper);
+    let inner = this.createLine(attributes.inner, upper);
+    let areaData = [];
+
+    for (let i = 0; i < outer.length; i++) {
+      let obj = {
+        xOuter: outer[i][0],
+        yOuter: outer[i][1],
+        xInner: inner[i][0],
+        yInner: inner[i][1]
+      };
+      areaData.push(obj);
+    }
+
+    let area = d3.area()
+      .curve(d3.curveNatural)
+      .x0(function (d, i) {
+        return areaData[i].xOuter;
+      })
+      .x1(function (d, i) {
+        return areaData[i].xInner;
+      })
+      .y0(function (d, i) {
+        return areaData[i].yOuter;
+      })
+      .y1(function (d, i) {
+        return areaData[i].yInner;
+      });
+
+    return {
+      area: area,
+      data: areaData
+    }
+
   }
 
   /**
@@ -302,11 +352,28 @@ export class SwooshChart extends Vue {
   }
 
   /**
+   * shows or hides the swoosh fill based on filter
+   * @param type
+   */
+  public calculateSwooshOpacity(type: RunType): number {
+    if(type === null) {
+      return 0
+    }
+    if(this.runType === RunType.All) {
+      return 0.35;
+    }
+    if(type === this.runType) {
+      return 0.35;
+    }
+    return 0.05;
+  }
+
+  /**
    * returns the length of a bar in px
    * @param distance
    * @param factor
    */
-  public calculateBarLength(distance, factor): string {
+  public calculateBarLength(distance, factor: number): string {
     distance = (distance / 1000) * factor;
     distance = distance.toFixed(2);
 

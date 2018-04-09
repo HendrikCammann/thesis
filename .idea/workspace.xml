@@ -16,7 +16,7 @@
       <file leaf-file-name="state.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/state.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
+            <state relative-caret-position="0">
               <caret line="57" column="48" lean-forward="false" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
               <folding />
             </state>
@@ -26,20 +26,21 @@
       <file leaf-file-name="SwooshChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="755">
-              <caret line="365" column="16" lean-forward="false" selection-start-line="365" selection-start-column="16" selection-end-line="365" selection-end-column="16" />
+            <state relative-caret-position="-1363">
+              <caret line="64" column="16" lean-forward="true" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#43#0" expanded="true" />
-                <element signature="n#!!block;n#selectDataset#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#setupSvg#0;n#SwooshChart#0" expanded="false" />
-                <element signature="n#!!block;n#setupVisualVariables#0;n#SwooshChart#0" expanded="false" />
-                <element signature="n#!!block;n#connectDiagram#0;n#SwooshChart#0" expanded="false" />
-                <element signature="e#5604#6746#0" expanded="false" />
+                <element signature="e#1959#2189#0" expanded="false" />
+                <element signature="e#2221#2363#0" expanded="false" />
+                <element signature="n#!!block;n#drawDiagram#0;n#SwooshChart#0" expanded="false" />
+                <element signature="e#5626#6768#0" expanded="false" />
                 <element signature="n#!!block;n#createLine#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#createBezierpath#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#createSwooshArea#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#calculateCategoryOpacity#0;n#SwooshChart#0" expanded="false" />
+                <element signature="n#!!block;n#calculateSwooshOpacity#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#calculateBarLength#0;n#SwooshChart#0" expanded="false" />
                 <element signature="n#!!block;n#diagramColor#0;n#SwooshChart#0" expanded="false" />
               </folding>
@@ -79,8 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clusterAreas</find>
-      <find>valueDAta</find>
       <find>value</find>
       <find>valueData</find>
       <find>2016</find>
@@ -109,6 +108,8 @@
       <find>calculateBarLength</find>
       <find>swooshFill</find>
       <find>console</find>
+      <find>offsetX_20</find>
+      <find>offsetY_20</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -123,6 +124,8 @@
       <replace>diagram</replace>
       <replace>diagramColor</replace>
       <replace>swoosh</replace>
+      <replace>offsetX20</replace>
+      <replace>offsetY20</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -476,12 +479,12 @@
       <workItem from="1522912912997" duration="7800000" />
       <workItem from="1523103083972" duration="114000" />
       <workItem from="1523103584905" duration="7068000" />
-      <workItem from="1523275214773" duration="7270000" />
+      <workItem from="1523275214773" duration="12459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157522000" />
+    <option name="totallyTimeSpent" value="162711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -579,7 +582,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -895,30 +898,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="66" selection-end-line="106" selection-end-column="66" />
-          <folding>
-            <element signature="n#!!block;n#calcXPos#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#setCluster#0;n#!!block;n#createNodes#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#hideTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
-            <element signature="e#7592#8054#0" expanded="false" />
-            <element signature="n#!!block;n#handleClusterChange#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#selectClusterData#0;n#BubbleChart#0" expanded="false" />
-            <element signature="n#!!block;n#generateTitles#0;n#BubbleChart#0" expanded="false" />
-            <element signature="e#9544#10042#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/state.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
+        <state relative-caret-position="0">
           <caret line="57" column="48" lean-forward="false" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
           <folding />
         </state>
@@ -940,22 +922,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1091">
+          <caret line="106" column="66" lean-forward="true" selection-start-line="106" selection-start-column="66" selection-end-line="106" selection-end-column="66" />
+          <folding>
+            <element signature="n#!!block;n#charge#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#setCluster#0;n#!!block;n#createNodes#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#ticked#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#hideTitles#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#handleClick#0;n#!!block;n#bubbleChart#0;n#BubbleChart#0" expanded="false" />
+            <element signature="e#7592#8054#0" expanded="false" />
+            <element signature="n#!!block;n#handleClusterChange#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#setupButtons#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#selectClusterData#0;n#BubbleChart#0" expanded="false" />
+            <element signature="n#!!block;n#generateTitles#0;n#BubbleChart#0" expanded="false" />
+            <element signature="e#9544#10042#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="365" column="16" lean-forward="false" selection-start-line="365" selection-start-column="16" selection-end-line="365" selection-end-column="16" />
+        <state relative-caret-position="-1363">
+          <caret line="64" column="16" lean-forward="true" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#43#0" expanded="true" />
-            <element signature="n#!!block;n#selectDataset#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#setupSvg#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#setupVisualVariables#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#connectDiagram#0;n#SwooshChart#0" expanded="false" />
-            <element signature="e#5604#6746#0" expanded="false" />
+            <element signature="e#1959#2189#0" expanded="false" />
+            <element signature="e#2221#2363#0" expanded="false" />
+            <element signature="n#!!block;n#drawDiagram#0;n#SwooshChart#0" expanded="false" />
+            <element signature="e#5626#6768#0" expanded="false" />
             <element signature="n#!!block;n#createLine#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#createBezierpath#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#createSwooshArea#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#calculateCategoryOpacity#0;n#SwooshChart#0" expanded="false" />
+            <element signature="n#!!block;n#calculateSwooshOpacity#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#calculateBarLength#0;n#SwooshChart#0" expanded="false" />
             <element signature="n#!!block;n#diagramColor#0;n#SwooshChart#0" expanded="false" />
           </folding>

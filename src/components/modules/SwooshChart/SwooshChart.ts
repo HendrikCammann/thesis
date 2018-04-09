@@ -3,8 +3,6 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
-import {area} from 'd3-shape';
-import {scaleLinear} from 'd3-scale';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -25,6 +23,8 @@ export class SwooshChart extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     this.swooshChart('#swoosh', this.data, this.clusterType);
   }
+
+  public interpolation = d3.curveBasis;
 
   /**
    * combines all functions
@@ -139,6 +139,8 @@ export class SwooshChart extends Vue {
           .attr('y', visualMeasurements.height / 2)
           .attr('width', element.width)
           .attr('height', element.height)
+          .attr('rx', 0)
+          .attr('ry', 0)
           .attr('fill', element.color)
           .attr('opacity', this.calculateCategoryOpacity(element.type))
           .on('mouseenter', function() {
@@ -212,7 +214,7 @@ export class SwooshChart extends Vue {
             arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
           }
 
-          let lineGenerator = d3.line().curve(d3.curveNatural);
+          let lineGenerator = d3.line().curve(this.interpolation);
           let outerLine = lineGenerator(this.createLine(arcAttributes.outer, upper));
           let innerLine = lineGenerator(this.createLine(arcAttributes.inner, upper));
           let swoosh = this.createSwooshArea(arcAttributes, upper);
@@ -238,14 +240,14 @@ export class SwooshChart extends Vue {
             .attr('stroke-width', '1')
             .attr('stroke-alignment', 'inner')
             .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(diagram[keys[i]][j].type));
+            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
           svg.append('path')
             .attr('d', innerLine)
             .attr('fill', 'none')
             .attr('stroke-width', '1')
             .attr('stroke-alignment', 'inner')
             .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(diagram[keys[i]][j].type));
+            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
           svg.append('path')
             .datum(swoosh.data)
             .attr('d', swoosh.area)
@@ -262,10 +264,31 @@ export class SwooshChart extends Vue {
    * @param upper
    */
   public createLine(path, upper: boolean): [number, number][] {
+    let offsetX20 = (path.endX - path.startX) * 0.2;
+    let offsetY20 = (path.startY - path.centerY) * 0.8;
+    let offsetX18 = (path.endX - path.startX) * 0.12;
+    let offsetY18 = (path.startY - path.centerY) * 0.70;
+
     if(!upper) {
-      return [[path.startX, path.startY + path.offset], [path.centerX, path.centerY + path.offset], [path.endX, path.endY + path.offset]];
+      return [
+        [path.startX, path.startY + path.offset],
+        // [path.startX + offsetX18, path.startY + path.offset - offsetY18],
+        [path.startX + offsetX20, path.startY + path.offset - offsetY20],
+        [path.centerX, path.centerY + path.offset],
+        [path.endX - offsetX20, path.endY + path.offset - offsetY20],
+        // [path.endX - offsetX18, path.endY + path.offset - offsetY18],
+        [path.endX, path.endY + path.offset]
+      ];
     } else {
-      return [[path.startX, path.startY], [path.centerX, path.centerY], [path.endX, path.endY]];
+      return [
+        [path.startX, path.startY],
+        // [path.startX + offsetX18, path.startY - offsetY18],
+        [path.startX + offsetX20, path.startY - offsetY20],
+        [path.centerX, path.centerY],
+        [path.endX - offsetX20, path.endY - offsetY20],
+        // [path.endX - offsetX18, path.endY - offsetY18],
+        [path.endX, path.endY]
+      ];
     }
   }
 
@@ -313,7 +336,7 @@ export class SwooshChart extends Vue {
     }
 
     let area = d3.area()
-      .curve(d3.curveNatural)
+      .curve(this.interpolation)
       .x0(function (d, i) {
         return areaData[i].xOuter;
       })
@@ -331,7 +354,6 @@ export class SwooshChart extends Vue {
       area: area,
       data: areaData
     }
-
   }
 
   /**

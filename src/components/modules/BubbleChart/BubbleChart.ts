@@ -115,7 +115,9 @@ export class BubbleChart extends Vue {
       .velocityDecay(0.2)
       .force('x', d3.forceX().strength(forceStrength).x(center.x))
       .force('y', d3.forceY().strength(forceStrength).y(center.y))
-      .force('collide', d3.forceCollide(function (d) { return d.radius + padding; }))
+      .force('collide', d3.forceCollide(function (d: any) {
+        return d.radius + padding;
+      }))
       .force('charge', d3.forceManyBody().strength(charge))
       .on('tick', ticked);
 

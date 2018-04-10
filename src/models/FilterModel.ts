@@ -4,8 +4,9 @@ class TimeRangeModel {
   start: Date;
   end: Date;
   isRange: boolean;
+
   constructor() {
-    this.start = null;
+    this.start = new Date(1970);
     this.end = new Date();
     this.isRange = false;
   }
@@ -14,12 +15,13 @@ class TimeRangeModel {
 export class FilterModel {
   selectedRunType: RunType;
   selectedCluster: ClusterType;
-
   timeRange: TimeRangeModel;
+  showEverything: boolean;
 
   constructor() {
     this.selectedRunType = RunType.All;
     this.selectedCluster = ClusterType.ByYears;
     this.timeRange = new TimeRangeModel();
+    this.showEverything = true;
   }
 }

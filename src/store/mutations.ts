@@ -298,11 +298,20 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
     if (filterBy !== typeof Date) {
-      state.filter.timeRange.isRange = false;
-      state.filter.timeRange.start = new Date(filterBy);
-      state.filter.timeRange.end = new Date(filterBy, 11, 31);
+      if (filterBy === 'all') {
+        state.filter.timeRange.isRange = false;
+        state.filter.timeRange.start = new Date();
+        state.filter.timeRange.end = new Date(1970);
+        state.filter.showEverything = true;
+      } else {
+        state.filter.timeRange.isRange = false;
+        state.filter.timeRange.start = new Date(filterBy);
+        state.filter.timeRange.end = new Date(filterBy, 11, 31);
+        state.filter.showEverything = false;
+      }
     } else {
       state.filter.timeRange.isRange = true;
+      state.filter.showEverything = false;
     }
   }
 

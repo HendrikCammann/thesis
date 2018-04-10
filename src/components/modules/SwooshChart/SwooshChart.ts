@@ -18,6 +18,8 @@ export class SwooshChart extends Vue {
   @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
+  @Watch('filter.timeRange.start')
+  @Watch('filter.timeRange.end')
   onPropertyChanged(val: any, oldVal: any) {
     this.swooshChart('#swoosh', this.data, this.filter);
   }
@@ -40,22 +42,62 @@ export class SwooshChart extends Vue {
     this.connectDiagram(diagram, svg);
   }
 
+  public formatKey(key: string) {
+    let year = parseInt(key.substring(0,4));
+    console.log(year);
+    return year;
+  }
+
+
   /**
    * sets correct cluster from overall dataset
    * @param dataset
    * @param filter
    */
   public selectDataset(dataset, filter: FilterModel): any {
+    let tempData;
+    let startYear;
+    let endYear;
+
+    if(filter.timeRange.start) {
+      startYear = filter.timeRange.start.getFullYear();
+    } else {
+      startYear = -1
+    }
+
+    if(filter.timeRange.end) {
+      endYear = filter.timeRange.end.getFullYear();
+    } else {
+      endYear = 10000;
+    }
+
     switch (filter.selectedCluster) {
       case ClusterType.All:
-        return dataset.all;
+        tempData = dataset.all;
+        break;
       case ClusterType.ByYears:
-        return dataset.byYears;
+        tempData = dataset.byYears;
+        break;
       case ClusterType.ByMonths:
-        return dataset.byMonths;
+        tempData = dataset.byMonths;
+        break;
       case ClusterType.ByWeeks:
-        return dataset.byWeeks;
+        tempData = dataset.byWeeks;
+        break;
     }
+
+    let returnData = [];
+    if (filter.showEverything) {
+      returnData = tempData;
+    } else {
+      for (let key in tempData) {
+        if (this.formatKey(key) >= startYear && this.formatKey(key) <= endYear) {
+          returnData.push(tempData[key]);
+        }
+      }
+    }
+
+    return returnData;
   }
 
   /**

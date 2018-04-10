@@ -4,6 +4,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {MutationTypes} from '../../../store/mutation-types';
 import {ClusterType, RunType} from '../../../store/state';
+import {FilterModel} from '../../../models/FilterModel';
 
 @Component({
   template: require('./BubbleChart.html'),
@@ -22,9 +23,15 @@ export class BubbleChart extends Vue {
   @Prop()
   clusterType: ClusterType;
 
+  @Prop()
+  filter: FilterModel;
+
+
   @Watch('valueData')
   @Watch('runType')
   @Watch('clusterType')
+  @Watch('filter.selectedRunType')
+  @Watch('filter.selectedCluster')
   onPropertyChanged(val: any, oldVal: any) {
     let type = typeof val;
     if (type == 'object') {
@@ -32,6 +39,58 @@ export class BubbleChart extends Vue {
     } else {
       this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
     }
+  }
+
+  /**
+   * positions the years titles
+   * @param {number} index
+   * @returns {number}
+   */
+  public calcYTitlePos(index: number): number {
+    if (index < 10) {
+      return 40;
+    } else if (index < 20){
+      return 240;
+    } else {
+      return 440;
+    }
+  }
+
+  /**
+   *
+   * @param {number} height
+   * @param {number} index
+   * @param {number} lenght
+   * @returns {number}
+   */
+  public calcYCenterPos(height: number, index: number, length: number): number {
+    if (length < 10) {
+      return height / 2;
+    }
+    if (index < 10) {
+      return 120;
+    } else if (index < 20 && index >= 10){
+      return 320;
+    } else {
+      return 520;
+    }
+  }
+
+  /**
+   *
+   * @param {number} width
+   * @param {number} index
+   * @param {number} length
+   * @returns {number}
+   */
+  public calcXPos(width: number, index: number, length: number) {
+    let maxLength;
+    if (length > 10) {
+      maxLength = 10;
+    } else {
+      maxLength = length;
+    }
+    return (width / (maxLength + 1)) * ((index % maxLength) + 1)
   }
 
   public bubbleChart(titles) {
@@ -48,47 +107,14 @@ export class BubbleChart extends Vue {
     let clusterPositions = {};
     let clusterTitlePositions = {};
 
-    function calcYTitlePos(index) {
-      if (index < 10) {
-        return 40;
-      } else if (index < 20){
-        return 240;
-      } else {
-        return 440;
-      }
-    }
-
-    function calcYCenterPos(index, length) {
-      if (length < 10) {
-        return height / 2;
-      }
-      if (index < 10) {
-        return 120;
-      } else if (index < 20 && index >= 10){
-        return 320;
-      } else {
-        return 520;
-      }
-    }
-
-    function calcXPos(index, length) {
-      let maxLength;
-      if (length > 10) {
-        maxLength = 10;
-      } else {
-        maxLength = length;
-      }
-      return (width / (maxLength + 1)) * ((index % maxLength) + 1)
-    }
-
     for (let i = 0; i < titles.length; i++) {
       clusterTitlePositions[titles[i]] = {
-        x: calcXPos(i, titles.length),
-        y: calcYTitlePos(i),
+        x: that.calcXPos(width, i, titles.length),
+        y: that.calcYTitlePos(i),
       };
       clusterPositions[titles[i]] = {
-        x: calcXPos(i, titles.length),
-        y: calcYCenterPos(i, titles.length)
+        x: that.calcXPos(width, i, titles.length),
+        y: that.calcYCenterPos(height, i, titles.length)
       };
     }
 
@@ -294,25 +320,6 @@ export class BubbleChart extends Vue {
         path: '/activity/' + id
       });
     }
-
-    chart.toggleDisplay = function (displayName) {
-      let cluster: ClusterType;
-      switch (displayName) {
-        case 'year':
-          cluster = ClusterType.ByYears;
-          break;
-        case 'month':
-          cluster = ClusterType.ByMonths;
-          break;
-        case 'week':
-          cluster = ClusterType.ByWeeks;
-          break;
-        case 'all':
-          cluster = ClusterType.All;
-          break;
-      }
-      that.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, cluster);
-    };
 
     return chart;
   }

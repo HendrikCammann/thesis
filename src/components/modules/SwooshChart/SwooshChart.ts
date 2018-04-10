@@ -3,6 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
+import {FilterModel} from '../../../models/FilterModel';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -12,16 +13,13 @@ export class SwooshChart extends Vue {
   data: Object;
 
   @Prop()
-  runType: RunType;
-
-  @Prop()
-  clusterType: ClusterType;
+  filter: FilterModel;
 
   @Watch('data.byMonths')
-  @Watch('runType')
-  @Watch('clusterType')
+  @Watch('filter.selectedRunType')
+  @Watch('filter.selectedCluster')
   onPropertyChanged(val: any, oldVal: any) {
-    this.swooshChart('#swoosh', this.data, this.clusterType);
+    this.swooshChart('#swoosh', this.data, this.filter);
   }
 
   public interpolation = d3.curveBasis;
@@ -30,10 +28,10 @@ export class SwooshChart extends Vue {
    * combines all functions
    * @param root
    * @param dataset
-   * @param clusterType
+   * @param filter
    */
-  public swooshChart(root: string, dataset, clusterType: ClusterType) {
-    let data = this.selectDataset(dataset, clusterType);
+  public swooshChart(root: string, dataset, filter: FilterModel) {
+    let data = this.selectDataset(dataset, filter);
     let visualMeasurements = this.setupVisualVariables(data);
 
     let svg = this.setupSvg(root, visualMeasurements);
@@ -45,10 +43,10 @@ export class SwooshChart extends Vue {
   /**
    * sets correct cluster from overall dataset
    * @param dataset
-   * @param type
+   * @param filter
    */
-  public selectDataset(dataset, type: ClusterType): any {
-    switch (type) {
+  public selectDataset(dataset, filter: FilterModel): any {
+    switch (filter.selectedCluster) {
       case ClusterType.All:
         return dataset.all;
       case ClusterType.ByYears:
@@ -124,7 +122,7 @@ export class SwooshChart extends Vue {
           start: rectXPos,
           end: 0,
           y: visualMeasurements.height / 2,
-          height: 15,
+          height: 20,
           distance: data[key].stats.typeCount[anchor].distance,
           width: parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
           color: this.diagramColor(data[key].stats.typeCount[anchor].type),
@@ -134,20 +132,22 @@ export class SwooshChart extends Vue {
 
         element.end = element.start + element.width;
 
-        svg.append('rect')
-          .attr('x', element.start)
-          .attr('y', visualMeasurements.height / 2)
-          .attr('width', element.width)
-          .attr('height', element.height)
-          .attr('rx', 0)
-          .attr('ry', 0)
-          .attr('fill', element.color)
-          .attr('opacity', this.calculateCategoryOpacity(element.type))
-          .on('mouseenter', function() {
-            // console.log(anchor)
-          });
+        if (element.width != 0) {
+          svg.append('rect')
+            .attr('x', element.start)
+            .attr('y', visualMeasurements.height / 2)
+            .attr('width', element.width)
+            .attr('height', element.height)
+            .attr('rx', 2)
+            .attr('ry', 2)
+            .attr('fill', element.color)
+            .attr('opacity', this.calculateCategoryOpacity(element.type))
+            .on('mouseenter', function() {
+              // console.log(anchor)
+            });
 
-        rectXPos += (data[key].stats.typeCount[anchor].distance / 1000) * visualMeasurements.calculated.pxPerKm;
+          rectXPos += (data[key].stats.typeCount[anchor].distance / 1000) * visualMeasurements.calculated.pxPerKm;
+        }
 
         barPositions[key].push(element);
       }
@@ -361,14 +361,14 @@ export class SwooshChart extends Vue {
    * @param type
    */
   public calculateCategoryOpacity(type: RunType): number {
-    if(type === null) {
+    if(type == null) {
       return 0
     }
-    if(this.runType === RunType.All) {
-      return 1;
+    if(this.filter.selectedRunType == RunType.All) {
+      return 0.7;
     }
-    if(type === this.runType) {
-      return 1;
+    if(type == this.filter.selectedRunType) {
+      return 0.7;
     }
     return 0.15;
   }
@@ -378,14 +378,14 @@ export class SwooshChart extends Vue {
    * @param type
    */
   public calculateSwooshOpacity(type: RunType): number {
-    if(type === null) {
+    if(type == null) {
       return 0
     }
-    if(this.runType === RunType.All) {
-      return 0.35;
+    if(this.filter.selectedRunType == RunType.All) {
+      return 0.2;
     }
-    if(type === this.runType) {
-      return 0.35;
+    if(type == this.filter.selectedRunType) {
+      return 0.2;
     }
     return 0.05;
   }

@@ -1,9 +1,5 @@
 import {ActivityModel} from '../models/ActivityModel';
-
-export interface ListItem {
-  id: number;
-  name: string;
-}
+import {FilterModel} from '../models/FilterModel';
 
 export enum RunType {
   All = 'All',
@@ -25,8 +21,6 @@ export enum ClusterType {
 }
 
 export class State {
-  public count: number;
-  public listItem: ListItem[];
   public runningRaces: any[];
   public activityList: ActivityModel[];
   public selectedActivityId: number;
@@ -36,13 +30,12 @@ export class State {
     byYears: null,
     all: null
   };
+  public filter: FilterModel;
 
   public selectedRunType: RunType;
   public selectedCluster: ClusterType;
 
   constructor() {
-    this.count = 0;
-    this.listItem = [];
     this.runningRaces = [];
     this.activityList = [];
     this.acitvitySortedLists = {
@@ -52,6 +45,8 @@ export class State {
       all: null
     };
     this.selectedActivityId = null;
+
+    this.filter = new FilterModel();
 
     this.selectedRunType = RunType.All;
 

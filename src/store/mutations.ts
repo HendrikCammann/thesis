@@ -198,6 +198,7 @@ function sortActivities (array, bucket) {
     acc[timeRange].rangeName = timeRange;
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;
+    acc[timeRange].stats.count++;
     switch (activity.categorization.activity_type) {
       case RunType.Run:
         acc[timeRange].stats.typeCount.run.amount += 1;
@@ -230,27 +231,6 @@ function sortActivities (array, bucket) {
 }
 
 const mutations: MutationTree<State> = {
-  [MutationTypes.INCREMENT_VALUE]: (state: State) => {
-    state.count += 1;
-  },
-  [MutationTypes.DECREMENT_VALUE]: (state: State) => {
-    state.count -= 1;
-  },
-  [MutationTypes.RESET_VALUE]: (state: State) => {
-    state.count = 0;
-  },
-
-  [MutationTypes.GET_LIST]: (state: State, {items}) => {
-    if (!state.listItem.length) {
-      items.forEach(items => {
-        state.listItem.push({
-          id: items.id,
-          name: items.name,
-        });
-      });
-    }
-  },
-
   [MutationTypes.GET_RACE]: (state: State, {items}) => {
     if (!state.runningRaces.length) {
       items.forEach(item => {
@@ -309,11 +289,11 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_SELECTED_RUNTYPE]: (state: State, {runType}) => {
-    state.selectedRunType = runType;
+    state.filter.selectedRunType = runType;
   },
 
   [MutationTypes.SET_SELECTED_CLUSTER]: (state: State, {clusterType}) => {
-    state.selectedCluster = clusterType;
+    state.filter.selectedCluster = clusterType;
   },
 
 };

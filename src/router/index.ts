@@ -3,8 +3,6 @@ import VueRouter from 'vue-router';
 
 // conatiners
 import { AppContainer } from '../components/containers/App/';
-import { CounterContainer } from '../components/containers/Counter/';
-import { ListContainer } from '../components/containers/List/';
 import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
 
@@ -24,14 +22,6 @@ const router = new VueRouter({
       component: AppContainer,
       name: 'index',
       path: '/',
-    }, {
-      component: CounterContainer,
-      name: 'counter',
-      path: '/counter',
-    }, {
-      component: ListContainer,
-      name: 'list',
-      path: '/list',
     }, {
       component: ActivitiesContainer,
       name: 'activities',

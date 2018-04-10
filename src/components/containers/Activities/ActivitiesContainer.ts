@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
-import {RunType, State} from '../../../store/state';
+import {ClusterType, RunType, State} from '../../../store/state';
 import {BubbleChart} from '../../modules/BubbleChart';
 import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
@@ -13,6 +13,7 @@ import {SwooshChart} from '../../modules/SwooshChart';
   computed: mapGetters({
     activities: 'getActivities',
     sortedActivities: 'getSortedActivities',
+    filter: 'getFilter',
     selectedRunType: 'getSelectedRunType',
     selectedCluster: 'getSelectedClusterType'
   }),
@@ -53,6 +54,25 @@ export class ActivitiesContainer extends Vue {
         break;
     }
     this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, runType);
+  }
+
+  public selectCluster(event) {
+    let clusterType: ClusterType;
+    switch (event.target.id) {
+      case 'year':
+        clusterType = ClusterType.ByYears;
+        break;
+      case 'month':
+        clusterType = ClusterType.ByMonths;
+        break;
+      case 'week':
+        clusterType = ClusterType.ByWeeks;
+        break;
+      case 'all':
+        clusterType = ClusterType.All;
+        break;
+    }
+    this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
   }
 
   mounted() {

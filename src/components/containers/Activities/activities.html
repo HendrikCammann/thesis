@@ -1,4 +1,23 @@
 <div class="container">
+
+  <div id="filter" @click="selectRunType($event)">
+    <a href="#" id="allActivities" class="button">All</a>
+    <a href="#" id="run" class="button">Runs</a>
+    <a href="#" id="tempo-run" class="button">TDL</a>
+    <a href="#" id="long-run" class="button">Langer DL</a>
+    <a href="#" id="short-intervals" class="button">Kurze IV</a>
+    <a href="#" id="long-intervals" class="button">Lange IV</a>
+    <a href="#" id="competition" class="button">Wettkampf</a>
+    <a href="#" id="regeneration" class="button">Regeneration</a>
+  </div>
+
+  <div id="filter__time" @click="selectCluster($event)">
+    <a href="#" id="all" class="button">All</a>
+    <a href="#" id="year" class="button">Group by year</a>
+    <a href="#" id="month" class="button">Group by month</a>
+    <a href="#" id="week" class="button">Group by Week</a>
+  </div>
+
   <bubble-chart
     :valueData="activities"
     :runType="selectedRunType"
@@ -8,20 +27,8 @@
 
   <swoosh-chart
     :data="sortedActivities"
-    :runType="selectedRunType"
-    :clusterType="selectedCluster"
+    :filter="filter"
   ></swoosh-chart>
-
-  <div id="filter" @click="selectRunType($event)">
-    <a href="#" id="allActivities" class="button active">All</a>
-    <a href="#" id="run" class="button">Runs</a>
-    <a href="#" id="tempo-run" class="button">TDL</a>
-    <a href="#" id="long-run" class="button">Langer DL</a>
-    <a href="#" id="short-intervals" class="button">Kurze IV</a>
-    <a href="#" id="long-intervals" class="button">Lange IV</a>
-    <a href="#" id="competition" class="button">Wettkampf</a>
-    <a href="#" id="regeneration" class="button">Regeneration</a>
-  </div>
 
   <hr>
   <div v-for="timeRange in sortedActivities.byWeeks">

@@ -296,6 +296,16 @@ const mutations: MutationTree<State> = {
     state.filter.selectedCluster = clusterType;
   },
 
+  [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
+    if (filterBy !== typeof Date) {
+      state.filter.timeRange.isRange = false;
+      state.filter.timeRange.start = new Date(filterBy);
+      state.filter.timeRange.end = new Date(filterBy, 11, 31);
+    } else {
+      state.filter.timeRange.isRange = true;
+    }
+  }
+
 };
 
 export default mutations;

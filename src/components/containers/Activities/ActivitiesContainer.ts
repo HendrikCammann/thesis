@@ -25,6 +25,8 @@ import {SwooshChart} from '../../modules/SwooshChart';
 })
 export class ActivitiesContainer extends Vue {
 
+  public filterYear = 'all';
+
   public selectRunType(event) {
     let runType: RunType;
     switch (event.target.id) {
@@ -73,6 +75,10 @@ export class ActivitiesContainer extends Vue {
         break;
     }
     this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
+  }
+
+  public selectYear(event) {
+    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterYear);
   }
 
   mounted() {

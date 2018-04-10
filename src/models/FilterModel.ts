@@ -3,10 +3,11 @@ import {ClusterType, RunType} from '../store/state';
 class TimeRangeModel {
   start: Date;
   end: Date;
-
+  isRange: boolean;
   constructor() {
     this.start = null;
     this.end = new Date();
+    this.isRange = false;
   }
 }
 

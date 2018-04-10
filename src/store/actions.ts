@@ -86,6 +86,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_FILTERBY_TYPE]: ({commit}, filterBy) => {
+    commit(MutationTypes.SET_FILTERBY_TYPE, {
+      filterBy
+    });
+  },
+
   [MutationTypes.GET_RACE]: ({commit}, raceId) => {
     stravaAPI.getRunningRace(raceId, token, (item) => {
       commit(MutationTypes.GET_RACE, {

@@ -1,4 +1,14 @@
 <div class="container">
+  <div>
+    <select v-model="filterYear" @change="selectYear($event)">
+      <option value="all">All</option>
+      <option value="2018">2018</option>
+      <option value="2017">2017</option>
+      <option value="2016">2016</option>
+    </select>
+  </div>
+
+  <hr>
 
   <div id="filter__activity" @click="selectRunType($event)">
     <a href="#" id="allActivities" class="button">All</a>
@@ -11,6 +21,8 @@
     <a href="#" id="regeneration" class="button">Regeneration</a>
   </div>
 
+  <hr>
+
   <div id="filter__time" @click="selectCluster($event)">
     <a href="#" id="all" class="button">All</a>
     <a href="#" id="year" class="button">Group by year</a>
@@ -18,10 +30,10 @@
     <a href="#" id="week" class="button">Group by Week</a>
   </div>
 
-  <bubble-chart
+  <!--<bubble-chart
     :data="sortedActivities"
     :filter="filter"
-  ></bubble-chart>
+  ></bubble-chart>-->
 
   <swoosh-chart
     :data="sortedActivities"
@@ -29,6 +41,7 @@
   ></swoosh-chart>
 
   <hr>
+
   <div v-for="timeRange in sortedActivities.byWeeks">
     <div class="row">
       <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>

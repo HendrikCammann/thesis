@@ -12,33 +12,16 @@ import {FilterModel} from '../../../models/FilterModel';
 export class BubbleChart extends Vue {
 
   @Prop()
-  valueData: any[];
-
-  @Prop()
-  displayedData: Object;
-
-  @Prop()
-  runType: RunType;
-
-  @Prop()
-  clusterType: ClusterType;
+  data: Object;
 
   @Prop()
   filter: FilterModel;
 
-
-  @Watch('valueData')
-  @Watch('runType')
-  @Watch('clusterType')
+  @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
   onPropertyChanged(val: any, oldVal: any) {
-    let type = typeof val;
-    if (type == 'object') {
-      this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
-    } else {
-      this.drawDiagramm('#bubbles', this.displayedData, this.runType, this.clusterType);
-    }
+    this.drawDiagram('#bubbles', this.data, this.filter);
   }
 
   /**
@@ -60,7 +43,7 @@ export class BubbleChart extends Vue {
    *
    * @param {number} height
    * @param {number} index
-   * @param {number} lenght
+   * @param {number} length
    * @returns {number}
    */
   public calcYCenterPos(height: number, index: number, length: number): number {
@@ -244,7 +227,7 @@ export class BubbleChart extends Vue {
 
       simulation.nodes(nodes);
 
-      switch(that.clusterType) {
+      switch(that.filter.selectedCluster) {
         case ClusterType.All:
           groupBubbles();
           break;
@@ -324,41 +307,6 @@ export class BubbleChart extends Vue {
     return chart;
   }
 
-  public handleClusterChange(id) {
-    let clusterType: ClusterType;
-
-    switch (id) {
-      case 'year':
-        clusterType = ClusterType.ByYears;
-        break;
-      case 'month':
-        clusterType = ClusterType.ByMonths;
-        break;
-      default:
-        clusterType = ClusterType.All;
-    }
-    this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
-  }
-
-  public setupButtons(chartObject) {
-    let that = this;
-    d3.select('#toolbar')
-      .selectAll('.button')
-      .on('click', function () {
-        d3.selectAll('.button').classed('active', false);
-
-        let button = d3.select(this);
-
-        button.classed('active', true);
-
-        let buttonId = button.attr('id');
-
-        that.handleClusterChange(buttonId);
-
-        chartObject.toggleDisplay(buttonId);
-      });
-  }
-
   public selectClusterData(data, cluster) {
     switch (cluster) {
     case ClusterType.ByYears:
@@ -378,32 +326,28 @@ export class BubbleChart extends Vue {
     }
   }
 
-  public drawDiagramm(domRoot, data, type, cluster) {
+  public drawDiagram(domRoot, data, filter) {
     d3.select(domRoot + " > svg").remove();
-    let copyData = this.selectClusterData(data, cluster);
+    let copyData = this.selectClusterData(data, filter.selectedCluster);
     let filteredData = [];
     let titles = [];
 
     for (let bucket in copyData) {
       for(let i = 0; i < copyData[bucket].activities.length; i++) {
         let activity = this.$store.getters.getActivity(copyData[bucket].activities[i]);
-        if (type === RunType.All) {
+        if (filter.selectedRunType === RunType.All) {
           this.generateTitles(titles, copyData[bucket].rangeName);
           filteredData.push(activity);
-        } else if (activity.categorization.activity_type === type) {
+        } else if (activity.categorization.activity_type === filter.selectedRunType) {
           this.generateTitles(titles, copyData[bucket].rangeName);
           filteredData.push(activity);
         }
       }
     }
     let myBubbleChart = this.bubbleChart(titles);
-    myBubbleChart(domRoot, filteredData, cluster);
-    this.setupButtons(myBubbleChart);
+    myBubbleChart(domRoot, filteredData, filter.selectedCluster);
   }
 
   mounted() {
-    if(this.valueData.length !== 0) {
-      this.drawDiagramm('#bubbles', this.valueData, this.displayedData, this.runType);
-    }
   }
 }

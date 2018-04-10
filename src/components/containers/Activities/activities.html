@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div id="filter" @click="selectRunType($event)">
+  <div id="filter__activity" @click="selectRunType($event)">
     <a href="#" id="allActivities" class="button">All</a>
     <a href="#" id="run" class="button">Runs</a>
     <a href="#" id="tempo-run" class="button">TDL</a>
@@ -19,10 +19,8 @@
   </div>
 
   <bubble-chart
-    :valueData="activities"
-    :runType="selectedRunType"
-    :displayedData="sortedActivities"
-    :clusterType="selectedCluster"
+    :data="sortedActivities"
+    :filter="filter"
   ></bubble-chart>
 
   <swoosh-chart

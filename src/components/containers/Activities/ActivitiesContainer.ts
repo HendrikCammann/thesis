@@ -6,6 +6,7 @@ import {BubbleChart} from '../../modules/BubbleChart';
 import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
 import {SwooshChart} from '../../modules/SwooshChart';
+import {ArcChart} from '../../modules/ArcChart';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -20,6 +21,7 @@ import {SwooshChart} from '../../modules/SwooshChart';
   components: {
     'bubbleChart': BubbleChart,
     'swooshChart': SwooshChart,
+    'arcChart': ArcChart,
     'activityListItem': ActivityListItem
   }
 })

@@ -4,11 +4,12 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/FilterModel';
+import {toPoints} from 'svg-points';
 
 @Component({
-  template: require('./SwooshChart.html'),
+  template: require('./ArcChart.html'),
 })
-export class SwooshChart extends Vue {
+export class ArcChart extends Vue {
   @Prop()
   data: Object;
 
@@ -21,7 +22,7 @@ export class SwooshChart extends Vue {
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
   onPropertyChanged(val: any, oldVal: any) {
-    this.swooshChart('#swoosh', this.data, this.filter);
+    this.swooshChart('#arc', this.data, this.filter);
   }
 
   public interpolation = d3.curveBasis;
@@ -120,7 +121,7 @@ export class SwooshChart extends Vue {
   public setupVisualVariables(dataset: Object): any {
     let visualMeasurements = {
       width: 1200,
-      height: 400,
+      height: 800,
       clusterMaxMargin: 180,
       calculated: {
         totalDistance: 0,
@@ -207,108 +208,115 @@ export class SwooshChart extends Vue {
   public connectDiagram(diagram, svg): void {
     let keys = [];
     let that = this;
+
     for (let key in diagram) {
       keys.push(key);
     }
 
     for (let i = 0; i < keys.length - 1; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
-        let indexOfItemToConnectTo = 1;
-
-        while (((i + indexOfItemToConnectTo) < keys.length - 1) && (diagram[keys[i + indexOfItemToConnectTo]][j].width === 0)) {
-          indexOfItemToConnectTo++;
-        }
-
-        let drawArc = true;
-
-        if ((i + indexOfItemToConnectTo) === keys.length - 1) {
-          drawArc = diagram[keys[i + indexOfItemToConnectTo]][j].width !== 0;
-        }
-
-        if (diagram[keys[i]][j].type != null && drawArc) {
-          let upper = diagram[keys[i + indexOfItemToConnectTo]][j].width > diagram[keys[i]][j].width;
-          let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
-
+        if (diagram[keys[i+1]][j] !== undefined && diagram[keys[i]][j].type !== null && diagram[keys[i+1]][j].width !== 0) {
           let arcAttributes = {
             outer: {
-              startX: diagram[keys[i]][j].start,
-              startY: diagram[keys[i]][j].y,
-              endX: diagram[keys[i + indexOfItemToConnectTo]][j].end,
-              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-              height: Math.abs(change * 7),
-              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].end + diagram[keys[i]][j].start) / 2,
-              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 5))
+              start: diagram[keys[i]][j].start,
+              end: diagram[keys[i+1]][j].end,
+              xPos: (diagram[keys[i]][j].start + diagram[keys[i+1]][j].end) / 2,
+              yPos: diagram[keys[i]][j].y,
+              radius: (diagram[keys[i+1]][j].end - diagram[keys[i]][j].start) / 2,
+              offset: diagram[keys[i]][j].height
             },
             inner: {
-              startX: diagram[keys[i]][j].end,
-              startY: diagram[keys[i]][j].y,
-              endX: diagram[keys[i + indexOfItemToConnectTo]][j].start,
-              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-              height: Math.abs(change),
-              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].start + diagram[keys[i]][j].end) / 2,
-              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 1.5))
+              xPos: (diagram[keys[i]][j].end + diagram[keys[i+1]][j].start) / 2,
+              yPos: diagram[keys[i]][j].y,
+              radius: Math.abs((diagram[keys[i+1]][j].start - diagram[keys[i]][j].end) / 2),
+              offset: diagram[keys[i]][j].height
             }
           };
 
-          if(!upper) {
-            arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
-            arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
-          }
+          console.log(arcAttributes);
+          let isUpper = diagram[keys[i+1]][j].width > diagram[keys[i]][j].width;
 
-          let lineGenerator = d3.line().curve(this.interpolation);
-          let outerLine = lineGenerator(this.createLine(arcAttributes.outer, upper));
-          let innerLine = lineGenerator(this.createLine(arcAttributes.inner, upper));
-          let swoosh = this.createSwooshArea(arcAttributes, upper);
-
-          /*svg.append('path')
-            .attr('d', this.createBezierpath(arcAttributes.outer, upper))
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));
-          svg.append('path')
-            .attr('d', this.createBezierpath(arcAttributes.inner, upper))
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));*/
-
-          svg.append('path')
-            .attr('d', outerLine)
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
-          svg.append('path')
-            .attr('d', innerLine)
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
-          svg.append('path')
-            .datum(swoosh.data)
-            .attr('d', swoosh.area)
-            .attr('fill', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type))
-            .on('mouseout', function(d) {
-              /*d3.select(this).transition().duration(200)
-                .style("opacity", that.calculateSwooshOpacity(diagram[keys[i]][j].type));*/
-            })
-            .on('mouseover', function(d) {
-              /*d3.select(this).transition().duration(200)
-                .style("opacity", 0.7);*/
-            });
+          this.createArc(arcAttributes, svg, isUpper, diagram[keys[i]][j].color, this.calculateSwooshOpacity(diagram[keys[i]][j].type));
         }
       }
     }
   }
 
+  public createArc(arcAttributes, svg, isUpper, color, opacity): void {
+    let xPosOuter = arcAttributes.outer.xPos;
+    let yPosOuter = arcAttributes.outer.yPos;
+    let xPosInner = arcAttributes.inner.xPos;
+    let yPosInner = arcAttributes.inner.yPos;
+    let startAngle = -Math.PI * 0.5;
+    let endAngle = Math.PI * 0.5;
+
+    let maskPosRect = arcAttributes.outer.yPos - arcAttributes.outer.radius;
+
+    console.log(isUpper);
+
+    if (!isUpper) {
+      yPosOuter += arcAttributes.outer.offset;
+      yPosInner += arcAttributes.inner.offset;
+      startAngle = Math.PI * 0.5;
+      endAngle = Math.PI * 1.5;
+
+      maskPosRect = arcAttributes.outer.yPos + arcAttributes.outer.offset;
+    }
+
+    let arc = d3.arc();
+    let id = 'mask_' + xPosOuter + '-' + xPosInner;
+    let clipId = 'url(#' + id + ')';
+
+    let mask = svg.append('mask')
+      .attr('id', id);
+
+    mask.append('rect')
+      .attr('width', arcAttributes.outer.end - arcAttributes.outer.start)
+      .attr('height', arcAttributes.outer.radius)
+      .attr('fill', 'white')
+      .attr('x', arcAttributes.outer.start)
+      .attr('y', maskPosRect);
+
+    mask.append('path')
+      .attr('d', arc({
+        innerRadius: 0,
+        outerRadius: arcAttributes.inner.radius,
+        startAngle: startAngle,
+        endAngle: endAngle
+      }))
+      .attr('fill-rule', 'evenodd')
+      .attr('fill', 'black')
+      .attr('transform', 'translate('+[xPosInner, yPosInner]+')');
+
+    /*svg.append('path')
+      .attr('d', arc({
+        innerRadius: 0,
+        outerRadius: arcAttributes.outer.radius,
+        startAngle: startAngle,
+        endAngle: endAngle
+      }))*/
+
+    svg.append('circle')
+      .attr('cx', xPosOuter)
+      .attr('cy', yPosOuter)
+      .attr('r', arcAttributes.outer.radius)
+      .attr('mask', clipId)
+      .attr('opacity', opacity)
+      .attr('fill', color)
+      // .attr('transform', 'translate(' + [xPosOuter, yPosOuter] + ')');
+
+    /*svg.append('path')
+      .attr('d', arc({
+        innerRadius: 0,
+        outerRadius: arcAttributes.inner.radius,
+        startAngle: startAngle,
+        endAngle: endAngle
+      }))
+      .attr('opacity', 1)
+      .attr('fill', 'white')
+      .attr('transform', 'translate(' + [xPosInner, yPosInner] + ')');*/
+
+  }
   /**
    * returns array of path coordinates
    * @param path

@@ -120,7 +120,7 @@ export class SwooshChart extends Vue {
   public setupVisualVariables(dataset: Object): any {
     let visualMeasurements = {
       width: 1200,
-      height: 600,
+      height: 400,
       clusterMaxMargin: 180,
       calculated: {
         totalDistance: 0,
@@ -206,6 +206,7 @@ export class SwooshChart extends Vue {
    */
   public connectDiagram(diagram, svg): void {
     let keys = [];
+    let that = this;
     for (let key in diagram) {
       keys.push(key);
     }
@@ -224,7 +225,7 @@ export class SwooshChart extends Vue {
           drawArc = diagram[keys[i + indexOfItemToConnectTo]][j].width !== 0;
         }
 
-        if (drawArc) {
+        if (diagram[keys[i]][j].type != null && drawArc) {
           let upper = diagram[keys[i + indexOfItemToConnectTo]][j].width > diagram[keys[i]][j].width;
           let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
 
@@ -294,7 +295,15 @@ export class SwooshChart extends Vue {
             .datum(swoosh.data)
             .attr('d', swoosh.area)
             .attr('fill', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
+            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type))
+            .on('mouseout', function(d) {
+              d3.select(this).transition().duration(200)
+                .style("opacity", that.calculateSwooshOpacity(diagram[keys[i]][j].type));
+            })
+            .on('mouseover', function(d) {
+              d3.select(this).transition().duration(200)
+                .style("opacity", 0.7);
+            });
         }
       }
     }
@@ -421,7 +430,7 @@ export class SwooshChart extends Vue {
    */
   public calculateSwooshOpacity(type: RunType): number {
     if(type == null) {
-      return 0
+      return 0.1
     }
     if(this.filter.selectedRunType == RunType.All) {
       return 0.2;

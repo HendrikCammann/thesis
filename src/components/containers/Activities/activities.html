@@ -6,6 +6,11 @@
       <option value="2017">2017</option>
       <option value="2016">2016</option>
     </select>
+    <div id="filter__time" @click="selectCluster($event)">
+      <a href="#" id="year" class="button">Group by year</a>
+      <a href="#" id="month" class="button">Group by month</a>
+      <a href="#" id="week" class="button">Group by Week</a>
+    </div>
   </div>
 
   <hr>
@@ -23,16 +28,10 @@
 
   <hr>
 
-  <div id="filter__time" @click="selectCluster($event)">
-    <a href="#" id="year" class="button">Group by year</a>
-    <a href="#" id="month" class="button">Group by month</a>
-    <a href="#" id="week" class="button">Group by Week</a>
-  </div>
-
-  <!--<bubble-chart
+  <bubble-chart
     :data="sortedActivities"
     :filter="filter"
-  ></bubble-chart>-->
+  ></bubble-chart>
 
   <swoosh-chart
     :data="sortedActivities"

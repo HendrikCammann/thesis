@@ -44,7 +44,6 @@ export class SwooshChart extends Vue {
 
   public formatKey(key: string) {
     let year = parseInt(key.substring(0,4));
-    console.log(year);
     return year;
   }
 

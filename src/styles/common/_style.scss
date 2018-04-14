@@ -59,3 +59,7 @@ $color-red: #E12D53;
   shape-rendering: crispEdges;
 }
 
+.no-pointer {
+  pointer-events: none;
+}
+

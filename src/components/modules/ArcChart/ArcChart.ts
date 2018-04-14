@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/FilterModel';
 import {toPoints} from 'svg-points';
+import {MutationTypes} from '../../../store/mutation-types';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -16,16 +17,17 @@ export class ArcChart extends Vue {
   @Prop()
   filter: FilterModel;
 
+  @Prop()
+  root: string
+
   @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
   onPropertyChanged(val: any, oldVal: any) {
-    this.swooshChart('#arc', this.data, this.filter);
+    this.arcChart(this.root, this.data, this.filter);
   }
-
-  public interpolation = d3.curveBasis;
 
   /**
    * combines all functions
@@ -33,7 +35,7 @@ export class ArcChart extends Vue {
    * @param dataset
    * @param filter
    */
-  public swooshChart(root: string, dataset, filter: FilterModel) {
+  public arcChart(root: string, dataset, filter: FilterModel) {
     let data = this.selectDataset(dataset, filter);
     let visualMeasurements = this.setupVisualVariables(data);
 
@@ -45,10 +47,8 @@ export class ArcChart extends Vue {
 
   public formatKey(key: string) {
     let year = parseInt(key.substring(0,4));
-    console.log(year);
     return year;
   }
-
 
   /**
    * sets correct cluster from overall dataset
@@ -157,6 +157,7 @@ export class ArcChart extends Vue {
   public drawDiagram(data, visualMeasurements, svg): any {
     let barPositions = [];
     let rectXPos = 0;
+    let that = this;
 
     for (let key in data) {
       barPositions[key] = [];
@@ -185,10 +186,9 @@ export class ArcChart extends Vue {
             .attr('ry', 2)
             .attr('fill', element.color)
             .attr('opacity', this.calculateCategoryOpacity(element.type))
-            .on('mouseenter', function() {
-              // console.log(anchor)
+            .on('click', function() {
+              that.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, element.type);
             });
-
           rectXPos += (data[key].stats.typeCount[anchor].distance / 1000) * visualMeasurements.calculated.pxPerKm;
         }
 
@@ -207,7 +207,6 @@ export class ArcChart extends Vue {
    */
   public connectDiagram(diagram, svg): void {
     let keys = [];
-    let that = this;
 
     for (let key in diagram) {
       keys.push(key);
@@ -233,15 +232,22 @@ export class ArcChart extends Vue {
             }
           };
 
-          console.log(arcAttributes);
           let isUpper = diagram[keys[i+1]][j].width > diagram[keys[i]][j].width;
 
-          this.createArc(arcAttributes, svg, isUpper, diagram[keys[i]][j].color, this.calculateSwooshOpacity(diagram[keys[i]][j].type));
+          this.createArc(arcAttributes, svg, isUpper, diagram[keys[i]][j].color, this.calculateArcOpacity(diagram[keys[i]][j].type));
         }
       }
     }
   }
 
+  /**
+   * creates the connecting arcs
+   * @param arcAttributes
+   * @param svg
+   * @param isUpper
+   * @param color
+   * @param opacity
+   */
   public createArc(arcAttributes, svg, isUpper, color, opacity): void {
     let xPosOuter = arcAttributes.outer.xPos;
     let yPosOuter = arcAttributes.outer.yPos;
@@ -251,8 +257,6 @@ export class ArcChart extends Vue {
     let endAngle = Math.PI * 0.5;
 
     let maskPosRect = arcAttributes.outer.yPos - arcAttributes.outer.radius;
-
-    console.log(isUpper);
 
     if (!isUpper) {
       yPosOuter += arcAttributes.outer.offset;
@@ -297,6 +301,7 @@ export class ArcChart extends Vue {
       }))*/
 
     svg.append('circle')
+      .attr('class', 'no-pointer')
       .attr('cx', xPosOuter)
       .attr('cy', yPosOuter)
       .attr('r', arcAttributes.outer.radius)
@@ -316,103 +321,6 @@ export class ArcChart extends Vue {
       .attr('fill', 'white')
       .attr('transform', 'translate(' + [xPosInner, yPosInner] + ')');*/
 
-  }
-  /**
-   * returns array of path coordinates
-   * @param path
-   * @param upper
-   */
-  public createLine(path, upper: boolean): [number, number][] {
-    let offsetX20 = (path.endX - path.startX) * 0.2;
-    let offsetY20 = (path.startY - path.centerY) * 0.8;
-    let offsetX18 = (path.endX - path.startX) * 0.12;
-    let offsetY18 = (path.startY - path.centerY) * 0.70;
-
-    if(!upper) {
-      return [
-        [path.startX, path.startY + path.offset],
-        // [path.startX + offsetX18, path.startY + path.offset - offsetY18],
-        [path.startX + offsetX20, path.startY + path.offset - offsetY20],
-        [path.centerX, path.centerY + path.offset],
-        [path.endX - offsetX20, path.endY + path.offset - offsetY20],
-        // [path.endX - offsetX18, path.endY + path.offset - offsetY18],
-        [path.endX, path.endY + path.offset]
-      ];
-    } else {
-      return [
-        [path.startX, path.startY],
-        // [path.startX + offsetX18, path.startY - offsetY18],
-        [path.startX + offsetX20, path.startY - offsetY20],
-        [path.centerX, path.centerY],
-        [path.endX - offsetX20, path.endY - offsetY20],
-        // [path.endX - offsetX18, path.endY - offsetY18],
-        [path.endX, path.endY]
-      ];
-    }
-  }
-
-  /**
-   * returns an bezierpath
-   * @param path
-   * @param upper
-   */
-  public createBezierpath(path, upper: boolean): string {
-    let start, end, startBezier, endBezier;
-
-    if(!upper) {
-      start = 'M' + path.startX + ',' + (path.startY + path.offset);
-      end = path.endX  + ',' + (path.endY + path.offset);
-      startBezier = 'C' + path.startX + ',' + (path.startY + path.offset + path.height);
-      endBezier = path.endX + ',' + (path.endY + path.offset + path.height);
-    } else {
-      start = 'M' + path.startX + ',' + path.startY;
-      end = path.endX  + ',' + path.endY;
-      startBezier = 'C' + path.startX + ',' + (path.startY - path.height);
-      endBezier = path.endX + ',' + (path.endY - path.height);
-    }
-
-    return start + ' ' + startBezier + ' ' + endBezier + ' ' + end;
-  }
-
-  /**
-   * returns the fill of a swoosh
-   * @param attributes
-   * @param upper
-   */
-  public createSwooshArea(attributes, upper: boolean): any {
-    let outer = this.createLine(attributes.outer, upper);
-    let inner = this.createLine(attributes.inner, upper);
-    let areaData = [];
-
-    for (let i = 0; i < outer.length; i++) {
-      let obj = {
-        xOuter: outer[i][0],
-        yOuter: outer[i][1],
-        xInner: inner[i][0],
-        yInner: inner[i][1]
-      };
-      areaData.push(obj);
-    }
-
-    let area = d3.area()
-      .curve(this.interpolation)
-      .x0(function (d, i) {
-        return areaData[i].xOuter;
-      })
-      .x1(function (d, i) {
-        return areaData[i].xInner;
-      })
-      .y0(function (d, i) {
-        return areaData[i].yOuter;
-      })
-      .y1(function (d, i) {
-        return areaData[i].yInner;
-      });
-
-    return {
-      area: area,
-      data: areaData
-    }
   }
 
   /**
@@ -436,7 +344,7 @@ export class ArcChart extends Vue {
    * shows or hides the swoosh fill based on filter
    * @param type
    */
-  public calculateSwooshOpacity(type: RunType): number {
+  public calculateArcOpacity(type: RunType): number {
     if(type == null) {
       return 0.1
     }
@@ -483,6 +391,6 @@ export class ArcChart extends Vue {
   }
 
   mounted() {
-    // this.swooshChart(this.width, this.height, this.margin, this.data);
+    // this.arcChart(this.width, this.height, this.margin, this.data);
   }
 }

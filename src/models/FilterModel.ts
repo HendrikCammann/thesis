@@ -20,7 +20,7 @@ export class FilterModel {
 
   constructor() {
     this.selectedRunType = RunType.All;
-    this.selectedCluster = ClusterType.ByYears;
+    this.selectedCluster = ClusterType.ByMonths;
     this.timeRange = new TimeRangeModel();
     this.showEverything = true;
   }

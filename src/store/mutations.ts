@@ -204,26 +204,31 @@ function sortActivities (array, bucket) {
         acc[timeRange].stats.typeCount.run.amount += 1;
         acc[timeRange].stats.typeCount.run.distance += activity.base_data.distance;
         acc[timeRange].stats.typeCount.run.type = RunType.Run;
+        acc[timeRange].stats.typeCount.run.activities.push(activity.id);
         break;
       case RunType.Competition:
         acc[timeRange].stats.typeCount.competition.amount += 1;
         acc[timeRange].stats.typeCount.competition.distance += activity.base_data.distance;
         acc[timeRange].stats.typeCount.competition.type = RunType.Competition;
+        acc[timeRange].stats.typeCount.competition.activities.push(activity.id);
         break;
       case RunType.LongRun:
         acc[timeRange].stats.typeCount.longRun.amount += 1;
         acc[timeRange].stats.typeCount.longRun.distance += activity.base_data.distance;
         acc[timeRange].stats.typeCount.longRun.type = RunType.LongRun;
+        acc[timeRange].stats.typeCount.longRun.activities.push(activity.id);
         break;
       case RunType.ShortIntervals:
         acc[timeRange].stats.typeCount.interval.amount += 1;
         acc[timeRange].stats.typeCount.interval.distance += activity.base_data.distance;
         acc[timeRange].stats.typeCount.interval.type = RunType.ShortIntervals;
+        acc[timeRange].stats.typeCount.interval.activities.push(activity.id);
         break;
       default:
         acc[timeRange].stats.typeCount.uncategorized.amount += 1;
         acc[timeRange].stats.typeCount.uncategorized.distance += activity.base_data.distance;
         acc[timeRange].stats.typeCount.uncategorized.type = RunType.Uncategorized;
+        acc[timeRange].stats.typeCount.uncategorized.activities.push(activity.id);
     }
     return acc;
 

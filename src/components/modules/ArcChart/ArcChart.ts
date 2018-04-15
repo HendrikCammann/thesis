@@ -4,7 +4,6 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/FilterModel';
-import {toPoints} from 'svg-points';
 import {MutationTypes} from '../../../store/mutation-types';
 
 @Component({
@@ -120,6 +119,7 @@ export class ArcChart extends Vue {
    */
   public setupVisualVariables(dataset: Object): any {
     let visualMeasurements = {
+      padding: 15,
       width: 1200,
       height: 800,
       clusterMaxMargin: 180,
@@ -131,6 +131,8 @@ export class ArcChart extends Vue {
         pxPerKm: 0,
       }
     };
+
+    visualMeasurements.width -= 2 * visualMeasurements.padding;
 
     for (let key in dataset) {
       visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
@@ -156,7 +158,7 @@ export class ArcChart extends Vue {
    */
   public drawDiagram(data, visualMeasurements, svg): any {
     let barPositions = [];
-    let rectXPos = 0;
+    let rectXPos = visualMeasurements.padding;
     let that = this;
 
     for (let key in data) {
@@ -172,6 +174,7 @@ export class ArcChart extends Vue {
           color: this.diagramColor(data[key].stats.typeCount[anchor].type),
           type: data[key].stats.typeCount[anchor].type,
           cluster: key,
+          activities: data[key].stats.typeCount[anchor].activities,
         };
 
         element.end = element.start + element.width;
@@ -201,6 +204,126 @@ export class ArcChart extends Vue {
   }
 
   /**
+   * checks if the arcs needs to be drawn
+   * @param actualItem
+   * @param nextItem
+   * @returns {boolean}
+   */
+  public checkIfArcIsDrawable(actualItem, nextItem): boolean {
+    if (actualItem.type === null) {
+      return false;
+    }
+    if (actualItem.type === RunType.Competition) {
+      return false;
+    }
+    if (nextItem === undefined) {
+      return false;
+    }
+    if (nextItem.width === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   *
+   * @param actualItem
+   * @param nextItem
+   * @returns {any}
+   */
+  public setupArcVariables(actualItem, nextItem): any {
+    return {
+      outer: {
+        start: actualItem.start,
+        end: nextItem.end,
+        xPos: (actualItem.start + nextItem.end) / 2,
+        yPos: actualItem.y,
+        radius: (nextItem.end - actualItem.start) / 2,
+        offset: actualItem.height
+      },
+      inner: {
+        xPos: (actualItem.end + nextItem.start) / 2,
+        yPos: actualItem.y,
+        radius: Math.abs((nextItem.start - actualItem.end) / 2),
+        offset: actualItem.height
+      }
+    }
+  }
+
+  /**
+   *
+   * @param actualItem
+   * @param nextItem
+   * @returns {boolean}
+   */
+  public checkArcOrientation(actualItem, nextItem): boolean {
+    return nextItem.width > actualItem.width;
+  }
+
+  /**
+   *
+   * @param type
+   * @returns {boolean}
+   */
+  public checkIfSpecialType(type): boolean {
+    if (type === RunType.Competition) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   *
+   * @param cluster
+   * @param svg
+   */
+  public createSpecialBubbles(cluster, svg): void {
+    let bubbleAttributes = [];
+    let numActivities = cluster.activities.length + 1;
+    let type = cluster.type;
+    let bubbleOffset = 0;
+
+    cluster.activities.map((item, k) => {
+      let activity = this.$store.getters.getActivity(item);
+      let width = cluster.end - cluster.start;
+      let factor = k + 1;
+      let offsetX = (width / numActivities) * factor;
+      let offsetY = 100 + bubbleOffset;
+
+      let bubble = {
+        xPos: cluster.start + offsetX,
+        yPos: cluster.y - cluster.height - this.calculateCompetitionRadius(activity.base_data.distance, 50) - offsetY,
+        radius: this.calculateCompetitionRadius(activity.base_data.distance, 50),
+        color: cluster.color,
+        name: activity.name
+      };
+
+      bubbleAttributes.push(bubble);
+      bubbleOffset += bubble.radius * 2 +  10;
+    });
+
+    bubbleAttributes.map(item => {
+      svg.append('circle')
+        .attr('cx', item.xPos)
+        .attr('cy', item.yPos)
+        .attr('r', item.radius)
+        .attr('opacity', this.calculateCategoryOpacity(type))
+        .attr('fill', item.color)
+        .on('click', function() {
+          console.log(item.name);
+        });
+
+      svg.append('rect')
+        .attr('width', 1)
+        .attr('x', item.xPos)
+        .attr('y', item.yPos + item.radius + 5)
+        .attr('height', Math.abs(item.yPos - cluster.y + item.radius + 10))
+        .attr('opacity', this.calculateArcOpacity(type))
+        .attr('fill', item.color)
+    })
+  }
+  
+  /**
    * connects the the bars with swooshes
    * @param diagram
    * @param svg
@@ -214,30 +337,25 @@ export class ArcChart extends Vue {
 
     for (let i = 0; i < keys.length - 1; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
-        if (diagram[keys[i+1]][j] !== undefined && diagram[keys[i]][j].type !== null && diagram[keys[i+1]][j].width !== 0) {
-          let arcAttributes = {
-            outer: {
-              start: diagram[keys[i]][j].start,
-              end: diagram[keys[i+1]][j].end,
-              xPos: (diagram[keys[i]][j].start + diagram[keys[i+1]][j].end) / 2,
-              yPos: diagram[keys[i]][j].y,
-              radius: (diagram[keys[i+1]][j].end - diagram[keys[i]][j].start) / 2,
-              offset: diagram[keys[i]][j].height
-            },
-            inner: {
-              xPos: (diagram[keys[i]][j].end + diagram[keys[i+1]][j].start) / 2,
-              yPos: diagram[keys[i]][j].y,
-              radius: Math.abs((diagram[keys[i+1]][j].start - diagram[keys[i]][j].end) / 2),
-              offset: diagram[keys[i]][j].height
-            }
-          };
+        if (this.checkIfArcIsDrawable(diagram[keys[i]][j], diagram[keys[i+1]][j])) {
+          this.createArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i+1]][j]), svg, this.checkArcOrientation(diagram[keys[i]][j], diagram[keys[i+1]][j]), diagram[keys[i]][j].color, this.calculateArcOpacity(diagram[keys[i]][j].type));
+        }
 
-          let isUpper = diagram[keys[i+1]][j].width > diagram[keys[i]][j].width;
-
-          this.createArc(arcAttributes, svg, isUpper, diagram[keys[i]][j].color, this.calculateArcOpacity(diagram[keys[i]][j].type));
+        if (this.checkIfSpecialType(diagram[keys[i]][j].type)) {
+          this.createSpecialBubbles(diagram[keys[i]][j], svg);
         }
       }
     }
+  }
+
+  /**
+   *
+   * @param distance
+   * @param factor
+   * @returns {number}
+   */
+  public calculateCompetitionRadius(distance, factor): number {
+    return Math.sqrt((distance / factor) / Math.PI);
   }
 
   /**

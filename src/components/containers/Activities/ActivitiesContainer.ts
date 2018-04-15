@@ -27,7 +27,7 @@ import {ArcChart} from '../../modules/ArcChart';
 })
 export class ActivitiesContainer extends Vue {
 
-  public filterYear = 'all';
+  public filterYear: string = 'all';
 
   public selectRunType(event) {
     let runType: RunType;

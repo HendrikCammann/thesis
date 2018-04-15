@@ -8,6 +8,8 @@ import {ActivityListItem} from '../../modules/ActivityListItem';
 import {SwooshChart} from '../../modules/SwooshChart';
 import {ArcChart} from '../../modules/ArcChart';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
+import {filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -88,5 +90,9 @@ export class ActivitiesContainer extends Vue {
 
   mounted() {
     this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
+
+    filterBus.$on(filterEvents.setRunTypeFilter, (type) => {
+      this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
+    });
   }
 }

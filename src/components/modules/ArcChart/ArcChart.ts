@@ -15,6 +15,8 @@ import {
 } from '../../../utils/calculateVisualVariables';
 import {selectAndFilterDataset} from '../../../utils/filter-dataset';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
+import {filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -79,7 +81,6 @@ export class ArcChart extends Vue {
   private drawDiagram(data, visualMeasurements, svg): any {
     let barPositions = [];
     let rectXPos = visualMeasurements.padding;
-    let that = this;
 
     for (let key in data) {
       barPositions[key] = [];
@@ -110,7 +111,7 @@ export class ArcChart extends Vue {
             .attr('fill', element.color)
             .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
             .on('click', function() {
-              that.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, element.type);
+              filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
           rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }

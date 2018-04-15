@@ -13,6 +13,8 @@ import {
 } from '../../../utils/calculateVisualVariables';
 import {formatRadius} from '../../../utils/format-data';
 import {FormatRadiusType} from '../../../models/FormatModel';
+import {filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -108,8 +110,8 @@ export class SwooshChart extends Vue {
             .attr('ry', 2)
             .attr('fill', element.color)
             .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
-            .on('mouseenter', function() {
-              // console.log(anchor)
+            .on('click', function() {
+              filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
           rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }
@@ -177,7 +179,6 @@ export class SwooshChart extends Vue {
           }
         }
         if (checkIfSpecialVisual(diagram[keys[i]][j].type)) {
-          console.log(diagram[keys[i]][j]);
           this.drawBubbles(diagram[keys[i]][j], svg);
         }
       }

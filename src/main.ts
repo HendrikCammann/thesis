@@ -9,6 +9,8 @@ import './styles/main.scss';
 
 sync(store, router);
 
+export const filterBus = new Vue();
+
 new Vue({
   el: '#app-main',
   store,

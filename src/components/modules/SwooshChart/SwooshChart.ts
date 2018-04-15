@@ -4,6 +4,15 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/FilterModel';
+import {selectAndFilterDataset} from '../../../utils/filter-dataset';
+import {CanvasConstraints} from '../../../models/VisualVariableModel';
+import {
+  calculateBarLength, calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable,
+  checkIfConnectionIsDrawable, checkIfSpecialVisual, getCategoryColor, getConnectingOrientation,
+  setupVisualBarVariables
+} from '../../../utils/calculateVisualVariables';
+import {formatRadius} from '../../../utils/format-data';
+import {FormatRadiusType} from '../../../models/FormatModel';
 
 @Component({
   template: require('./SwooshChart.html'),
@@ -15,13 +24,20 @@ export class SwooshChart extends Vue {
   @Prop()
   filter: FilterModel;
 
+  @Prop()
+  root: string;
+
+  @Prop()
+  canvasConstraints: CanvasConstraints;
+
   @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
+  @Watch('canvasConstraints')
   onPropertyChanged(val: any, oldVal: any) {
-    this.swooshChart('#swoosh', this.data, this.filter);
+    this.swooshChart(this.root, this.data, this.filter, this.canvasConstraints);
   }
 
   public interpolation = d3.curveBasis;
@@ -29,74 +45,16 @@ export class SwooshChart extends Vue {
   /**
    * combines all functions
    * @param root
+   * @param canvasConstraints
    * @param dataset
    * @param filter
    */
-  public swooshChart(root: string, dataset, filter: FilterModel) {
-    let data = this.selectDataset(dataset, filter);
-    let visualMeasurements = this.setupVisualVariables(data);
-
+  public swooshChart(root: string, dataset, filter: FilterModel, canvasConstraints: CanvasConstraints) {
+    let data = selectAndFilterDataset(dataset, filter);
+    let visualMeasurements = setupVisualBarVariables(data, canvasConstraints);
     let svg = this.setupSvg(root, visualMeasurements);
-
     let diagram = this.drawDiagram(data, visualMeasurements, svg);
-    this.connectDiagram(diagram, svg);
-  }
-
-  public formatKey(key: string) {
-    let year = parseInt(key.substring(0,4));
-    return year;
-  }
-
-
-  /**
-   * sets correct cluster from overall dataset
-   * @param dataset
-   * @param filter
-   */
-  public selectDataset(dataset, filter: FilterModel): any {
-    let tempData;
-    let startYear;
-    let endYear;
-
-    if(filter.timeRange.start) {
-      startYear = filter.timeRange.start.getFullYear();
-    } else {
-      startYear = -1
-    }
-
-    if(filter.timeRange.end) {
-      endYear = filter.timeRange.end.getFullYear();
-    } else {
-      endYear = 10000;
-    }
-
-    switch (filter.selectedCluster) {
-      case ClusterType.All:
-        tempData = dataset.all;
-        break;
-      case ClusterType.ByYears:
-        tempData = dataset.byYears;
-        break;
-      case ClusterType.ByMonths:
-        tempData = dataset.byMonths;
-        break;
-      case ClusterType.ByWeeks:
-        tempData = dataset.byWeeks;
-        break;
-    }
-
-    let returnData = [];
-    if (filter.showEverything) {
-      returnData = tempData;
-    } else {
-      for (let key in tempData) {
-        if (this.formatKey(key) >= startYear && this.formatKey(key) <= endYear) {
-          returnData.push(tempData[key]);
-        }
-      }
-    }
-
-    return returnData;
+    this.addSwooshesAndBubbles(diagram, svg, this.interpolation);
   }
 
   /**
@@ -113,40 +71,6 @@ export class SwooshChart extends Vue {
   }
 
   /**
-   * sets the base diagram variables based on dataset
-   * @param dataset
-   */
-  public setupVisualVariables(dataset: Object): any {
-    let visualMeasurements = {
-      width: 1200,
-      height: 400,
-      clusterMaxMargin: 180,
-      calculated: {
-        totalDistance: 0,
-        totalClusters: 0,
-        displayedWidth: 1200,
-        clusterMargin: 0,
-        pxPerKm: 0,
-      }
-    };
-
-    for (let key in dataset) {
-      visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
-      visualMeasurements.calculated.totalClusters++;
-    }
-
-    if (visualMeasurements.calculated.totalClusters > 1) {
-      visualMeasurements.calculated.displayedWidth = visualMeasurements.width - visualMeasurements.clusterMaxMargin;
-    }
-
-    visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters).toFixed(2));
-    visualMeasurements.calculated.totalDistance = parseFloat((visualMeasurements.calculated.totalDistance / 1000).toFixed(2));
-    visualMeasurements.calculated.pxPerKm = parseFloat((visualMeasurements.calculated.displayedWidth / visualMeasurements.calculated.totalDistance).toFixed(2));
-
-    return visualMeasurements;
-  }
-
-  /**
    * returns the visual data displayed in diagram
    * @param data
    * @param visualMeasurements
@@ -154,7 +78,7 @@ export class SwooshChart extends Vue {
    */
   public drawDiagram(data, visualMeasurements, svg): any {
     let barPositions = [];
-    let rectXPos = 0;
+    let rectXPos = visualMeasurements.padding;
 
     for (let key in data) {
       barPositions[key] = [];
@@ -165,15 +89,16 @@ export class SwooshChart extends Vue {
           y: visualMeasurements.height / 2,
           height: 20,
           distance: data[key].stats.typeCount[anchor].distance,
-          width: parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
-          color: this.diagramColor(data[key].stats.typeCount[anchor].type),
+          width: parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
+          color: getCategoryColor(data[key].stats.typeCount[anchor].type),
           type: data[key].stats.typeCount[anchor].type,
           cluster: key,
+          activities: data[key].stats.typeCount[anchor].activities,
         };
 
         element.end = element.start + element.width;
 
-        if (element.width != 0) {
+        if (checkIfBarIsDrawable(element.width)) {
           svg.append('rect')
             .attr('x', element.start)
             .attr('y', visualMeasurements.height / 2)
@@ -182,12 +107,11 @@ export class SwooshChart extends Vue {
             .attr('rx', 2)
             .attr('ry', 2)
             .attr('fill', element.color)
-            .attr('opacity', this.calculateCategoryOpacity(element.type))
+            .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
             .on('mouseenter', function() {
               // console.log(anchor)
             });
-
-          rectXPos += (data[key].stats.typeCount[anchor].distance / 1000) * visualMeasurements.calculated.pxPerKm;
+          rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }
 
         barPositions[key].push(element);
@@ -201,110 +125,127 @@ export class SwooshChart extends Vue {
   /**
    * connects the the bars with swooshes
    * @param diagram
+   * @param interpolation
    * @param svg
    */
-  public connectDiagram(diagram, svg): void {
+  public addSwooshesAndBubbles(diagram, svg, interpolation): void {
     let keys = [];
-    let that = this;
     for (let key in diagram) {
       keys.push(key);
     }
 
-    for (let i = 0; i < keys.length - 1; i++) {
+    for (let i = 0; i < keys.length; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
         let indexOfItemToConnectTo = 1;
 
-        while (((i + indexOfItemToConnectTo) < keys.length - 1) && (diagram[keys[i + indexOfItemToConnectTo]][j].width === 0)) {
-          indexOfItemToConnectTo++;
-        }
-
-        let drawArc = true;
-
-        if ((i + indexOfItemToConnectTo) === keys.length - 1) {
-          drawArc = diagram[keys[i + indexOfItemToConnectTo]][j].width !== 0;
-        }
-
-        if (diagram[keys[i]][j].type != null && drawArc) {
-          let upper = diagram[keys[i + indexOfItemToConnectTo]][j].width > diagram[keys[i]][j].width;
-          let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
-
-          let arcAttributes = {
-            outer: {
-              startX: diagram[keys[i]][j].start,
-              startY: diagram[keys[i]][j].y,
-              endX: diagram[keys[i + indexOfItemToConnectTo]][j].end,
-              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-              height: Math.abs(change * 7),
-              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].end + diagram[keys[i]][j].start) / 2,
-              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 5))
-            },
-            inner: {
-              startX: diagram[keys[i]][j].end,
-              startY: diagram[keys[i]][j].y,
-              endX: diagram[keys[i + indexOfItemToConnectTo]][j].start,
-              endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
-              height: Math.abs(change),
-              offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
-              centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].start + diagram[keys[i]][j].end) / 2,
-              centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 1.5))
-            }
-          };
-
-          if(!upper) {
-            arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
-            arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
+        if(diagram[keys[i+indexOfItemToConnectTo]] !== undefined) {
+          while (((i + indexOfItemToConnectTo) < keys.length - 1) && (diagram[keys[i + indexOfItemToConnectTo]][j].width === 0)) {
+            indexOfItemToConnectTo++;
           }
+          if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j])) {
+            let change = diagram[keys[i + indexOfItemToConnectTo]][j].width - diagram[keys[i]][j].width;
 
-          let lineGenerator = d3.line().curve(this.interpolation);
-          let outerLine = lineGenerator(this.createLine(arcAttributes.outer, upper));
-          let innerLine = lineGenerator(this.createLine(arcAttributes.inner, upper));
-          let swoosh = this.createSwooshArea(arcAttributes, upper);
+            let arcAttributes = {
+              outer: {
+                startX: diagram[keys[i]][j].start,
+                startY: diagram[keys[i]][j].y,
+                endX: diagram[keys[i + indexOfItemToConnectTo]][j].end,
+                endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
+                height: Math.abs(change * 7),
+                offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
+                centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].end + diagram[keys[i]][j].start) / 2,
+                centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 5))
+              },
+              inner: {
+                startX: diagram[keys[i]][j].end,
+                startY: diagram[keys[i]][j].y,
+                endX: diagram[keys[i + indexOfItemToConnectTo]][j].start,
+                endY: diagram[keys[i + indexOfItemToConnectTo]][j].y,
+                height: Math.abs(change),
+                offset: diagram[keys[i + indexOfItemToConnectTo]][j].height,
+                centerX: (diagram[keys[i + indexOfItemToConnectTo]][j].start + diagram[keys[i]][j].end) / 2,
+                centerY: (diagram[keys[i]][j].y - (Math.abs(change) * 1.5))
+              }
+            };
 
-          /*svg.append('path')
-            .attr('d', this.createBezierpath(arcAttributes.outer, upper))
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));
-          svg.append('path')
-            .attr('d', this.createBezierpath(arcAttributes.inner, upper))
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', barPositions[keys[i]][j].color)
-            .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));*/
+            if (!getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width)) {
+              arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
+              arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
+            }
 
-          svg.append('path')
-            .attr('d', outerLine)
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
-          svg.append('path')
-            .attr('d', innerLine)
-            .attr('fill', 'none')
-            .attr('stroke-width', '1')
-            .attr('stroke-alignment', 'inner')
-            .attr('stroke', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type));
-          svg.append('path')
-            .datum(swoosh.data)
-            .attr('d', swoosh.area)
-            .attr('fill', diagram[keys[i]][j].color)
-            .attr('opacity', this.calculateSwooshOpacity(diagram[keys[i]][j].type))
-            .on('mouseout', function(d) {
-              /*d3.select(this).transition().duration(200)
-                .style("opacity", that.calculateSwooshOpacity(diagram[keys[i]][j].type));*/
-            })
-            .on('mouseover', function(d) {
-              /*d3.select(this).transition().duration(200)
-                .style("opacity", 0.7);*/
-            });
+            this.drawSwoosh(interpolation, arcAttributes, svg, diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]);
+          }
+        }
+        if (checkIfSpecialVisual(diagram[keys[i]][j].type)) {
+          console.log(diagram[keys[i]][j]);
+          this.drawBubbles(diagram[keys[i]][j], svg);
         }
       }
+    }
+  }
+
+  /**
+   *
+   * @param interpolation
+   * @param arcAttributes
+   * @param svg
+   * @param actualItem
+   * @param nextItem
+   */
+  public drawSwoosh(interpolation, arcAttributes, svg, actualItem, nextItem): void {
+    let swooshData = this.setupSwooshVariables(interpolation, arcAttributes, actualItem, nextItem);
+
+    /*svg.append('path')
+      .attr('d', this.createBezierpath(arcAttributes.outer, upper))
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', barPositions[keys[i]][j].color)
+      .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));
+    svg.append('path')
+      .attr('d', this.createBezierpath(arcAttributes.inner, upper))
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', barPositions[keys[i]][j].color)
+      .attr('opacity', this.calculateCategoryOpacity(barPositions[keys[i]][j].type));*/
+
+    svg.append('path')
+      .attr('d', swooshData.outerLine)
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', actualItem.color)
+      .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, actualItem.type));
+    svg.append('path')
+      .attr('d', swooshData.innerLine)
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', actualItem.color)
+      .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, actualItem.type));
+    svg.append('path')
+      .datum(swooshData.swoosh.data)
+      .attr('d', swooshData.swoosh.area)
+      .attr('fill', actualItem.color)
+      .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, actualItem.type));
+  }
+
+  /**
+   *
+   * @param interpolation
+   * @param arcAttributes
+   * @param actualItem
+   * @param nextItem
+   * @returns {any}
+   */
+  public setupSwooshVariables(interpolation, arcAttributes, actualItem, nextItem): any {
+    let lineGenerator = d3.line().curve(interpolation);
+
+    return {
+      outerLine: lineGenerator(this.createLine(arcAttributes.outer, getConnectingOrientation(actualItem.width, nextItem.width))),
+      innerLine: lineGenerator(this.createLine(arcAttributes.inner, getConnectingOrientation(actualItem.width, nextItem.width))),
+      swoosh: this.createSwooshArea(interpolation, arcAttributes, getConnectingOrientation(actualItem.width, nextItem.width))
     }
   }
 
@@ -368,9 +309,10 @@ export class SwooshChart extends Vue {
   /**
    * returns the fill of a swoosh
    * @param attributes
+   * @param interpolation
    * @param upper
    */
-  public createSwooshArea(attributes, upper: boolean): any {
+  public createSwooshArea(interpolation, attributes, upper: boolean): any {
     let outer = this.createLine(attributes.outer, upper);
     let inner = this.createLine(attributes.inner, upper);
     let areaData = [];
@@ -386,7 +328,7 @@ export class SwooshChart extends Vue {
     }
 
     let area = d3.area()
-      .curve(this.interpolation)
+      .curve(interpolation)
       .x0(function (d, i) {
         return areaData[i].xOuter;
       })
@@ -407,70 +349,53 @@ export class SwooshChart extends Vue {
   }
 
   /**
-   * shows or hides the swoosh based on filter
-   * @param type
+   *
+   * @param cluster
+   * @param svg
    */
-  public calculateCategoryOpacity(type: RunType): number {
-    if(type == null) {
-      return 0
-    }
-    if(this.filter.selectedRunType == RunType.All) {
-      return 0.7;
-    }
-    if(type == this.filter.selectedRunType) {
-      return 0.7;
-    }
-    return 0.15;
-  }
+  private drawBubbles(cluster, svg): void {
+    let bubbleAttributes = [];
+    let numActivities = cluster.activities.length + 1;
+    let type = cluster.type;
+    let bubbleOffset = 0;
 
-  /**
-   * shows or hides the swoosh fill based on filter
-   * @param type
-   */
-  public calculateSwooshOpacity(type: RunType): number {
-    if(type == null) {
-      return 0.1
-    }
-    if(this.filter.selectedRunType == RunType.All) {
-      return 0.2;
-    }
-    if(type == this.filter.selectedRunType) {
-      return 0.2;
-    }
-    return 0.05;
-  }
+    cluster.activities.map((item, k) => {
+      let activity = this.$store.getters.getActivity(item);
+      let width = cluster.end - cluster.start;
+      let factor = k + 1;
+      let offsetX = (width / numActivities) * factor;
+      let offsetY = 100 + bubbleOffset;
 
-  /**
-   * returns the length of a bar in px
-   * @param distance
-   * @param factor
-   */
-  public calculateBarLength(distance, factor: number): string {
-    distance = (distance / 1000) * factor;
-    distance = distance.toFixed(2);
+      let bubble = {
+        xPos: cluster.start + offsetX,
+        yPos: cluster.y - cluster.height - formatRadius(activity.base_data.distance, FormatRadiusType.Traininghistory) - offsetY,
+        radius: formatRadius(activity.base_data.distance, FormatRadiusType.Traininghistory),
+        color: cluster.color,
+        name: activity.name
+      };
 
-    return distance;
-  }
+      bubbleAttributes.push(bubble);
+      bubbleOffset += bubble.radius * 2 +  10;
+    });
 
-  /**
-   * returns the color for each category
-   * @param type
-   */
-  public diagramColor(type: RunType): string {
-    switch(type) {
-      case RunType.Run:
-        return '#1280B2';
-      case RunType.Competition:
-        return '#B2AB09';
-      case RunType.LongRun:
-        return '#00AFFF';
-      case RunType.ShortIntervals:
-        return '#FF1939';
-      case RunType.Uncategorized:
-        return 'violet';
-      default:
-        return 'black';
-    }
+    bubbleAttributes.map(item => {
+      svg.append('circle')
+        .attr('cx', item.xPos)
+        .attr('cy', item.yPos)
+        .attr('r', item.radius)
+        .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, type))
+        .attr('fill', item.color)
+        .on('click', function() {
+          console.log(item.name);
+        });
+      svg.append('rect')
+        .attr('width', 1)
+        .attr('x', item.xPos)
+        .attr('y', item.yPos + item.radius + 5)
+        .attr('height', Math.abs(item.yPos - cluster.y + item.radius + 10))
+        .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, type))
+        .attr('fill', item.color)
+    })
   }
 
   mounted() {

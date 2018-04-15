@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
       <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
-      <change beforePath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" afterPath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
-      <change beforePath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" afterPath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" />
-      <change beforePath="$PROJECT_DIR$/src/utils/filter-dataset.ts" afterPath="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,37 +14,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="147" column="7" lean-forward="true" selection-start-line="147" selection-start-column="7" selection-end-line="147" selection-end-column="7" />
+            <state relative-caret-position="188">
+              <caret line="81" column="10" lean-forward="true" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#43#0" expanded="true" />
                 <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" expanded="false" />
-                <element signature="n#!!block;n#drawDiagram#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" expanded="false" />
+                <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calculateVisualVariables.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
+      <file leaf-file-name="SwooshChart.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="926">
-              <caret line="162" column="3" lean-forward="true" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+            <state relative-caret-position="661">
+              <caret line="116" column="40" lean-forward="true" selection-start-line="116" selection-start-column="40" selection-end-line="116" selection-end-column="40" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <element signature="n#!!block;n#calculateCategoryOpacity#0" expanded="false" />
-                <element signature="n#!!block;n#calculateConnectingOpacity#0" expanded="false" />
-                <element signature="n#!!block;n#calculateBarLength#0" expanded="false" />
-                <element signature="n#!!block;n#getCategoryColor#0" expanded="false" />
-                <element signature="n#!!block;n#getConnectingOrientation#0" expanded="false" />
-                <element signature="n#!!block;n#checkIfConnectionIsDrawable#0" expanded="false" />
-                <element signature="n#!!block;n#checkIfBarIsDrawable#0" expanded="false" />
+                <element signature="e#21#43#0" expanded="true" />
+                <element signature="n#!!block;n#swooshChart#0;n#SwooshChart#0" expanded="false" />
+                <element signature="n#!!block;n#setupSvg#0;n#SwooshChart#0" expanded="false" />
+                <element signature="e#4976#6160#0" expanded="false" />
+                <element signature="n#!!block;n#createLine#0;n#SwooshChart#0" expanded="false" />
+                <element signature="n#!!block;n#createBezierpath#0;n#SwooshChart#0" expanded="false" />
+                <element signature="n#!!block;n#createSwooshArea#0;n#SwooshChart#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -62,6 +57,34 @@
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calculateVisualVariables.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1116">
+              <caret line="162" column="3" lean-forward="true" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="n#!!block;n#calculateCategoryOpacity#0" expanded="false" />
+                <element signature="n#!!block;n#calculateConnectingOpacity#0" expanded="false" />
+                <element signature="n#!!block;n#calculateBarLength#0" expanded="false" />
+                <element signature="n#!!block;n#getCategoryColor#0" expanded="false" />
+                <element signature="n#!!block;n#getConnectingOrientation#0" expanded="false" />
+                <element signature="n#!!block;n#checkIfBarIsDrawable#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -130,6 +153,7 @@
       <replace>arcChart</replace>
       <replace>arcAttributes.inner.yPos</replace>
       <replace>addArcsAndBubbles</replace>
+      <replace>addSwooshesAndBubbles</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -181,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/styles/components/containers/App/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/modules/ArcChart/index.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.html" />
-        <option value="$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts" />
         <option value="$PROJECT_DIR$/src/styles/common/_style.scss" />
         <option value="$PROJECT_DIR$/src/models/FilterModel.ts" />
         <option value="$PROJECT_DIR$/src/models/ActivityClusterModel.ts" />
@@ -191,9 +214,10 @@
         <option value="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
         <option value="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
         <option value="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
+        <option value="$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts" />
       </list>
     </option>
   </component>
@@ -267,7 +291,16 @@
               <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
               <item name="my-project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="SwooshChart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="my-project" type="b2602c69:ProjectViewProjectNode" />
@@ -433,12 +466,12 @@
       <workItem from="1523275214773" duration="12459000" />
       <workItem from="1523343448530" duration="14750000" />
       <workItem from="1523604327251" duration="15877000" />
-      <workItem from="1523781521284" duration="15882000" />
+      <workItem from="1523781521284" duration="18369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209220000" />
+    <option name="totallyTimeSpent" value="211707000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -706,6 +739,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -791,20 +825,6 @@
         <state relative-caret-position="30">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="188" column="0" lean-forward="true" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#setupSvg#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#createLine#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#createBezierpath#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#calculateBarLength#0;n#SwooshChart#0" expanded="false" />
-            <element signature="n#!!block;n#diagramColor#0;n#SwooshChart#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -915,19 +935,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="162" column="3" lean-forward="true" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#calculateCategoryOpacity#0" expanded="false" />
+            <element signature="n#!!block;n#calculateConnectingOpacity#0" expanded="false" />
+            <element signature="n#!!block;n#calculateBarLength#0" expanded="false" />
+            <element signature="n#!!block;n#getCategoryColor#0" expanded="false" />
+            <element signature="n#!!block;n#getConnectingOrientation#0" expanded="false" />
+            <element signature="n#!!block;n#checkIfBarIsDrawable#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -941,34 +977,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="926">
-          <caret line="162" column="3" lean-forward="true" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="n#!!block;n#calculateCategoryOpacity#0" expanded="false" />
-            <element signature="n#!!block;n#calculateConnectingOpacity#0" expanded="false" />
-            <element signature="n#!!block;n#calculateBarLength#0" expanded="false" />
-            <element signature="n#!!block;n#getCategoryColor#0" expanded="false" />
-            <element signature="n#!!block;n#getConnectingOrientation#0" expanded="false" />
-            <element signature="n#!!block;n#checkIfConnectionIsDrawable#0" expanded="false" />
-            <element signature="n#!!block;n#checkIfBarIsDrawable#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="147" column="7" lean-forward="true" selection-start-line="147" selection-start-column="7" selection-end-line="147" selection-end-column="7" />
+        <state relative-caret-position="188">
+          <caret line="81" column="10" lean-forward="true" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#43#0" expanded="true" />
             <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" expanded="false" />
-            <element signature="n#!!block;n#drawDiagram#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" expanded="false" />
+            <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/SwooshChart/SwooshChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="116" column="40" lean-forward="true" selection-start-line="116" selection-start-column="40" selection-end-line="116" selection-end-column="40" />
+          <folding>
+            <element signature="e#21#43#0" expanded="true" />
+            <element signature="n#!!block;n#swooshChart#0;n#SwooshChart#0" expanded="false" />
+            <element signature="n#!!block;n#setupSvg#0;n#SwooshChart#0" expanded="false" />
+            <element signature="e#4976#6160#0" expanded="false" />
+            <element signature="n#!!block;n#createLine#0;n#SwooshChart#0" expanded="false" />
+            <element signature="n#!!block;n#createBezierpath#0;n#SwooshChart#0" expanded="false" />
+            <element signature="n#!!block;n#createSwooshArea#0;n#SwooshChart#0" expanded="false" />
           </folding>
         </state>
       </provider>

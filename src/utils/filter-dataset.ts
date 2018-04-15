@@ -1,0 +1,52 @@
+import {FilterModel} from '../models/FilterModel';
+import {ClusterType} from '../store/state';
+
+export function formatDatasetKey(key: string): number {
+  return parseInt(key.substring(0, 4));
+}
+
+export function selectAndFilterDataset(dataset, filter: FilterModel): any {
+  let tempData;
+  let startYear;
+  let endYear;
+
+  if (filter.timeRange.start) {
+    startYear = filter.timeRange.start.getFullYear();
+  } else {
+    startYear = -1;
+  }
+
+  if (filter.timeRange.end) {
+    endYear = filter.timeRange.end.getFullYear();
+  } else {
+    endYear = new Date(new Date().getFullYear());
+  }
+
+  switch (filter.selectedCluster) {
+    case ClusterType.All:
+      tempData = dataset.all;
+      break;
+    case ClusterType.ByYears:
+      tempData = dataset.byYears;
+      break;
+    case ClusterType.ByMonths:
+      tempData = dataset.byMonths;
+      break;
+    case ClusterType.ByWeeks:
+      tempData = dataset.byWeeks;
+      break;
+  }
+
+  let returnData = [];
+  if (filter.showEverything) {
+    returnData = tempData;
+  } else {
+    for (let key in tempData) {
+      if (formatDatasetKey(key) >= startYear && formatDatasetKey(key) <= endYear) {
+        returnData.push(tempData[key]);
+      }
+    }
+  }
+
+  return returnData;
+}

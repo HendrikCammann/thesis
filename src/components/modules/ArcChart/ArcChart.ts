@@ -5,6 +5,15 @@ import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/FilterModel';
 import {MutationTypes} from '../../../store/mutation-types';
+import {formatDistance, formatRadius} from '../../../utils/format-data';
+import {FormatDistanceType, FormatRadiusType} from '../../../models/FormatModel';
+import {
+  calculateBarLength,
+  calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable, checkIfConnectionIsDrawable,
+  checkIfSpecialVisual,
+  getCategoryColor, getConnectingOrientation
+} from '../../../utils/calculateVisualVariables';
+import {selectAndFilterDataset} from '../../../utils/filter-dataset';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -17,7 +26,7 @@ export class ArcChart extends Vue {
   filter: FilterModel;
 
   @Prop()
-  root: string
+  root: string;
 
   @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
@@ -28,101 +37,25 @@ export class ArcChart extends Vue {
     this.arcChart(this.root, this.data, this.filter);
   }
 
-  private distanceFactor: number = 1000;
-
   /**
    * combines all functions
    * @param root
    * @param dataset
    * @param filter
    */
-  public arcChart(root: string, dataset, filter: FilterModel) {
-    let data = this.selectDataset(dataset, filter);
+  public arcChart(root: string, dataset: Object, filter: FilterModel) {
+    let data = selectAndFilterDataset(dataset, filter);
     let visualMeasurements = this.setupVisualVariables(data);
-
     let svg = this.setupSvg(root, visualMeasurements);
-
     let diagram = this.drawDiagram(data, visualMeasurements, svg);
-    this.connectDiagram(diagram, svg);
+    this.addArcsAndBubbles(diagram, svg);
   }
 
-  public formatKey(key: string) {
-    let year = parseInt(key.substring(0,4));
-    return year;
-  }
-
-  /**
-   * sets correct cluster from overall dataset
-   * @param dataset
-   * @param filter
-   */
-  public selectDataset(dataset, filter: FilterModel): any {
-    let tempData;
-    let startYear;
-    let endYear;
-
-    if(filter.timeRange.start) {
-      startYear = filter.timeRange.start.getFullYear();
-    } else {
-      startYear = -1
-    }
-
-    if(filter.timeRange.end) {
-      endYear = filter.timeRange.end.getFullYear();
-    } else {
-      endYear = 10000;
-    }
-
-    switch (filter.selectedCluster) {
-      case ClusterType.All:
-        tempData = dataset.all;
-        break;
-      case ClusterType.ByYears:
-        tempData = dataset.byYears;
-        break;
-      case ClusterType.ByMonths:
-        tempData = dataset.byMonths;
-        break;
-      case ClusterType.ByWeeks:
-        tempData = dataset.byWeeks;
-        break;
-    }
-
-    let returnData = [];
-    if (filter.showEverything) {
-      returnData = tempData;
-    } else {
-      for (let key in tempData) {
-        if (this.formatKey(key) >= startYear && this.formatKey(key) <= endYear) {
-          returnData.push(tempData[key]);
-        }
-      }
-    }
-
-    return returnData;
-  }
-
-  /**
-   * setup an svg
-   * @param root
-   * @param metrics
-   */
-  public setupSvg(root: string, metrics): any {
-    d3.select(root + " > svg").remove();
-    return d3.select(root)
-      .append('svg')
-      .attr('width', metrics.width)
-      .attr('height', metrics.height);
-  }
-
-  public formatDistance(distance: number, factor: number): number {
-    return distance / factor;
-  }
   /**
    * sets the base diagram variables based on dataset
    * @param dataset
    */
-  public setupVisualVariables(dataset: Object): any {
+  private setupVisualVariables(dataset: Object): any {
     let visualMeasurements = {
       padding: 15,
       width: 1200,
@@ -148,16 +81,24 @@ export class ArcChart extends Vue {
       visualMeasurements.calculated.displayedWidth = visualMeasurements.calculated.displayedWidth - visualMeasurements.clusterMaxMargin;
     }
 
-    console.log(visualMeasurements.calculated.totalClusters);
     visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters - 1).toFixed(2));
-    visualMeasurements.calculated.totalDistance = parseFloat(this.formatDistance(visualMeasurements.calculated.totalDistance, this.distanceFactor).toFixed(2));
+    visualMeasurements.calculated.totalDistance = parseFloat(formatDistance(visualMeasurements.calculated.totalDistance, FormatDistanceType.Kilometers).toFixed(2));
     visualMeasurements.calculated.pxPerKm = parseFloat((visualMeasurements.calculated.displayedWidth / visualMeasurements.calculated.totalDistance).toFixed(2));
 
-    console.log(visualMeasurements.calculated.totalDistance);
-    console.log(visualMeasurements.calculated.pxPerKm);
-    console.log(visualMeasurements.calculated.totalDistance * visualMeasurements.calculated.pxPerKm + visualMeasurements.calculated.clusterMargin * visualMeasurements.calculated.totalClusters);
-
     return visualMeasurements;
+  }
+
+  /**
+   * setup an svg
+   * @param root
+   * @param metrics
+   */
+  private setupSvg(root: string, metrics: any): any {
+    d3.select(root + " > svg").remove();
+    return d3.select(root)
+      .append('svg')
+      .attr('width', metrics.width)
+      .attr('height', metrics.height);
   }
 
   /**
@@ -166,7 +107,7 @@ export class ArcChart extends Vue {
    * @param visualMeasurements
    * @param svg
    */
-  public drawDiagram(data, visualMeasurements, svg): any {
+  private drawDiagram(data, visualMeasurements, svg): any {
     let barPositions = [];
     let rectXPos = visualMeasurements.padding;
     let that = this;
@@ -180,8 +121,8 @@ export class ArcChart extends Vue {
           y: visualMeasurements.height / 2,
           height: 20,
           distance: data[key].stats.typeCount[anchor].distance,
-          width: parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
-          color: this.diagramColor(data[key].stats.typeCount[anchor].type),
+          width: parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
+          color: getCategoryColor(data[key].stats.typeCount[anchor].type),
           type: data[key].stats.typeCount[anchor].type,
           cluster: key,
           activities: data[key].stats.typeCount[anchor].activities,
@@ -189,7 +130,7 @@ export class ArcChart extends Vue {
 
         element.end = element.start + element.width;
 
-        if (element.width !== 0) {
+        if (checkIfBarIsDrawable(element.width)) {
           svg.append('rect')
             .attr('x', element.start)
             .attr('y', visualMeasurements.height / 2)
@@ -198,11 +139,11 @@ export class ArcChart extends Vue {
             .attr('rx', 2)
             .attr('ry', 2)
             .attr('fill', element.color)
-            .attr('opacity', this.calculateCategoryOpacity(element.type))
+            .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
             .on('click', function() {
               that.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, element.type);
             });
-          rectXPos += parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
+          rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }
 
         barPositions[key].push(element);
@@ -214,25 +155,28 @@ export class ArcChart extends Vue {
   }
 
   /**
-   * checks if the arcs needs to be drawn
-   * @param actualItem
-   * @param nextItem
-   * @returns {boolean}
+   * connects the the bars with arcs
+   * @param diagram
+   * @param svg
    */
-  public checkIfArcIsDrawable(actualItem, nextItem): boolean {
-    if (actualItem.type === null) {
-      return false;
+  private addArcsAndBubbles(diagram, svg): void {
+    let keys = [];
+
+    for (let key in diagram) {
+      keys.push(key);
     }
-    if (actualItem.type === RunType.Competition) {
-      return false;
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      for (let j = 0; j < diagram[keys[i]].length; j++) {
+        if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i+1]][j])) {
+          this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i+1]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i+1]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+        }
+
+        if (checkIfSpecialVisual(diagram[keys[i]][j].type)) {
+          this.drawBubbles(diagram[keys[i]][j], svg);
+        }
+      }
     }
-    if (nextItem === undefined) {
-      return false;
-    }
-    if (nextItem.width === 0) {
-      return false;
-    }
-    return true;
   }
 
   /**
@@ -241,7 +185,7 @@ export class ArcChart extends Vue {
    * @param nextItem
    * @returns {any}
    */
-  public setupArcVariables(actualItem, nextItem): any {
+  private setupArcVariables(actualItem, nextItem): any {
     return {
       outer: {
         start: actualItem.start,
@@ -261,114 +205,6 @@ export class ArcChart extends Vue {
   }
 
   /**
-   *
-   * @param actualItem
-   * @param nextItem
-   * @returns {boolean}
-   */
-  public checkArcOrientation(actualItem, nextItem): boolean {
-    return nextItem.width > actualItem.width;
-  }
-
-  /**
-   *
-   * @param type
-   * @returns {boolean}
-   */
-  public checkIfSpecialType(type): boolean {
-    if (type === RunType.Competition) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   *
-   * @param cluster
-   * @param svg
-   */
-  public createSpecialBubbles(cluster, svg): void {
-    let bubbleAttributes = [];
-    let numActivities = cluster.activities.length + 1;
-    let type = cluster.type;
-    let bubbleOffset = 0;
-
-    cluster.activities.map((item, k) => {
-      let activity = this.$store.getters.getActivity(item);
-      let width = cluster.end - cluster.start;
-      let factor = k + 1;
-      let offsetX = (width / numActivities) * factor;
-      let offsetY = 100 + bubbleOffset;
-
-      let bubble = {
-        xPos: cluster.start + offsetX,
-        yPos: cluster.y - cluster.height - this.calculateCompetitionRadius(activity.base_data.distance, 50) - offsetY,
-        radius: this.calculateCompetitionRadius(activity.base_data.distance, 50),
-        color: cluster.color,
-        name: activity.name
-      };
-
-      bubbleAttributes.push(bubble);
-      bubbleOffset += bubble.radius * 2 +  10;
-    });
-
-    bubbleAttributes.map(item => {
-      svg.append('circle')
-        .attr('cx', item.xPos)
-        .attr('cy', item.yPos)
-        .attr('r', item.radius)
-        .attr('opacity', this.calculateCategoryOpacity(type))
-        .attr('fill', item.color)
-        .on('click', function() {
-          console.log(item.name);
-        });
-
-      svg.append('rect')
-        .attr('width', 1)
-        .attr('x', item.xPos)
-        .attr('y', item.yPos + item.radius + 5)
-        .attr('height', Math.abs(item.yPos - cluster.y + item.radius + 10))
-        .attr('opacity', this.calculateArcOpacity(type))
-        .attr('fill', item.color)
-    })
-  }
-
-  /**
-   * connects the the bars with swooshes
-   * @param diagram
-   * @param svg
-   */
-  public connectDiagram(diagram, svg): void {
-    let keys = [];
-
-    for (let key in diagram) {
-      keys.push(key);
-    }
-
-    for (let i = 0; i < keys.length - 1; i++) {
-      for (let j = 0; j < diagram[keys[i]].length; j++) {
-        if (this.checkIfArcIsDrawable(diagram[keys[i]][j], diagram[keys[i+1]][j])) {
-          this.createArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i+1]][j]), svg, this.checkArcOrientation(diagram[keys[i]][j], diagram[keys[i+1]][j]), diagram[keys[i]][j].color, this.calculateArcOpacity(diagram[keys[i]][j].type));
-        }
-
-        if (this.checkIfSpecialType(diagram[keys[i]][j].type)) {
-          this.createSpecialBubbles(diagram[keys[i]][j], svg);
-        }
-      }
-    }
-  }
-
-  /**
-   *
-   * @param distance
-   * @param factor
-   * @returns {number}
-   */
-  public calculateCompetitionRadius(distance, factor): number {
-    return Math.sqrt((distance / factor) / Math.PI);
-  }
-
-  /**
    * creates the connecting arcs
    * @param arcAttributes
    * @param svg
@@ -376,7 +212,7 @@ export class ArcChart extends Vue {
    * @param color
    * @param opacity
    */
-  public createArc(arcAttributes, svg, isUpper, color, opacity): void {
+  private drawArc(arcAttributes, svg, isUpper, color, opacity): void {
     let xPosOuter = arcAttributes.outer.xPos;
     let yPosOuter = arcAttributes.outer.yPos;
     let xPosInner = arcAttributes.inner.xPos;
@@ -420,14 +256,6 @@ export class ArcChart extends Vue {
       .attr('fill', 'black')
       .attr('transform', 'translate('+[xPosInner, yPosInner]+')');
 
-    /*svg.append('path')
-      .attr('d', arc({
-        innerRadius: 0,
-        outerRadius: arcAttributes.outer.radius,
-        startAngle: startAngle,
-        endAngle: endAngle
-      }))*/
-
     svg.append('circle')
       .attr('class', 'no-pointer')
       .attr('cx', xPosOuter)
@@ -436,86 +264,57 @@ export class ArcChart extends Vue {
       .attr('mask', clipId)
       .attr('opacity', opacity)
       .attr('fill', color)
-      // .attr('transform', 'translate(' + [xPosOuter, yPosOuter] + ')');
-
-    /*svg.append('path')
-      .attr('d', arc({
-        innerRadius: 0,
-        outerRadius: arcAttributes.inner.radius,
-        startAngle: startAngle,
-        endAngle: endAngle
-      }))
-      .attr('opacity', 1)
-      .attr('fill', 'white')
-      .attr('transform', 'translate(' + [xPosInner, yPosInner] + ')');*/
-
   }
 
   /**
-   * shows or hides the swoosh based on filter
-   * @param type
+   *
+   * @param cluster
+   * @param svg
    */
-  public calculateCategoryOpacity(type: RunType): number {
-    if(type == null) {
-      return 0
-    }
-    if(this.filter.selectedRunType == RunType.All) {
-      return 0.7;
-    }
-    if(type == this.filter.selectedRunType) {
-      return 0.7;
-    }
-    return 0.15;
-  }
+  private drawBubbles(cluster, svg): void {
+    let bubbleAttributes = [];
+    let numActivities = cluster.activities.length + 1;
+    let type = cluster.type;
+    let bubbleOffset = 0;
 
-  /**
-   * shows or hides the swoosh fill based on filter
-   * @param type
-   */
-  public calculateArcOpacity(type: RunType): number {
-    if(type == null) {
-      return 0.1
-    }
-    if(this.filter.selectedRunType == RunType.All) {
-      return 0.2;
-    }
-    if(type == this.filter.selectedRunType) {
-      return 0.2;
-    }
-    return 0.05;
-  }
+    cluster.activities.map((item, k) => {
+      let activity = this.$store.getters.getActivity(item);
+      let width = cluster.end - cluster.start;
+      let factor = k + 1;
+      let offsetX = (width / numActivities) * factor;
+      let offsetY = 100 + bubbleOffset;
 
-  /**
-   * returns the length of a bar in px
-   * @param distance
-   * @param factor
-   */
-  public calculateBarLength(distance, factor: number): string {
-    distance = (distance / 1000) * factor;
-    distance = distance.toFixed(2);
+      let bubble = {
+        xPos: cluster.start + offsetX,
+        yPos: cluster.y - cluster.height - formatRadius(activity.base_data.distance, FormatRadiusType.Traininghistory) - offsetY,
+        radius: formatRadius(activity.base_data.distance, FormatRadiusType.Traininghistory),
+        color: cluster.color,
+        name: activity.name
+      };
 
-    return distance;
-  }
+      bubbleAttributes.push(bubble);
+      bubbleOffset += bubble.radius * 2 +  10;
+    });
 
-  /**
-   * returns the color for each category
-   * @param type
-   */
-  public diagramColor(type: RunType): string {
-    switch(type) {
-      case RunType.Run:
-        return '#1280B2';
-      case RunType.Competition:
-        return '#B2AB09';
-      case RunType.LongRun:
-        return '#00AFFF';
-      case RunType.ShortIntervals:
-        return '#FF1939';
-      case RunType.Uncategorized:
-        return 'violet';
-      default:
-        return 'black';
-    }
+    bubbleAttributes.map(item => {
+      svg.append('circle')
+        .attr('cx', item.xPos)
+        .attr('cy', item.yPos)
+        .attr('r', item.radius)
+        .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, type))
+        .attr('fill', item.color)
+        .on('click', function() {
+          console.log(item.name);
+        });
+
+      svg.append('rect')
+        .attr('width', 1)
+        .attr('x', item.xPos)
+        .attr('y', item.yPos + item.radius + 5)
+        .attr('height', Math.abs(item.yPos - cluster.y + item.radius + 10))
+        .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, type))
+        .attr('fill', item.color)
+    })
   }
 
   mounted() {

@@ -28,6 +28,8 @@ export class ArcChart extends Vue {
     this.arcChart(this.root, this.data, this.filter);
   }
 
+  private distanceFactor: number = 1000;
+
   /**
    * combines all functions
    * @param root
@@ -113,6 +115,9 @@ export class ArcChart extends Vue {
       .attr('height', metrics.height);
   }
 
+  public formatDistance(distance: number, factor: number): number {
+    return distance / factor;
+  }
   /**
    * sets the base diagram variables based on dataset
    * @param dataset
@@ -132,7 +137,7 @@ export class ArcChart extends Vue {
       }
     };
 
-    visualMeasurements.width -= 2 * visualMeasurements.padding;
+    visualMeasurements.calculated.displayedWidth -= visualMeasurements.padding * 2;
 
     for (let key in dataset) {
       visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
@@ -140,12 +145,17 @@ export class ArcChart extends Vue {
     }
 
     if (visualMeasurements.calculated.totalClusters > 1) {
-      visualMeasurements.calculated.displayedWidth = visualMeasurements.width - visualMeasurements.clusterMaxMargin;
+      visualMeasurements.calculated.displayedWidth = visualMeasurements.calculated.displayedWidth - visualMeasurements.clusterMaxMargin;
     }
 
-    visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters).toFixed(2));
-    visualMeasurements.calculated.totalDistance = parseFloat((visualMeasurements.calculated.totalDistance / 1000).toFixed(2));
+    console.log(visualMeasurements.calculated.totalClusters);
+    visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters - 1).toFixed(2));
+    visualMeasurements.calculated.totalDistance = parseFloat(this.formatDistance(visualMeasurements.calculated.totalDistance, this.distanceFactor).toFixed(2));
     visualMeasurements.calculated.pxPerKm = parseFloat((visualMeasurements.calculated.displayedWidth / visualMeasurements.calculated.totalDistance).toFixed(2));
+
+    console.log(visualMeasurements.calculated.totalDistance);
+    console.log(visualMeasurements.calculated.pxPerKm);
+    console.log(visualMeasurements.calculated.totalDistance * visualMeasurements.calculated.pxPerKm + visualMeasurements.calculated.clusterMargin * visualMeasurements.calculated.totalClusters);
 
     return visualMeasurements;
   }
@@ -179,7 +189,7 @@ export class ArcChart extends Vue {
 
         element.end = element.start + element.width;
 
-        if (element.width != 0) {
+        if (element.width !== 0) {
           svg.append('rect')
             .attr('x', element.start)
             .attr('y', visualMeasurements.height / 2)
@@ -192,7 +202,7 @@ export class ArcChart extends Vue {
             .on('click', function() {
               that.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, element.type);
             });
-          rectXPos += (data[key].stats.typeCount[anchor].distance / 1000) * visualMeasurements.calculated.pxPerKm;
+          rectXPos += parseFloat(this.calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }
 
         barPositions[key].push(element);
@@ -322,7 +332,7 @@ export class ArcChart extends Vue {
         .attr('fill', item.color)
     })
   }
-  
+
   /**
    * connects the the bars with swooshes
    * @param diagram

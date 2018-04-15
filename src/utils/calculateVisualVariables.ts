@@ -1,7 +1,43 @@
 import {RunType} from '../store/state';
-import {CategoryColors, CategoryConnectingOpacity, CategoryOpacity} from '../models/VisualVariableModel';
+import {
+  CanvasConstraints, CategoryColors, CategoryConnectingOpacity,
+  CategoryOpacity
+} from '../models/VisualVariableModel';
 import {formatDistance} from './format-data';
 import {FormatDistanceType} from '../models/FormatModel';
+
+export function setupVisualBarVariables(dataset: Object, canvasContraints: CanvasConstraints): any {
+  let visualMeasurements = {
+    padding: canvasContraints.padding,
+    width: canvasContraints.width,
+    height: canvasContraints.height,
+    clusterMaxMargin: canvasContraints.clusterMaxMargin,
+    calculated: {
+      totalDistance: 0,
+      totalClusters: 0,
+      displayedWidth: 1200,
+      clusterMargin: 0,
+      pxPerKm: 0,
+    }
+  };
+
+  visualMeasurements.calculated.displayedWidth -= visualMeasurements.padding * 2;
+
+  for (let key in dataset) {
+    visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
+    visualMeasurements.calculated.totalClusters++;
+  }
+
+  if (visualMeasurements.calculated.totalClusters > 1) {
+    visualMeasurements.calculated.displayedWidth = visualMeasurements.calculated.displayedWidth - visualMeasurements.clusterMaxMargin;
+  }
+
+  visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters - 1).toFixed(2));
+  visualMeasurements.calculated.totalDistance = parseFloat(formatDistance(visualMeasurements.calculated.totalDistance, FormatDistanceType.Kilometers).toFixed(2));
+  visualMeasurements.calculated.pxPerKm = parseFloat((visualMeasurements.calculated.displayedWidth / visualMeasurements.calculated.totalDistance).toFixed(2));
+
+  return visualMeasurements;
+}
 
 /**
  * calculates the opacity for each main group depending on filter
@@ -39,6 +75,18 @@ export function calculateConnectingOpacity(filter: RunType, type: RunType): numb
     return CategoryConnectingOpacity.Active;
   }
   return CategoryConnectingOpacity.Inactive;
+}
+
+/**
+ * calculates the length of each bar in px
+ * @param {number} distance
+ * @param {number} factor
+ * @returns {string}
+ */
+export function calculateBarLength(distance: number, factor: number): string {
+  distance = formatDistance(distance, FormatDistanceType.Kilometers) * factor;
+
+  return distance.toFixed(2);
 }
 
 /**
@@ -95,6 +143,11 @@ export function checkIfConnectionIsDrawable(actualItem, nextItem): boolean {
   return true;
 }
 
+/**
+ *
+ * @param {number} actualItemLength
+ * @returns {boolean}
+ */
 export function checkIfBarIsDrawable(actualItemLength: number): boolean {
   return actualItemLength !== 0;
 }
@@ -109,17 +162,5 @@ export function checkIfSpecialVisual(type: RunType): boolean {
     return true;
   }
   return false;
-}
-
-/**
- * calculates the length of each bar in px
- * @param {number} distance
- * @param {number} factor
- * @returns {string}
- */
-export function calculateBarLength(distance: number, factor: number): string {
-  distance = formatDistance(distance, FormatDistanceType.Kilometers) * factor;
-
-  return distance.toFixed(2);
 }
 

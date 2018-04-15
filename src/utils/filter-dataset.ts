@@ -39,11 +39,13 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
 
   let returnData = [];
   if (filter.showEverything) {
-    returnData = tempData;
+    for (let key in tempData) {
+      returnData.unshift(tempData[key]);
+    }
   } else {
     for (let key in tempData) {
       if (formatDatasetKey(key) >= startYear && formatDatasetKey(key) <= endYear) {
-        returnData.push(tempData[key]);
+        returnData.unshift(tempData[key]);
       }
     }
   }

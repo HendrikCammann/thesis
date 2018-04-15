@@ -7,6 +7,7 @@ import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
 import {SwooshChart} from '../../modules/SwooshChart';
 import {ArcChart} from '../../modules/ArcChart';
+import {CanvasConstraints} from '../../../models/VisualVariableModel';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -28,6 +29,8 @@ import {ArcChart} from '../../modules/ArcChart';
 export class ActivitiesContainer extends Vue {
 
   public filterYear: string = 'all';
+
+  public canvasConstraints = new CanvasConstraints(15, 1200, 800, 180);
 
   public selectRunType(event) {
     let runType: RunType;

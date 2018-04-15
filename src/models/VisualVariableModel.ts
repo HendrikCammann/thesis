@@ -18,3 +18,17 @@ export enum CategoryColors {
   Uncategorized = 'violet',
   Default = 'black'
 }
+
+export class CanvasConstraints {
+  padding: number;
+  width: number;
+  height: number;
+  clusterMaxMargin: number;
+
+  constructor(padding, width, height, clusterMargin) {
+    this.padding = padding;
+    this.width = width;
+    this.height = height;
+    this.clusterMaxMargin = clusterMargin;
+  }
+}

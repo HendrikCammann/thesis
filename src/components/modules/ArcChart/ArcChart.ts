@@ -11,9 +11,10 @@ import {
   calculateBarLength,
   calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable, checkIfConnectionIsDrawable,
   checkIfSpecialVisual,
-  getCategoryColor, getConnectingOrientation
+  getCategoryColor, getConnectingOrientation, setupVisualBarVariables
 } from '../../../utils/calculateVisualVariables';
 import {selectAndFilterDataset} from '../../../utils/filter-dataset';
+import {CanvasConstraints} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -28,64 +29,32 @@ export class ArcChart extends Vue {
   @Prop()
   root: string;
 
+  @Prop()
+  canvasConstraints: CanvasConstraints;
+
   @Watch('data.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
+  @Watch('canvasConstraints')
   onPropertyChanged(val: any, oldVal: any) {
-    this.arcChart(this.root, this.data, this.filter);
+    this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
   }
 
   /**
-   * combines all functions
-   * @param root
-   * @param dataset
-   * @param filter
+   *
+   * @param {string} root
+   * @param {Object} dataset
+   * @param {FilterModel} filter
+   * @param {CanvasConstraints} canvasConstraints
    */
-  public arcChart(root: string, dataset: Object, filter: FilterModel) {
+  public arcChart(root: string, dataset: Object, filter: FilterModel, canvasConstraints: CanvasConstraints) {
     let data = selectAndFilterDataset(dataset, filter);
-    let visualMeasurements = this.setupVisualVariables(data);
+    let visualMeasurements = setupVisualBarVariables(data, canvasConstraints);
     let svg = this.setupSvg(root, visualMeasurements);
     let diagram = this.drawDiagram(data, visualMeasurements, svg);
     this.addArcsAndBubbles(diagram, svg);
-  }
-
-  /**
-   * sets the base diagram variables based on dataset
-   * @param dataset
-   */
-  private setupVisualVariables(dataset: Object): any {
-    let visualMeasurements = {
-      padding: 15,
-      width: 1200,
-      height: 800,
-      clusterMaxMargin: 180,
-      calculated: {
-        totalDistance: 0,
-        totalClusters: 0,
-        displayedWidth: 1200,
-        clusterMargin: 0,
-        pxPerKm: 0,
-      }
-    };
-
-    visualMeasurements.calculated.displayedWidth -= visualMeasurements.padding * 2;
-
-    for (let key in dataset) {
-      visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
-      visualMeasurements.calculated.totalClusters++;
-    }
-
-    if (visualMeasurements.calculated.totalClusters > 1) {
-      visualMeasurements.calculated.displayedWidth = visualMeasurements.calculated.displayedWidth - visualMeasurements.clusterMaxMargin;
-    }
-
-    visualMeasurements.calculated.clusterMargin = parseFloat((visualMeasurements.clusterMaxMargin / visualMeasurements.calculated.totalClusters - 1).toFixed(2));
-    visualMeasurements.calculated.totalDistance = parseFloat(formatDistance(visualMeasurements.calculated.totalDistance, FormatDistanceType.Kilometers).toFixed(2));
-    visualMeasurements.calculated.pxPerKm = parseFloat((visualMeasurements.calculated.displayedWidth / visualMeasurements.calculated.totalDistance).toFixed(2));
-
-    return visualMeasurements;
   }
 
   /**
@@ -166,12 +135,13 @@ export class ArcChart extends Vue {
       keys.push(key);
     }
 
-    for (let i = 0; i < keys.length - 1; i++) {
+    for (let i = 0; i < keys.length; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
-        if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i+1]][j])) {
-          this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i+1]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i+1]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+        if(diagram[keys[i+1]] !== undefined) {
+          if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i + 1]][j])) {
+            this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i + 1]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + 1]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+          }
         }
-
         if (checkIfSpecialVisual(diagram[keys[i]][j].type)) {
           this.drawBubbles(diagram[keys[i]][j], svg);
         }
@@ -306,7 +276,6 @@ export class ArcChart extends Vue {
         .on('click', function() {
           console.log(item.name);
         });
-
       svg.append('rect')
         .attr('width', 1)
         .attr('x', item.xPos)

@@ -40,6 +40,17 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
 }
 
 /**
+ *
+ * @param {number} actualItemLength
+ * @param {number} nextItemLength
+ * @param {number} factor
+ * @returns {number}
+ */
+export function calaculateConnectingHeight(actualItemLength: number, nextItemLength: number, factor: number) {
+  return parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
+}
+
+/**
  * calculates the opacity for each main group depending on filter
  * @param {RunType} filter
  * @param {RunType} type

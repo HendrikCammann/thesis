@@ -8,6 +8,7 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {formatDistance, formatRadius} from '../../../utils/format-data';
 import {FormatDistanceType, FormatRadiusType} from '../../../models/FormatModel';
 import {
+  calaculateConnectingHeight,
   calculateBarLength,
   calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable, checkIfConnectionIsDrawable,
   checkIfSpecialVisual,
@@ -164,14 +165,26 @@ export class ArcChart extends Vue {
         xPos: (actualItem.start + nextItem.end) / 2,
         yPos: actualItem.y,
         radius: (nextItem.end - actualItem.start) / 2,
-        offset: actualItem.height
+        offset: actualItem.height,
+        stepVariabless: {
+          xPos: actualItem.start,
+          yPos: actualItem.y,
+          width: Math.abs(actualItem.start - actualItem.end),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, 5),
+        }
       },
       inner: {
         xPos: (actualItem.end + nextItem.start) / 2,
         yPos: actualItem.y,
         radius: Math.abs((nextItem.start - actualItem.end) / 2),
-        offset: actualItem.height
-      }
+        offset: actualItem.height,
+        stepVariabless: {
+          xPos: nextItem.start,
+          yPos: actualItem.y,
+          width: Math.abs(nextItem.start - nextItem.end),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, 5),
+        }
+      },
     }
   }
 
@@ -184,54 +197,127 @@ export class ArcChart extends Vue {
    * @param opacity
    */
   private drawArc(arcAttributes, svg, isUpper, color, opacity): void {
-    let xPosOuter = arcAttributes.outer.xPos;
-    let yPosOuter = arcAttributes.outer.yPos;
-    let xPosInner = arcAttributes.inner.xPos;
-    let yPosInner = arcAttributes.inner.yPos;
-    let startAngle = -Math.PI * 0.5;
-    let endAngle = Math.PI * 0.5;
+    let arcVariables = {
+      outer: {
+        xPos: arcAttributes.outer.xPos,
+        yPos: arcAttributes.outer.yPos,
+        offset: arcAttributes.outer.offset,
+        radius: arcAttributes.outer.radius,
+      },
+      inner: {
+        xPos: arcAttributes.inner.xPos,
+        yPos: arcAttributes.inner.yPos,
+        offset: arcAttributes.inner.offset,
+        radius: arcAttributes.inner.radius,
+      },
+      general: {
+        startAngle: -Math.PI * 0.5,
+        endAngle: Math.PI * 0.5
+      }
+    };
+    let stepVariables = {
+      left: {
+        xPos: arcAttributes.outer.stepVariabless.xPos,
+        yPos: arcAttributes.outer.stepVariabless.yPos,
+        width: arcAttributes.outer.stepVariabless.width,
+      },
+      right: {
+        xPos: arcAttributes.inner.stepVariabless.xPos,
+        yPos: arcAttributes.inner.stepVariabless.yPos,
+        width: arcAttributes.inner.stepVariabless.width,
+      },
+      general: {
+        height: arcAttributes.outer.stepVariabless.height,
+      },
+    };
+    let maskVariables = {
+      rectangle: {
+        height: arcAttributes.outer.radius,
+        width: arcAttributes.outer.end - arcAttributes.outer.start,
+        yPos: arcAttributes.outer.yPos - arcAttributes.outer.radius,
+        xPos: arcAttributes.outer.start,
+      },
+    };
 
-    let maskPosRect = arcAttributes.outer.yPos - arcAttributes.outer.radius;
+    const stepActive = true;
+
+    if (stepActive && isUpper) {
+      arcVariables.outer.yPos -= stepVariables.general.height;
+      arcVariables.inner.yPos -= stepVariables.general.height;
+      maskVariables.rectangle.yPos -= stepVariables.general.height;
+
+      stepVariables.left.yPos -= stepVariables.general.height;
+      stepVariables.right.yPos -= stepVariables.general.height;
+    }
 
     if (!isUpper) {
-      yPosOuter += arcAttributes.outer.offset;
-      yPosInner += arcAttributes.inner.offset;
-      startAngle = Math.PI * 0.5;
-      endAngle = Math.PI * 1.5;
+      arcVariables.outer.yPos += arcAttributes.outer.offset;
+      arcVariables.inner.yPos += arcAttributes.inner.offset;
+      arcVariables.general.startAngle = Math.PI * 0.5;
+      arcVariables.general.endAngle = Math.PI * 1.5;
 
-      maskPosRect = arcAttributes.outer.yPos + arcAttributes.outer.offset;
+      maskVariables.rectangle.yPos = arcAttributes.outer.yPos + arcVariables.outer.offset;
+
+      if (stepActive) {
+        arcVariables.outer.yPos += stepVariables.general.height;
+        arcVariables.inner.yPos += stepVariables.general.height;
+
+        stepVariables.left.yPos += arcVariables.outer.offset;
+        stepVariables.right.yPos += arcVariables.outer.offset;
+
+        maskVariables.rectangle.yPos += stepVariables.general.height;
+      }
     }
 
     let arc = d3.arc();
-    let id = 'mask_' + xPosOuter + '-' + xPosInner;
+    let id = 'mask_' + arcVariables.outer.xPos + '-' + arcVariables.inner.xPos;
     let clipId = 'url(#' + id + ')';
 
     let mask = svg.append('mask')
       .attr('id', id);
 
     mask.append('rect')
-      .attr('width', arcAttributes.outer.end - arcAttributes.outer.start)
-      .attr('height', arcAttributes.outer.radius)
+      .attr('width', maskVariables.rectangle.width)
+      .attr('height', maskVariables.rectangle.height)
       .attr('fill', 'white')
-      .attr('x', arcAttributes.outer.start)
-      .attr('y', maskPosRect);
+      .attr('x', maskVariables.rectangle.xPos)
+      .attr('y', maskVariables.rectangle.yPos);
 
     mask.append('path')
       .attr('d', arc({
         innerRadius: 0,
-        outerRadius: arcAttributes.inner.radius,
-        startAngle: startAngle,
-        endAngle: endAngle
+        outerRadius: arcVariables.inner.radius,
+        startAngle: arcVariables.general.startAngle,
+        endAngle: arcVariables.general.endAngle
       }))
       .attr('fill-rule', 'evenodd')
       .attr('fill', 'black')
-      .attr('transform', 'translate('+[xPosInner, yPosInner]+')');
+      .attr('transform', 'translate('+[arcVariables.inner.xPos, arcVariables.inner.yPos]+')');
+
+
+    if (stepActive) {
+      svg.append('rect')
+        .attr('width', stepVariables.left.width)
+        .attr('height', stepVariables.general.height)
+        .attr('fill', color)
+        .attr('opacity', opacity)
+        .attr('x', stepVariables.left.xPos)
+        .attr('y', stepVariables.left.yPos);
+
+      svg.append('rect')
+        .attr('width', stepVariables.right.width)
+        .attr('height', stepVariables.general.height)
+        .attr('fill', color)
+        .attr('opacity', opacity)
+        .attr('x', stepVariables.right.xPos)
+        .attr('y', stepVariables.right.yPos);
+    }
 
     svg.append('circle')
       .attr('class', 'no-pointer')
-      .attr('cx', xPosOuter)
-      .attr('cy', yPosOuter)
-      .attr('r', arcAttributes.outer.radius)
+      .attr('cx', arcVariables.outer.xPos)
+      .attr('cy', arcVariables.outer.yPos)
+      .attr('r', arcVariables.outer.radius)
       .attr('mask', clipId)
       .attr('opacity', opacity)
       .attr('fill', color)

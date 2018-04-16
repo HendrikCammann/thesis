@@ -7,6 +7,7 @@ export enum CategoryOpacity {
 export enum CategoryConnectingOpacity {
   Hidden = 0,
   Active = 0.15,
+  SingleActive = 0.3,
   Inactive = 0.05
 }
 
@@ -24,11 +25,13 @@ export class CanvasConstraints {
   width: number;
   height: number;
   clusterMaxMargin: number;
+  barMargin: number;
 
-  constructor(padding, width, height, clusterMargin) {
+  constructor(padding, width, height, clusterMargin, barMargin) {
     this.padding = padding;
     this.width = width;
     this.height = height;
     this.clusterMaxMargin = clusterMargin;
+    this.barMargin = barMargin;
   }
 }

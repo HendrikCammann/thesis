@@ -11,7 +11,7 @@ import {
   calaculateConnectingHeight,
   calculateBarLength,
   calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable, checkIfConnectionIsDrawable,
-  checkIfSpecialVisual,
+  checkIfSpecialVisual, findConnectionTarget,
   getCategoryColor, getConnectingOrientation, setupVisualBarVariables
 } from '../../../utils/calculateVisualVariables';
 import {selectAndFilterDataset} from '../../../utils/filter-dataset';
@@ -114,7 +114,7 @@ export class ArcChart extends Vue {
             .on('click', function() {
               filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
-          rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
+          rectXPos += (parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)) + visualMeasurements.barMargin);
         }
 
         barPositions[key].push(element);
@@ -139,9 +139,15 @@ export class ArcChart extends Vue {
 
     for (let i = 0; i < keys.length; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
-        if(diagram[keys[i+1]] !== undefined) {
-          if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i + 1]][j])) {
-            this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i + 1]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + 1]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+        let indexOfItemToConnectTo = findConnectionTarget(i, j, keys, diagram);
+
+        if(diagram[keys[i + indexOfItemToConnectTo]] !== undefined) {
+          if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j])) {
+            if (indexOfItemToConnectTo === 1) {
+              this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+            } else {
+              this.drawPath(this.setupPathVariables(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+            }
           }
         }
         if (checkIfSpecialVisual(diagram[keys[i]][j].type)) {
@@ -149,6 +155,55 @@ export class ArcChart extends Vue {
         }
       }
     }
+  }
+
+  /**
+   *
+   * @param actualItem
+   * @param nextItem
+   * @returns {any}
+   */
+  private setupPathVariables(actualItem, nextItem): any {
+    return {
+      start: {
+        xPos: actualItem.start + (Math.abs((actualItem.start - actualItem.end)) / 2),
+        yPos: actualItem.y,
+      },
+      end: {
+        xPos: nextItem.end - (Math.abs((nextItem.start - nextItem.end)) / 2),
+        yPos: nextItem.y,
+      },
+      mid: {
+        xPos: actualItem.start + (Math.abs((actualItem.start - nextItem.end)) / 2),
+        yPos: (actualItem.y + nextItem.y) / 2,
+      },
+      general: {
+        offset: actualItem.height,
+      },
+    }
+  }
+
+  private drawPath(pathAttributes, svg, isUpper, color, opacity) {
+    let lineGenerator = d3.line().curve(d3.curveMonotoneX);
+    let path = [];
+    if (isUpper) {
+      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos]);
+      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos - 30]);
+      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos]);
+    } else {
+      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos + pathAttributes.general.offset]);
+      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos + pathAttributes.general.offset + 30]);
+      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos + pathAttributes.general.offset]);
+    }
+
+    svg.append('path')
+      .attr('d', lineGenerator(path))
+      .attr('stroke-dasharray', '5, 5')
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', color)
+      .attr('opacity', opacity);
   }
 
   /**
@@ -166,7 +221,7 @@ export class ArcChart extends Vue {
         yPos: actualItem.y,
         radius: (nextItem.end - actualItem.start) / 2,
         offset: actualItem.height,
-        stepVariabless: {
+        stepVariables: {
           xPos: actualItem.start,
           yPos: actualItem.y,
           width: Math.abs(actualItem.start - actualItem.end),
@@ -178,7 +233,7 @@ export class ArcChart extends Vue {
         yPos: actualItem.y,
         radius: Math.abs((nextItem.start - actualItem.end) / 2),
         offset: actualItem.height,
-        stepVariabless: {
+        stepVariables: {
           xPos: nextItem.start,
           yPos: actualItem.y,
           width: Math.abs(nextItem.start - nextItem.end),
@@ -217,17 +272,17 @@ export class ArcChart extends Vue {
     };
     let stepVariables = {
       left: {
-        xPos: arcAttributes.outer.stepVariabless.xPos,
-        yPos: arcAttributes.outer.stepVariabless.yPos,
-        width: arcAttributes.outer.stepVariabless.width,
+        xPos: arcAttributes.outer.stepVariables.xPos,
+        yPos: arcAttributes.outer.stepVariables.yPos,
+        width: arcAttributes.outer.stepVariables.width,
       },
       right: {
-        xPos: arcAttributes.inner.stepVariabless.xPos,
-        yPos: arcAttributes.inner.stepVariabless.yPos,
-        width: arcAttributes.inner.stepVariabless.width,
+        xPos: arcAttributes.inner.stepVariables.xPos,
+        yPos: arcAttributes.inner.stepVariables.yPos,
+        width: arcAttributes.inner.stepVariables.width,
       },
       general: {
-        height: arcAttributes.outer.stepVariabless.height,
+        height: arcAttributes.outer.stepVariables.height,
       },
     };
     let maskVariables = {

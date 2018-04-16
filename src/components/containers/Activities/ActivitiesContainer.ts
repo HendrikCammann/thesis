@@ -32,7 +32,7 @@ export class ActivitiesContainer extends Vue {
 
   public filterYear: string = 'all';
 
-  public canvasConstraints = new CanvasConstraints(15, 1200, 800, 180);
+  public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1);
 
   public selectRunType(event) {
     let runType: RunType;

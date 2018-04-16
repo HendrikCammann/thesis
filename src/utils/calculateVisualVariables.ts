@@ -12,9 +12,11 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
     width: canvasContraints.width,
     height: canvasContraints.height,
     clusterMaxMargin: canvasContraints.clusterMaxMargin,
+    barMargin: canvasContraints.barMargin,
     calculated: {
       totalDistance: 0,
       totalClusters: 0,
+      totalBars: 0,
       displayedWidth: 1200,
       clusterMargin: 0,
       pxPerKm: 0,
@@ -24,8 +26,17 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
   visualMeasurements.calculated.displayedWidth -= visualMeasurements.padding * 2;
 
   for (let key in dataset) {
+    for (let anchor in dataset[key].stats.typeCount) {
+      if (dataset[key].stats.typeCount[anchor].amount !== 0) {
+        visualMeasurements.calculated.totalBars++;
+      }
+    }
     visualMeasurements.calculated.totalDistance += dataset[key].stats.distance;
     visualMeasurements.calculated.totalClusters++;
+  }
+
+  if (visualMeasurements.calculated.totalBars > 1) {
+    visualMeasurements.calculated.displayedWidth -= ((visualMeasurements.calculated.totalBars - visualMeasurements.calculated.totalClusters) * visualMeasurements.barMargin);
   }
 
   if (visualMeasurements.calculated.totalClusters > 1) {
@@ -83,7 +94,7 @@ export function calculateConnectingOpacity(filter: RunType, type: RunType): numb
     return CategoryConnectingOpacity.Active;
   }
   if (type === filter) {
-    return CategoryConnectingOpacity.Active;
+    return CategoryConnectingOpacity.SingleActive;
   }
   return CategoryConnectingOpacity.Inactive;
 }
@@ -173,5 +184,15 @@ export function checkIfSpecialVisual(type: RunType): boolean {
     return true;
   }
   return false;
+}
+
+export function findConnectionTarget(currentIndex: number, innerIndex: number, keys: any, items: any): number {
+  let indexOfItemToConnectTo = 1;
+
+  while ((currentIndex + indexOfItemToConnectTo) < keys.length && (items[keys[currentIndex + indexOfItemToConnectTo]][innerIndex].width === 0)) {
+    indexOfItemToConnectTo++;
+  }
+
+  return indexOfItemToConnectTo;
 }
 

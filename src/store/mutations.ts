@@ -3,11 +3,11 @@ import {MutationTree} from 'vuex';
 import {MutationTypes} from './mutation-types';
 import {RunType, State} from './state';
 import * as moment from 'moment';
-import {ActivityModel} from '../models/ActivityModel';
-import {ActivityDetailModel} from '../models/ActivityDetailModel';
-import {ActivityStreamModel} from '../models/ActivityStreamModel';
-import {ActivityZoneModel} from '../models/ActivityZoneModel';
-import {ActivityClusterModel} from '../models/ActivityClusterModel';
+import {ActivityModel} from '../models/Activity/ActivityModel';
+import {ActivityDetailModel} from '../models/Activity/ActivityDetailModel';
+import {ActivityStreamModel} from '../models/Activity/ActivityStreamModel';
+import {ActivityZoneModel} from '../models/Activity/ActivityZoneModel';
+import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
 
 enum timeRanges {
   All = 'all',

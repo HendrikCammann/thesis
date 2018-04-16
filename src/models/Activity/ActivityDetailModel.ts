@@ -1,4 +1,4 @@
-import {RunType} from '../store/state';
+import {RunType} from '../../store/state';
 
 class ActivityDetailAverageData {
   public heartrate: number;

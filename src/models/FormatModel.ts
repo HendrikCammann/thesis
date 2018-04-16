@@ -6,3 +6,9 @@ export enum FormatDistanceType {
 export enum FormatRadiusType {
   Traininghistory = 50,
 }
+
+export enum FormatDifferenceType {
+  Arcs = 4,
+  SwooshesOuter =  5,
+  SwooshesInner = 1.5,
+}

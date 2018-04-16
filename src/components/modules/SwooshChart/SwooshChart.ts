@@ -3,7 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
-import {FilterModel} from '../../../models/FilterModel';
+import {FilterModel} from '../../../models/Filter/FilterModel';
 import {selectAndFilterDataset} from '../../../utils/filter-dataset';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {
@@ -12,7 +12,7 @@ import {
   setupVisualBarVariables
 } from '../../../utils/calculateVisualVariables';
 import {formatRadius} from '../../../utils/format-data';
-import {FormatRadiusType} from '../../../models/FormatModel';
+import {FormatDifferenceType, FormatRadiusType} from '../../../models/FormatModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 
@@ -171,8 +171,8 @@ export class SwooshChart extends Vue {
             };
 
             if (!getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width)) {
-              arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 5));
-              arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * 1.5));
+              arcAttributes.outer.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * FormatDifferenceType.SwooshesOuter));
+              arcAttributes.inner.centerY = (diagram[keys[i]][j].y + (Math.abs(change) * FormatDifferenceType.SwooshesInner));
             }
 
             this.drawSwoosh(interpolation, arcAttributes, svg, diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]);

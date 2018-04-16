@@ -1,7 +1,7 @@
 import {ActivityDetailModel} from './ActivityDetailModel';
 import {ActivityStreamModel} from './ActivityStreamModel';
 import {ActivityZoneModel} from './ActivityZoneModel';
-import {RunType} from '../store/state';
+import {RunType} from '../../store/state';
 
 class ActivityControls {
   public has_heartrate: boolean;

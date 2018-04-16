@@ -1,4 +1,4 @@
-import {ClusterType, RunType} from '../store/state';
+import {ClusterType, RunType} from '../../store/state';
 
 class TimeRangeModel {
   start: Date;

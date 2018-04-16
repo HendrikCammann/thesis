@@ -4,7 +4,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {MutationTypes} from '../../../store/mutation-types';
 import {ClusterType, RunType} from '../../../store/state';
-import {FilterModel} from '../../../models/FilterModel';
+import {FilterModel} from '../../../models/Filter/FilterModel';
 
 @Component({
   template: require('./BubbleChart.html'),

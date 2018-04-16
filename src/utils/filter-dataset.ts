@@ -1,4 +1,4 @@
-import {FilterModel} from '../models/FilterModel';
+import {FilterModel} from '../models/Filter/FilterModel';
 import {ClusterType} from '../store/state';
 
 export function formatDatasetKey(key: string): number {

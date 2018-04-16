@@ -1,5 +1,5 @@
-import {ActivityModel} from '../models/ActivityModel';
-import {FilterModel} from '../models/FilterModel';
+import {ActivityModel} from '../models/Activity/ActivityModel';
+import {FilterModel} from '../models/Filter/FilterModel';
 
 export enum RunType {
   All = 'All',

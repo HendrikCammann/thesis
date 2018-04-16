@@ -3,10 +3,10 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
-import {FilterModel} from '../../../models/FilterModel';
+import {FilterModel} from '../../../models/Filter/FilterModel';
 import {MutationTypes} from '../../../store/mutation-types';
 import {formatDistance, formatRadius} from '../../../utils/format-data';
-import {FormatDistanceType, FormatRadiusType} from '../../../models/FormatModel';
+import {FormatDifferenceType, FormatDistanceType, FormatRadiusType} from '../../../models/FormatModel';
 import {
   calaculateConnectingHeight,
   calculateBarLength,
@@ -170,7 +170,7 @@ export class ArcChart extends Vue {
           xPos: actualItem.start,
           yPos: actualItem.y,
           width: Math.abs(actualItem.start - actualItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, 5),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs),
         }
       },
       inner: {
@@ -182,7 +182,7 @@ export class ArcChart extends Vue {
           xPos: nextItem.start,
           yPos: actualItem.y,
           width: Math.abs(nextItem.start - nextItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, 5),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs),
         }
       },
     }

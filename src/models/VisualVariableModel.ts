@@ -6,7 +6,7 @@ export enum CategoryOpacity {
 
 export enum CategoryConnectingOpacity {
   Hidden = 0,
-  Active = 0.2,
+  Active = 0.15,
   Inactive = 0.05
 }
 
@@ -15,7 +15,7 @@ export enum CategoryColors {
   Competition = '#B2AB09',
   LongRun = '#00AFFF',
   ShortIntervals = '#FF1939',
-  Uncategorized = 'violet',
+  Uncategorized = 'gray',
   Default = 'black'
 }
 

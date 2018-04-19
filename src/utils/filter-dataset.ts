@@ -1,5 +1,5 @@
 import {FilterModel} from '../models/Filter/FilterModel';
-import {ClusterType} from '../store/state';
+import {ClusterType, RunType} from '../store/state';
 
 export function formatDatasetKey(key: string): number {
   return parseInt(key.substring(0, 4));
@@ -51,4 +51,16 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
   }
 
   return returnData;
+}
+
+export function checkIfMatchesRunType(filterRunType: RunType, elementRunType: RunType, excludeAll: boolean): boolean {
+  if (!excludeAll) {
+    if (filterRunType === RunType.All) {
+      return true;
+    }
+  }
+  if (elementRunType === filterRunType) {
+    return true;
+  }
+  return false;
 }

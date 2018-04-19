@@ -1,4 +1,4 @@
-import {FormatDistanceType, FormatRadiusType} from '../models/FormatModel';
+import {FormatDate, FormatDistanceType, FormatRadiusType} from '../models/FormatModel';
 
 export function formatDistance(distance: number, factor: FormatDistanceType): number {
   return distance / factor;
@@ -7,3 +7,11 @@ export function formatDistance(distance: number, factor: FormatDistanceType): nu
 export function formatRadius(distance: number, factor: FormatRadiusType): number {
   return Math.sqrt((distance / factor) / Math.PI);
 }
+
+/*export function formatDate(date: string, outputFormat: FormatDate) {
+  switch (outputFormat) {
+    case FormatDate.Day {
+
+    }
+  }
+}*/

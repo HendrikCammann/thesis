@@ -12,3 +12,10 @@ export enum FormatDifferenceType {
   SwooshesOuter =  5,
   SwooshesInner = 1.5,
 }
+
+export enum FormatDate {
+  Day = 'day',
+  Week = 'week',
+  Month = 'month',
+  Year = 'year',
+}

@@ -14,7 +14,7 @@ import {
   checkIfSpecialVisual, findConnectionTarget,
   getCategoryColor, getConnectingOrientation, setupVisualBarVariables
 } from '../../../utils/calculateVisualVariables';
-import {selectAndFilterDataset} from '../../../utils/filter-dataset';
+import {checkIfMatchesRunType, selectAndFilterDataset} from '../../../utils/filter-dataset';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
@@ -56,7 +56,7 @@ export class ArcChart extends Vue {
     let data = selectAndFilterDataset(dataset, filter);
     let visualMeasurements = setupVisualBarVariables(data, canvasConstraints);
     let svg = this.setupSvg(root, visualMeasurements);
-    let diagram = this.drawDiagram(data, visualMeasurements, svg);
+    let diagram = this.drawDiagram(data, visualMeasurements, svg, filter);
     this.addArcsAndBubbles(diagram, svg);
   }
 
@@ -77,14 +77,17 @@ export class ArcChart extends Vue {
    * returns the visual data displayed in diagram
    * @param data
    * @param visualMeasurements
+   * @param filter
    * @param svg
    */
-  private drawDiagram(data, visualMeasurements, svg): any {
+  private drawDiagram(data, visualMeasurements, svg, filter: FilterModel): any {
     let barPositions = [];
     let rectXPos = visualMeasurements.padding;
 
     for (let key in data) {
       barPositions[key] = [];
+      this.addTextToBar(svg, rectXPos, visualMeasurements.height / 2 + 30, data[key].rangeName);
+
       for (let anchor in data[key].stats.typeCount) {
         let element = {
           start: rectXPos,
@@ -94,6 +97,7 @@ export class ArcChart extends Vue {
           distance: data[key].stats.typeCount[anchor].distance,
           width: parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
           color: getCategoryColor(data[key].stats.typeCount[anchor].type),
+          opacity: calculateCategoryOpacity(filter.selectedRunType, data[key].stats.typeCount[anchor].type),
           type: data[key].stats.typeCount[anchor].type,
           cluster: key,
           activities: data[key].stats.typeCount[anchor].activities,
@@ -104,17 +108,24 @@ export class ArcChart extends Vue {
         if (checkIfBarIsDrawable(element.width)) {
           svg.append('rect')
             .attr('x', element.start)
-            .attr('y', visualMeasurements.height / 2)
+            .attr('y', element.y)
             .attr('width', element.width)
             .attr('height', element.height)
             .attr('rx', 2)
             .attr('ry', 2)
             .attr('fill', element.color)
-            .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
+            .attr('opacity', element.opacity)
             .on('click', function() {
               filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
-          rectXPos += (parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)) + visualMeasurements.barMargin);
+
+          let activityPositions = {
+            x: (element.start + element.end) / 2,
+            y: element.y,
+          };
+
+          this.addActivities(svg, activityPositions, element.activities, filter.selectedRunType, visualMeasurements);
+          rectXPos += (element.width + visualMeasurements.barMargin);
         }
 
         barPositions[key].push(element);
@@ -123,6 +134,82 @@ export class ArcChart extends Vue {
     }
 
     return barPositions;
+  }
+
+  /**
+   *
+   * @param activityId
+   * @param {number} amount
+   * @param position
+   * @param {RunType} filterRunType
+   * @param visualVariables
+   * @returns {any}
+   */
+  private setupActivityVariables(activityId: any, amount: number, position: any, filterRunType: RunType, visualVariables: any): any {
+    let activity = this.$store.getters.getActivity(activityId);
+    if (checkIfMatchesRunType(filterRunType, activity.categorization.activity_type, true)) {
+      let elementMargin = 1;
+      let totalWidth = (amount * 5) + ((amount - 1) * elementMargin);
+
+      console.log(totalWidth);
+      return {
+        xPos: position.x - (totalWidth / 2),
+        yPos: position.y,
+        height: parseFloat(calculateBarLength(activity.base_data.distance, visualVariables.calculated.pxPerKm)) * 10,
+        width: 5,
+        margin: elementMargin,
+        opacity: calculateCategoryOpacity(filterRunType, activity.categorization.activity_type),
+        color: getCategoryColor(activity.categorization.activity_type),
+      };
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   *
+   * @param svg
+   * @param positions
+   * @param {Array<number>} activities
+   * @param {RunType} filterRunType
+   * @param visualVariables
+   */
+  private addActivities(svg, positions: any, activities: Array<number>, filterRunType: RunType, visualVariables: any) {
+    let position = {
+      x: positions.x,
+      y: 100,
+    };
+
+    let amount = activities.length;
+
+    activities.map(item => {
+        let visualVars = this.setupActivityVariables(item, amount, position, filterRunType, visualVariables);
+        if (visualVars) {
+          svg.append('rect')
+            .attr('x', visualVars.xPos)
+            .attr('y', visualVars.yPos)
+            .attr('height', visualVars.height)
+            .attr('width', visualVars.width)
+            .attr('opacity', visualVars.opacity)
+            .attr('fill', visualVars.color);
+          position.x += (visualVars.width + visualVars.margin);
+        }
+      })
+  }
+
+  /**
+   * added the name of a segment to the bar
+   * @param svg
+   * @param xPos
+   * @param yPos
+   * @param name
+   */
+  private addTextToBar(svg: any, xPos: number, yPos: number, name: string) {
+    svg.append('text')
+      .attr('x', xPos)
+      .attr('y', yPos)
+      .attr('font-size', '10px')
+      .text(name);
   }
 
   /**

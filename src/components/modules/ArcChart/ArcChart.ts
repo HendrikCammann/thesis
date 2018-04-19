@@ -57,6 +57,7 @@ export class ArcChart extends Vue {
     let visualMeasurements = setupVisualBarVariables(data, canvasConstraints);
     let svg = this.setupSvg(root, visualMeasurements);
     let diagram = this.drawDiagram(data, visualMeasurements, svg, filter);
+    this.addActivities(diagram, svg, filter);
     this.addArcsAndBubbles(diagram, svg);
   }
 
@@ -80,7 +81,7 @@ export class ArcChart extends Vue {
    * @param filter
    * @param svg
    */
-  private drawDiagram(data, visualMeasurements, svg, filter: FilterModel): any {
+  private drawDiagram(data, visualMeasurements, svg, filter): any {
     let barPositions = [];
     let rectXPos = visualMeasurements.padding;
 
@@ -119,12 +120,6 @@ export class ArcChart extends Vue {
               filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
 
-          let activityPositions = {
-            x: (element.start + element.end) / 2,
-            y: element.y,
-          };
-
-          this.addActivities(svg, activityPositions, element.activities, filter.selectedRunType, visualMeasurements);
           rectXPos += (element.width + visualMeasurements.barMargin);
         }
 
@@ -142,22 +137,21 @@ export class ArcChart extends Vue {
    * @param {number} amount
    * @param position
    * @param {RunType} filterRunType
-   * @param visualVariables
    * @returns {any}
    */
-  private setupActivityVariables(activityId: any, amount: number, position: any, filterRunType: RunType, visualVariables: any): any {
+  private setupActivityVariables(activityId: any, amount: number, position: any, filterRunType: RunType): any {
     let activity = this.$store.getters.getActivity(activityId);
     if (checkIfMatchesRunType(filterRunType, activity.categorization.activity_type, true)) {
       let elementMargin = 1;
       let totalWidth = (amount * 5) + ((amount - 1) * elementMargin);
 
-      console.log(totalWidth);
       return {
         xPos: position.x - (totalWidth / 2),
         yPos: position.y,
-        height: parseFloat(calculateBarLength(activity.base_data.distance, visualVariables.calculated.pxPerKm)) * 10,
+        height: parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
         width: 5,
         margin: elementMargin,
+        type: activity.categorization.activity_type,
         opacity: calculateCategoryOpacity(filterRunType, activity.categorization.activity_type),
         color: getCategoryColor(activity.categorization.activity_type),
       };
@@ -168,33 +162,49 @@ export class ArcChart extends Vue {
 
   /**
    *
+   * @param diagram
    * @param svg
-   * @param positions
-   * @param {Array<number>} activities
-   * @param {RunType} filterRunType
-   * @param visualVariables
+   * @param {FilterModel} filter
    */
-  private addActivities(svg, positions: any, activities: Array<number>, filterRunType: RunType, visualVariables: any) {
-    let position = {
-      x: positions.x,
-      y: 100,
-    };
+  private addActivities(diagram, svg, filter: FilterModel): void {
+    let keys = [];
+    for (let key in diagram) {
+      keys.push(key);
+    }
 
-    let amount = activities.length;
+    for (let i = 0; i < keys.length; i++) {
+      for (let j = 0; j < diagram[keys[i]].length; j++) {
+        let position = {
+          x: (diagram[keys[i]][j].start + diagram[keys[i]][j].end) / 2,
+          y: 100,
+        };
 
-    activities.map(item => {
-        let visualVars = this.setupActivityVariables(item, amount, position, filterRunType, visualVariables);
-        if (visualVars) {
-          svg.append('rect')
-            .attr('x', visualVars.xPos)
-            .attr('y', visualVars.yPos)
-            .attr('height', visualVars.height)
-            .attr('width', visualVars.width)
-            .attr('opacity', visualVars.opacity)
-            .attr('fill', visualVars.color);
-          position.x += (visualVars.width + visualVars.margin);
-        }
-      })
+        diagram[keys[i]][j].activities.map(item => {
+            position.x += this.drawActivity(this.setupActivityVariables(item, diagram[keys[i]][j].activities.length, position, filter.selectedRunType), svg)
+        });
+      }
+    }
+  }
+
+  /**
+   *
+   * @param activityAttributes
+   * @param svg
+   * @returns {number}
+   */
+  private drawActivity(activityAttributes, svg): number {
+    if (activityAttributes) {
+      svg.append('rect')
+        .attr('x', activityAttributes.xPos)
+        .attr('y', activityAttributes.yPos)
+        .attr('height', activityAttributes.height)
+        .attr('width', activityAttributes.width)
+        .attr('opacity', activityAttributes.opacity)
+        .attr('fill', activityAttributes.color);
+      return (activityAttributes.width + activityAttributes.margin);
+    } else {
+      return 0
+    }
   }
 
   /**
@@ -270,6 +280,14 @@ export class ArcChart extends Vue {
     }
   }
 
+  /**
+   *
+   * @param pathAttributes
+   * @param svg
+   * @param isUpper
+   * @param color
+   * @param opacity
+   */
   private drawPath(pathAttributes, svg, isUpper, color, opacity) {
     let lineGenerator = d3.line().curve(d3.curveMonotoneX);
     let path = [];

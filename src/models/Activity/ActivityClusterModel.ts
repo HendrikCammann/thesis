@@ -46,6 +46,7 @@ class ActivityClusterStatsModel {
 
 export class ActivityClusterModel {
   rangeName: string;
+  rangeDate: Date;
   activities: number[];
   stats: ActivityClusterStatsModel;
 

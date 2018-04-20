@@ -703,7 +703,6 @@ export class ArcChart extends Vue {
       .datum(area.data)
       .attr('d', area.area)
       .attr("fill", gradientId);
-      //.attr('opacity', CategoryConnectingOpacity.ActivityArea);
   }
 
   mounted() {

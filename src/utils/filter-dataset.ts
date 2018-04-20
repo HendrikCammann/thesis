@@ -7,19 +7,19 @@ export function formatDatasetKey(key: string): number {
 
 export function selectAndFilterDataset(dataset, filter: FilterModel): any {
   let tempData;
-  let startYear;
-  let endYear;
+  let startDate;
+  let endDate;
 
   if (filter.timeRange.start) {
-    startYear = filter.timeRange.start.getFullYear();
+    startDate = filter.timeRange.start;
   } else {
-    startYear = -1;
+    startDate = new Date(1970);
   }
 
   if (filter.timeRange.end) {
-    endYear = filter.timeRange.end.getFullYear();
+    endDate = filter.timeRange.end;
   } else {
-    endYear = new Date(new Date().getFullYear());
+    endDate = new Date(new Date());
   }
 
   switch (filter.selectedCluster) {
@@ -44,7 +44,7 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
     }
   } else {
     for (let key in tempData) {
-      if (formatDatasetKey(key) >= startYear && formatDatasetKey(key) <= endYear) {
+      if (tempData[key].rangeDate >= startDate && tempData[key].rangeDate <= endDate) {
         returnData.unshift(tempData[key]);
       }
     }
@@ -59,8 +59,5 @@ export function checkIfMatchesRunType(filterRunType: RunType, elementRunType: Ru
       return true;
     }
   }
-  if (elementRunType === filterRunType) {
-    return true;
-  }
-  return false;
+  return (elementRunType === filterRunType);
 }

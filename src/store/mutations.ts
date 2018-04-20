@@ -8,6 +8,7 @@ import {ActivityDetailModel} from '../models/Activity/ActivityDetailModel';
 import {ActivityStreamModel} from '../models/Activity/ActivityStreamModel';
 import {ActivityZoneModel} from '../models/Activity/ActivityZoneModel';
 import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
+import {TimeRangeModel} from '../models/Filter/FilterModel';
 
 enum timeRanges {
   All = 'all',
@@ -196,6 +197,7 @@ function sortActivities (array, bucket) {
 
     acc[timeRange].activities.push(activity.id);
     acc[timeRange].rangeName = timeRange;
+    acc[timeRange].rangeDate = new Date(activity.date);
     acc[timeRange].stats.distance += activity.base_data.distance;
     acc[timeRange].stats.time += activity.base_data.duration;
     acc[timeRange].stats.count++;
@@ -302,22 +304,10 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
-    if (filterBy !== typeof Date) {
-      if (filterBy === 'all') {
-        state.filter.timeRange.isRange = false;
-        state.filter.timeRange.start = new Date();
-        state.filter.timeRange.end = new Date(1970);
-        state.filter.showEverything = true;
-      } else {
-        state.filter.timeRange.isRange = false;
-        state.filter.timeRange.start = new Date(filterBy);
-        state.filter.timeRange.end = new Date(filterBy, 11, 31);
-        state.filter.showEverything = false;
-      }
-    } else {
-      state.filter.timeRange.isRange = true;
+      state.filter.timeRange.start = filterBy.start;
+      state.filter.timeRange.end = filterBy.end;
+      state.filter.timeRange.isRange = filterBy.isRange;
       state.filter.showEverything = false;
-    }
   }
 
 };

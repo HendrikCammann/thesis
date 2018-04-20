@@ -10,6 +10,7 @@ import {ArcChart} from '../../modules/ArcChart';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
+import {TimeRangeModel} from '../../../models/Filter/FilterModel';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -31,6 +32,9 @@ import {filterEvents} from '../../../events/filter';
 export class ActivitiesContainer extends Vue {
 
   public filterYear: string = 'all';
+
+  public startInput: any = '';
+  public endInput: any = '';
 
   public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1);
 
@@ -85,7 +89,25 @@ export class ActivitiesContainer extends Vue {
   }
 
   public selectYear(event) {
-    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterYear);
+    // this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterYear);
+  }
+
+  public setDateRange(event) {
+    let timeRange = new TimeRangeModel();
+    if (this.startInput === '') {
+      timeRange.start = new Date(1970);
+    } else {
+      timeRange.start = new Date(this.startInput);
+    }
+
+    if (this.endInput === '') {
+      timeRange.end = new Date(new Date().getFullYear(), 11, 31);
+    } else {
+      timeRange.end = new Date(this.endInput);
+    }
+
+    timeRange.isRange = true;
+    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, timeRange);
   }
 
   mounted() {

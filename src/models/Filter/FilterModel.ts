@@ -1,6 +1,6 @@
 import {ClusterType, RunType} from '../../store/state';
 
-class TimeRangeModel {
+export class TimeRangeModel {
   start: Date;
   end: Date;
   isRange: boolean;

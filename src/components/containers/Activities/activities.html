@@ -1,11 +1,15 @@
 <div class="container">
   <div>
-    <select v-model="filterYear" @change="selectYear($event)">
+    <!--<select v-model="filterYear" @change="selectYear($event)">
       <option value="all">All</option>
       <option value="2018">2018</option>
       <option value="2017">2017</option>
       <option value="2016">2016</option>
-    </select>
+    </select>-->
+    start:
+    <input v-model="startInput" type="date" @change="setDateRange($event)">
+    end:
+    <input v-model="endInput" type="date" @change="setDateRange($event)">
     <div id="filter__time" @click="selectCluster($event)">
       <a href="#" id="year" class="button">Group by year</a>
       <a href="#" id="month" class="button">Group by month</a>

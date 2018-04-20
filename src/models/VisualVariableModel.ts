@@ -8,7 +8,8 @@ export enum CategoryConnectingOpacity {
   Hidden = 0,
   Active = 0.15,
   SingleActive = 0.3,
-  Inactive = 0.05
+  Inactive = 0.05,
+  ActivityArea = 0.1,
 }
 
 export enum CategoryColors {

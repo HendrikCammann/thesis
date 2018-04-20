@@ -8,6 +8,10 @@ export function formatRadius(distance: number, factor: FormatRadiusType): number
   return Math.sqrt((distance / factor) / Math.PI);
 }
 
+export function getPercentualOffset(valA, valB, factor): number {
+  return (Math.abs(valA - valB) * factor);
+}
+
 /*export function formatDate(date: string, outputFormat: FormatDate) {
   switch (outputFormat) {
     case FormatDate.Day {

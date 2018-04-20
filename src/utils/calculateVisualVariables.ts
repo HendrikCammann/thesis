@@ -5,7 +5,14 @@ import {
 } from '../models/VisualVariableModel';
 import {formatDistance} from './format-data';
 import {FormatDistanceType} from '../models/FormatModel';
+import * as d3 from 'd3';
 
+/**
+ *
+ * @param {Object} dataset
+ * @param {CanvasConstraints} canvasContraints
+ * @returns {any}
+ */
 export function setupVisualBarVariables(dataset: Object, canvasContraints: CanvasConstraints): any {
   let visualMeasurements = {
     padding: canvasContraints.padding,
@@ -63,10 +70,10 @@ export function calaculateConnectingHeight(actualItemLength: number, nextItemLen
 
 /**
  * calculates the opacity for each main group depending on filter
- * @param {RunType} filter
- * @param {RunType} type
- * @returns {number}
- */
+* @param {RunType} filter
+* @param {RunType} type
+* @returns {number}
+*/
 export function calculateCategoryOpacity(filter: RunType, type: RunType): number {
   if (type == null) {
     return CategoryOpacity.Hidden;
@@ -186,6 +193,14 @@ export function checkIfSpecialVisual(type: RunType): boolean {
   return false;
 }
 
+/**
+ *
+ * @param {number} currentIndex
+ * @param {number} innerIndex
+ * @param keys
+ * @param items
+ * @returns {number}
+ */
 export function findConnectionTarget(currentIndex: number, innerIndex: number, keys: any, items: any): number {
   let indexOfItemToConnectTo = 1;
 
@@ -196,3 +211,42 @@ export function findConnectionTarget(currentIndex: number, innerIndex: number, k
   return indexOfItemToConnectTo;
 }
 
+/**
+ *
+ * @param lineA
+ * @param lineB
+ * @returns {any}
+ */
+export function createAreaBetweenLines(lineA, lineB): any {
+  let areaData = [];
+
+  for (let i = 0; i < lineA.length; i++) {
+    let obj = {
+      xOuter: lineA[i][0],
+      yOuter: lineA[i][1],
+      xInner: lineB[i][0],
+      yInner: lineB[i][1]
+    };
+    areaData.push(obj);
+  }
+
+  let area = d3.area()
+    .curve(d3.curveMonotoneX)
+    .x0(function (d, i) {
+      return areaData[i].xOuter;
+    })
+    .x1(function (d, i) {
+      return areaData[i].xInner;
+    })
+    .y0(function (d, i) {
+      return areaData[i].yOuter;
+    })
+    .y1(function (d, i) {
+      return areaData[i].yInner;
+    });
+
+  return {
+    area: area,
+    data: areaData,
+  };
+}

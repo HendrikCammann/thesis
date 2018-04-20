@@ -5,19 +5,20 @@ import * as d3 from 'd3';
 import {ClusterType, RunType} from '../../../store/state';
 import {FilterModel} from '../../../models/Filter/FilterModel';
 import {MutationTypes} from '../../../store/mutation-types';
-import {formatDistance, formatRadius} from '../../../utils/format-data';
+import {formatDistance, formatRadius, getPercentualOffset} from '../../../utils/format-data';
 import {FormatDifferenceType, FormatDistanceType, FormatRadiusType} from '../../../models/FormatModel';
 import {
   calaculateConnectingHeight,
   calculateBarLength,
   calculateCategoryOpacity, calculateConnectingOpacity, checkIfBarIsDrawable, checkIfConnectionIsDrawable,
-  checkIfSpecialVisual, findConnectionTarget,
+  checkIfSpecialVisual, createAreaBetweenLines, findConnectionTarget,
   getCategoryColor, getConnectingOrientation, setupVisualBarVariables
 } from '../../../utils/calculateVisualVariables';
 import {checkIfMatchesRunType, selectAndFilterDataset} from '../../../utils/filter-dataset';
-import {CanvasConstraints} from '../../../models/VisualVariableModel';
+import {CanvasConstraints, CategoryConnectingOpacity} from '../../../models/VisualVariableModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
+import {getKeys} from '../../../utils/array-helper';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -45,6 +46,14 @@ export class ArcChart extends Vue {
     this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
   }
 
+
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  //////////////////////////////All//////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+
   /**
    *
    * @param {string} root
@@ -52,12 +61,13 @@ export class ArcChart extends Vue {
    * @param {FilterModel} filter
    * @param {CanvasConstraints} canvasConstraints
    */
-  public arcChart(root: string, dataset: Object, filter: FilterModel, canvasConstraints: CanvasConstraints) {
+  private arcChart(root: string, dataset: Object, filter: FilterModel, canvasConstraints: CanvasConstraints) {
     let data = selectAndFilterDataset(dataset, filter);
     let visualMeasurements = setupVisualBarVariables(data, canvasConstraints);
     let svg = this.setupSvg(root, visualMeasurements);
     let diagram = this.drawDiagram(data, visualMeasurements, svg, filter);
-    this.addActivities(diagram, svg, filter);
+    let activities = this.addActivities(diagram, svg, filter);
+    this.addActivitiesConnection(svg, diagram, activities, filter);
     this.addArcsAndBubbles(diagram, svg);
   }
 
@@ -131,81 +141,13 @@ export class ArcChart extends Vue {
     return barPositions;
   }
 
-  /**
-   *
-   * @param activityId
-   * @param {number} amount
-   * @param position
-   * @param {RunType} filterRunType
-   * @returns {any}
-   */
-  private setupActivityVariables(activityId: any, amount: number, position: any, filterRunType: RunType): any {
-    let activity = this.$store.getters.getActivity(activityId);
-    if (checkIfMatchesRunType(filterRunType, activity.categorization.activity_type, true)) {
-      let elementMargin = 1;
-      let totalWidth = (amount * 5) + ((amount - 1) * elementMargin);
 
-      return {
-        xPos: position.x - (totalWidth / 2),
-        yPos: position.y - parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
-        height: parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
-        width: 5,
-        margin: elementMargin,
-        type: activity.categorization.activity_type,
-        opacity: calculateCategoryOpacity(filterRunType, activity.categorization.activity_type),
-        color: getCategoryColor(activity.categorization.activity_type),
-      };
-    } else {
-      return false;
-    }
-  }
 
-  /**
-   *
-   * @param diagram
-   * @param svg
-   * @param {FilterModel} filter
-   */
-  private addActivities(diagram, svg, filter: FilterModel): void {
-    let keys = [];
-    for (let key in diagram) {
-      keys.push(key);
-    }
-
-    for (let i = 0; i < keys.length; i++) {
-      for (let j = 0; j < diagram[keys[i]].length; j++) {
-        let position = {
-          x: (diagram[keys[i]][j].start + diagram[keys[i]][j].end) / 2,
-          y: 100,
-        };
-
-        diagram[keys[i]][j].activities.map(item => {
-            position.x += this.drawActivity(this.setupActivityVariables(item, diagram[keys[i]][j].activities.length, position, filter.selectedRunType), svg)
-        });
-      }
-    }
-  }
-
-  /**
-   *
-   * @param activityAttributes
-   * @param svg
-   * @returns {number}
-   */
-  private drawActivity(activityAttributes, svg): number {
-    if (activityAttributes) {
-      svg.append('rect')
-        .attr('x', activityAttributes.xPos)
-        .attr('y', activityAttributes.yPos)
-        .attr('height', activityAttributes.height)
-        .attr('width', activityAttributes.width)
-        .attr('opacity', activityAttributes.opacity)
-        .attr('fill', activityAttributes.color);
-      return (activityAttributes.width + activityAttributes.margin);
-    } else {
-      return 0
-    }
-  }
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  /////////////////////////////Text//////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
 
   /**
    * added the name of a segment to the bar
@@ -222,17 +164,21 @@ export class ArcChart extends Vue {
       .text(name);
   }
 
+
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  /////////////////////////////Arcs//////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+
   /**
    * connects the the bars with arcs
    * @param diagram
    * @param svg
    */
   private addArcsAndBubbles(diagram, svg): void {
-    let keys = [];
-
-    for (let key in diagram) {
-      keys.push(key);
-    }
+    let keys = getKeys(diagram);
 
     for (let i = 0; i < keys.length; i++) {
       for (let j = 0; j < diagram[keys[i]].length; j++) {
@@ -282,37 +228,6 @@ export class ArcChart extends Vue {
 
   /**
    *
-   * @param pathAttributes
-   * @param svg
-   * @param isUpper
-   * @param color
-   * @param opacity
-   */
-  private drawPath(pathAttributes, svg, isUpper, color, opacity) {
-    let lineGenerator = d3.line().curve(d3.curveMonotoneX);
-    let path = [];
-    if (isUpper) {
-      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos]);
-      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos - 30]);
-      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos]);
-    } else {
-      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos + pathAttributes.general.offset]);
-      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos + pathAttributes.general.offset + 30]);
-      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos + pathAttributes.general.offset]);
-    }
-
-    svg.append('path')
-      .attr('d', lineGenerator(path))
-      .attr('stroke-dasharray', '5, 5')
-      .attr('fill', 'none')
-      .attr('stroke-width', '1')
-      .attr('stroke-alignment', 'inner')
-      .attr('stroke', color)
-      .attr('opacity', opacity);
-  }
-
-  /**
-   *
    * @param actualItem
    * @param nextItem
    * @returns {any}
@@ -346,6 +261,37 @@ export class ArcChart extends Vue {
         }
       },
     }
+  }
+
+  /**
+   *
+   * @param pathAttributes
+   * @param svg
+   * @param isUpper
+   * @param color
+   * @param opacity
+   */
+  private drawPath(pathAttributes, svg, isUpper, color, opacity) {
+    let lineGenerator = d3.line().curve(d3.curveMonotoneX);
+    let path = [];
+    if (isUpper) {
+      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos]);
+      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos - 30]);
+      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos]);
+    } else {
+      path.push([pathAttributes.start.xPos, pathAttributes.start.yPos + pathAttributes.general.offset]);
+      path.push([pathAttributes.mid.xPos, pathAttributes.mid.yPos + pathAttributes.general.offset + 30]);
+      path.push([pathAttributes.end.xPos, pathAttributes.end.yPos + pathAttributes.general.offset]);
+    }
+
+    svg.append('path')
+      .attr('d', lineGenerator(path))
+      .attr('stroke-dasharray', '5, 5')
+      .attr('fill', 'none')
+      .attr('stroke-width', '1')
+      .attr('stroke-alignment', 'inner')
+      .attr('stroke', color)
+      .attr('opacity', opacity);
   }
 
   /**
@@ -531,6 +477,207 @@ export class ArcChart extends Vue {
         .attr('opacity', calculateConnectingOpacity(this.filter.selectedRunType, type))
         .attr('fill', item.color)
     })
+  }
+
+
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////Activity Bars///////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+
+  /**
+   *
+   * @param diagram
+   * @param svg
+   * @param {FilterModel} filter
+   */
+  private addActivities(diagram, svg, filter: FilterModel): any {
+    let keys = getKeys(diagram);
+    let activityBlocks = [];
+
+    for (let i = 0; i < keys.length; i++) {
+      let blockPosition = {
+        start: {
+          x: 0,
+          y: 0,
+        },
+        end: {
+          x: 0,
+          y: 0,
+        },
+      };
+
+      for (let j = 0; j < diagram[keys[i]].length; j++) {
+        let position = {
+          x: (diagram[keys[i]][j].start + diagram[keys[i]][j].end) / 2,
+          y: 100,
+        };
+
+        blockPosition.start.y = position.y;
+        blockPosition.end.y = position.y;
+
+        let length = diagram[keys[i]][j].activities.length - 1;
+        diagram[keys[i]][j].activities.map((item, k) => {
+          let activity = this.setupActivityVariables(item, diagram[keys[i]][j].activities.length, position, filter.selectedRunType)
+          position.x += this.drawActivity(activity, svg);
+
+          if (activity) {
+            if (k === 0) {
+              blockPosition.start.x = activity.xPos;
+            }
+
+            if (k === length) {
+              blockPosition.end.x = activity.xPos + activity.width;
+            }
+          }
+        });
+      }
+      activityBlocks.push(blockPosition);
+    }
+
+    return activityBlocks;
+  }
+
+  /**
+   *
+   * @param activityId
+   * @param {number} amount
+   * @param position
+   * @param {RunType} filterRunType
+   * @returns {any}
+   */
+  private setupActivityVariables(activityId: any, amount: number, position: any, filterRunType: RunType): any {
+    let activity = this.$store.getters.getActivity(activityId);
+    if (checkIfMatchesRunType(filterRunType, activity.categorization.activity_type, true)) {
+      let elementMargin = 1;
+      let totalWidth = (amount * 5) + ((amount - 1) * elementMargin);
+
+      return {
+        xPos: position.x - (totalWidth / 2),
+        yPos: position.y - parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
+        height: parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
+        width: 5,
+        margin: elementMargin,
+        type: activity.categorization.activity_type,
+        opacity: calculateCategoryOpacity(filterRunType, activity.categorization.activity_type),
+        color: getCategoryColor(activity.categorization.activity_type),
+      };
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   *
+   * @param activityAttributes
+   * @param svg
+   * @returns {number}
+   */
+  private drawActivity(activityAttributes, svg): number {
+    if (activityAttributes) {
+      svg.append('rect')
+        .attr('x', activityAttributes.xPos)
+        .attr('y', activityAttributes.yPos)
+        .attr('height', activityAttributes.height)
+        .attr('width', activityAttributes.width)
+        .attr('opacity', activityAttributes.opacity)
+        .attr('fill', activityAttributes.color);
+      return (activityAttributes.width + activityAttributes.margin);
+    } else {
+      return 0
+    }
+  }
+
+
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ////////////////////Activity Connection////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+
+  /**
+   *
+   * @param svg
+   * @param diagram
+   * @param activities
+   * @param filter
+   */
+  private addActivitiesConnection(svg, diagram, activities, filter) {
+    for (let i = 0; i < activities.length; i++) {
+      diagram[i].map(bar => {
+        if (checkIfMatchesRunType(filter.selectedRunType, bar.type, true)) {
+          this.drawActivitiesConnection(svg, this.setupActivitiesConnectionVariables(bar, activities[i]), bar.type)
+        }
+      })
+    }
+  }
+
+  /**
+   *
+   * @param bar
+   * @param block
+   * @returns {any}
+   */
+  private setupActivitiesConnectionVariables(bar, block): any {
+    return {
+      left: {
+        start: {
+          x: bar.start,
+          y: bar.y,
+        },
+        mid: {
+          x: bar.start - getPercentualOffset(bar.start, block.start.x, 0.2),
+          y: bar.y - getPercentualOffset(bar.y, block.start.y, 0.75),
+        },
+        end: {
+          x: block.start.x ,
+          y: block.start.y,
+        },
+      },
+      right: {
+        start: {
+          x: bar.end,
+          y: bar.y,
+        },
+        mid: {
+          x: bar.end + getPercentualOffset(bar.end, block.end.x, 0.2),
+          y: bar.y - getPercentualOffset(bar.y, block.end.y, 0.75),
+        },
+        end: {
+          x: block.end.x,
+          y: block.end.y,
+        }
+      }
+    }
+  }
+
+  /**
+   *
+   * @param svg
+   * @param variables
+   * @param type
+   */
+  private drawActivitiesConnection(svg, variables, type): void {
+    let leftPath = [];
+    leftPath.push([variables.left.start.x, variables.left.start.y]);
+    // leftPath.push([variables.left.mid.x, variables.left.mid.y]);
+    leftPath.push([variables.left.end.x, variables.left.end.y]);
+
+    let rightPath = [];
+    rightPath.push([variables.right.start.x, variables.right.start.y]);
+    // rightPath.push([variables.right.mid.x, variables.right.mid.y]);
+    rightPath.push([variables.right.end.x, variables.right.end.y]);
+
+    let area = createAreaBetweenLines(leftPath, rightPath);
+
+    svg.append('path')
+      .datum(area.data)
+      .attr('d', area.area)
+      .attr('fill', getCategoryColor(type))
+      .attr('opacity', CategoryConnectingOpacity.ActivityArea);
   }
 
   mounted() {

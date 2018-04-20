@@ -147,7 +147,7 @@ export class ArcChart extends Vue {
 
       return {
         xPos: position.x - (totalWidth / 2),
-        yPos: position.y,
+        yPos: position.y - parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
         height: parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
         width: 5,
         margin: elementMargin,

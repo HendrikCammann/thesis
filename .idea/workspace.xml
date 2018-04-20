@@ -16,22 +16,20 @@
       <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="255" column="0" lean-forward="true" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
+            <state relative-caret-position="615">
+              <caret line="159" column="5" lean-forward="true" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
               <folding>
                 <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#drawDiagram#0;n#ArcChart#0" expanded="false" />
-                <element signature="n#!!block;n#setupActivityVariables#0;n#ArcChart#0" expanded="false" />
-                <element signature="n#!!block;n#addActivities#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#drawActivity#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#setupPathVariables#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!doc;n#drawPath#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#drawPath#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" expanded="false" />
                 <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" expanded="false" />
-                <element signature="e#12802#13059#0" expanded="false" />
-                <element signature="e#13123#13452#0" expanded="false" />
-                <element signature="e#13472#14161#0" expanded="false" />
+                <element signature="e#12874#13131#0" expanded="false" />
+                <element signature="e#13195#13524#0" expanded="false" />
+                <element signature="e#13544#14233#0" expanded="false" />
                 <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" expanded="false" />
               </folding>
             </state>
@@ -515,12 +513,12 @@
       <workItem from="1523604327251" duration="15877000" />
       <workItem from="1523781521284" duration="19254000" />
       <workItem from="1523894963804" duration="1424000" />
-      <workItem from="1524139127625" duration="7856000" />
+      <workItem from="1524139127625" duration="8500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230763000" />
+    <option name="totallyTimeSpent" value="231407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="1920" height="1177" extended-state="6" />
@@ -1017,22 +1015,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="255" column="0" lean-forward="true" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
+        <state relative-caret-position="615">
+          <caret line="159" column="5" lean-forward="true" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
           <folding>
             <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#drawDiagram#0;n#ArcChart#0" expanded="false" />
-            <element signature="n#!!block;n#setupActivityVariables#0;n#ArcChart#0" expanded="false" />
-            <element signature="n#!!block;n#addActivities#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#drawActivity#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#setupPathVariables#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!doc;n#drawPath#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#drawPath#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" expanded="false" />
             <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" expanded="false" />
-            <element signature="e#12802#13059#0" expanded="false" />
-            <element signature="e#13123#13452#0" expanded="false" />
-            <element signature="e#13472#14161#0" expanded="false" />
+            <element signature="e#12874#13131#0" expanded="false" />
+            <element signature="e#13195#13524#0" expanded="false" />
+            <element signature="e#13544#14233#0" expanded="false" />
             <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" expanded="false" />
           </folding>
         </state>

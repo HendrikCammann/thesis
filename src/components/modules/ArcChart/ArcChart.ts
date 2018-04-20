@@ -560,6 +560,7 @@ export class ArcChart extends Vue {
         height: parseFloat(calculateBarLength(activity.base_data.distance, 0.2)) * 10,
         width: 5,
         margin: elementMargin,
+        name: activity.name,
         type: activity.categorization.activity_type,
         opacity: calculateCategoryOpacity(filterRunType, activity.categorization.activity_type),
         color: getCategoryColor(activity.categorization.activity_type),
@@ -583,7 +584,10 @@ export class ArcChart extends Vue {
         .attr('height', activityAttributes.height)
         .attr('width', activityAttributes.width)
         .attr('opacity', activityAttributes.opacity)
-        .attr('fill', activityAttributes.color);
+        .attr('fill', activityAttributes.color)
+        .on('click', function() {
+          console.log(activityAttributes.name);
+        });
       return (activityAttributes.width + activityAttributes.margin);
     } else {
       return 0
@@ -623,6 +627,7 @@ export class ArcChart extends Vue {
    */
   private setupActivitiesConnectionVariables(bar, block): any {
     return {
+      id: bar.start + '-' + block.start.x,
       left: {
         start: {
           x: bar.start,
@@ -673,11 +678,32 @@ export class ArcChart extends Vue {
 
     let area = createAreaBetweenLines(leftPath, rightPath);
 
+    let gradientId = 'url(#' + variables.id +')';
+    let defs = svg.append('defs');
+    let gradient = defs.append('linearGradient')
+                    .attr('id', variables.id)
+                    .attr("x1", "0%")
+                    .attr("x2", "0%")
+                    .attr("y1", "0%")
+                    .attr("y2", "100%");
+
+    gradient.append("stop")
+      .attr('class', 'start')
+      .attr("offset", "0%")
+      .attr("stop-color", getCategoryColor(type))
+      .attr("stop-opacity", CategoryConnectingOpacity.ActivityArea);
+
+    gradient.append("stop")
+      .attr('class', 'end')
+      .attr("offset", "100%")
+      .attr("stop-color", getCategoryColor(type))
+      .attr("stop-opacity", 0.02);
+
     svg.append('path')
       .datum(area.data)
       .attr('d', area.area)
-      .attr('fill', getCategoryColor(type))
-      .attr('opacity', CategoryConnectingOpacity.ActivityArea);
+      .attr("fill", gradientId);
+      //.attr('opacity', CategoryConnectingOpacity.ActivityArea);
   }
 
   mounted() {

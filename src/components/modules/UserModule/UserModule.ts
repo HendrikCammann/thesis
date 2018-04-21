@@ -15,7 +15,6 @@ export class UserModule extends Vue {
 
   @Watch('user')
   onPropertyChanged(val: any, oldVal: any) {
-    console.log(this.user);
   }
 
 }

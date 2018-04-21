@@ -2,9 +2,17 @@
   $root: &;
   height: calc(100vh - 65px);
 
+  #{&}__row {
+    margin: 0;
+  }
+
   #{&}__content {
     padding: 0;
-    background-color: red;
+
+    #{$root}__visualization {
+      padding: 20px;
+      text-align: right;
+    }
   }
 
   #{&}__fixed {

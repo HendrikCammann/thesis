@@ -24,7 +24,7 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
       totalDistance: 0,
       totalClusters: 0,
       totalBars: 0,
-      displayedWidth: 1200,
+      displayedWidth: canvasContraints.width,
       clusterMargin: 0,
       pxPerKm: 0,
     }
@@ -64,8 +64,12 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
  * @param {number} factor
  * @returns {number}
  */
-export function calaculateConnectingHeight(actualItemLength: number, nextItemLength: number, factor: number) {
-  return parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
+export function calaculateConnectingHeight(actualItemLength: number, nextItemLength: number, factor: number, maxHeight: number, canvasHeight: number, barHeight: number) {
+  let height = (canvasHeight / 4) - barHeight;
+  let itemHeight = parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
+  let percentageFromMaxHeight = 100 / maxHeight * itemHeight;
+  return height * percentageFromMaxHeight;
+  // return parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
 }
 
 /**

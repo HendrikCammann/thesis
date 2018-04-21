@@ -56,6 +56,10 @@ const getters: GetterTree<State, State> = {
   getFilter: (state) => {
     return state.filter;
   },
+
+  getDashboardFilter: (state) => {
+    return state.dashboardFilter;
+  },
 };
 
 export default getters;

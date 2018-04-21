@@ -10,12 +10,25 @@ import {ActivityZoneModel} from '../models/Activity/ActivityZoneModel';
 import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
 import {TimeRangeModel} from '../models/Filter/FilterModel';
 import {loadingStatus} from '../models/App/AppStatus';
+import {UserModel} from '../models/User/UserModel';
 
 enum timeRanges {
   All = 'all',
   Week = 'week',
   Month = 'month',
   Year = 'year'
+}
+
+function applyUserModel(item): UserModel {
+  let user = new UserModel();
+
+  user.firstname = item.firstname;
+  user.lastname = item.lastname;
+  user.sex = item.sex;
+  user.profile_medium = item.profile_medium;
+  user.profile = item.profile;
+
+  return user;
 }
 
 function applyActivityModelStructure(item): ActivityModel {
@@ -240,7 +253,7 @@ function sortActivities (array, bucket) {
 
 const mutations: MutationTree<State> = {
   [MutationTypes.GET_ATHLETE]: (state: State, {items}) => {
-    state.user = items;
+    state.user = applyUserModel(items);
     state.appLoadingStatus.athlete = loadingStatus.Loaded;
   },
 

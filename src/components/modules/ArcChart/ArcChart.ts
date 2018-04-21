@@ -47,7 +47,7 @@ export class ArcChart extends Vue {
     this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
   }
 
-
+  private maxChange = 0;
 
   ///////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////
@@ -139,6 +139,15 @@ export class ArcChart extends Vue {
       rectXPos += visualMeasurements.calculated.clusterMargin;
     }
 
+    for (let i = 0; i < barPositions.length; i++) {
+      for (let j = 0; j < barPositions[i].length; j++) {
+        if (barPositions[i + 1] !== undefined) {
+          if (Math.abs(barPositions[i][j].distance - barPositions[i + 1][j].distance) > this.maxChange && barPositions[i + 1][j].distance !== 0 && barPositions[i][j].distance !== 0) {
+            this.maxChange = Math.abs(barPositions[i][j].distance - barPositions[i + 1][j].distance);
+          }
+        }
+      }
+    }
     return barPositions;
   }
 
@@ -246,7 +255,7 @@ export class ArcChart extends Vue {
           xPos: actualItem.start,
           yPos: actualItem.y,
           width: Math.abs(actualItem.start - actualItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, this.maxChange, this.canvasConstraints.height, actualItem.height),
         }
       },
       inner: {
@@ -258,7 +267,7 @@ export class ArcChart extends Vue {
           xPos: nextItem.start,
           yPos: actualItem.y,
           width: Math.abs(nextItem.start - nextItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, this.maxChange, this.canvasConstraints.height, actualItem.height),
         }
       },
     }

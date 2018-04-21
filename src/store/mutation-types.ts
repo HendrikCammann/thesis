@@ -4,8 +4,11 @@ export class MutationTypes {
   public static RESET_VALUE = 'RESET_VALUE';
 
   public static SET_LOADING_STATUS = 'SET_LOADING_STATUS';
+  public static SET_ATHLETE_LOADING_STATUS = 'SET_ATHLETE_LOADING_STATUS';
 
   public static GET_LIST = 'GET_LIST';
+
+  public static GET_ATHLETE = '[Strava-API] GET_ATHLETE';
 
   public static GET_ACTIVITIES = '[Strava-API] GET_ACTIVITIES';
   public static GET_ACTIVITY = '[Strava-API] GET_ACTIVITY';

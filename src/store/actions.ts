@@ -31,6 +31,14 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.GET_ATHLETE]: ({commit}) => {
+    stravaAPI.getAthlete(16363367, token, (items) => {
+      commit(MutationTypes.GET_ATHLETE, {
+        items
+      });
+    });
+  },
+
   [MutationTypes.GET_ACTIVITIES]: ({commit}) => {
     /*if (localStorage.getItem('activities') === null) {*/
       stravaAPI.getActivityPages(page, per_page, token, (items) => {
@@ -95,6 +103,12 @@ const actions: ActionTree<State, State> = {
 
   [MutationTypes.SET_LOADING_STATUS]: ({commit}, loadingStatus) => {
     commit(MutationTypes.SET_LOADING_STATUS, {
+      loadingStatus
+    });
+  },
+
+  [MutationTypes.SET_ATHLETE_LOADING_STATUS]: ({commit}, loadingStatus) => {
+    commit(MutationTypes.SET_ATHLETE_LOADING_STATUS, {
       loadingStatus
     });
   }

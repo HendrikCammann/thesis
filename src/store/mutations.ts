@@ -239,6 +239,11 @@ function sortActivities (array, bucket) {
 }
 
 const mutations: MutationTree<State> = {
+  [MutationTypes.GET_ATHLETE]: (state: State, {items}) => {
+    state.user = items;
+    state.appLoadingStatus.athlete = loadingStatus.Loaded;
+  },
+
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
       items.forEach(item => {
@@ -305,6 +310,10 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_LOADING_STATUS]: (state: State, {loadingStatus}) => {
     state.appLoadingStatus.activities = loadingStatus;
+  },
+
+  [MutationTypes.SET_ATHLETE_LOADING_STATUS]: (state: State, {loadingStatus}) => {
+    state.appLoadingStatus.athlete = loadingStatus;
   }
 
 };

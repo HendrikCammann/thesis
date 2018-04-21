@@ -3,10 +3,10 @@
 
   <div class="user__image">
     <div class="user__stripes"></div>
-    <img class="user__portrait" src="https://upload.wikimedia.org/wikipedia/en/7/70/Shawn_Tok_Profile.jpg"> </img>
+    <img v-if="user != null" class="user__portrait" :src="user.profile_medium"> </img>
   </div>
 
-  <div class="user__name">
-    Hendrik Cammann
+  <div class="user__name" v-if="user != null">
+    {{ user.firstname }} {{ user.lastname }}
   </div>
 </div>

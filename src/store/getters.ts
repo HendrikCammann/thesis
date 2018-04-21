@@ -7,6 +7,10 @@ const getters: GetterTree<State, State> = {
     return state.appLoadingStatus;
   },
 
+  getAthlete: (state) => {
+    return state.user;
+  },
+
   getActivityListLength: (state) => {
     if (state.activityList !== undefined) {
       return state.activityList.length;

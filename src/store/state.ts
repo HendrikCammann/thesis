@@ -24,6 +24,8 @@ export enum ClusterType {
 export class State {
   public appLoadingStatus: LoadingStatus;
 
+  public user: any;
+
   public activityList: ActivityModel[];
   public selectedActivityId: number;
   public acitvitySortedLists: {
@@ -38,6 +40,7 @@ export class State {
   public selectedCluster: ClusterType;
 
   constructor() {
+    this.user = null;
     this.appLoadingStatus = new LoadingStatus();
 
     this.activityList = [];

@@ -7,8 +7,10 @@ export enum loadingStatus {
 
 export class LoadingStatus {
   activities: loadingStatus;
+  athlete: loadingStatus;
 
   constructor() {
     this.activities = loadingStatus.NotLoaded;
+    this.athlete = loadingStatus.NotLoaded;
   }
 }

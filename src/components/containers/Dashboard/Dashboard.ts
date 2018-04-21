@@ -2,13 +2,13 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {loadingStatus} from '../../../models/App/AppStatus';
-import {mapGetters} from 'vuex';
+import {UserModule} from '../../modules/UserModule';
 
 @Component({
   template: require('./dashboard.html'),
-  computed: mapGetters({
-    appLoadingStatus: 'getAppLoadingStatus',
-  }),
+  components: {
+    'userModule': UserModule,
+  }
 })
 export class Dashboard extends Vue {
   mounted() {

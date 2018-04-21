@@ -1,0 +1,10 @@
+.title {
+  $root: &;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 35px;
+  text-transform: uppercase;
+  color: $color-white;
+  background-color: $color-black;
+  text-align: center;
+}

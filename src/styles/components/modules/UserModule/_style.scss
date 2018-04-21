@@ -1,0 +1,30 @@
+.user {
+  $root: &;
+
+  #{&}__image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    #{$root}__stripes {
+      background: repeating-linear-gradient(
+          to right,
+          $color-grey--light,
+          $color-grey--light 2px,
+          $color-white 2px,
+          $color-white 4px
+      );
+      height: 70px;
+    }
+
+    #{$root}__portrait {
+      height: 75px;
+      width: 75px;
+      margin-top: -50px;
+      border: 2px solid $color-black;
+    }
+  }
+
+  #{&}__name {
+    text-align: center;
+  }
+}

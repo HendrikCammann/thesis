@@ -1,0 +1,13 @@
+.dashboard {
+  $root: &;
+  height: calc(100vh - 65px);
+
+  #{&}__content {
+    padding: 0;
+    background-color: red;
+  }
+
+  #{&}__fixed {
+    padding: 0;
+  }
+}

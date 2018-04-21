@@ -1,16 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// conatiners
+// containers
 import { AppContainer } from '../components/containers/App/';
 import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
-
-
-// modules
-import { Navbar } from '../components/modules/Navbar/';
-
-// ui
+import {Dashboard} from '../components/containers/Dashboard';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -23,13 +18,21 @@ const router = new VueRouter({
       name: 'index',
       path: '/',
     }, {
+      component: Dashboard,
+      name: 'dashboard',
+      path: '/dashboard',
+    }, {
       component: ActivitiesContainer,
       name: 'activities',
-      path: '/activities'
+      path: '/activities',
     }, {
       component: ActivityContainer,
       name: 'activity',
-      path: '/activity/:id'
+      path: '/activity/:id',
+    }, {
+      component: ActivitiesContainer,
+      name: 'performance',
+      path: '/performance',
     }
   ],
 });

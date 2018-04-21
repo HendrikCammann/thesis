@@ -1,5 +1,6 @@
 import {ActivityModel} from '../models/Activity/ActivityModel';
 import {FilterModel} from '../models/Filter/FilterModel';
+import {LoadingStatus, loadingStatus} from '../models/App/AppStatus';
 
 export enum RunType {
   All = 'All',
@@ -21,7 +22,8 @@ export enum ClusterType {
 }
 
 export class State {
-  public runningRaces: any[];
+  public appLoadingStatus: LoadingStatus;
+
   public activityList: ActivityModel[];
   public selectedActivityId: number;
   public acitvitySortedLists: {
@@ -36,7 +38,8 @@ export class State {
   public selectedCluster: ClusterType;
 
   constructor() {
-    this.runningRaces = [];
+    this.appLoadingStatus = new LoadingStatus();
+
     this.activityList = [];
     this.acitvitySortedLists = {
       byMonths: null,

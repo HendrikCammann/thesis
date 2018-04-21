@@ -3,6 +3,7 @@ import {MutationTypes} from './mutation-types';
 import {State} from './state';
 import * as listAPI from '../api/listItems';
 import * as stravaAPI from '../api/stravaAPI';
+import {loadingStatus} from '../models/App/AppStatus';
 
 let token = '386bced857a83a6a4575b2308a3de25b95fa9116';
 let page = 1;
@@ -92,11 +93,9 @@ const actions: ActionTree<State, State> = {
     });
   },
 
-  [MutationTypes.GET_RACE]: ({commit}, raceId) => {
-    stravaAPI.getRunningRace(raceId, token, (item) => {
-      commit(MutationTypes.GET_RACE, {
-        item
-      });
+  [MutationTypes.SET_LOADING_STATUS]: ({commit}, loadingStatus) => {
+    commit(MutationTypes.SET_LOADING_STATUS, {
+      loadingStatus
     });
   }
 

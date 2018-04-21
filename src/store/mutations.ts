@@ -9,6 +9,7 @@ import {ActivityStreamModel} from '../models/Activity/ActivityStreamModel';
 import {ActivityZoneModel} from '../models/Activity/ActivityZoneModel';
 import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
 import {TimeRangeModel} from '../models/Filter/FilterModel';
+import {loadingStatus} from '../models/App/AppStatus';
 
 enum timeRanges {
   All = 'all',
@@ -238,16 +239,6 @@ function sortActivities (array, bucket) {
 }
 
 const mutations: MutationTree<State> = {
-  [MutationTypes.GET_RACE]: (state: State, {items}) => {
-    if (!state.runningRaces.length) {
-      items.forEach(item => {
-        state.runningRaces.push({
-          ...item
-        });
-      });
-    }
-  },
-
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
       items.forEach(item => {
@@ -263,6 +254,8 @@ const mutations: MutationTree<State> = {
       state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
       state.acitvitySortedLists.all = sortActivities(state.activityList, timeRanges.All);
       }
+
+    state.appLoadingStatus.activities = loadingStatus.Loaded;
   },
 
   [MutationTypes.GET_ACTIVITY]: (state: State, {item}) => {
@@ -308,6 +301,10 @@ const mutations: MutationTree<State> = {
       state.filter.timeRange.end = filterBy.end;
       state.filter.timeRange.isRange = filterBy.isRange;
       state.filter.showEverything = false;
+  },
+
+  [MutationTypes.SET_LOADING_STATUS]: (state: State, {loadingStatus}) => {
+    state.appLoadingStatus.activities = loadingStatus;
   }
 
 };

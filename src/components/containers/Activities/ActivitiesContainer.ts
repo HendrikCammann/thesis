@@ -11,6 +11,7 @@ import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {TimeRangeModel} from '../../../models/Filter/FilterModel';
+import {loadingStatus} from '../../../models/App/AppStatus';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -111,7 +112,10 @@ export class ActivitiesContainer extends Vue {
   }
 
   mounted() {
-    this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
+    if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
+      this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
+      this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
+    }
 
     filterBus.$on(filterEvents.setRunTypeFilter, (type) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);

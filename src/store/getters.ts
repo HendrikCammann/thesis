@@ -3,6 +3,10 @@ import {State} from './state';
 
 // State , RootState
 const getters: GetterTree<State, State> = {
+  getAppLoadingStatus: (state) => {
+    return state.appLoadingStatus;
+  },
+
   getActivityListLength: (state) => {
     if (state.activityList !== undefined) {
       return state.activityList.length;
@@ -47,7 +51,7 @@ const getters: GetterTree<State, State> = {
 
   getFilter: (state) => {
     return state.filter;
-  }
+  },
 };
 
 export default getters;

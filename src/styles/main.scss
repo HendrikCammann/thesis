@@ -1,14 +1,18 @@
-// common
-@import "common/_style";
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // foundation
 @import "foundation/_normalize";
+
+// externals
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+// common
+@import "common/_style";
+@import "common/_colors";
+
 // components
 @import "components/containers/App/_style";
 @import "components/containers/Activities/_style";
 
 @import "components/modules/Navbar/_style";
 @import "components/modules/BubbleChart/_style";
-
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";

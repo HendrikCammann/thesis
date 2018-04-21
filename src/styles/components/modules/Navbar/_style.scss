@@ -1,1 +1,27 @@
 // Navbar styles
+.navigation {
+  $root: &;
+  padding-top: 10px;
+
+  #{&}__content {
+    text-align: center;
+
+    #{$root}__item {
+      display: inline-block;
+      font-size: 16px;
+      margin: 0 35px;
+      line-height: 55px;
+      color: $color-black;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      #{&}--active {
+        border-bottom: 1px solid $color-black;
+      }
+
+      &:hover {
+        border-bottom: 1px solid $color-black;
+      }
+    }
+  }
+}

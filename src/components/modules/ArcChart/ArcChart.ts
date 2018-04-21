@@ -19,6 +19,7 @@ import {CanvasConstraints, CategoryConnectingOpacity} from '../../../models/Visu
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {getKeys} from '../../../utils/array-helper';
+import {loadingStatus} from '../../../models/App/AppStatus';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -706,6 +707,8 @@ export class ArcChart extends Vue {
   }
 
   mounted() {
-    // this.arcChart(this.width, this.height, this.margin, this.data);
+    if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
+      this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
+    }
   }
 }

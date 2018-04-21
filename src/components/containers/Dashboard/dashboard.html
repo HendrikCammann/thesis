@@ -3,6 +3,7 @@
     <div class="col-md-10 dashboard__content">
       <div class="row dashboard__row">
         <div class="col-md-6 dashboard__visualization">
+          <div class="dashboard__headline">Trainingsentwicklung der letzen 4 Wochen</div>
           <arc-chart
             :root="'#arc'"
             :canvasConstraints="canvasConstraints"
@@ -16,7 +17,8 @@
       </div>
     </div>
     <div class="col-md-2 dashboard__fixed">
-      <user-module :user="user"></user-module>
+      <user-module class="user-module" :user="user"></user-module>
+      <day-module class="day-module" :date="new Date()"></day-module>
     </div>
   </div>
 </div>

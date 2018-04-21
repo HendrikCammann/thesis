@@ -4,7 +4,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700');
 
 // common
 @import "common/_colors";
@@ -17,6 +17,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "components/modules/Navbar/_style";
 @import "components/modules/UserModule/_style";
+@import "components/modules/DayModule/_style";
 @import "components/modules/BubbleChart/_style";
 
 @import "components/partials/TitleBox/_style";

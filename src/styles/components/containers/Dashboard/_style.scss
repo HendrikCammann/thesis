@@ -11,11 +11,17 @@
 
     #{$root}__visualization {
       padding: 20px;
-      text-align: right;
+
+      #{$root}__headline {
+        font-size: 14px;
+      }
     }
   }
 
   #{&}__fixed {
+    .user-module, .day-module {
+      margin-bottom: 50px;
+    }
     padding: 0;
   }
 }

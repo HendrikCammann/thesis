@@ -69,7 +69,7 @@ export class ArcChart extends Vue {
     let diagram = this.drawDiagram(data, visualMeasurements, svg, filter);
     let activities = this.addActivities(diagram, svg, filter);
     this.addActivitiesConnection(svg, diagram, activities, filter);
-    this.addArcsAndBubbles(diagram, svg);
+    this.addArcsAndBubbles(diagram, svg, canvasConstraints.height, this.maxChange);
   }
 
   /**
@@ -187,7 +187,7 @@ export class ArcChart extends Vue {
    * @param diagram
    * @param svg
    */
-  private addArcsAndBubbles(diagram, svg): void {
+  private addArcsAndBubbles(diagram, svg, canvasHeight, maxArcHeight): void {
     let keys = getKeys(diagram);
 
     for (let i = 0; i < keys.length; i++) {
@@ -197,7 +197,7 @@ export class ArcChart extends Vue {
         if(diagram[keys[i + indexOfItemToConnectTo]] !== undefined) {
           if (checkIfConnectionIsDrawable(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j])) {
             if (indexOfItemToConnectTo === 1) {
-              this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
+              this.drawArc(this.setupArcVariables(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j], canvasHeight, maxArcHeight), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
             } else {
               this.drawPath(this.setupPathVariables(diagram[keys[i]][j], diagram[keys[i + indexOfItemToConnectTo]][j]), svg, getConnectingOrientation(diagram[keys[i]][j].width, diagram[keys[i + indexOfItemToConnectTo]][j].width), diagram[keys[i]][j].color, calculateConnectingOpacity(this.filter.selectedRunType, diagram[keys[i]][j].type));
             }
@@ -242,7 +242,7 @@ export class ArcChart extends Vue {
    * @param nextItem
    * @returns {any}
    */
-  private setupArcVariables(actualItem, nextItem): any {
+  private setupArcVariables(actualItem, nextItem, canvasHeight, maxArcHeight): any {
     return {
       outer: {
         start: actualItem.start,
@@ -255,7 +255,7 @@ export class ArcChart extends Vue {
           xPos: actualItem.start,
           yPos: actualItem.y,
           width: Math.abs(actualItem.start - actualItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, this.maxChange, this.canvasConstraints.height, actualItem.height),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, maxArcHeight, canvasHeight, actualItem.height),
         }
       },
       inner: {
@@ -267,7 +267,7 @@ export class ArcChart extends Vue {
           xPos: nextItem.start,
           yPos: actualItem.y,
           width: Math.abs(nextItem.start - nextItem.end),
-          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, this.maxChange, this.canvasConstraints.height, actualItem.height),
+          height: calaculateConnectingHeight(actualItem.width, nextItem.width, FormatDifferenceType.Arcs, maxArcHeight, canvasHeight, actualItem.height),
         }
       },
     }

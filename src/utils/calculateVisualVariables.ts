@@ -65,7 +65,7 @@ export function setupVisualBarVariables(dataset: Object, canvasContraints: Canva
  * @returns {number}
  */
 export function calaculateConnectingHeight(actualItemLength: number, nextItemLength: number, factor: number, maxHeight: number, canvasHeight: number, barHeight: number) {
-  let height = (canvasHeight / 4) - barHeight;
+  let height = (canvasHeight / 5) - barHeight;
   let itemHeight = parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
   let percentageFromMaxHeight = 100 / maxHeight * itemHeight;
   return height * percentageFromMaxHeight;

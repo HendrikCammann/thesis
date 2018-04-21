@@ -2,6 +2,7 @@
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {TitleBox} from '../../partials/TitleBox';
+import {UserModel} from '../../../models/User/UserModel';
 
 @Component({
   template: require('./userModule.html'),
@@ -11,7 +12,7 @@ import {TitleBox} from '../../partials/TitleBox';
 })
 export class UserModule extends Vue {
   @Prop()
-  user: any;
+  user: UserModel;
 
   @Watch('user')
   onPropertyChanged(val: any, oldVal: any) {

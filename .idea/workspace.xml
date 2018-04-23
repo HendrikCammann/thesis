@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" afterPath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/getters.ts" afterPath="$PROJECT_DIR$/src/store/getters.ts" />
       <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" afterPath="$PROJECT_DIR$/src/store/mutations.ts" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.ts" afterPath="$PROJECT_DIR$/src/store/state.ts" />
-      <change beforePath="$PROJECT_DIR$/src/utils/filter-dataset.ts" afterPath="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
-              <caret line="281" column="1" lean-forward="true" selection-start-line="281" selection-start-column="1" selection-end-line="281" selection-end-column="1" />
+            <state relative-caret-position="165">
+              <caret line="69" column="2" lean-forward="false" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
               <folding>
                 <element signature="n#!!block;n#sortActivities#0" expanded="false" />
                 <element signature="n#!!block;n#extractClusters#0" expanded="false" />
@@ -45,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7312">
-              <caret line="49" column="29" lean-forward="true" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+            <state relative-caret-position="278">
+              <caret line="555" column="0" lean-forward="true" selection-start-line="555" selection-start-column="0" selection-end-line="555" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -232,11 +226,11 @@
         <option value="$PROJECT_DIR$/src/models/Filter/FilterModel.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
-        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
         <option value="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
         <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
+        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
       </list>
     </option>
   </component>
@@ -547,7 +541,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271878000" />
+    <option name="totallyTimeSpent" value="272563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -985,19 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="281" column="1" lean-forward="true" selection-start-line="281" selection-start-column="1" selection-end-line="281" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#sortActivities#0" expanded="false" />
-            <element signature="n#!!block;n#extractClusters#0" expanded="false" />
-            <element signature="n#!!block;n#sortCluster#0" expanded="false" />
-            <element signature="n#!!block;n#summarizeRunTypes#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1046,9 +1027,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7312">
-          <caret line="49" column="29" lean-forward="true" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="278">
+          <caret line="555" column="0" lean-forward="true" selection-start-line="555" selection-start-column="0" selection-end-line="555" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="69" column="2" lean-forward="false" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!block;n#sortActivities#0" expanded="false" />
+            <element signature="n#!!block;n#extractClusters#0" expanded="false" />
+            <element signature="n#!!block;n#sortCluster#0" expanded="false" />
+            <element signature="n#!!block;n#summarizeRunTypes#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

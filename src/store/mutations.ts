@@ -67,10 +67,11 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.categorization.clusters_anchors.push(new ClusterItem('All', false, timeRange));
 
   let temp = new Date(activity.date);
+  
   if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
     let range = {
       start: new Date(2017, 4, 19),
-      end: new Date(2017, 8, 19),
+      end: new Date(2017, 8, 20),
     };
     activity.categorization.clusters_anchors.push(new ClusterItem('Karlsruhe-2017', true, range));
   }
@@ -78,9 +79,25 @@ function applyActivityModelStructure(item): ActivityModel {
   if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
     let range = {
       start: new Date(2017, 10, 11),
-      end: new Date(2018, 1, 11),
+      end: new Date(2018, 1, 12),
     };
-    activity.categorization.clusters_anchors.push(new ClusterItem('Barcelona-2017', true, range));
+    activity.categorization.clusters_anchors.push(new ClusterItem('Barcelona-2018', true, range));
+  }
+
+  if (temp <= new Date(2017, 2, 12) && temp >= new Date(2016, 9, 12)) {
+    let range = {
+      start: new Date(2016, 9, 12),
+      end: new Date(2017, 2, 13),
+    };
+    activity.categorization.clusters_anchors.push(new ClusterItem('Kandel-2017', true, range));
+  }
+
+  if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
+    let range = {
+      start: new Date(2016, 10, 8),
+      end: new Date(2018, 3, 9),
+    };
+    activity.categorization.clusters_anchors.push(new ClusterItem('Hannover-2018', true, range));
   }
 
   activity.categorization.type = item.type;

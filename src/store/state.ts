@@ -37,6 +37,8 @@ export class State {
     all: null
   };
 
+  public sortedLists: Object;
+
   public existingClusters: ClusterItem[];
 
   public filter: FilterModel;
@@ -48,6 +50,8 @@ export class State {
   constructor() {
     this.user = new UserModel();
     this.appLoadingStatus = new LoadingStatus();
+
+    this.sortedLists = {};
 
     this.existingClusters = [];
 

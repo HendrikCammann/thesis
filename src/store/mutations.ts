@@ -11,7 +11,7 @@ import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
 import {TimeRangeModel} from '../models/Filter/FilterModel';
 import {loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
-import {ClusterItem} from '../models/State/StateModel';
+import {ClusterItem, ClusterWrapper} from '../models/State/StateModel';
 
 enum timeRanges {
   All = 'all',
@@ -58,16 +58,13 @@ function applyActivityModelStructure(item): ActivityModel {
 
   activity.categorization.cluster_anchor_month = new Date(item.start_date).getFullYear() + '-' + new Date(item.start_date).getMonth();
   activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
-  let timeRangeMonth = {
-    start: new Date(new Date(item.start_date).getFullYear(), new Date(item.start_date).getMonth(), 1),
-    end: new Date(new Date(item.start_date).getFullYear(), new Date(item.start_date).getMonth(), 31),
+
+  let timeRange = {
+    start: new Date(1970),
+    end: new Date(),
   };
-  let timeRangeYear = {
-    start: new Date(new Date(item.start_date).getFullYear(), 0, 1),
-    end: new Date(new Date(item.start_date).getFullYear(), 11, 31),
-  };
-  activity.categorization.clusters_anchors.push(new ClusterItem(new Date(item.start_date).getFullYear() + '-' + new Date(item.start_date).getMonth(), false, timeRangeMonth));
-  activity.categorization.clusters_anchors.push(new ClusterItem(new Date(item.start_date).getFullYear().toString(), false, timeRangeYear));
+
+  activity.categorization.clusters_anchors.push(new ClusterItem('All', false, timeRange));
 
   let temp = new Date(activity.date);
   if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
@@ -221,7 +218,7 @@ function sortActivities (array, bucket) {
 
     switch (bucket) {
       case timeRanges.All:
-        timeRange = 'unsorted';
+        timeRange = 'all';
         break;
       case timeRanges.Week:
         timeRange = moment(activity.date).year() + '-' + moment(activity.date).isoWeek();
@@ -258,16 +255,43 @@ function extractClusters(state): void {
 }
 
 function sortPersonalCluster(activities, cluster) {
-  let temp = {};
-  temp['unsorted'] = new ActivityClusterModel();
-  temp['unsorted'].rangeName = cluster;
+  let temp = new ClusterWrapper();
+  temp.unsorted = new ActivityClusterModel();
+  temp.unsorted.rangeName = cluster;
   activities.forEach(activity => {
     activity.categorization.clusters_anchors.forEach(anchor => {
       if (anchor.clusterName === cluster) {
-        summarizeRunTypes(activity, temp['unsorted']);
+        summarizeRunTypes(activity, temp.unsorted);
       }
     });
   });
+  return temp;
+}
+
+function sortCluster(activities, cluster) {
+  let allAct = [];
+  activities.forEach(activity => {
+    activity.categorization.clusters_anchors.forEach(anchor => {
+      if (anchor.clusterName === cluster) {
+        allAct.push(activity);
+      }
+    });
+  });
+
+  let temp = new ClusterWrapper();
+
+  temp.unsorted = {};
+  temp.unsorted = sortActivities(allAct, timeRanges.All);
+
+  temp.byYears = {};
+  temp.byYears = sortActivities(allAct, timeRanges.Year);
+
+  temp.byMonths = {};
+  temp.byMonths = sortActivities(allAct, timeRanges.Month);
+
+  temp.byWeeks = {};
+  temp.byWeeks = sortActivities(allAct, timeRanges.Week);
+
   return temp;
 }
 
@@ -341,6 +365,9 @@ const mutations: MutationTree<State> = {
       state.existingClusters.forEach(item => {
         if (item.isIndividual) {
           state.acitvitySortedLists[item.clusterName] = sortPersonalCluster(state.activityList, item.clusterName);
+          state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
+        } else {
+          state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
         }
       });
     }

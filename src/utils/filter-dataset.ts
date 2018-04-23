@@ -22,18 +22,20 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
     endDate = new Date(new Date());
   }
 
+  console.log(dataset);
+
   switch (filter.selectedCluster) {
     case ClusterType.All:
-      tempData = dataset.all;
+      tempData = dataset[filter.selectedTrainingCluster].unsorted;
       break;
     case ClusterType.ByYears:
-      tempData = dataset.byYears;
+      tempData = dataset[filter.selectedTrainingCluster].byYears;
       break;
     case ClusterType.ByMonths:
-      tempData = dataset.byMonths;
+      tempData = dataset[filter.selectedTrainingCluster].byMonths;
       break;
     case ClusterType.ByWeeks:
-      tempData = dataset.byWeeks;
+      tempData = dataset[filter.selectedTrainingCluster].byWeeks;
       break;
   }
 

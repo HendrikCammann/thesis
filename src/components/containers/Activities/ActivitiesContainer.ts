@@ -19,6 +19,8 @@ import {loadingStatus} from '../../../models/App/AppStatus';
   computed: mapGetters({
     activities: 'getActivities',
     sortedActivities: 'getSortedActivities',
+    sortedLists: 'getSortedLists',
+    clusters: 'getClusters',
     filter: 'getFilter',
     selectedRunType: 'getSelectedRunType',
     selectedCluster: 'getSelectedClusterType'
@@ -32,7 +34,7 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 })
 export class ActivitiesContainer extends Vue {
 
-  public filterYear: string = 'all';
+  public filterCluster: string = 'All';
 
   public startInput: any = '';
   public endInput: any = '';
@@ -90,7 +92,7 @@ export class ActivitiesContainer extends Vue {
   }
 
   public selectYear(event) {
-    // this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterYear);
+    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterCluster);
   }
 
   public setDateRange(event) {

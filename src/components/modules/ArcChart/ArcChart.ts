@@ -37,13 +37,15 @@ export class ArcChart extends Vue {
   @Prop()
   canvasConstraints: CanvasConstraints;
 
-  @Watch('data.byMonths')
+  @Watch('data.All.byMonths')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
+  @Watch('filter.selectedTrainingCluster')
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
   @Watch('canvasConstraints')
   onPropertyChanged(val: any, oldVal: any) {
+    console.log('changed');
     this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
   }
 
@@ -717,7 +719,7 @@ export class ArcChart extends Vue {
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
-      this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
+      // this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
     }
   }
 }

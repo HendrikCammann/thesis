@@ -334,11 +334,6 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
   }
 }
 
-
-
-
-
-
 const mutations: MutationTree<State> = {
   [MutationTypes.GET_ATHLETE]: (state: State, {items}) => {
     state.user = applyUserModel(items);
@@ -414,10 +409,12 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
-      state.filter.timeRange.start = filterBy.start;
-      state.filter.timeRange.end = filterBy.end;
-      state.filter.timeRange.isRange = filterBy.isRange;
-      state.filter.showEverything = false;
+    console.log(filterBy);
+    state.filter.selectedTrainingCluster = filterBy;
+      // state.filter.timeRange.start = filterBy.start;
+      // state.filter.timeRange.end = filterBy.end;
+      // state.filter.timeRange.isRange = filterBy.isRange;
+      // state.filter.showEverything = false;
   },
 
   [MutationTypes.SET_LOADING_STATUS]: (state: State, {loadingStatus}) => {

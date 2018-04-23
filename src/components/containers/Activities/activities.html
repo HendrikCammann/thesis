@@ -1,11 +1,8 @@
 <div class="container">
   <div>
-    <!--<select v-model="filterYear" @change="selectYear($event)">
-      <option value="all">All</option>
-      <option value="2018">2018</option>
-      <option value="2017">2017</option>
-      <option value="2016">2016</option>
-    </select>-->
+    <select v-model="filterCluster" @change="selectYear($event)">
+      <option v-for="cluster in clusters" :value="cluster.clusterName">{{ cluster.clusterName }}</option>
+    </select>
     start:
     <input v-model="startInput" type="date" @change="setDateRange($event)">
     end:
@@ -40,16 +37,16 @@
   <arc-chart
     :root="'#arc'"
     :canvasConstraints="canvasConstraints"
-    :data="sortedActivities"
+    :data="sortedLists"
     :filter="filter"
   ></arc-chart>
 
-  <swoosh-chart
+  <!--<swoosh-chart
     :root="'#swoosh'"
     :canvasConstraints="canvasConstraints"
     :data="sortedActivities"
     :filter="filter"
-  ></swoosh-chart>
+  ></swoosh-chart>-->
 
   <hr>
 

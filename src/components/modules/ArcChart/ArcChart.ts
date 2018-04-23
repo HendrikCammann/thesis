@@ -19,7 +19,7 @@ import {CanvasConstraints, CategoryConnectingOpacity} from '../../../models/Visu
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {getKeys} from '../../../utils/array-helper';
-import {loadingStatus} from '../../../models/App/AppStatus';
+import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 
 @Component({
   template: require('./ArcChart.html'),
@@ -35,9 +35,13 @@ export class ArcChart extends Vue {
   root: string;
 
   @Prop()
+  loadingStatus: any;
+
+  @Prop()
   canvasConstraints: CanvasConstraints;
 
-  @Watch('data.All.byMonths')
+  @Watch('data')
+  @Watch('loadingStatus.activities')
   @Watch('filter.selectedRunType')
   @Watch('filter.selectedCluster')
   @Watch('filter.selectedTrainingCluster')
@@ -45,8 +49,9 @@ export class ArcChart extends Vue {
   @Watch('filter.timeRange.end')
   @Watch('canvasConstraints')
   onPropertyChanged(val: any, oldVal: any) {
-    console.log('changed');
-    this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
+    }
   }
 
   private maxChange = 0;

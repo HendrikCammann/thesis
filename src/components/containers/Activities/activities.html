@@ -3,10 +3,12 @@
     <select v-model="filterCluster" @change="selectYear($event)">
       <option v-for="cluster in clusters" :value="cluster.clusterName">{{ cluster.clusterName }}</option>
     </select>
+
     start:
     <input v-model="startInput" type="date" @change="setDateRange($event)">
     end:
     <input v-model="endInput" type="date" @change="setDateRange($event)">
+
     <div id="filter__time" @click="selectCluster($event)">
       <a href="#" id="year" class="button">Group by year</a>
       <a href="#" id="month" class="button">Group by month</a>
@@ -29,40 +31,39 @@
 
   <hr>
 
-  <!--<bubble-chart
-    :data="sortedActivities"
-    :filter="filter"
-  ></bubble-chart>-->
-
   <arc-chart
     :root="'#arc'"
     :canvasConstraints="canvasConstraints"
     :data="sortedLists"
+    :loadingStatus="loadingStatus"
     :filter="filter"
   ></arc-chart>
 
   <!--<swoosh-chart
     :root="'#swoosh'"
     :canvasConstraints="canvasConstraints"
-    :data="sortedActivities"
+    :data="sortedLists"
     :filter="filter"
   ></swoosh-chart>-->
 
   <hr>
 
-  <div v-for="timeRange in sortedActivities.byWeeks">
-    <div class="row">
-      <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>
-      <span>TotalDistance: {{ timeRange.stats.distance / 1000 }}</span> |
-      <span>Time: {{ timeRange.stats.time }}</span> |
-      <span>Run: {{ timeRange.stats.typeCount.run.amount }} ({{ timeRange.stats.typeCount.run.distance / 1000 }}km)</span> |
-      <span>longRun: {{ timeRange.stats.typeCount.longRun.amount }} ({{ timeRange.stats.typeCount.longRun.distance / 1000 }}km)</span> |
-      <span>interval: {{ timeRange.stats.typeCount.interval.amount }} ({{ timeRange.stats.typeCount.interval.distance / 1000 }}km)</span> |
-      <span>competiton: {{ timeRange.stats.typeCount.competition.amount }} ({{ timeRange.stats.typeCount.competition.distance / 1000 }}km)</span>
+  <div v-if="sortedLists.All">
+    <div v-for="timeRange in sortedLists.All.byWeeks">
+      <div class="row">
+        <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>
+        <span>TotalDistance: {{ timeRange.stats.distance / 1000 }}</span> |
+        <span>Time: {{ timeRange.stats.time }}</span> |
+        <span>Run: {{ timeRange.stats.typeCount.run.amount }} ({{ timeRange.stats.typeCount.run.distance / 1000 }}km)</span> |
+        <span>longRun: {{ timeRange.stats.typeCount.longRun.amount }} ({{ timeRange.stats.typeCount.longRun.distance / 1000 }}km)</span> |
+        <span>interval: {{ timeRange.stats.typeCount.interval.amount }} ({{ timeRange.stats.typeCount.interval.distance / 1000 }}km)</span> |
+        <span>competiton: {{ timeRange.stats.typeCount.competition.amount }} ({{ timeRange.stats.typeCount.competition.distance / 1000 }}km)</span>
+      </div>
+      <activity-list-item
+        v-for="item in timeRange.activities"
+        :activityId="item"
+      ></activity-list-item>
     </div>
-    <activity-list-item
-      v-for="item in timeRange.activities"
-      :activityId="item"
-    ></activity-list-item>
   </div>
+
 </div>

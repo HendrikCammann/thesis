@@ -30,12 +30,6 @@ export class State {
 
   public activityList: ActivityModel[];
   public selectedActivityId: number;
-  public acitvitySortedLists: {
-    byMonths: null,
-    byWeeks: null,
-    byYears: null,
-    all: null
-  };
 
   public sortedLists: Object;
 
@@ -56,12 +50,7 @@ export class State {
     this.existingClusters = [];
 
     this.activityList = [];
-    this.acitvitySortedLists = {
-      byMonths: null,
-      byWeeks: null,
-      byYears: null,
-      all: null
-    };
+
     this.selectedActivityId = null;
 
     this.filter = new FilterModel();

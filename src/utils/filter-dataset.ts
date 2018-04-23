@@ -1,10 +1,6 @@
 import {FilterModel} from '../models/Filter/FilterModel';
 import {ClusterType, RunType} from '../store/state';
 
-export function formatDatasetKey(key: string): number {
-  return parseInt(key.substring(0, 4));
-}
-
 export function selectAndFilterDataset(dataset, filter: FilterModel): any {
   let tempData;
   let startDate;
@@ -21,8 +17,6 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
   } else {
     endDate = new Date(new Date());
   }
-
-  console.log(dataset);
 
   switch (filter.selectedCluster) {
     case ClusterType.All:

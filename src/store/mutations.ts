@@ -254,20 +254,6 @@ function extractClusters(state): void {
   });
 }
 
-function sortPersonalCluster(activities, cluster) {
-  let temp = new ClusterWrapper();
-  temp.unsorted = new ActivityClusterModel();
-  temp.unsorted.rangeName = cluster;
-  activities.forEach(activity => {
-    activity.categorization.clusters_anchors.forEach(anchor => {
-      if (anchor.clusterName === cluster) {
-        summarizeRunTypes(activity, temp.unsorted);
-      }
-    });
-  });
-  return temp;
-}
-
 function sortCluster(activities, cluster) {
   let allAct = [];
   activities.forEach(activity => {
@@ -352,14 +338,8 @@ const mutations: MutationTree<State> = {
 
       extractClusters(state);
 
-      state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
-      state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
-      state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
-      state.acitvitySortedLists.all = sortActivities(state.activityList, timeRanges.All);
-
       state.existingClusters.forEach(item => {
         if (item.isIndividual) {
-          state.acitvitySortedLists[item.clusterName] = sortPersonalCluster(state.activityList, item.clusterName);
           state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
         } else {
           state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
@@ -409,12 +389,7 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
-    console.log(filterBy);
     state.filter.selectedTrainingCluster = filterBy;
-      // state.filter.timeRange.start = filterBy.start;
-      // state.filter.timeRange.end = filterBy.end;
-      // state.filter.timeRange.isRange = filterBy.isRange;
-      // state.filter.showEverything = false;
   },
 
   [MutationTypes.SET_LOADING_STATUS]: (state: State, {loadingStatus}) => {

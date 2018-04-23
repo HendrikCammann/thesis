@@ -18,9 +18,9 @@ import {loadingStatus} from '../../../models/App/AppStatus';
   template: require('./activities.html'),
   computed: mapGetters({
     activities: 'getActivities',
-    sortedActivities: 'getSortedActivities',
     sortedLists: 'getSortedLists',
     clusters: 'getClusters',
+    loadingStatus: 'getAppLoadingStatus',
     filter: 'getFilter',
     selectedRunType: 'getSelectedRunType',
     selectedCluster: 'getSelectedClusterType'

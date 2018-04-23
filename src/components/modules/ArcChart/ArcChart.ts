@@ -105,7 +105,7 @@ export class ArcChart extends Vue {
           start: rectXPos,
           end: 0,
           y: visualMeasurements.height / 2,
-          height: 20,
+          height: visualMeasurements.barHeight,
           distance: data[key].stats.typeCount[anchor].distance,
           width: parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm)),
           color: getCategoryColor(data[key].stats.typeCount[anchor].type),

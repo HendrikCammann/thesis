@@ -2,6 +2,7 @@ import {ActivityModel} from '../models/Activity/ActivityModel';
 import {FilterModel} from '../models/Filter/FilterModel';
 import {LoadingStatus, loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
+import {ClusterItem} from '../models/State/StateModel';
 
 export enum RunType {
   All = 'All',
@@ -36,6 +37,8 @@ export class State {
     all: null
   };
 
+  public existingClusters: ClusterItem[];
+
   public filter: FilterModel;
   public dashboardFilter: FilterModel;
 
@@ -45,6 +48,8 @@ export class State {
   constructor() {
     this.user = new UserModel();
     this.appLoadingStatus = new LoadingStatus();
+
+    this.existingClusters = [];
 
     this.activityList = [];
     this.acitvitySortedLists = {

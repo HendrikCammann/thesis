@@ -8,6 +8,7 @@ import {mapGetters} from 'vuex';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {ArcChart} from '../../modules/ArcChart';
 import {DayModule} from '../../modules/DayModule';
+import {SwooshChart} from '../../modules/SwooshChart';
 
 @Component({
   template: require('./dashboard.html'),
@@ -20,11 +21,13 @@ import {DayModule} from '../../modules/DayModule';
     'userModule': UserModule,
     'dayModule': DayModule,
     'arcChart': ArcChart,
+    'swooshChart': SwooshChart,
+
   }
 })
 export class Dashboard extends Vue {
 
-  public canvasConstraints = new CanvasConstraints(0, 446, 300, 50, 1);
+  public canvasConstraints = new CanvasConstraints(0, 420, 300, 50, 1, 5);
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.athlete === loadingStatus.NotLoaded) {

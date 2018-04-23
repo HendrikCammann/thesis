@@ -37,7 +37,7 @@ export class ActivitiesContainer extends Vue {
   public startInput: any = '';
   public endInput: any = '';
 
-  public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1);
+  public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1, 20);
 
   public selectRunType(event) {
     let runType: RunType;

@@ -27,12 +27,14 @@ export class CanvasConstraints {
   height: number;
   clusterMaxMargin: number;
   barMargin: number;
+  barHeight: number;
 
-  constructor(padding, width, height, clusterMargin, barMargin) {
+  constructor(padding, width, height, clusterMargin, barMargin, barHeight) {
     this.padding = padding;
     this.width = width;
     this.height = height;
     this.clusterMaxMargin = clusterMargin;
     this.barMargin = barMargin;
+    this.barHeight = barHeight;
   }
 }

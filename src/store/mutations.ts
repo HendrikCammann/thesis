@@ -11,12 +11,14 @@ import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
 import {TimeRangeModel} from '../models/Filter/FilterModel';
 import {loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
+import {ClusterItem} from '../models/State/StateModel';
 
 enum timeRanges {
   All = 'all',
   Week = 'week',
   Month = 'month',
-  Year = 'year'
+  Year = 'year',
+  Individual = 'individual',
 }
 
 function applyUserModel(item): UserModel {
@@ -56,6 +58,34 @@ function applyActivityModelStructure(item): ActivityModel {
 
   activity.categorization.cluster_anchor_month = new Date(item.start_date).getFullYear() + '-' + new Date(item.start_date).getMonth();
   activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
+  let timeRangeMonth = {
+    start: new Date(new Date(item.start_date).getFullYear(), new Date(item.start_date).getMonth(), 1),
+    end: new Date(new Date(item.start_date).getFullYear(), new Date(item.start_date).getMonth(), 31),
+  };
+  let timeRangeYear = {
+    start: new Date(new Date(item.start_date).getFullYear(), 0, 1),
+    end: new Date(new Date(item.start_date).getFullYear(), 11, 31),
+  };
+  activity.categorization.clusters_anchors.push(new ClusterItem(new Date(item.start_date).getFullYear() + '-' + new Date(item.start_date).getMonth(), false, timeRangeMonth));
+  activity.categorization.clusters_anchors.push(new ClusterItem(new Date(item.start_date).getFullYear().toString(), false, timeRangeYear));
+
+  let temp = new Date(activity.date);
+  if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
+    let range = {
+      start: new Date(2017, 4, 19),
+      end: new Date(2017, 8, 19),
+    };
+    activity.categorization.clusters_anchors.push(new ClusterItem('Karlsruhe-2017', true, range));
+  }
+
+  if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
+    let range = {
+      start: new Date(2017, 10, 11),
+      end: new Date(2018, 1, 11),
+    };
+    activity.categorization.clusters_anchors.push(new ClusterItem('Barcelona-2017', true, range));
+  }
+
   activity.categorization.type = item.type;
   switch (item.workout_type) {
     case 0:
@@ -191,7 +221,7 @@ function sortActivities (array, bucket) {
 
     switch (bucket) {
       case timeRanges.All:
-        timeRange = 'All';
+        timeRange = 'unsorted';
         break;
       case timeRanges.Week:
         timeRange = moment(activity.date).year() + '-' + moment(activity.date).isoWeek();
@@ -209,47 +239,81 @@ function sortActivities (array, bucket) {
       acc[timeRange] = new ActivityClusterModel();
     }
 
-    acc[timeRange].activities.push(activity.id);
-    acc[timeRange].rangeName = timeRange;
-    acc[timeRange].rangeDate = new Date(activity.date);
-    acc[timeRange].stats.distance += activity.base_data.distance;
-    acc[timeRange].stats.time += activity.base_data.duration;
-    acc[timeRange].stats.count++;
-    switch (activity.categorization.activity_type) {
-      case RunType.Run:
-        acc[timeRange].stats.typeCount.run.amount += 1;
-        acc[timeRange].stats.typeCount.run.distance += activity.base_data.distance;
-        acc[timeRange].stats.typeCount.run.type = RunType.Run;
-        acc[timeRange].stats.typeCount.run.activities.push(activity.id);
-        break;
-      case RunType.Competition:
-        acc[timeRange].stats.typeCount.competition.amount += 1;
-        acc[timeRange].stats.typeCount.competition.distance += activity.base_data.distance;
-        acc[timeRange].stats.typeCount.competition.type = RunType.Competition;
-        acc[timeRange].stats.typeCount.competition.activities.push(activity.id);
-        break;
-      case RunType.LongRun:
-        acc[timeRange].stats.typeCount.longRun.amount += 1;
-        acc[timeRange].stats.typeCount.longRun.distance += activity.base_data.distance;
-        acc[timeRange].stats.typeCount.longRun.type = RunType.LongRun;
-        acc[timeRange].stats.typeCount.longRun.activities.push(activity.id);
-        break;
-      case RunType.ShortIntervals:
-        acc[timeRange].stats.typeCount.interval.amount += 1;
-        acc[timeRange].stats.typeCount.interval.distance += activity.base_data.distance;
-        acc[timeRange].stats.typeCount.interval.type = RunType.ShortIntervals;
-        acc[timeRange].stats.typeCount.interval.activities.push(activity.id);
-        break;
-      default:
-        acc[timeRange].stats.typeCount.uncategorized.amount += 1;
-        acc[timeRange].stats.typeCount.uncategorized.distance += activity.base_data.distance;
-        acc[timeRange].stats.typeCount.uncategorized.type = RunType.Uncategorized;
-        acc[timeRange].stats.typeCount.uncategorized.activities.push(activity.id);
-    }
+    summarizeRunTypes(activity, acc[timeRange]);
     return acc;
 
   }, {});
 }
+
+function extractClusters(state): void {
+  let names: string[] = [];
+  state.activityList.forEach(item => {
+    item.categorization.clusters_anchors.map(cluster => {
+      if (names.indexOf(cluster.clusterName) === - 1) {
+        state.existingClusters.push(cluster);
+      }
+      names.push(cluster.clusterName);
+    });
+  });
+}
+
+function sortPersonalCluster(activities, cluster) {
+  let temp = {};
+  temp['unsorted'] = new ActivityClusterModel();
+  temp['unsorted'].rangeName = cluster;
+  activities.forEach(activity => {
+    activity.categorization.clusters_anchors.forEach(anchor => {
+      if (anchor.clusterName === cluster) {
+        summarizeRunTypes(activity, temp['unsorted']);
+      }
+    });
+  });
+  return temp;
+}
+
+function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel) {
+  array.activities.push(activity.id);
+  array.stats.count++;
+  array.stats.distance += activity.base_data.distance;
+  array.stats.time += activity.base_data.duration;
+
+  switch (activity.categorization.activity_type) {
+    case RunType.Run:
+      array.stats.typeCount.run.amount += 1;
+      array.stats.typeCount.run.distance += activity.base_data.distance;
+      array.stats.typeCount.run.type = RunType.Run;
+      array.stats.typeCount.run.activities.push(activity.id);
+      break;
+    case RunType.Competition:
+      array.stats.typeCount.competition.amount += 1;
+      array.stats.typeCount.competition.distance += activity.base_data.distance;
+      array.stats.typeCount.competition.type = RunType.Competition;
+      array.stats.typeCount.competition.activities.push(activity.id);
+      break;
+    case RunType.LongRun:
+      array.stats.typeCount.longRun.amount += 1;
+      array.stats.typeCount.longRun.distance += activity.base_data.distance;
+      array.stats.typeCount.longRun.type = RunType.LongRun;
+      array.stats.typeCount.longRun.activities.push(activity.id);
+      break;
+    case RunType.ShortIntervals:
+      array.stats.typeCount.interval.amount += 1;
+      array.stats.typeCount.interval.distance += activity.base_data.distance;
+      array.stats.typeCount.interval.type = RunType.ShortIntervals;
+      array.stats.typeCount.interval.activities.push(activity.id);
+      break;
+    default:
+      array.stats.typeCount.uncategorized.amount += 1;
+      array.stats.typeCount.uncategorized.distance += activity.base_data.distance;
+      array.stats.typeCount.uncategorized.type = RunType.Uncategorized;
+      array.stats.typeCount.uncategorized.activities.push(activity.id);
+  }
+}
+
+
+
+
+
 
 const mutations: MutationTree<State> = {
   [MutationTypes.GET_ATHLETE]: (state: State, {items}) => {
@@ -267,11 +331,19 @@ const mutations: MutationTree<State> = {
         }
       });
 
+      extractClusters(state);
+
       state.acitvitySortedLists.byWeeks = sortActivities(state.activityList, timeRanges.Week);
       state.acitvitySortedLists.byMonths = sortActivities(state.activityList, timeRanges.Month);
       state.acitvitySortedLists.byYears = sortActivities(state.activityList, timeRanges.Year);
       state.acitvitySortedLists.all = sortActivities(state.activityList, timeRanges.All);
-      }
+
+      state.existingClusters.forEach(item => {
+        if (item.isIndividual) {
+          state.acitvitySortedLists[item.clusterName] = sortPersonalCluster(state.activityList, item.clusterName);
+        }
+      });
+    }
 
     state.appLoadingStatus.activities = loadingStatus.Loaded;
   },

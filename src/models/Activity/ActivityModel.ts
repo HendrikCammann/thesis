@@ -2,6 +2,7 @@ import {ActivityDetailModel} from './ActivityDetailModel';
 import {ActivityStreamModel} from './ActivityStreamModel';
 import {ActivityZoneModel} from './ActivityZoneModel';
 import {RunType} from '../../store/state';
+import {ClusterItem} from '../State/StateModel';
 
 class ActivityControls {
   public has_heartrate: boolean;
@@ -54,12 +55,14 @@ class ActivityMaxData {
 class ActivityCategorization {
   public cluster_anchor_month: string;
   public cluster_anchor_year: string;
+  public clusters_anchors: ClusterItem[];
   public type: string;
   public activity_type: RunType;
 
   constructor() {
     this.cluster_anchor_month = null;
     this.cluster_anchor_year = null;
+    this.clusters_anchors = [];
     this.type = null;
     this.activity_type = RunType.Uncategorized;
   }

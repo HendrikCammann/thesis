@@ -33,7 +33,7 @@ function applyUserModel(item): UserModel {
   return user;
 }
 
-function applyActivityModelStructure(item): ActivityModel {
+function applyActivityModelStructure(item, oldestDate): ActivityModel {
   let activity = new ActivityModel();
 
   activity.id = item.id;
@@ -60,7 +60,7 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.categorization.cluster_anchor_year = new Date(item.start_date).getFullYear().toString();
 
   let timeRange = {
-    start: new Date(1970),
+    start: new Date(oldestDate),
     end: new Date(),
   };
 
@@ -346,10 +346,15 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.GET_ACTIVITIES]: (state: State, {items}) => {
     if (!state.activityList.length) {
-      items.forEach(item => {
+      let oldestDate = null;
+      items.reverse().forEach((item, i) => {
         if (item.type === 'Run') {
-          state.activityList.push({
-            ...applyActivityModelStructure(item)
+          if (oldestDate === null) {
+            oldestDate = item.start_date;
+            state.filter.timeRange.start = new Date(oldestDate);
+          }
+          state.activityList.unshift({
+            ...applyActivityModelStructure(item, oldestDate)
           });
         }
       });

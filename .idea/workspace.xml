@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/partials/FilterButton/FilterButton.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/partials/FilterButton/filterButton.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/partials/FilterButton/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/filter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/filter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,84 +18,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ActivitiesContainer.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
+      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="439">
+              <caret line="353" column="64" lean-forward="true" selection-start-line="353" selection-start-column="64" selection-end-line="353" selection-end-column="64" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <element signature="e#1353#1768#0" />
-                <element signature="e#1854#1998#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="filterModule.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeGroupingButton.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="filter.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timeGroupingButton.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="FilterButton.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/partials/FilterButton/FilterButton.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FilterModule.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="755">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
-              <folding>
-                <element signature="e#21#43#0" expanded="true" />
-                <element signature="e#800#832#0" />
-                <element signature="n#!!block;n#selectTrainingCluster#0;n#FilterModule#0" />
-                <element signature="n#!!block;n#setDateRange#0;n#FilterModule#0" />
-                <element signature="n#!!block;n#setTimeRange#0;n#FilterModule#0" />
+                <element signature="n#!!block;n#applyUserModel#0" />
+                <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
+                <element signature="n#!!block;n#applyActivityStreamModelStructure#0" />
+                <element signature="n#!!block;n#applyActivityZoneModelStructure#0" />
+                <element signature="n#!!block;n#sortActivities#0" />
+                <element signature="n#!!block;n#sortCluster#0" />
+                <element signature="n#!!block;n#summarizeRunTypes#0" />
               </folding>
             </state>
           </provider>
@@ -188,7 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/router/index.ts" />
         <option value="$PROJECT_DIR$/src/styles/common/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/modules/Navbar/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/modules/UserModule/index.ts" />
@@ -222,8 +149,6 @@
         <option value="$PROJECT_DIR$/src/store/actions.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" />
-        <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
-        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/FilterModule/index.ts" />
         <option value="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
@@ -234,11 +159,14 @@
         <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
         <option value="$PROJECT_DIR$/src/events/filter.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" />
+        <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.html" />
+        <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
+        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
       </list>
     </option>
   </component>
@@ -328,42 +256,13 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="FilterButton" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="TimeGroupingButton" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -515,7 +414,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281235000" />
+    <option name="totallyTimeSpent" value="283102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="23" width="1920" height="1053" extended-state="6" />
@@ -636,7 +535,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="23" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -644,9 +543,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/models/FormatModel.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/BubbleChart/BubbleChart.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -835,47 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1318">
-          <caret line="35" column="58" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
-          <folding>
-            <element signature="n#!!block;n#applyUserModel#0" />
-            <element signature="n#!!block;n#applyActivityModelStructure#0" />
-            <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
-            <element signature="n#!!block;n#applyActivityStreamModelStructure#0" />
-            <element signature="n#!!block;n#applyActivityZoneModelStructure#0" />
-            <element signature="n#!!block;n#extractClusters#0" />
-            <element signature="n#!!block;n#sortCluster#0" />
-            <element signature="n#!!block;n#summarizeRunTypes#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="50" selection-start-line="50" selection-end-line="54" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#addTextToBar#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#addArcsAndBubbles#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#setupPathVariables#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#drawPath#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#addActivities#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#setupActivityVariables#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#drawActivity#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#addActivitiesConnection#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#setupActivitiesConnectionVariables#0;n#ArcChart#0" />
-            <element signature="n#!!block;n#drawActivitiesConnection#0;n#ArcChart#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -967,8 +822,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.html">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -976,6 +838,9 @@
           <caret line="3" column="21" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="21" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/partials/FilterButton/FilterButton.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -998,20 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="468">
+          <caret line="77" column="4" lean-forward="true" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
             <element signature="e#1353#1768#0" />
@@ -1020,17 +875,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+    <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        <state relative-caret-position="540">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="480">
+          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addTextToBar#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addArcsAndBubbles#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupPathVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawPath#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addActivities#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupActivityVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawActivity#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addActivitiesConnection#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupActivitiesConnectionVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawActivitiesConnection#0;n#ArcChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="353" column="64" lean-forward="true" selection-start-line="353" selection-start-column="64" selection-end-line="353" selection-end-column="64" />
+          <folding>
+            <element signature="n#!!block;n#applyUserModel#0" />
+            <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
+            <element signature="n#!!block;n#applyActivityStreamModelStructure#0" />
+            <element signature="n#!!block;n#applyActivityZoneModelStructure#0" />
+            <element signature="n#!!block;n#sortActivities#0" />
+            <element signature="n#!!block;n#sortCluster#0" />
+            <element signature="n#!!block;n#summarizeRunTypes#0" />
+          </folding>
         </state>
       </provider>
     </entry>

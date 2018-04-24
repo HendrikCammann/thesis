@@ -50,7 +50,7 @@ export class ArcChart extends Vue {
   @Watch('canvasConstraints')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      this.arcChart(this.root, this.data, this.filter, this.canvasConstraints);
+      this.arcChart('#' + this.root, this.data, this.filter, this.canvasConstraints);
     }
   }
 

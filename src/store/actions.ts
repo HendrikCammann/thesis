@@ -111,7 +111,13 @@ const actions: ActionTree<State, State> = {
     commit(MutationTypes.SET_ATHLETE_LOADING_STATUS, {
       loadingStatus
     });
-  }
+  },
+
+  [MutationTypes.SET_TIME_RANGE]: ({commit}, timeRange) => {
+    commit(MutationTypes.SET_TIME_RANGE, {
+      timeRange
+    });
+  },
 
 };
 

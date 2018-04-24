@@ -67,7 +67,7 @@ function applyActivityModelStructure(item): ActivityModel {
   activity.categorization.clusters_anchors.push(new ClusterItem('All', false, timeRange));
 
   let temp = new Date(activity.date);
-  
+
   if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
     let range = {
       start: new Date(2017, 4, 19),
@@ -300,6 +300,7 @@ function sortCluster(activities, cluster) {
 
 function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel) {
   array.activities.push(activity.id);
+  array.rangeDate = new Date(activity.date);
   array.stats.count++;
   array.stats.distance += activity.base_data.distance;
   array.stats.time += activity.base_data.duration;
@@ -415,7 +416,12 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_ATHLETE_LOADING_STATUS]: (state: State, {loadingStatus}) => {
     state.appLoadingStatus.athlete = loadingStatus;
-  }
+  },
+
+  [MutationTypes.SET_TIME_RANGE]: (state: State, {timeRange}) => {
+    state.filter.showEverything = false;
+    state.filter.timeRange = timeRange;
+  },
 
 };
 

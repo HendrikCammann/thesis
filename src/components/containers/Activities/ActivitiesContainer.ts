@@ -104,13 +104,13 @@ export class ActivitiesContainer extends Vue {
     }
 
     if (this.endInput === '') {
-      timeRange.end = new Date(new Date().getFullYear(), 11, 31);
+      timeRange.end = new Date(new Date());
     } else {
       timeRange.end = new Date(this.endInput);
     }
 
     timeRange.isRange = true;
-    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, timeRange);
+    this.$store.dispatch(MutationTypes.SET_TIME_RANGE, timeRange);
   }
 
   mounted() {

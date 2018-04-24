@@ -18,6 +18,7 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
     endDate = new Date(new Date());
   }
 
+
   switch (filter.selectedCluster) {
     case ClusterType.All:
       tempData = dataset[filter.selectedTrainingCluster].unsorted;
@@ -40,6 +41,7 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
     }
   } else {
     for (let key in tempData) {
+      console.log('in', tempData[key]);
       if (tempData[key].rangeDate >= startDate && tempData[key].rangeDate <= endDate) {
         returnData.unshift(tempData[key]);
       }

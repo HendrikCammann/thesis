@@ -14,7 +14,7 @@ class TypeCountModel {
   }
 }
 
-class ActivityClusterTypeCountModel {
+export class ActivityClusterTypeCountModel {
   run: TypeCountModel;
   longRun: TypeCountModel;
   interval: TypeCountModel;

@@ -1,15 +1,15 @@
 <div>
   <div>
-    <select v-model="selectedTrainingCluster" @change="selectYear($event)">
+    <select v-model="selectedTrainingCluster" @change="selectTrainingCluster()">
       <option v-for="cluster in clusters" :value="cluster.clusterName">{{ cluster.clusterName }}</option>
     </select>
 
     start:
-    <input v-model="timeRange.start" type="date" @change="setDateRange($event)">
+    <input v-model="timeRange.start" type="date" @change="setDateRange()">
     end:
-    <input v-model="timeRange.end" type="date" @change="setDateRange($event)">
+    <input v-model="timeRange.end" type="date" @change="setDateRange()">
 
-    <div id="filter__time" @click="selectCluster($event)">
+    <div id="filter__time" @click="selectTimeGrouping($event)">
       <a href="#" id="year" class="button">Group by year</a>
       <a href="#" id="month" class="button">Group by month</a>
       <a href="#" id="week" class="button">Group by Week</a>

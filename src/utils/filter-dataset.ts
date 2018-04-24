@@ -41,7 +41,6 @@ export function selectAndFilterDataset(dataset, filter: FilterModel): any {
     }
   } else {
     for (let key in tempData) {
-      console.log('in', tempData[key]);
       if (tempData[key].rangeDate >= startDate && tempData[key].rangeDate <= endDate) {
         returnData.unshift(tempData[key]);
       }

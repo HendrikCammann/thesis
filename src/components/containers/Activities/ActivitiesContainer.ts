@@ -37,89 +37,12 @@ import {FilterModule} from '../../modules/FilterModule';
 })
 export class ActivitiesContainer extends Vue {
 
-  public filterCluster: string = 'All';
-
   public timeRangeFilter = {
     start: '',
     end: ''
   };
 
-  public startInput: any = '';
-  public endInput: any = '';
-
   public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1, 20);
-
-  public selectRunType(event) {
-    let runType: RunType;
-    switch (event.target.id) {
-      case 'allActivities':
-        runType = RunType.All;
-        break;
-      case 'run':
-        runType = RunType.Run;
-        break;
-      case 'tempo-run':
-        runType = RunType.TempoRun;
-        break;
-      case 'long-run':
-        runType = RunType.LongRun;
-        break;
-      case 'short-intervals':
-        runType = RunType.ShortIntervals;
-        break;
-      case 'long-intervals':
-        runType = RunType.LongIntervals;
-        break;
-      case 'competition':
-        runType = RunType.Competition;
-        break;
-      case 'regeneration':
-        runType = RunType.Regeneration;
-        break;
-    }
-    this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, runType);
-  }
-
-  public selectCluster(event) {
-    let clusterType: ClusterType;
-    switch (event.target.id) {
-      case 'year':
-        clusterType = ClusterType.ByYears;
-        break;
-      case 'month':
-        clusterType = ClusterType.ByMonths;
-        break;
-      case 'week':
-        clusterType = ClusterType.ByWeeks;
-        break;
-      case 'all':
-        clusterType = ClusterType.All;
-        break;
-    }
-    this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
-  }
-
-  public selectYear(event) {
-    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.filterCluster);
-  }
-
-  public setDateRange(event) {
-    let timeRange = new TimeRangeModel();
-    if (this.timeRangeFilter.start === '') {
-      timeRange.start = new Date(1970);
-    } else {
-      timeRange.start = new Date(this.startInput);
-    }
-
-    if (this.timeRangeFilter.end === '') {
-      timeRange.end = new Date(new Date());
-    } else {
-      timeRange.end = new Date(this.endInput);
-    }
-
-    timeRange.isRange = true;
-    this.$store.dispatch(MutationTypes.SET_TIME_RANGE, timeRange);
-  }
 
   mounted() {
     this.timeRangeFilter.start = this.$store.getters.getTimeRange.start.toISOString().split('T')[0];
@@ -131,6 +54,18 @@ export class ActivitiesContainer extends Vue {
     }
 
     filterBus.$on(filterEvents.setRunTypeFilter, (type) => {
+      this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
+    });
+
+    filterBus.$on(filterEvents.set_Training_Cluster, (type) => {
+      this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, type);
+    });
+
+    filterBus.$on(filterEvents.set_Time_Grouping, (type) => {
+      this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, type);
+    });
+
+    filterBus.$on(filterEvents.set_Run_Type, (type) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
     });
   }

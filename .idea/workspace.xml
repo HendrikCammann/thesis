@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/filter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/filter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/filter-dataset.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/filter-dataset.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,73 +20,42 @@
       <file leaf-file-name="ActivitiesContainer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="110" column="33" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="33" />
-              <folding>
-                <element signature="n#!!block;n#selectRunType#0;n#ActivitiesContainer#0" />
-                <element signature="n#!!block;n#selectCluster#0;n#ActivitiesContainer#0" />
-                <element signature="e#3099#3146#0" />
-                <element signature="e#3253#3304#0" />
-              </folding>
+            <state relative-caret-position="795">
+              <caret line="68" column="69" lean-forward="true" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/index.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getters.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="state.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/state.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="35" column="40" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FilterModule.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FilterModule.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+            <state relative-caret-position="450">
+              <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
               <folding>
                 <element signature="e#21#43#0" expanded="true" />
-                <element signature="n#!!block;n#selectRunType#0;n#FilterModule#0" />
+                <element signature="e#444#1096#0" />
                 <element signature="n#!!block;n#selectCluster#0;n#FilterModule#0" />
+                <element signature="n#!!block;n#selectYear#0;n#FilterModule#0" />
+                <element signature="n#!!block;n#setDateRange#0;n#FilterModule#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filterModule.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="filter.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filterModule.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -175,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/styles/common/_font-styles.scss" />
         <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/Navbar/Navbar.html" />
         <option value="$PROJECT_DIR$/src/index.html" />
@@ -216,16 +180,17 @@
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
         <option value="$PROJECT_DIR$/src/store/actions.ts" />
-        <option value="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts" />
         <option value="$PROJECT_DIR$/src/store/mutations.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/FilterModule/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
-        <option value="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
+        <option value="$PROJECT_DIR$/src/utils/filter-dataset.ts" />
+        <option value="$PROJECT_DIR$/src/events/filter.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" />
+        <option value="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" />
       </list>
     </option>
   </component>
@@ -301,6 +266,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ArcChart" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="DayModule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -310,6 +283,12 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="FilterModule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -472,7 +451,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276860000" />
+    <option name="totallyTimeSpent" value="277756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="23" width="1920" height="1053" extended-state="6" />
@@ -626,13 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -856,16 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/filter-dataset.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="58" column="3" lean-forward="true" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -877,16 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="49" selection-start-line="49" selection-end-line="54" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,6 +874,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/filter-dataset.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ArcChart/ArcChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="763">
+          <caret line="137" column="23" selection-start-line="137" selection-start-column="14" selection-end-line="137" selection-end-column="23" />
+          <folding>
+            <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addTextToBar#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addArcsAndBubbles#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupPathVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupArcVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawPath#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawArc#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawBubbles#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addActivities#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupActivityVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawActivity#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#addActivitiesConnection#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupActivitiesConnectionVariables#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#drawActivitiesConnection#0;n#ArcChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -945,40 +931,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/state.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="40" />
+        <state relative-caret-position="204">
+          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
+    <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        <state relative-caret-position="60">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="110" column="33" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!block;n#selectRunType#0;n#ActivitiesContainer#0" />
-            <element signature="n#!!block;n#selectCluster#0;n#ActivitiesContainer#0" />
-            <element signature="e#3099#3146#0" />
-            <element signature="e#3253#3304#0" />
-          </folding>
+        <state relative-caret-position="795">
+          <caret line="68" column="69" lean-forward="true" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+        <state relative-caret-position="450">
+          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
             <element signature="e#21#43#0" expanded="true" />
-            <element signature="n#!!block;n#selectRunType#0;n#FilterModule#0" />
+            <element signature="e#444#1096#0" />
             <element signature="n#!!block;n#selectCluster#0;n#FilterModule#0" />
+            <element signature="n#!!block;n#selectYear#0;n#FilterModule#0" />
+            <element signature="n#!!block;n#setDateRange#0;n#FilterModule#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>

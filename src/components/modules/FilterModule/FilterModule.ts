@@ -5,6 +5,8 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {ClusterType, RunType} from '../../../store/state';
 import {ClusterItem} from '../../../models/State/StateModel';
 import {TimeRangeModel} from '../../../models/Filter/FilterModel';
+import {filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
 
 @Component({
   template: require('./filterModule.html'),
@@ -46,10 +48,10 @@ export class FilterModule extends Vue {
         runType = RunType.Regeneration;
         break;
     }
-    this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, runType);
+    filterBus.$emit(filterEvents.set_Run_Type, runType);
   }
 
-  public selectCluster(event) {
+  public selectTimeGrouping(event) {
     let clusterType: ClusterType;
     switch (event.target.id) {
       case 'year':
@@ -65,14 +67,14 @@ export class FilterModule extends Vue {
         clusterType = ClusterType.All;
         break;
     }
-    this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, clusterType);
+    filterBus.$emit(filterEvents.set_Time_Grouping, clusterType)
   }
 
-  public selectYear(event) {
-    this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, this.selectedTrainingCluster);
+  public selectTrainingCluster() {
+    filterBus.$emit(filterEvents.set_Training_Cluster, this.selectedTrainingCluster);
   }
 
-  public setDateRange(event) {
+  public setDateRange() {
     let timeRangeUpdate = new TimeRangeModel();
     timeRangeUpdate.start = new Date(this.timeRange.start);
     timeRangeUpdate.end = new Date(this.timeRange.end);

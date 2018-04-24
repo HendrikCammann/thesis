@@ -7,10 +7,15 @@ import {ClusterItem} from '../../../models/State/StateModel';
 import {FilterModel, TimeRangeModel} from '../../../models/Filter/FilterModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
-import {loadingStatus} from '../../../models/App/AppStatus';
+import {FilterButton} from '../../partials/FilterButton';
+import {TimeGroupingButton} from '../../partials/TimeGroupingButton';
 
 @Component({
   template: require('./filterModule.html'),
+  components: {
+    'filterButton': FilterButton,
+    'timegroupingButton': TimeGroupingButton,
+  }
 })
 export class FilterModule extends Vue {
   @Prop()
@@ -18,6 +23,12 @@ export class FilterModule extends Vue {
 
   @Prop()
   clusters: ClusterItem[];
+
+  @Prop()
+  filterOptions: any[];
+
+  @Prop()
+  timeGroupOptions: any[];
 
   @Watch('filter.timeRange.start')
   @Watch('filter.timeRange.end')
@@ -30,57 +41,11 @@ export class FilterModule extends Vue {
     end: ''
   };
 
+  public getActiveFilterElement(activeFilter, itemFilter): boolean {
+    return activeFilter === itemFilter;
+  }
+
   public selectedTrainingCluster: string = 'All';
-
-  public selectRunType(event) {
-    let runType: RunType;
-    switch (event.target.id) {
-      case 'allActivities':
-        runType = RunType.All;
-        break;
-      case 'run':
-        runType = RunType.Run;
-        break;
-      case 'tempo-run':
-        runType = RunType.TempoRun;
-        break;
-      case 'long-run':
-        runType = RunType.LongRun;
-        break;
-      case 'short-intervals':
-        runType = RunType.ShortIntervals;
-        break;
-      case 'long-intervals':
-        runType = RunType.LongIntervals;
-        break;
-      case 'competition':
-        runType = RunType.Competition;
-        break;
-      case 'regeneration':
-        runType = RunType.Regeneration;
-        break;
-    }
-    filterBus.$emit(filterEvents.set_Run_Type, runType);
-  }
-
-  public selectTimeGrouping(event) {
-    let clusterType: ClusterType;
-    switch (event.target.id) {
-      case 'year':
-        clusterType = ClusterType.ByYears;
-        break;
-      case 'month':
-        clusterType = ClusterType.ByMonths;
-        break;
-      case 'week':
-        clusterType = ClusterType.ByWeeks;
-        break;
-      case 'all':
-        clusterType = ClusterType.All;
-        break;
-    }
-    filterBus.$emit(filterEvents.set_Time_Grouping, clusterType)
-  }
 
   public selectTrainingCluster() {
     filterBus.$emit(filterEvents.set_Training_Cluster, this.selectedTrainingCluster);
@@ -101,5 +66,13 @@ export class FilterModule extends Vue {
 
   mounted() {
     this.setTimeRange();
+
+    filterBus.$on(filterEvents.selected_Run_Type, (type) => {
+      filterBus.$emit(filterEvents.set_Run_Type, type);
+    });
+
+    filterBus.$on(filterEvents.selected_Time_Group, (type) => {
+      filterBus.$emit(filterEvents.set_Time_Grouping, type)
+    });
   }
 }

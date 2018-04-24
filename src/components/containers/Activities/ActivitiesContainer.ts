@@ -11,6 +11,7 @@ import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {FilterModule} from '../../modules/FilterModule';
+import {ClusterType, RunType} from '../../../store/state';
 
 @Component({
   template: require('./activities.html'),
@@ -32,8 +33,49 @@ import {FilterModule} from '../../modules/FilterModule';
   }
 })
 export class ActivitiesContainer extends Vue {
-
   public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1, 20);
+
+  public runTypeFilters = [
+    {
+      name: 'All',
+      type: RunType.All,
+    },
+    {
+      name: 'Run',
+      type: RunType.Run,
+    },
+    {
+      name: 'Long Run',
+      type: RunType.LongRun,
+    },
+    {
+      name: 'Short Intervals',
+      type: RunType.ShortIntervals,
+    },
+    {
+      name: 'Competition',
+      type: RunType.Competition,
+    },
+    {
+      name: 'Uncategorized',
+      type: RunType.Uncategorized,
+    },
+  ];
+
+  public timeGrouping = [
+    {
+      name: 'Year',
+      type: ClusterType.ByYears,
+    },
+    {
+      name: 'Month',
+      type: ClusterType.ByMonths,
+    },
+    {
+      name: 'Week',
+      type: ClusterType.ByWeeks,
+    }
+  ];
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {

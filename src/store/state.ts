@@ -25,21 +25,16 @@ export enum ClusterType {
 
 export class State {
   public appLoadingStatus: LoadingStatus;
-
   public user: UserModel;
 
   public activityList: ActivityModel[];
   public selectedActivityId: number;
 
   public sortedLists: Object;
-
   public existingClusters: ClusterItem[];
 
   public filter: FilterModel;
   public dashboardFilter: FilterModel;
-
-  public selectedRunType: RunType;
-  public selectedCluster: ClusterType;
 
   constructor() {
     this.user = new UserModel();
@@ -61,10 +56,6 @@ export class State {
     this.dashboardFilter.timeRange.isRange = true;
     this.dashboardFilter.timeRange.end = new Date();
     this.dashboardFilter.timeRange.start = new Date(this.dashboardFilter.timeRange.end.getFullYear(), this.dashboardFilter.timeRange.end.getMonth(), this.dashboardFilter.timeRange.end.getDay() - 14);
-
-    this.selectedRunType = RunType.All;
-
-    this.selectedCluster = ClusterType.ByMonths;
   }
 }
 

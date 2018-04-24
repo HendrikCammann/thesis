@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
-import {ClusterType, RunType, State} from '../../../store/state';
 import {BubbleChart} from '../../modules/BubbleChart';
 import {mapGetters} from 'vuex';
 import {ActivityListItem} from '../../modules/ActivityListItem';
@@ -10,11 +9,8 @@ import {ArcChart} from '../../modules/ArcChart';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
-import {TimeRangeModel} from '../../../models/Filter/FilterModel';
 import {loadingStatus} from '../../../models/App/AppStatus';
-import {Watch} from 'vue-property-decorator';
 import {FilterModule} from '../../modules/FilterModule';
-// import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
   template: require('./activities.html'),
@@ -37,17 +33,9 @@ import {FilterModule} from '../../modules/FilterModule';
 })
 export class ActivitiesContainer extends Vue {
 
-  public timeRangeFilter = {
-    start: '',
-    end: ''
-  };
-
   public canvasConstraints = new CanvasConstraints(15, 1200, 800, 300, 1, 20);
 
   mounted() {
-    this.timeRangeFilter.start = this.$store.getters.getTimeRange.start.toISOString().split('T')[0];
-    this.timeRangeFilter.end = this.$store.getters.getTimeRange.end.toISOString().split('T')[0];
-
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);

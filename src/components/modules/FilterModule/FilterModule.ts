@@ -4,19 +4,31 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import {MutationTypes} from '../../../store/mutation-types';
 import {ClusterType, RunType} from '../../../store/state';
 import {ClusterItem} from '../../../models/State/StateModel';
-import {TimeRangeModel} from '../../../models/Filter/FilterModel';
+import {FilterModel, TimeRangeModel} from '../../../models/Filter/FilterModel';
 import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
+import {loadingStatus} from '../../../models/App/AppStatus';
 
 @Component({
   template: require('./filterModule.html'),
 })
 export class FilterModule extends Vue {
   @Prop()
-  timeRange: any;
+  filter: FilterModel;
 
   @Prop()
   clusters: ClusterItem[];
+
+  @Watch('filter.timeRange.start')
+  @Watch('filter.timeRange.end')
+  onPropertyChanged(val: any, oldVal: any) {
+    this.setTimeRange();
+  }
+
+  public timeRange = {
+    start: '',
+    end: ''
+  };
 
   public selectedTrainingCluster: string = 'All';
 
@@ -82,7 +94,12 @@ export class FilterModule extends Vue {
     this.$store.dispatch(MutationTypes.SET_TIME_RANGE, timeRangeUpdate);
   }
 
-  onPropertyChanged(val: any, oldVal: any) {
+  private setTimeRange(): void {
+    this.timeRange.start = this.filter.timeRange.start.toISOString().split('T')[0];
+    this.timeRange.end = this.filter.timeRange.end.toISOString().split('T')[0];
+  }
 
+  mounted() {
+    this.setTimeRange();
   }
 }

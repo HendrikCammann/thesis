@@ -12,6 +12,8 @@ import {filterBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {TimeRangeModel} from '../../../models/Filter/FilterModel';
 import {loadingStatus} from '../../../models/App/AppStatus';
+import {Watch} from 'vue-property-decorator';
+import {FilterModule} from '../../modules/FilterModule';
 // import {ClusterChart} from '../../modules/ClusterChart';
 
 @Component({
@@ -29,12 +31,18 @@ import {loadingStatus} from '../../../models/App/AppStatus';
     'bubbleChart': BubbleChart,
     'swooshChart': SwooshChart,
     'arcChart': ArcChart,
-    'activityListItem': ActivityListItem
+    'activityListItem': ActivityListItem,
+    'filterModule': FilterModule,
   }
 })
 export class ActivitiesContainer extends Vue {
 
   public filterCluster: string = 'All';
+
+  public timeRangeFilter = {
+    start: '',
+    end: ''
+  };
 
   public startInput: any = '';
   public endInput: any = '';
@@ -97,13 +105,13 @@ export class ActivitiesContainer extends Vue {
 
   public setDateRange(event) {
     let timeRange = new TimeRangeModel();
-    if (this.startInput === '') {
+    if (this.timeRangeFilter.start === '') {
       timeRange.start = new Date(1970);
     } else {
       timeRange.start = new Date(this.startInput);
     }
 
-    if (this.endInput === '') {
+    if (this.timeRangeFilter.end === '') {
       timeRange.end = new Date(new Date());
     } else {
       timeRange.end = new Date(this.endInput);
@@ -114,6 +122,9 @@ export class ActivitiesContainer extends Vue {
   }
 
   mounted() {
+    this.timeRangeFilter.start = this.$store.getters.getTimeRange.start.toISOString().split('T')[0];
+    this.timeRangeFilter.end = this.$store.getters.getTimeRange.end.toISOString().split('T')[0];
+
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);

@@ -1,33 +1,8 @@
 <div class="container">
-  <div>
-    <select v-model="filterCluster" @change="selectYear($event)">
-      <option v-for="cluster in clusters" :value="cluster.clusterName">{{ cluster.clusterName }}</option>
-    </select>
-
-    start:
-    <input v-model="startInput" type="date" @change="setDateRange($event)">
-    end:
-    <input v-model="endInput" type="date" @change="setDateRange($event)">
-
-    <div id="filter__time" @click="selectCluster($event)">
-      <a href="#" id="year" class="button">Group by year</a>
-      <a href="#" id="month" class="button">Group by month</a>
-      <a href="#" id="week" class="button">Group by Week</a>
-    </div>
-  </div>
-
-  <hr>
-
-  <div id="filter__activity" @click="selectRunType($event)">
-    <a href="#" id="allActivities" class="button">All</a>
-    <a href="#" id="run" class="button">Runs</a>
-    <a href="#" id="tempo-run" class="button">TDL</a>
-    <a href="#" id="long-run" class="button">Langer DL</a>
-    <a href="#" id="short-intervals" class="button">Kurze IV</a>
-    <a href="#" id="long-intervals" class="button">Lange IV</a>
-    <a href="#" id="competition" class="button">Wettkampf</a>
-    <a href="#" id="regeneration" class="button">Regeneration</a>
-  </div>
+  <filter-module
+    :clusters="clusters"
+    :timeRange="timeRangeFilter"
+  ></filter-module>
 
   <hr>
 

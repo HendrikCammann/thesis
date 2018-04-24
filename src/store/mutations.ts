@@ -94,7 +94,7 @@ function applyActivityModelStructure(item): ActivityModel {
 
   if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
     let range = {
-      start: new Date(2016, 10, 8),
+      start: new Date(2017, 10, 8),
       end: new Date(2018, 3, 9),
     };
     activity.categorization.clusters_anchors.push(new ClusterItem('Hannover-2018', true, range));
@@ -408,6 +408,17 @@ const mutations: MutationTree<State> = {
 
   [MutationTypes.SET_FILTERBY_TYPE]: (state: State, {filterBy}) => {
     state.filter.selectedTrainingCluster = filterBy;
+    state.existingClusters.map(cluster => {
+      if (cluster.clusterName === filterBy) {
+        state.filter.timeRange.end = cluster.timeRange.end;
+        state.filter.timeRange.start = cluster.timeRange.start;
+        if (filterBy !== 'All') {
+          state.filter.timeRange.isRange = true;
+        } else {
+          state.filter.timeRange.isRange = false;
+        }
+      }
+    });
   },
 
   [MutationTypes.SET_LOADING_STATUS]: (state: State, {loadingStatus}) => {

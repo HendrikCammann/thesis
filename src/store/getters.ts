@@ -48,6 +48,9 @@ const getters: GetterTree<State, State> = {
       }
     }
   },
+  getTimeRange: (state) => {
+    return state.filter.timeRange;
+  },
 
   getSelectedRunType: (state) => {
     return state.filter.selectedRunType;

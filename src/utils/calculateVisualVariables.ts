@@ -69,8 +69,8 @@ export function calaculateConnectingHeight(actualItemLength: number, nextItemLen
   let height = (canvasHeight / 6) - barHeight;
   let itemHeight = parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
   let percentageFromMaxHeight = 100 / maxHeight * itemHeight;
-  return height * percentageFromMaxHeight;
-  // return parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
+  // return height * percentageFromMaxHeight;
+  return parseInt((Math.abs(actualItemLength - nextItemLength) * factor).toFixed(0));
 }
 
 /**

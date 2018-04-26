@@ -1,3 +1,10 @@
 <div class="container">
-  <stacked-compare></stacked-compare>
+  <!--<stacked-compare></stacked-compare>-->
+  <arc-compare
+    :root="'arcCompare'"
+    :filter="filter"
+    :data="sortedLists"
+    :selectedClusters="selectedTrainingClusters"
+    :loadingStatus="loadingStatus"
+  ></arc-compare>
 </div>

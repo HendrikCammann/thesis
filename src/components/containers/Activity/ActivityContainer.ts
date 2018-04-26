@@ -3,7 +3,7 @@ import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {State} from '../../../store/state';
 import {mapGetters} from 'vuex';
-import { LineChart } from '../../../components/modules/LineChart/';
+import { LineChart } from '../../Charts/LineChart/';
 
 /* tslint:disable */
 @Component({

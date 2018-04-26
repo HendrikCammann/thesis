@@ -2,14 +2,16 @@ import {ActivityClusterTypeCountModel} from '../Activity/ActivityClusterModel';
 
 export class ClusterItem {
   clusterName: string;
+  id: string;
   isIndividual: boolean;
   timeRange: {
     start: Date,
     end: Date,
   };
 
-  constructor(name, individual, timeRange) {
+  constructor(name, id, individual, timeRange) {
     this.clusterName = name;
+    this.id = id;
     this.isIndividual = individual;
     this.timeRange = timeRange;
   }

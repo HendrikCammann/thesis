@@ -6,6 +6,7 @@ import { AppContainer } from '../components/containers/App/';
 import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
 import {Dashboard} from '../components/containers/Dashboard';
+import {CompareContainer} from '../components/containers/Compare';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -33,6 +34,10 @@ const router = new VueRouter({
       component: ActivitiesContainer,
       name: 'performance',
       path: '/performance',
+    }, {
+      component: CompareContainer,
+      name: 'compare',
+      path: '/compare',
     }
   ],
 });

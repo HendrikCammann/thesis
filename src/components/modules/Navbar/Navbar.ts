@@ -9,7 +9,8 @@ export class Navbar extends Vue {
   links: Link[] = [
     new Link('Dashboard', '/dashboard'),
     new Link('Trainingshistorie', '/activities'),
-    new Link('Leistungsentwicklung', '/performance')
+    new Link('Leistungsentwicklung', '/performance'),
+    new Link('Vergleich', '/compare')
   ];
 
   @Watch('$route.path')

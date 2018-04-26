@@ -29,6 +29,7 @@ export class State {
 
   public activityList: ActivityModel[];
   public selectedActivityId: number;
+  public selectedTrainingClusters: string[];
 
   public sortedLists: Object;
   public existingClusters: ClusterItem[];
@@ -47,6 +48,8 @@ export class State {
     this.activityList = [];
 
     this.selectedActivityId = null;
+
+    this.selectedTrainingClusters = ['Karlsruhe-2017', 'Kandel-2017'];
 
     this.filter = new FilterModel();
 

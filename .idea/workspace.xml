@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/_config/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stravadatabase/18_04_28_17_36.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stravadatabase/18_04_28_17_45.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stravadatabase/18_04_28_17_59.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/localData/formatJSON.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stravadatabase/18_04_28_19_23.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/listItems.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mock-data-list.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Activity/ActivityModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Activity/ActivityModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutation-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutation-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,20 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/_config/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="616">
-              <caret line="409" column="40" lean-forward="true" selection-start-line="409" selection-start-column="40" selection-end-line="409" selection-end-column="40" />
+              <caret line="409" column="40" selection-start-line="409" selection-start-column="40" selection-end-line="409" selection-end-column="40" />
               <folding>
                 <element signature="n#!!block;n#applyUserModel#0" />
                 <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
@@ -98,8 +78,8 @@
       <file leaf-file-name="actions.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/actions.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+            <state relative-caret-position="59">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -107,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="formatJSON.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/utils/localData/formatJSON.ts">
+      <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/_config/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -241,12 +221,12 @@
         <option value="$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts" />
         <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
         <option value="$PROJECT_DIR$/src/models/Activity/ActivityModel.ts" />
-        <option value="$PROJECT_DIR$/src/_config/config.json" />
         <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
-        <option value="$PROJECT_DIR$/src/store/actions.ts" />
         <option value="$PROJECT_DIR$/src/store/mutations.ts" />
+        <option value="$PROJECT_DIR$/src/_config/config.json" />
         <option value="$PROJECT_DIR$/src/utils/localData/formatJSON.ts" />
+        <option value="$PROJECT_DIR$/src/store/actions.ts" />
       </list>
     </option>
   </component>
@@ -470,12 +450,12 @@
       <workItem from="1524501595659" duration="1514000" />
       <workItem from="1524744707122" duration="10249000" />
       <workItem from="1524923505522" duration="1799000" />
-      <workItem from="1524925586282" duration="5137000" />
+      <workItem from="1524925586282" duration="6027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308893000" />
+    <option name="totallyTimeSpent" value="309783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="1680" height="1027" extended-state="6" />
@@ -584,13 +564,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -868,37 +841,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/_config/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stravadatabase/18_04_28_17_59.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
-          <caret line="409" column="40" lean-forward="true" selection-start-line="409" selection-start-column="40" selection-end-line="409" selection-end-column="40" />
+          <caret line="409" column="40" selection-start-line="409" selection-start-column="40" selection-end-line="409" selection-end-column="40" />
           <folding>
             <element signature="n#!!block;n#applyUserModel#0" />
             <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
@@ -911,10 +860,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/localData/formatJSON.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        <state relative-caret-position="330">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stravadatabase/18_04_28_19_23.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/_config/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>

@@ -5,7 +5,7 @@ import {State} from './state';
 import * as stravaAPI from '../api/stravaAPI';
 import {reformatJSON} from '../utils/localData/formatJSON';
 const config = require('../_config/config.json');
-const stravaData = require('../stravadatabase/18_04_28_17_59.json');
+const stravaData = require('../stravadatabase/18_04_28_19_23.json');
 
 let token = '386bced857a83a6a4575b2308a3de25b95fa9116';
 let page = 1;
@@ -29,7 +29,6 @@ const actions: ActionTree<State, State> = {
         });
       });
     } else {
-      console.log('in actions');
       commit(MutationTypes.GET_ACTIVITIES_FROM_JSON, {
         items: reformatJSON(stravaData)
       });
@@ -37,27 +36,33 @@ const actions: ActionTree<State, State> = {
   },
 
   [MutationTypes.GET_ACTIVITY]: ({commit}, activityId) => {
-    stravaAPI.getActivity(activityId, token, (item) => {
-      commit(MutationTypes.GET_ACTIVITY, {
-        item
+    if (config.useStravaApi) {
+      stravaAPI.getActivity(activityId, token, (item) => {
+        commit(MutationTypes.GET_ACTIVITY, {
+          item
+        });
       });
-    });
+    }
   },
 
   [MutationTypes.GET_ACTIVITY_STREAMS]: ({commit}, activityId) => {
-    stravaAPI.getStreamsForActivity(activityId, streams, token, (item) => {
-      commit(MutationTypes.GET_ACTIVITY_STREAMS, {
-        item
+    if (config.useStravaApi) {
+      stravaAPI.getStreamsForActivity(activityId, streams, token, (item) => {
+        commit(MutationTypes.GET_ACTIVITY_STREAMS, {
+          item
+        });
       });
-    });
+    }
   },
 
   [MutationTypes.GET_ACTIVITY_ZONES]: ({commit}, activityId) => {
-    stravaAPI.getZonesForActivity(activityId, token, (item) => {
-      commit(MutationTypes.GET_ACTIVITY_ZONES, {
-        item
+    if (config.useStravaApi) {
+      stravaAPI.getZonesForActivity(activityId, token, (item) => {
+        commit(MutationTypes.GET_ACTIVITY_ZONES, {
+          item
+        });
       });
-    });
+    }
   },
 
   [MutationTypes.SET_SELECTED_ACTIVITY]: ({commit}, activityId) => {

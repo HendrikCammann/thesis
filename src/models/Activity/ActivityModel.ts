@@ -55,14 +55,14 @@ class ActivityMaxData {
 class ActivityCategorization {
   public cluster_anchor_month: string;
   public cluster_anchor_year: string;
-  public clusters_anchors: ClusterItem[];
+  public cluster_anchors: ClusterItem[];
   public type: string;
   public activity_type: RunType;
 
   constructor() {
     this.cluster_anchor_month = null;
     this.cluster_anchor_year = null;
-    this.clusters_anchors = [];
+    this.cluster_anchors = [];
     this.type = null;
     this.activity_type = RunType.Uncategorized;
   }

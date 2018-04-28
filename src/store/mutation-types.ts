@@ -1,12 +1,7 @@
 export class MutationTypes {
-  public static INCREMENT_VALUE = 'INCREMENT_VALUE';
-  public static DECREMENT_VALUE = 'DECREMENT_VALUE';
-  public static RESET_VALUE = 'RESET_VALUE';
-
   public static SET_LOADING_STATUS = 'SET_LOADING_STATUS';
   public static SET_ATHLETE_LOADING_STATUS = 'SET_ATHLETE_LOADING_STATUS';
 
-  public static GET_LIST = 'GET_LIST';
 
   public static GET_ATHLETE = '[Strava-API] GET_ATHLETE';
 
@@ -14,6 +9,8 @@ export class MutationTypes {
   public static GET_ACTIVITY = '[Strava-API] GET_ACTIVITY';
   public static GET_ACTIVITY_STREAMS = '[Strava-API] GET_ACTIVITY_STREAMS';
   public static GET_ACTIVITY_ZONES = '[Strava-API] GET_ACTIVITY_ZONES';
+
+  public static GET_ACTIVITIES_FROM_JSON = '[Local] GET_ACTIVITIES_FROM_JSON';
 
   public static SET_SELECTED_ACTIVITY = '[Store] SET_SELECTED_ACTIVITY';
   public static SET_SELECTED_RUNTYPE = '[Store] SET_SELECTED_RUNTYPE';

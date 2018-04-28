@@ -64,7 +64,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
     end: new Date(),
   };
 
-  activity.categorization.clusters_anchors.push(new ClusterItem('All', ('All-' + timeRange.start + '-' + timeRange.end).replace(/\s+/g, ''), false, timeRange));
+  activity.categorization.cluster_anchors.push(new ClusterItem('All', ('All-' + timeRange.start + '-' + timeRange.end).replace(/\s+/g, ''), false, timeRange));
 
   let temp = new Date(activity.date);
 
@@ -73,7 +73,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 4, 19),
       end: new Date(2017, 8, 20),
     };
-    activity.categorization.clusters_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
   }
 
   if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
@@ -81,7 +81,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 10, 11),
       end: new Date(2018, 1, 12),
     };
-    activity.categorization.clusters_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
   }
 
   if (temp <= new Date(2017, 2, 12) && temp >= new Date(2016, 9, 12)) {
@@ -89,7 +89,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2016, 9, 12),
       end: new Date(2017, 2, 13),
     };
-    activity.categorization.clusters_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
   }
 
   if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
@@ -97,7 +97,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 10, 8),
       end: new Date(2018, 3, 9),
     };
-    activity.categorization.clusters_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
   }
 
   activity.categorization.type = item.type;
@@ -262,7 +262,7 @@ function sortActivities (array, bucket) {
 function extractClusters(state): void {
   let names: string[] = [];
   state.activityList.forEach(item => {
-    item.categorization.clusters_anchors.map(cluster => {
+    item.categorization.cluster_anchors.map(cluster => {
       if (names.indexOf(cluster.clusterName) === - 1) {
         state.existingClusters.push(cluster);
       }
@@ -276,7 +276,7 @@ function sortCluster(activities, cluster) {
   let temp = new ClusterWrapper();
 
   activities.forEach(activity => {
-    activity.categorization.clusters_anchors.forEach(anchor => {
+    activity.categorization.cluster_anchors.forEach(anchor => {
       if (anchor.clusterName === cluster) {
         allAct.push(activity);
         temp.stats.distance += activity.base_data.distance;
@@ -401,6 +401,57 @@ const mutations: MutationTree<State> = {
       });
     }
 
+    state.appLoadingStatus.activities = loadingStatus.Loaded;
+  },
+
+  [MutationTypes.GET_ACTIVITIES_FROM_JSON]: (state: State, {items}) => {
+    state.activityList = items;
+
+    state.activityList.map(activity => {
+      let temp = new Date(activity.date);
+
+      if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
+        let range = {
+          start: new Date(2017, 4, 19),
+          end: new Date(2017, 8, 20),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+      }
+
+      if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
+        let range = {
+          start: new Date(2017, 10, 11),
+          end: new Date(2018, 1, 12),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+      }
+
+      if (temp <= new Date(2017, 2, 12) && temp >= new Date(2016, 9, 12)) {
+        let range = {
+          start: new Date(2016, 9, 12),
+          end: new Date(2017, 2, 13),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+      }
+
+      if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
+        let range = {
+          start: new Date(2017, 10, 8),
+          end: new Date(2018, 3, 9),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+      }
+    });
+
+    extractClusters(state);
+
+    state.existingClusters.forEach(item => {
+      if (item.isIndividual) {
+        state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
+      } else {
+        state.sortedLists[item.clusterName] = sortCluster(state.activityList, item.clusterName);
+      }
+    });
     state.appLoadingStatus.activities = loadingStatus.Loaded;
   },
 

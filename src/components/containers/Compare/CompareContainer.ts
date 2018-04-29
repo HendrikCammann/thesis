@@ -6,9 +6,11 @@ import {mapGetters} from 'vuex';
 import {StackedCompare} from '../../charts/StackedCompare';
 import {CompareModule} from '../../modules/CompareModule';
 import {CompareAddButton} from '../../partials/CompareAddButton';
-import {compareBus, filterBus} from '../../../main';
-import {filterEvents} from '../../../events/filter';
+import {compareBus, modalBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
+import {ModalModule} from '../../modules/ModalModule';
+import {modalEvents} from '../../../events/Modal/modal';
+import {CompareAddModule} from '../../modules/CompareAddModule';
 
 
 @Component({
@@ -22,10 +24,14 @@ import {compareEvents} from '../../../events/Compare/compare';
   components: {
     'stackedCompare': StackedCompare,
     'compareModule': CompareModule,
-    'compareAddButton': CompareAddButton
+    'compareAddModule': CompareAddModule,
+    'compareAddButton': CompareAddButton,
+    'modalModule': ModalModule,
   }
 })
 export class CompareContainer extends Vue {
+  public modalActive = false;
+
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
@@ -34,6 +40,14 @@ export class CompareContainer extends Vue {
 
     compareBus.$on(compareEvents.remove_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
+    });
+
+    modalBus.$on(modalEvents.open_Modal, () => {
+      this.modalActive = true;
+    });
+
+    modalBus.$on(modalEvents.close_Modal, () => {
+      this.modalActive = false;
     });
   }
 }

@@ -1,8 +1,9 @@
 /* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {compareBus} from '../../../main';
+import {compareBus, modalBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
+import {modalEvents} from '../../../events/Modal/modal';
 
 @Component({
   template: require('./compareAddButton.html'),
@@ -19,8 +20,7 @@ export class CompareAddButton extends Vue {
   }
 
   public addTrainingCluster () {
-    // compareBus.$emit(compareEvents.add_Training_Cluster, this.trainingCluster);
-    console.log('add');
+    modalBus.$emit(modalEvents.open_Modal);
   }
 
   mounted() {

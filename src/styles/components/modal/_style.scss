@@ -1,0 +1,15 @@
+.modalModule {
+  $root: &;
+  height: 100vh;
+  width: 100vw;
+  padding: 200px 300px;
+  background-color: $color-black--blur;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+
+  #{&}__content {
+    color: $color-white;
+  }
+}

@@ -107,6 +107,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: ({commit}, cluster) => {
+    commit(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, {
+      cluster
+    });
+  },
+
 };
 
 export default actions;

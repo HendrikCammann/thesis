@@ -5,6 +5,10 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {mapGetters} from 'vuex';
 import {StackedCompare} from '../../charts/StackedCompare';
 import {CompareModule} from '../../modules/CompareModule';
+import {CompareAddButton} from '../../partials/CompareAddButton';
+import {compareBus, filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
+import {compareEvents} from '../../../events/Compare/compare';
 
 
 @Component({
@@ -18,6 +22,7 @@ import {CompareModule} from '../../modules/CompareModule';
   components: {
     'stackedCompare': StackedCompare,
     'compareModule': CompareModule,
+    'compareAddButton': CompareAddButton
   }
 })
 export class CompareContainer extends Vue {
@@ -26,5 +31,9 @@ export class CompareContainer extends Vue {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
+
+    compareBus.$on(compareEvents.remove_Training_Cluster, (type) => {
+      this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
+    });
   }
 }

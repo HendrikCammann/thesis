@@ -1,8 +1,8 @@
-<div class="compare">
-  <div class="compare__headline">
+<div class="compareModule">
+  <!--<div class="compareModule__headline">
     {{ trainingCluster }}
-  </div>
-  <div class="compare__chart">
+  </div>-->
+  <div class="compareModule__chart">
     <arc-compare
       :root="'arcCompare-' + index"
       :filter="filter"
@@ -11,7 +11,7 @@
       :loadingStatus="loadingStatus"
     ></arc-compare>
   </div>
-  <div class="compare__list">
+  <div class="compareModule__list">
     <compare-list-item
       :filter="filter"
       :data="sortedData"

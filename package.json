@@ -31,6 +31,7 @@
     "axios": "^0.16.2",
     "bootstrap": "4.0.0",
     "d3": "^4.13.0",
+    "font-awesome": "^4.7.0",
     "google-code-prettify": "^1.0.5",
     "moment": "^2.21.0",
     "strava-v3": "^1.14.0",

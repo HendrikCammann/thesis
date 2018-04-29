@@ -521,6 +521,10 @@ const mutations: MutationTree<State> = {
     state.filter.timeRange = timeRange;
   },
 
+  [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {
+    state.selectedTrainingClusters = state.selectedTrainingClusters.filter(item => item !== cluster);
+  },
+
 };
 
 export default mutations;

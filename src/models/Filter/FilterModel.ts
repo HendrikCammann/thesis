@@ -16,6 +16,7 @@ export class FilterModel {
   selectedRunType: RunType;
   selectedCluster: ClusterType;
   selectedTrainingCluster: string;
+  selectedRunTypTrainingCluster: RunType;
   timeRange: TimeRangeModel;
   showEverything: boolean;
 
@@ -24,6 +25,7 @@ export class FilterModel {
     this.selectedCluster = ClusterType.ByMonths;
     this.timeRange = new TimeRangeModel();
     this.selectedTrainingCluster = 'All';
+    this.selectedRunTypTrainingCluster = RunType.All;
     this.showEverything = true;
   }
 }

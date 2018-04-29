@@ -1,0 +1,4 @@
+<div class="compareAddButton">
+  <span class="compareAddButton__title" v-if="!isAdd">{{ trainingCluster }}<i class="fa fa-times" @click="removeTrainingCluster"></i></span>
+  <span class="compareAddButton__title" v-if="isAdd" @click="addTrainingCluster">{{ trainingCluster }}<i class="fa fa-plus"></i></span>
+</div>

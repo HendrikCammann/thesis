@@ -4,16 +4,21 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import '~font-awesome/css/font-awesome.css';
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 // common
 @import "common/_colors";
 @import "common/_style";
+@import "common/_font-styles";
 
 // components
 @import "components/containers/App/_style";
 @import "components/containers/Activities/_style";
 @import "components/containers/Dashboard/_style";
+@import "components/containers/Compare/_style";
+
 
 @import "components/modules/Navbar/_style";
 @import "components/modules/UserModule/_style";
@@ -22,6 +27,5 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/modules/BubbleChart/_style";
 @import "components/modules/CompareModule/_style";
 
-
 @import "components/partials/TitleBox/_style";
-
+@import "components/partials/CompareAddButton/_style";

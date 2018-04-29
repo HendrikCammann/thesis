@@ -2,6 +2,7 @@
 .navigation {
   $root: &;
   padding-top: 10px;
+  border-bottom: 1px solid $color-grey--light;
 
   #{&}__content {
     text-align: center;

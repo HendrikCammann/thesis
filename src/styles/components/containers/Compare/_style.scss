@@ -1,5 +1,6 @@
 .compare {
   $root: &;
+  margin-top: 40px !important;
 
   #{&}__title {
     text-align: center;
@@ -10,5 +11,11 @@
   #{&}__menu {
     text-align: center;
     margin-bottom: 25px;
+  }
+
+  #{&}__select {
+    display: inline-block;
+    padding: 5px 30px;
+    font-size: 14px;
   }
 }

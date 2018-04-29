@@ -525,6 +525,10 @@ const mutations: MutationTree<State> = {
     state.selectedTrainingClusters = state.selectedTrainingClusters.filter(item => item !== cluster);
   },
 
+  [MutationTypes.ADD_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {
+    state.selectedTrainingClusters.push(cluster);
+  },
+
 };
 
 export default mutations;

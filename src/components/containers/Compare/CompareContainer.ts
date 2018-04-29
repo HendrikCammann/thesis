@@ -17,6 +17,7 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
   template: require('./compare.html'),
   computed: mapGetters({
     selectedTrainingClusters: 'getSelectedTrainingClusters',
+    existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     sortedLists: 'getSortedLists',
     filter: 'getFilter',
@@ -31,6 +32,12 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
 })
 export class CompareContainer extends Vue {
   public modalActive = false;
+  public selectedCluster = '';
+
+  public selectTrainingCluster() {
+    this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, this.selectedCluster);
+    this.selectedCluster = '';
+  }
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
@@ -40,6 +47,10 @@ export class CompareContainer extends Vue {
 
     compareBus.$on(compareEvents.remove_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
+    });
+
+    compareBus.$on(compareEvents.add_Training_Cluster, (type) => {
+      this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
     });
 
     modalBus.$on(modalEvents.open_Modal, () => {

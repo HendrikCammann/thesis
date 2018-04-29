@@ -1,10 +1,13 @@
 <div class="container compare">
   <modal-module v-if="modalActive">
-    <compare-add-module></compare-add-module>
+    <compare-add-module
+      :selectedClusters="selectedTrainingClusters"
+      :existingClusters="existingClusters"
+    ></compare-add-module>
   </modal-module>
   <div class="row">
     <div class="col-md-12 compare__title">
-      Compare your Racepreperations
+      Racepreperations
     </div>
   </div>
   <div class="row">
@@ -13,11 +16,21 @@
         :trainingCluster="item"
         :isAdd="false"
       ></compare-add-button>
-      <compare-add-button
+      <div class="compare__select">
+        <select v-model="selectedCluster"
+                @change="selectTrainingCluster"
+                v-if="selectedTrainingClusters.length < 4">
+          <option disabled value="">Compare another Preperation</option>
+          <option v-for="item in existingClusters" v-if="selectedTrainingClusters.indexOf(item.clusterName) < 0 && item.isIndividual"
+            :value="item.clusterName"
+          >{{ item.clusterName }}</option>
+        </select>
+      </div>
+      <!--<compare-add-button
         v-if="selectedTrainingClusters.length <= 4"
         :trainingCluster="selectedTrainingClusters.length > 0 ? '' : 'Choose Racepreperation'"
         :isAdd="true"
-      ></compare-add-button>
+      ></compare-add-button>-->
     </div>
   </div>
   <div class="row">

@@ -113,6 +113,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.ADD_SELECTED_TRAINING_CLUSTER]: ({commit}, cluster) => {
+    commit(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, {
+      cluster
+    });
+  },
+
 };
 
 export default actions;

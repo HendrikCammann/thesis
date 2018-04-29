@@ -26,6 +26,10 @@ const getters: GetterTree<State, State> = {
   getClusters: (state) => {
     return state.existingClusters;
   },
+  getExistingClusters: (state) => {
+    return state.existingClusters;
+  },
+
   getSelectedTrainingClusters: (state) => {
     return state.selectedTrainingClusters;
   },

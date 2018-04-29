@@ -7,6 +7,7 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {getKeys} from '../../../utils/array-helper';
 import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {RunType} from '../../../store/state';
+import {getDataToCompare} from '../../../utils/compareData/compareData';
 
 @Component({
   template: require('./arcCompare.html'),
@@ -26,7 +27,7 @@ export class ArcCompare extends Vue {
   loadingStatus: any;
 
   @Prop()
-  selectedClusters: string[];
+  trainingCluster: string;
 
   @Watch('data')
   @Watch('loadingStatus.activities')
@@ -34,43 +35,40 @@ export class ArcCompare extends Vue {
   @Watch('filter.selectedCluster')
   @Watch('filter.selectedTrainingCluster')
   onPropertyChanged(val: any, oldVal: any) {
-    if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      this.stackedCompare('#' + this.root, this.data, this.filter, this.selectedClusters);
+    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
+      this.arcCompare('#' + this.root, this.data, this.filter, this.trainingCluster);
     }
   }
 
-  private stackedCompare(root, data, filter, selectedClusters) {
+  private arcCompare(root, data, filter, selectedCluster) {
+    d3.select(root + " > svg").remove();
     let svg = d3.select(root).append('svg')
-      .attr('width', 960)
-      .attr('height', 500);
+      .attr('width', 390)
+      .attr('height', 100);
 
-    let sortedData = this.getDataToCompare(selectedClusters, data);
-    // console.log(sortedData);
 
     let draw = [];
     let startPos = {
       x: 0,
-      y: 150,
+      y: 100,
     };
-    sortedData.map(item => {
-      let obj = {};
 
-      startPos.x += item.stats.distance / 9000;
-      this.drawHalfCircle(svg, startPos, {distance: item.stats.distance, type: RunType.Uncategorized}, filter);
-      startPos.x += item.stats.distance / 9000;
-      startPos.x += 120;
-      for (let key in item.stats.typeCount) {
-        obj[key] = item.stats.typeCount[key];
-      }
-      draw.push(obj);
-    });
+    let obj = {};
 
-    console.log(draw);
+    startPos.x += data.stats.distance / 9000;
+    // this.drawHalfCircle(svg, startPos, {distance: item.stats.distance, type: RunType.Uncategorized}, filter);
+    startPos.x += data.stats.distance / 9000;
+    startPos.x += 120;
+    for (let key in data.stats.typeCount) {
+      obj[key] = data.stats.typeCount[key];
+    }
+    draw.push(obj);
 
     startPos = {
       x: 0,
-      y: 150,
+      y: 100,
     };
+
     draw.map(cluster => {
       for (let key in cluster) {
         startPos.x += cluster[key].distance / 9000;
@@ -79,12 +77,6 @@ export class ArcCompare extends Vue {
       }
       startPos.x += 120;
     });
-  }
-
-  private getDataToCompare(selectedClusters: string[], data) {
-    return selectedClusters.map(item => {
-      return data[item];
-    })
   }
 
   private drawHalfCircle(svg, position, item, filter) {
@@ -102,6 +94,6 @@ export class ArcCompare extends Vue {
   }
 
   mounted() {
-    // this.stackedCompare('#' + this.root, this.data, this.filter, this.selectedClusters);
+    // this.arcCompare('#' + this.root, this.data, this.filter, this.selectedClusters);
   }
 }

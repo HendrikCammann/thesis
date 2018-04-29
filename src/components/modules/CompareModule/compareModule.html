@@ -1,0 +1,23 @@
+<div class="compare">
+  <div class="compare__headline">
+    {{ trainingCluster }}
+  </div>
+  <div class="compare__chart">
+    <arc-compare
+      :root="'arcCompare-' + index"
+      :filter="filter"
+      :data="sortedData"
+      :trainingCluster="trainingCluster"
+      :loadingStatus="loadingStatus"
+    ></arc-compare>
+  </div>
+  <div class="compare__list">
+    <compare-list-item
+      :filter="filter"
+      :data="sortedData"
+      :trainingCluster="trainingCluster"
+      :loadingStatus="loadingStatus"
+      :trainingClusterDetail="trainingClusterDetail"
+    ></compare-list-item>
+  </div>
+</div>

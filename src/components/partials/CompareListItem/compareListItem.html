@@ -1,0 +1,8 @@
+<div>
+  <div v-if="data != null">
+    <div>Distance: {{ data.stats.distance | formatDistance }}</div>
+    <div>Einheiten: {{ data.stats.count }}</div>
+    <div>Dauer: {{ trainingClusterDetail.duration.range }} {{ trainingClusterDetail.duration.type }}</div>
+    <div>Distance/Woche: {{ (data.stats.distance / trainingClusterDetail.duration.range ) | formatDistance }} {{ trainingClusterDetail.duration.type }}</div>
+  </div>
+</div>

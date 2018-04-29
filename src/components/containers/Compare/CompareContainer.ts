@@ -4,7 +4,7 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {MutationTypes} from '../../../store/mutation-types';
 import {mapGetters} from 'vuex';
 import {StackedCompare} from '../../charts/StackedCompare';
-import {ArcCompare} from '../../charts/ArcCompare';
+import {CompareModule} from '../../modules/CompareModule';
 
 
 @Component({
@@ -17,7 +17,7 @@ import {ArcCompare} from '../../charts/ArcCompare';
   }),
   components: {
     'stackedCompare': StackedCompare,
-    'arcCompare': ArcCompare,
+    'compareModule': CompareModule,
   }
 })
 export class CompareContainer extends Vue {

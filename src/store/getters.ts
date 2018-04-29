@@ -30,6 +30,12 @@ const getters: GetterTree<State, State> = {
     return state.selectedTrainingClusters;
   },
 
+  getCluster: (state) => {
+    return (cluster) => {
+      return state.existingClusters.find(item => item.clusterName === cluster);
+    };
+  },
+
   getActivity: (state, getters) =>  {
     return (id) => {
       return state.activityList.find(item => item.id === id);

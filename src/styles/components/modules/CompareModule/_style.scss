@@ -1,0 +1,11 @@
+.compare {
+  $root: &;
+
+  #{&}__headline {
+    text-align: center;
+  }
+
+  #{&}__chart {
+    text-align: center;
+  }
+}

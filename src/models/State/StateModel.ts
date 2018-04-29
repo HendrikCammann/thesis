@@ -1,4 +1,5 @@
 import {ActivityClusterTypeCountModel} from '../Activity/ActivityClusterModel';
+import {getWeeksBetweenDates} from '../../utils/time/time-formatter';
 
 export class ClusterItem {
   clusterName: string;
@@ -8,12 +9,14 @@ export class ClusterItem {
     start: Date,
     end: Date,
   };
+  duration: any;
 
   constructor(name, id, individual, timeRange) {
     this.clusterName = name;
     this.id = id;
     this.isIndividual = individual;
     this.timeRange = timeRange;
+    this.duration = getWeeksBetweenDates(timeRange.end, timeRange.start);
   }
 }
 

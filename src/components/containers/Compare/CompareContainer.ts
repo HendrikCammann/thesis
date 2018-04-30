@@ -11,6 +11,7 @@ import {compareEvents} from '../../../events/Compare/compare';
 import {ModalModule} from '../../modules/ModalModule';
 import {modalEvents} from '../../../events/Modal/modal';
 import {CompareAddModule} from '../../modules/CompareAddModule';
+import {HistoryChart} from '../../charts/HistoryChart';
 
 
 @Component({
@@ -27,11 +28,10 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
     'compareModule': CompareModule,
     'compareAddModule': CompareAddModule,
     'compareAddButton': CompareAddButton,
-    'modalModule': ModalModule,
+    'historyChart': HistoryChart,
   }
 })
 export class CompareContainer extends Vue {
-  public modalActive = false;
   public selectedCluster = '';
 
   public selectTrainingCluster() {
@@ -51,14 +51,6 @@ export class CompareContainer extends Vue {
 
     compareBus.$on(compareEvents.add_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
-    });
-
-    modalBus.$on(modalEvents.open_Modal, () => {
-      this.modalActive = true;
-    });
-
-    modalBus.$on(modalEvents.close_Modal, () => {
-      this.modalActive = false;
     });
   }
 }

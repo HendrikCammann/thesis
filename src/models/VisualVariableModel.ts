@@ -13,11 +13,11 @@ export enum CategoryConnectingOpacity {
 }
 
 export enum CategoryColors {
-  Run = '#1280B2',
-  Competition = '#B2AB09',
-  LongRun = '#00AFFF',
-  ShortIntervals = '#FF1939',
-  Uncategorized = 'gray',
+  Run = '#43b3e6',
+  Competition = '#faa628',
+  LongRun = '#273866',
+  ShortIntervals = '#ec407a',
+  Uncategorized = '#9D9D9D',
   Default = 'black'
 }
 

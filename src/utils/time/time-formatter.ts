@@ -3,6 +3,6 @@ export function getWeeksBetweenDates(end, start) {
   start = new Date(start);
   return {
     range: Math.round((end - start) / (7 * 24 * 60 * 60 * 1000)),
-    type: 'Wochen'
+    type: 'Weeks'
   };
 }

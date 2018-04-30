@@ -8,13 +8,32 @@
     margin-bottom: 50px;
   }
 
+  #{&}__subTitle {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid $color-grey--light;
+
+    #{$root}__label {
+      font-family: $font-family--secondary;
+      font-size: 14px;
+      color: $color-grey;
+    }
+
+    #{$root}__teaser {
+      font-size: $font-size__headline--compare;
+      margin-bottom: 3px;
+    }
+  }
+
   #{&}__menu {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 10px;
   }
 
   #{&}__select {
-    font-family: 'Roboto', sans-serif;
+    font-family: $font-family--secondary;
     display: inline-block;
     padding: 5px 30px;
     font-size: 14px;

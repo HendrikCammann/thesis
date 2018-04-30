@@ -1,13 +1,7 @@
 <div class="container compare">
-  <modal-module v-if="modalActive">
-    <compare-add-module
-      :selectedClusters="selectedTrainingClusters"
-      :existingClusters="existingClusters"
-    ></compare-add-module>
-  </modal-module>
   <div class="row">
     <div class="col-md-12 compare__title">
-      Racepreperations
+      Race preparations
     </div>
   </div>
   <div class="row">
@@ -19,7 +13,7 @@
       <div class="compare__select" v-if="selectedTrainingClusters.length < 3">
         <select v-model="selectedCluster"
                 @change="selectTrainingCluster">
-          <option disabled value="">Compare another Preperation</option>
+          <option disabled value="">Compare another preparation</option>
           <option v-for="item in existingClusters" v-if="selectedTrainingClusters.indexOf(item.clusterName) < 0 && item.isIndividual"
             :value="item.clusterName"
           >{{ item.clusterName }}</option>
@@ -27,6 +21,10 @@
       </div>
     </div>
   </div>
+
+
+  <!-- FIRST GLANCE OVERVIEW -->
+
   <div class="row">
     <div v-for="(item, i) in selectedTrainingClusters"
          :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
@@ -37,6 +35,26 @@
         :trainingCluster="selectedTrainingClusters[i]"
         :loadingStatus="loadingStatus"
       ></compare-module>
+    </div>
+  </div>
+
+
+  <!-- DEEP COMPARE -->
+
+  <div class="row">
+    <div class="col-md-12 compare__subTitle">
+      <div class="compare__teaser">How did you prepare yourself?</div>
+      <div class="compare__label">Get a closer look at every aspect of your training.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <history-chart
+        :root="'history'"
+        :data="sortedLists"
+        :selectedClusters="selectedTrainingClusters"
+        :loadingStatus="loadingStatus"
+      ></history-chart>
     </div>
   </div>
 </div>

@@ -2,19 +2,23 @@
   <div v-if="data != null">
     <compare-box
       :value="data.stats.distance | formatDistance"
-      :label="'Trainingskilometer'"
-    ></compare-box>
-    <compare-box
-      :value="data.stats.count.toString()"
-      :label="'Einheiten'"
+      :label="'Total distance'"
     ></compare-box>
     <compare-box
       :value="trainingClusterDetail.duration.range.toString()"
       :label="trainingClusterDetail.duration.type"
     ></compare-box>
     <compare-box
+      :value="data.stats.count.toString()"
+      :label="'Sessions'"
+    ></compare-box>
+    <compare-box
       :value="(data.stats.distance / trainingClusterDetail.duration.range) | formatDistance"
-      :label="'ø Wochenkilometer'"
+      :label="'ø km per week'"
+    ></compare-box>
+    <compare-box
+      :value="(data.stats.count / trainingClusterDetail.duration.range).toFixed(1)"
+      :label="'Sessions per week'"
     ></compare-box>
   </div>
 </div>

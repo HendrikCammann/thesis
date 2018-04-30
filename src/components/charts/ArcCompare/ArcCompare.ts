@@ -67,7 +67,6 @@ export class ArcCompare extends Vue {
     };
 
     let obj = {};
-
     for (let key in data.stats.typeCount) {
       obj[key] = data.stats.typeCount[key];
     }
@@ -79,9 +78,6 @@ export class ArcCompare extends Vue {
         sumDistance += this.calculateRadiusFromArea(cluster[key].distance) * 2;
       }
       startPos.x = (360 / 2) - (sumDistance / 2);
-      console.log('center', 360/2);
-      console.log('width', sumDistance);
-      console.log('pos', startPos.x);
     });
 
     draw.map(cluster => {
@@ -108,6 +104,8 @@ export class ArcCompare extends Vue {
   }
 
   mounted() {
-    // this.arcCompare('#' + this.root, this.data, this.filter, this.selectedClusters);
+    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
+      this.arcCompare('#' + this.root, this.data, this.filter);
+    }
   }
 }

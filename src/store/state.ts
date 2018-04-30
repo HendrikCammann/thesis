@@ -50,7 +50,7 @@ export class State {
 
     this.selectedActivityId = null;
 
-    this.selectedTrainingClusters = ['Karlsruhe-2017', 'Barcelona-2018', 'Hannover-2018'];
+    this.selectedTrainingClusters = ['Kandel-2017', 'Karlsruhe-2017', 'Barcelona-2018'];
 
     this.filter = new FilterModel();
 

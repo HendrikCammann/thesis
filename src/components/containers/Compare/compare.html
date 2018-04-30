@@ -16,10 +16,9 @@
         :trainingCluster="item"
         :isAdd="false"
       ></compare-add-button>
-      <div class="compare__select">
+      <div class="compare__select" v-if="selectedTrainingClusters.length < 3">
         <select v-model="selectedCluster"
-                @change="selectTrainingCluster"
-                v-if="selectedTrainingClusters.length < 4">
+                @change="selectTrainingCluster">
           <option disabled value="">Compare another Preperation</option>
           <option v-for="item in existingClusters" v-if="selectedTrainingClusters.indexOf(item.clusterName) < 0 && item.isIndividual"
             :value="item.clusterName"

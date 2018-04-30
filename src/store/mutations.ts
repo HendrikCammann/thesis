@@ -410,6 +410,14 @@ const mutations: MutationTree<State> = {
     state.activityList.map(activity => {
       let temp = new Date(activity.date);
 
+      if (temp <= new Date(2016, 8, 10) && temp >= new Date(2016, 6, 17)) {
+        let range = {
+          start: new Date(2016, 6, 17),
+          end: new Date(2016, 8, 10),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Fulda-2016', ('Fulda-2016-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range));
+      }
+
       if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
         let range = {
           start: new Date(2017, 4, 19),

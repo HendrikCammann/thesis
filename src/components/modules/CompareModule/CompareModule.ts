@@ -30,8 +30,8 @@ export class CompareModule extends Vue {
   @Prop()
   loadingStatus: any;
 
-  private sortedData: any = null;
-  private trainingClusterDetail: any = null;
+  public sortedData: any = null;
+  public trainingClusterDetail: any = null;
 
   @Watch('data')
   @Watch('loadingStatus.activities')

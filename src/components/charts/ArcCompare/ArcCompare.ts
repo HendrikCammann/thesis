@@ -46,7 +46,6 @@ export class ArcCompare extends Vue {
       .attr('width', 390)
       .attr('height', 100);
 
-
     let draw = [];
     let startPos = {
       x: 0,
@@ -55,19 +54,18 @@ export class ArcCompare extends Vue {
 
     let obj = {};
 
-    startPos.x += data.stats.distance / 9000;
-    // this.drawHalfCircle(svg, startPos, {distance: item.stats.distance, type: RunType.Uncategorized}, filter);
-    startPos.x += data.stats.distance / 9000;
-    startPos.x += 120;
     for (let key in data.stats.typeCount) {
       obj[key] = data.stats.typeCount[key];
     }
     draw.push(obj);
 
-    startPos = {
-      x: 0,
-      y: 100,
-    };
+    draw.map(cluster => {
+      let sumDistance = 0;
+      for (let key in cluster) {
+        sumDistance += (cluster[key].distance / 9000) * 2;
+      }
+      startPos.x = (390 / 2) - (sumDistance / 2);
+    });
 
     draw.map(cluster => {
       for (let key in cluster) {
@@ -75,7 +73,6 @@ export class ArcCompare extends Vue {
         this.drawHalfCircle(svg, startPos, cluster[key], filter);
         startPos.x += cluster[key].distance / 9000;
       }
-      startPos.x += 120;
     });
   }
 

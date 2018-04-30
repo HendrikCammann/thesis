@@ -17,7 +17,7 @@ export const modalBus = new Vue();
 
 Vue.filter('formatDistance', function (value) {
   if (!value) return '';
-  return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+  return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2);
 });
 
 new Vue({

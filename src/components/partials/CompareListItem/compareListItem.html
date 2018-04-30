@@ -1,8 +1,20 @@
 <div>
   <div v-if="data != null">
-    <div>Distance: {{ data.stats.distance | formatDistance }}</div>
-    <div>Einheiten: {{ data.stats.count }}</div>
-    <div>Dauer: {{ trainingClusterDetail.duration.range }} {{ trainingClusterDetail.duration.type }}</div>
-    <div>Distance/Woche: {{ (data.stats.distance / trainingClusterDetail.duration.range ) | formatDistance }} {{ trainingClusterDetail.duration.type }}</div>
+    <compare-box
+      :value="data.stats.distance | formatDistance"
+      :label="'Trainingskilometer'"
+    ></compare-box>
+    <compare-box
+      :value="data.stats.count.toString()"
+      :label="'Einheiten'"
+    ></compare-box>
+    <compare-box
+      :value="trainingClusterDetail.duration.range.toString()"
+      :label="trainingClusterDetail.duration.type"
+    ></compare-box>
+    <compare-box
+      :value="(data.stats.distance / trainingClusterDetail.duration.range) | formatDistance"
+      :label="'ø Wochenkilometer'"
+    ></compare-box>
   </div>
 </div>

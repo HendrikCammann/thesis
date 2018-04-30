@@ -1,0 +1,15 @@
+.compareBox {
+  $root: &;
+  text-align: center;
+  margin-top: 30px;
+
+  #{&}__value {
+    font-size: $font-size__headline--compare;
+    margin-bottom: 3px;
+  }
+
+  #{&}__label {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+  }
+}

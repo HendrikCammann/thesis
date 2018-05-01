@@ -204,7 +204,6 @@ export class HistoryChart extends Vue {
       y: visualVariables.barHeight,
     };
     let shownBars = [];
-    //console.log(bars[1]);
 
     for (let i = 0; i < bars.length; i++) {
       let tempArr = [];
@@ -311,10 +310,9 @@ export class HistoryChart extends Vue {
 
     if (showAbsolute) {
       // THIS IS WORKING!!
-      console.log('abs');
       this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters, filterRange);
     } else {
-      console.log('group');
+      // THIS IS WORKING!!
       this.drawGroupedSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange)
     }
   }

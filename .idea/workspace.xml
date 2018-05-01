@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,8 +46,8 @@
       <file leaf-file-name="HistoryChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
-              <caret line="269" column="13" selection-start-line="269" selection-start-column="13" selection-end-line="269" selection-end-column="13" />
+            <state relative-caret-position="390">
+              <caret line="232" column="11" lean-forward="true" selection-start-line="232" selection-start-column="11" selection-end-line="232" selection-end-column="11" />
               <folding>
                 <element signature="e#21#43#0" expanded="true" />
                 <element signature="n#!!block;n#extractBarsFromDataset#0;n#HistoryChart#0" />
@@ -57,7 +55,6 @@
                 <element signature="n#!!block;n#drawSession#0;n#HistoryChart#0" />
                 <element signature="n#!!block;n#drawWeekLabel#0;n#HistoryChart#0" />
                 <element signature="n#!!block;n#drawClusterNames#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#drawCompareSessions#0;n#HistoryChart#0" />
               </folding>
             </state>
           </provider>
@@ -494,7 +491,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381950000" />
+    <option name="totallyTimeSpent" value="382048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -1026,8 +1023,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="269" column="13" selection-start-line="269" selection-start-column="13" selection-end-line="269" selection-end-column="13" />
+        <state relative-caret-position="390">
+          <caret line="232" column="11" lean-forward="true" selection-start-line="232" selection-start-column="11" selection-end-line="232" selection-end-column="11" />
           <folding>
             <element signature="e#21#43#0" expanded="true" />
             <element signature="n#!!block;n#extractBarsFromDataset#0;n#HistoryChart#0" />
@@ -1035,7 +1032,6 @@
             <element signature="n#!!block;n#drawSession#0;n#HistoryChart#0" />
             <element signature="n#!!block;n#drawWeekLabel#0;n#HistoryChart#0" />
             <element signature="n#!!block;n#drawClusterNames#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#drawCompareSessions#0;n#HistoryChart#0" />
           </folding>
         </state>
       </provider>

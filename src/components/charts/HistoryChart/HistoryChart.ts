@@ -213,7 +213,7 @@ export class HistoryChart extends Vue {
         // going into weeks
         item.map(activityType => {
           activityType.bars.reverse().map(bar => {
-            let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
+            let temp = pos.x;
             let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
             this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
             pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
@@ -272,7 +272,7 @@ export class HistoryChart extends Vue {
         let posXSave = pos.x;
         item.map(activityType => {
           activityType.bars.map(bar => {
-            let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
+            let temp = pos.x;
             let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
             this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
             pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);

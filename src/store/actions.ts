@@ -119,6 +119,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES]: ({commit}, shownBars) => {
+    commit(MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES, {
+      shownBars
+    });
+  },
+
 };
 
 export default actions;

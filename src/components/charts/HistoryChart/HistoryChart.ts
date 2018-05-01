@@ -4,6 +4,8 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {filterBus} from '../../../main';
+import {filterEvents} from '../../../events/filter';
 
 @Component({
   template: require('./historyChart.html'),
@@ -186,8 +188,10 @@ export class HistoryChart extends Vue {
       x: 0,
       y: visualVariables.barHeight,
     };
+    let shownBars = [];
 
     for (let i = 0; i < bars.length; i++) {
+      let tempArr = [];
       // going into first training preparation
       bars[i].reverse().map((item, j) => {
         this.drawWeekLabel(svg, pos, visualVariables.barHeight, 'W' + (j + 1));
@@ -198,12 +202,16 @@ export class HistoryChart extends Vue {
             let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
             this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
             pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
+            if (!isFaded) {
+              tempArr.push(bar);
+            }
           });
         });
         pos.x += (visualVariables.clusterMargin - visualVariables.barMargin);
       });
       pos.x = 0;
       pos.y += visualVariables.marginBottom;
+      shownBars.push(tempArr);
     }
 
     pos = {
@@ -212,6 +220,8 @@ export class HistoryChart extends Vue {
     };
 
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
+
+    console.log(shownBars);
   }
 
   private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters, filterRange): void {
@@ -219,6 +229,7 @@ export class HistoryChart extends Vue {
       x: 0,
       y: visualVariables.barHeight,
     };
+    let shownBars = [];
 
     for (let i = 0; i < maxWeeks; i++) {
       let xPosMax = pos.x;
@@ -226,7 +237,9 @@ export class HistoryChart extends Vue {
       pos.y = visualVariables.barHeight;
 
       for (let j = 0; j < bars.length; j++) {
-
+        if (!shownBars[j]) {
+          shownBars[j] = [];
+        }
         if (bars[j].reverse()[i] !== undefined) {
           svg.append('text')
             .attr('x', pos.x)
@@ -241,6 +254,9 @@ export class HistoryChart extends Vue {
               let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
               this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
               pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
+              if (!isFaded) {
+                shownBars[j].push(bar);
+              }
             });
           });
           pos.x += (visualVariables.clusterMargin - visualVariables.barMargin);
@@ -257,12 +273,14 @@ export class HistoryChart extends Vue {
       y: visualVariables.barHeight,
     };
 
+    filterBus.$emit(filterEvents.set_Compare_Shown_Bars, shownBars);
+
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
   private historyChart(root, data, selectedClusters, filterRange) {
     let temp = this.extractBarsFromDataset(this.mapSelectedClustersToData(data, selectedClusters));
-    let absolute = true;
+    let absolute = false;
     let visualVariables = this.calculateVisualVariables(temp.maxWeeks, temp.maxSessions, temp.maxDistance, temp.longest, absolute);
 
     d3.select(root + " > svg").remove();

@@ -14,6 +14,7 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
 import {HistoryChart} from '../../charts/HistoryChart';
 import {RangeSlider} from '../../partials/RangeSlider';
 import {filterEvents} from '../../../events/filter';
+import {DonutChart} from '../../charts/DonutChart';
 
 
 @Component({
@@ -32,6 +33,7 @@ import {filterEvents} from '../../../events/filter';
     'compareAddButton': CompareAddButton,
     'historyChart': HistoryChart,
     'rangeSlider': RangeSlider,
+    'donutChart': DonutChart,
   }
 })
 export class CompareContainer extends Vue {
@@ -59,6 +61,11 @@ export class CompareContainer extends Vue {
 
     filterBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
       this.filterRange = type;
+    });
+
+    filterBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {
+      console.log('event dispatched');
+      this.$store.dispatch(MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES, type);
     });
   }
 }

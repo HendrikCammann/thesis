@@ -7,4 +7,5 @@ export enum filterEvents {
   set_Run_Type = '[Filter Events] set_Run_Type',
 
   set_Compare_Time_Range = '[Filter Events] set_Compare_Time_Range',
+  set_Compare_Shown_Bars = '[Filter Events] set_Compare_Shown_Bars'
 }

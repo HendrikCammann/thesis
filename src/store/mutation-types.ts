@@ -20,6 +20,7 @@ export class MutationTypes {
 
   public static REMOVE_SELECTED_TRAINING_CLUSTER = '[Store] REMOVE_SELECTED_TRAINING_CLUSTER';
   public static ADD_SELECTED_TRAINING_CLUSTER = '[Store] ADD_SELECTED_TRAINING_CLUSTER';
+  public static SET_SHOWN_COMPARE_ACTIVITIES = '[Store] SET_SHOWN_COMPARE_ACTIVITIES';
 
   public static GET_RACE = '[Strava-API] GET_RACE';
 }

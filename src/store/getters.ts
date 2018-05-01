@@ -31,7 +31,7 @@ const getters: GetterTree<State, State> = {
   },
 
   getSelectedTrainingClusters: (state) => {
-    return state.selectedTrainingClusters;
+    return state.compare.selectedTrainingClusters;
   },
 
   getCluster: (state) => {

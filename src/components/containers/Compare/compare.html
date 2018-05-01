@@ -48,6 +48,14 @@
     </div>
   </div>
   <div class="row">
+    <div v-for="(item, i) in selectedTrainingClusters"
+         :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+      <donut-chart
+        :root="'donut' + i"
+      ></donut-chart>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <history-chart
         :root="'history'"

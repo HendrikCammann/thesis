@@ -3,7 +3,7 @@ import {FilterModel} from '../models/Filter/FilterModel';
 import {LoadingStatus, loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
 import {ClusterItem} from '../models/State/StateModel';
-const stravaData = require('../stravadatabase/object.json');
+import {CompareModel} from '../models/Compare/CompareModel';
 
 export enum RunType {
   All = 'All',
@@ -38,6 +38,8 @@ export class State {
   public filter: FilterModel;
   public dashboardFilter: FilterModel;
 
+  public compare: CompareModel;
+
   constructor() {
     this.user = new UserModel();
     this.appLoadingStatus = new LoadingStatus();
@@ -50,7 +52,7 @@ export class State {
 
     this.selectedActivityId = null;
 
-    this.selectedTrainingClusters = ['Kandel-2017', 'Karlsruhe-2017', 'Barcelona-2018'];
+    this.compare = new CompareModel();
 
     this.filter = new FilterModel();
 

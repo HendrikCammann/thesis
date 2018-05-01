@@ -530,11 +530,15 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {
-    state.selectedTrainingClusters = state.selectedTrainingClusters.filter(item => item !== cluster);
+    state.compare.selectedTrainingClusters = state.compare.selectedTrainingClusters.filter(item => item !== cluster);
   },
 
   [MutationTypes.ADD_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {
-    state.selectedTrainingClusters.push(cluster);
+    state.compare.selectedTrainingClusters.push(cluster);
+  },
+
+  [MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES]: (state: State, {shownBars}) => {
+    state.compare.shownBars = shownBars;
   },
 
 };

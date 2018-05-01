@@ -61,12 +61,14 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <input type="button" value="Show Absolute" @click="toggleHistoryChartMode">
       <history-chart
         :root="'history'"
         :data="sortedLists"
         :selectedClusters="selectedTrainingClusters"
         :loadingStatus="loadingStatus"
         :filterRange="filterRange"
+        :showAbsolute="showAbsolute"
       ></history-chart>
       <range-slider></range-slider>
     </div>

@@ -10,6 +10,7 @@ import {RunType} from '../../../store/state';
 import {getDataToCompare} from '../../../utils/compareData/compareData';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
+import {CategoryOpacity} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./arcCompare.html'),
@@ -28,9 +29,6 @@ export class ArcCompare extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
-  @Prop()
-  maxValue: number;
-
   @Watch('data')
   @Watch('loadingStatus.activities')
   @Watch('filter.selectedRunType')
@@ -38,7 +36,7 @@ export class ArcCompare extends Vue {
   @Watch('filter.selectedTrainingCluster')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
-      this.arcCompare('#' + this.root, this.data, this.filter);
+      this.arcCompare('#' + this.root, this.data);
     }
   }
 
@@ -54,7 +52,7 @@ export class ArcCompare extends Vue {
     return Math.sqrt(factorArea / Math.PI);
   }
 
-  private arcCompare(root, data, filter) {
+  private arcCompare(root, data) {
     d3.select(root + " > svg").remove();
     let svg = d3.select(root).append('svg')
       .attr('width', 360)
@@ -93,7 +91,7 @@ export class ArcCompare extends Vue {
     let arc = d3.arc();
     return svg.append('path')
       .attr('transform', 'translate('+[position.x , position.y]+')')
-      .attr('opacity', 0.8)
+      .attr('opacity', CategoryOpacity.Active)
       .attr('fill', getCategoryColor(item.type))
       .attr('d', arc({
         innerRadius: 0,
@@ -105,7 +103,7 @@ export class ArcCompare extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
-      this.arcCompare('#' + this.root, this.data, this.filter);
+      this.arcCompare('#' + this.root, this.data);
     }
   }
 }

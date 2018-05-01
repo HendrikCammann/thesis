@@ -81,8 +81,6 @@ export class DonutChart extends Vue {
 
     let donutData = this.createDonutPieces(data);
 
-    let text = '';
-
     let width = 260;
     let height = 260;
     let thickness = 40;
@@ -121,7 +119,8 @@ export class DonutChart extends Vue {
       })
       .append('path')
       .attr('d', arc)
-      .attr('id', (d: any, i:any) => d.data.name + index)
+      .attr('class', 'donutChart__arc')
+      .attr('id', (d: any) => d.data.name + index)
       .attr('opacity', (d: any) => calculateCategoryOpacity(this.hoveredRunType, d.data.name))
       .attr('fill', (d: any) => getCategoryColor(d.data.name));
 
@@ -151,7 +150,7 @@ export class DonutChart extends Vue {
       .text(function(d:any){return (100 / donutData.value * d.value).toFixed(0) + '%'});
   }
 
-  private checkIfLabelIsDrawable(value, totalValue) {
+  private checkIfLabelIsDrawable(value, totalValue): number {
     if (100 / totalValue * value < 5) {
       return 0;
     } else {
@@ -159,7 +158,7 @@ export class DonutChart extends Vue {
     }
   }
 
-  private handleHover(g, name, value) {
+  private handleHover(g, name, value): void {
     g.append('text')
       .attr('class', 'name-text')
       .text(name)
@@ -174,6 +173,8 @@ export class DonutChart extends Vue {
   }
 
   mounted() {
-    // this.donutChart('#' + this.root + this.index, this.data);
+    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== undefined) {
+      this.donutChart('#' + this.root + this.index, this.data, this.index);
+    }
   }
 }

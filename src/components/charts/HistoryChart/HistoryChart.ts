@@ -6,6 +6,8 @@ import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
+import {CategoryOpacity} from '../../../models/VisualVariableModel';
+import {navigationEvents} from '../../../events/Navigation/Navigation';
 
 @Component({
   template: require('./historyChart.html'),
@@ -21,6 +23,9 @@ export class HistoryChart extends Vue {
   selectedClusters: string[];
 
   @Prop()
+  showAbsolute: boolean;
+
+  @Prop()
   loadingStatus: LoadingStatus;
 
   @Prop()
@@ -30,9 +35,10 @@ export class HistoryChart extends Vue {
   @Watch('loadingStatus.activities')
   @Watch('selectedClusters')
   @Watch('filterRange')
+  @Watch('showAbsolute')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      this.historyChart('#' + this.root, this.data, this.selectedClusters, this.filterRange)
+      this.historyChart('#' + this.root, this.data, this.selectedClusters, this.filterRange, this.showAbsolute)
     }
   }
 
@@ -50,6 +56,10 @@ export class HistoryChart extends Vue {
     } else {
       return currentMax;
     }
+  }
+
+  private handleBarClick(id: number): void {
+    eventBus.$emit(navigationEvents.open_Activity_Detail, id);
   }
 
   private extractBarsFromDataset(data) {
@@ -143,9 +153,10 @@ export class HistoryChart extends Vue {
   }
 
   private drawSession(svg, bar, factor, pos, isFaded): void {
-    let opacity = 1;
+    let that = this;
+    let opacity = CategoryOpacity.Active;
     if (isFaded) {
-      opacity = 0.2;
+      opacity = CategoryOpacity.Inactive;
     }
     svg.append('rect')
       .attr('x', pos.x)
@@ -156,8 +167,8 @@ export class HistoryChart extends Vue {
       .attr('ry', 2)
       .attr('fill', getCategoryColor(bar.categorization.activity_type))
       .attr('opacity', opacity)
-      .on('click', function() {
-        console.log(bar.date);
+      .on('click', () => {
+        that.handleBarClick(bar.id);
       });
   }
 
@@ -220,8 +231,6 @@ export class HistoryChart extends Vue {
     };
 
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
-
-    console.log(shownBars);
   }
 
   private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters, filterRange): void {
@@ -278,10 +287,9 @@ export class HistoryChart extends Vue {
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
-  private historyChart(root, data, selectedClusters, filterRange) {
+  private historyChart(root, data, selectedClusters, filterRange, showAbsolute) {
     let temp = this.extractBarsFromDataset(this.mapSelectedClustersToData(data, selectedClusters));
-    let absolute = false;
-    let visualVariables = this.calculateVisualVariables(temp.maxWeeks, temp.maxSessions, temp.maxDistance, temp.longest, absolute);
+    let visualVariables = this.calculateVisualVariables(temp.maxWeeks, temp.maxSessions, temp.maxDistance, temp.longest, showAbsolute);
 
     d3.select(root + " > svg").remove();
     let svg = d3.select(root)
@@ -289,7 +297,7 @@ export class HistoryChart extends Vue {
       .attr('width', visualVariables.width)
       .attr('height', visualVariables.height);
 
-    if (absolute) {
+    if (showAbsolute) {
       this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters, filterRange);
     } else {
       this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange);
@@ -297,6 +305,8 @@ export class HistoryChart extends Vue {
   }
 
   mounted() {
-    //console.log(this.historyChart(this.data, this.selectedClusters));
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.historyChart('#' + this.root, this.data, this.selectedClusters, this.filterRange, this.showAbsolute)
+    }
   }
 }

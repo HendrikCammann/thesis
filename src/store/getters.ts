@@ -36,6 +36,10 @@ const getters: GetterTree<State, State> = {
     return state.compare.selectedTrainingClusters;
   },
 
+  getShowAbsolute: (state) => {
+    return state.compare.showAbsolute;
+  },
+
   getShownBars: (state) => {
     return state.compare.shownBars;
   },

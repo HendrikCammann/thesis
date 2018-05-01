@@ -14,6 +14,7 @@ import {RangeSlider} from '../../partials/RangeSlider';
 import {filterEvents} from '../../../events/filter';
 import {DonutChart} from '../../charts/DonutChart';
 import {RunType} from '../../../store/state';
+import {navigationEvents} from '../../../events/Navigation/Navigation';
 
 
 @Component({
@@ -24,7 +25,8 @@ import {RunType} from '../../../store/state';
     loadingStatus: 'getAppLoadingStatus',
     sortedLists: 'getSortedLists',
     filter: 'getFilter',
-    shownBars: 'getShownBars'
+    shownBars: 'getShownBars',
+    showAbsolute: 'getShowAbsolute',
   }),
   components: {
     'stackedCompare': StackedCompare,
@@ -44,6 +46,10 @@ export class CompareContainer extends Vue {
   public selectTrainingCluster() {
     this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, this.selectedCluster);
     this.selectedCluster = '';
+  }
+
+  public toggleHistoryChartMode() {
+    this.$store.dispatch(MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE);
   }
 
   mounted() {
@@ -70,6 +76,13 @@ export class CompareContainer extends Vue {
 
     eventBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {
       this.$store.dispatch(MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES, type);
+    });
+
+    eventBus.$on(navigationEvents.open_Activity_Detail, (activityId) => {
+      this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activityId);
+      this.$router.push({
+        path: '/activity/' + activityId
+      });
     });
   }
 }

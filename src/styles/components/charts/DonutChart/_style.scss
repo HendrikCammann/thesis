@@ -3,4 +3,9 @@
   letter-spacing: 1px;
   font-size: 13px;
   font-family: $font-family--secondary;
+  pointer-events: none;
+}
+
+.donutChart__arc {
+  cursor: pointer;
 }

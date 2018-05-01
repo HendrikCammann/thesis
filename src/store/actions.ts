@@ -125,6 +125,10 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: ({commit}) => {
+    commit(MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE);
+  },
+
 };
 
 export default actions;

@@ -541,6 +541,10 @@ const mutations: MutationTree<State> = {
     state.compare.shownBars = shownBars;
   },
 
+  [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: (state: State) => {
+    state.compare.showAbsolute = !state.compare.showAbsolute;
+  },
+
 };
 
 export default mutations;

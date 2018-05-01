@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles/components/charts/HistoryChart/_style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/partials/RangeSlider/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/partials/RangeSlider/rangeSlider.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/filter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/filter.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,20 +23,17 @@
       <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="733">
+              <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="state.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/state.ts">
+      <file leaf-file-name="_colors.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="52" column="88" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
-              <folding>
-                <element signature="e#0#63#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="90">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -41,11 +41,8 @@
       <file leaf-file-name="CompareContainer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="675">
+              <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -53,8 +50,8 @@
       <file leaf-file-name="HistoryChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
+            <state relative-caret-position="733">
+              <caret line="239" column="90" lean-forward="true" selection-start-line="239" selection-start-column="90" selection-end-line="239" selection-end-column="90" />
               <folding>
                 <element signature="e#21#43#0" expanded="true" />
               </folding>
@@ -62,55 +59,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/charts/HistoryChart/_style.scss">
+      <file leaf-file-name="RangeSlider.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="_colors.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calculateVisualVariables.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="72" column="85" selection-start-line="72" selection-start-column="85" selection-end-line="72" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="136" column="12" selection-start-line="136" selection-start-column="12" selection-end-line="138" selection-end-column="15" />
+            <state relative-caret-position="729">
+              <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="e#21#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filter.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="68" lean-forward="true" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/partials/RangeSlider/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -121,15 +96,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="TypeScript File" />
-        <option value="HTML File" />
         <option value="SCSS File" />
+        <option value="HTML File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clusterType</find>
       <find>valueData</find>
       <find>drawDiagramm</find>
       <find>displayedData</find>
@@ -151,7 +125,6 @@
       <find>step</find>
       <find>filterCluster</find>
       <find>labelArc</find>
-      <find>&quot;</find>
       <find>PI</find>
       <find>var</find>
       <find>stackedCompare</find>
@@ -159,6 +132,8 @@
       <find>maxChange</find>
       <find>maxArcHeight</find>
       <find>maxHeight</find>
+      <find>&quot;</find>
+      <find>type</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -186,9 +161,9 @@
       <replace>setupActivityVariables</replace>
       <replace>endDate</replace>
       <replace>buildPersonalClusters</replace>
-      <replace>'</replace>
       <replace>let</replace>
       <replace>arcCompare</replace>
+      <replace>'</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -197,10 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/modules/CompareModule/index.ts" />
-        <option value="$PROJECT_DIR$/src/utils/compareData/compareData.ts" />
-        <option value="$PROJECT_DIR$/src/components/partials/CompareListItem/index.ts" />
-        <option value="$PROJECT_DIR$/src/models/State/StateModel.ts" />
         <option value="$PROJECT_DIR$/src/models/Filter/FilterModel.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/CompareAddButton/index.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/modules/CompareModule/_style.scss" />
@@ -238,15 +209,19 @@
         <option value="$PROJECT_DIR$/src/components/partials/CompareListItem/compareListItem.html" />
         <option value="$PROJECT_DIR$/src/styles/components/containers/Compare/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/charts/HistoryChart/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts" />
         <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/components/charts/HistoryChart/historyChart.html" />
-        <option value="$PROJECT_DIR$/src/components/containers/Compare/compare.html" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/styles/common/_colors.scss" />
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/charts/HistoryChart/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/rangeSlider.html" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/index.ts" />
+        <option value="$PROJECT_DIR$/src/events/filter.ts" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Compare/compare.html" />
+        <option value="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" />
       </list>
     </option>
@@ -317,14 +292,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="charts" type="462c0819:PsiDirectoryNode" />
-              <item name="ArcCompare" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="charts" type="462c0819:PsiDirectoryNode" />
               <item name="HistoryChart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -346,7 +313,22 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="RangeSlider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -365,22 +347,7 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="charts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -402,19 +369,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/stravadatabase" />
-      <recent name="$PROJECT_DIR$/src/components/charts" />
-      <recent name="$PROJECT_DIR$/src/components/partials/TimeGroupingButton" />
-      <recent name="$PROJECT_DIR$/src/components/modules" />
-      <recent name="$PROJECT_DIR$/src/components/containers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/styles/components" />
       <recent name="$PROJECT_DIR$/src/stravadatabase" />
       <recent name="$PROJECT_DIR$/src/components/Charts" />
       <recent name="$PROJECT_DIR$/src/assets/images" />
       <recent name="$PROJECT_DIR$/src/components/modules" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/stravadatabase" />
+      <recent name="$PROJECT_DIR$/src/components/charts" />
+      <recent name="$PROJECT_DIR$/src/components/partials/TimeGroupingButton" />
+      <recent name="$PROJECT_DIR$/src/components/modules" />
+      <recent name="$PROJECT_DIR$/src/components/containers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -540,7 +507,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="357644000" />
+    <option name="totallyTimeSpent" value="359873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -609,6 +576,14 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/index.js" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/index.js.map" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.js.map" />
+        <option value="$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -649,27 +624,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ModalModule/ModalModule.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ModalModule/modalModule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityListItem/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" lean-forward="true" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityListItem/ActivityListItem.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -723,9 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="706">
           <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -761,13 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="20" lean-forward="true" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/partials/CompareAddButton/CompareAddButton.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="43" lean-forward="true" selection-end-line="28" />
         </state>
       </provider>
     </entry>
@@ -824,16 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2475">
           <caret line="414" column="39" selection-start-line="414" selection-start-column="39" selection-end-line="414" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!block;n#applyUserModel#0" />
-            <element signature="n#!!block;n#applyActivityDetailModelStructure#0" />
-            <element signature="n#!!block;n#applyActivityStreamModelStructure#0" />
-            <element signature="n#!!block;n#applyActivityZoneModelStructure#0" />
-            <element signature="n#!!block;n#sortActivities#0" />
-            <element signature="n#!!block;n#extractClusters#0" />
-            <element signature="n#!!block;n#sortCluster#0" />
-            <element signature="n#!!block;n#summarizeRunTypes#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,9 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="79" column="49" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
-          <folding>
-            <element signature="n#!!block;n#calculateRadiusFromArea#0;n#ArcCompare#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -945,23 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="136" column="12" selection-start-line="136" selection-start-column="12" selection-end-line="138" selection-end-column="15" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -976,35 +890,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/state.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="541">
           <caret line="52" column="88" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
@@ -1020,10 +911,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/CompareAddButton/CompareAddButton.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/RangeSlider/rangeSlider.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="90" selection-start-line="90" selection-end-line="91" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/RangeSlider/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/events/filter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="68" lean-forward="true" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
+        <state relative-caret-position="733">
+          <caret line="239" column="90" lean-forward="true" selection-start-line="239" selection-start-column="90" selection-end-line="239" selection-end-column="90" />
           <folding>
             <element signature="e#21#43#0" expanded="true" />
           </folding>

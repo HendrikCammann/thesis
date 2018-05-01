@@ -21,12 +21,16 @@ export class HistoryChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
+  @Prop()
+  filterRange: number[];
+
   @Watch('data.All')
   @Watch('loadingStatus.activities')
   @Watch('selectedClusters')
+  @Watch('filterRange')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      this.historyChart('#' + this.root, this.data, this.selectedClusters)
+      this.historyChart('#' + this.root, this.data, this.selectedClusters, this.filterRange)
     }
   }
 
@@ -136,7 +140,11 @@ export class HistoryChart extends Vue {
 
   }
 
-  private drawSession(svg, bar, factor, pos): void {
+  private drawSession(svg, bar, factor, pos, isFaded): void {
+    let opacity = 1;
+    if (isFaded) {
+      opacity = 0.3;
+    }
     svg.append('rect')
       .attr('x', pos.x)
       .attr('y', pos.y)
@@ -145,7 +153,7 @@ export class HistoryChart extends Vue {
       .attr('rx', 2)
       .attr('ry', 2)
       .attr('fill', getCategoryColor(bar.categorization.activity_type))
-      .attr('opacity', 1)
+      .attr('opacity', opacity)
       .on('click', function() {
         console.log(bar.date);
       });
@@ -186,7 +194,7 @@ export class HistoryChart extends Vue {
         // going into weeks
         item.map(activityType => {
           activityType.bars.reverse().map(bar => {
-            this.drawSession(svg, bar, visualVariables.pxPerDistance, pos);
+            this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, true);
             pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
           });
         });
@@ -204,11 +212,13 @@ export class HistoryChart extends Vue {
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
-  private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters): void {
+  private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters, filterRange): void {
     let pos = {
       x: 0,
       y: visualVariables.barHeight,
     };
+
+    console.log(filterRange);
 
     for (let i = 0; i < maxWeeks; i++) {
       let xPosMax = pos.x;
@@ -227,7 +237,9 @@ export class HistoryChart extends Vue {
 
           bars[j][i].map(item => {
             item.bars.reverse().map(bar => {
-              this.drawSession(svg, bar, visualVariables.pxPerDistance, pos);
+              let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
+              let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
+              this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
               pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
             });
           });
@@ -238,16 +250,6 @@ export class HistoryChart extends Vue {
         pos.x = xPosSave;
       }
       pos.x = xPosMax;
-
-      /*svg.append('rect')
-        .attr('x', pos.x - (visualVariables.clusterMargin / 2) - 1)
-        .attr('y', visualVariables.barHeight / 2)
-        .attr('width', 2)
-        .attr('height', ((bars.length - 1) * visualVariables.barHeight) + ((bars.length - 1) * visualVariables.marginBottom))
-        .attr('rx', 0)
-        .attr('ry', 0)
-        .attr('fill', '#E6E6E6')
-        .attr('opacity', 0.5);*/
     }
 
     pos = {
@@ -258,7 +260,7 @@ export class HistoryChart extends Vue {
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
-  private historyChart(root, data, selectedClusters) {
+  private historyChart(root, data, selectedClusters, filterRange) {
     let temp = this.extractBarsFromDataset(this.mapSelectedClustersToData(data, selectedClusters));
     let absolute = false;
     let visualVariables = this.calculateVisualVariables(temp.maxWeeks, temp.maxSessions, temp.maxDistance, temp.longest, absolute);
@@ -272,7 +274,7 @@ export class HistoryChart extends Vue {
     if (absolute) {
       this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters);
     } else {
-      this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters);
+      this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange);
     }
   }
 

@@ -6,12 +6,14 @@ import {mapGetters} from 'vuex';
 import {StackedCompare} from '../../charts/StackedCompare';
 import {CompareModule} from '../../modules/CompareModule';
 import {CompareAddButton} from '../../partials/CompareAddButton';
-import {compareBus, modalBus} from '../../../main';
+import {compareBus, filterBus, modalBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {ModalModule} from '../../modules/ModalModule';
 import {modalEvents} from '../../../events/Modal/modal';
 import {CompareAddModule} from '../../modules/CompareAddModule';
 import {HistoryChart} from '../../charts/HistoryChart';
+import {RangeSlider} from '../../partials/RangeSlider';
+import {filterEvents} from '../../../events/filter';
 
 
 @Component({
@@ -29,10 +31,12 @@ import {HistoryChart} from '../../charts/HistoryChart';
     'compareAddModule': CompareAddModule,
     'compareAddButton': CompareAddButton,
     'historyChart': HistoryChart,
+    'rangeSlider': RangeSlider,
   }
 })
 export class CompareContainer extends Vue {
   public selectedCluster = '';
+  public filterRange = [0, 1140];
 
   public selectTrainingCluster() {
     this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, this.selectedCluster);
@@ -51,6 +55,10 @@ export class CompareContainer extends Vue {
 
     compareBus.$on(compareEvents.add_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
+    });
+
+    filterBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
+      this.filterRange = type;
     });
   }
 }

@@ -143,7 +143,7 @@ export class HistoryChart extends Vue {
   private drawSession(svg, bar, factor, pos, isFaded): void {
     let opacity = 1;
     if (isFaded) {
-      opacity = 0.3;
+      opacity = 0.2;
     }
     svg.append('rect')
       .attr('x', pos.x)
@@ -181,7 +181,7 @@ export class HistoryChart extends Vue {
     });
   }
 
-  private drawAbsoluteSessions(svg, bars, visualVariables, clusters): void {
+  private drawAbsoluteSessions(svg, bars, visualVariables, clusters, filterRange): void {
     let pos = {
       x: 0,
       y: visualVariables.barHeight,
@@ -194,7 +194,9 @@ export class HistoryChart extends Vue {
         // going into weeks
         item.map(activityType => {
           activityType.bars.reverse().map(bar => {
-            this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, true);
+            let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
+            let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
+            this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
             pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
           });
         });
@@ -217,8 +219,6 @@ export class HistoryChart extends Vue {
       x: 0,
       y: visualVariables.barHeight,
     };
-
-    console.log(filterRange);
 
     for (let i = 0; i < maxWeeks; i++) {
       let xPosMax = pos.x;
@@ -262,7 +262,7 @@ export class HistoryChart extends Vue {
 
   private historyChart(root, data, selectedClusters, filterRange) {
     let temp = this.extractBarsFromDataset(this.mapSelectedClustersToData(data, selectedClusters));
-    let absolute = false;
+    let absolute = true;
     let visualVariables = this.calculateVisualVariables(temp.maxWeeks, temp.maxSessions, temp.maxDistance, temp.longest, absolute);
 
     d3.select(root + " > svg").remove();
@@ -272,7 +272,7 @@ export class HistoryChart extends Vue {
       .attr('height', visualVariables.height);
 
     if (absolute) {
-      this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters);
+      this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters, filterRange);
     } else {
       this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange);
     }

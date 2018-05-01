@@ -53,7 +53,7 @@ export class HistoryChart extends Vue {
     let maxWeeks = 0;
     let maxSessions = 0;
 
-    data.map(cluster => {
+    data.map((cluster) => {
       let temp = [];
       maxDistance = this.getLargestValue(cluster.stats.distance, maxDistance);
       maxWeeks = this.getLargestValue(Object.keys(cluster.byWeeks).length, maxWeeks);
@@ -86,7 +86,6 @@ export class HistoryChart extends Vue {
         i++
       }
       bars.push(temp);
-      console.log(longest);
     });
 
     return {
@@ -105,6 +104,7 @@ export class HistoryChart extends Vue {
     let barMargin = 1;
     let pxPerDistance = 0;
     let barHeight = 30;
+    let marginBottom = 90;
 
     let displayedWidth = width;
     let clusterMargin = 0;
@@ -131,6 +131,7 @@ export class HistoryChart extends Vue {
       clusterMargin: clusterMargin,
       pxPerDistance: pxPerDistance,
       barHeight: barHeight,
+      marginBottom: marginBottom,
     }
 
   }
@@ -150,7 +151,29 @@ export class HistoryChart extends Vue {
       });
   }
 
-  private drawAbsoluteSessions(svg, bars, visualVariables): void {
+  private drawWeekLabel(svg, pos, barHeight, text): void {
+    svg.append('text')
+      .attr('x', pos.x)
+      .attr('y', pos.y + barHeight + 12)
+      .attr('class', 'historyChart__week')
+      .attr('text-anchor', 'left')
+      .text(text);
+  }
+
+  private drawClusterNames(svg, pos, clusters, marginBottom): void {
+    clusters.map(item => {
+      svg.append('text')
+        .attr('x', pos.x)
+        .attr('y', pos.y - 8)
+        .attr('class', 'historyChart__label')
+        .attr('text-anchor', 'left')
+        .text(item);
+
+      pos.y += marginBottom;
+    });
+  }
+
+  private drawAbsoluteSessions(svg, bars, visualVariables, clusters): void {
     let pos = {
       x: 0,
       y: visualVariables.barHeight,
@@ -158,7 +181,8 @@ export class HistoryChart extends Vue {
 
     for (let i = 0; i < bars.length; i++) {
       // going into first training preparation
-      bars[i].reverse().map(item => {
+      bars[i].reverse().map((item, j) => {
+        this.drawWeekLabel(svg, pos, visualVariables.barHeight, 'W' + (j + 1));
         // going into weeks
         item.map(activityType => {
           activityType.bars.reverse().map(bar => {
@@ -169,11 +193,18 @@ export class HistoryChart extends Vue {
         pos.x += (visualVariables.clusterMargin - visualVariables.barMargin);
       });
       pos.x = 0;
-      pos.y += visualVariables.barHeight * 2;
+      pos.y += visualVariables.marginBottom;
     }
+
+    pos = {
+      x: 0,
+      y: visualVariables.barHeight,
+    };
+
+    this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
-  private drawCompareSessions(svg, maxWeeks, bars, visualVariables): void {
+  private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters): void {
     let pos = {
       x: 0,
       y: visualVariables.barHeight,
@@ -185,7 +216,15 @@ export class HistoryChart extends Vue {
       pos.y = visualVariables.barHeight;
 
       for (let j = 0; j < bars.length; j++) {
+
         if (bars[j].reverse()[i] !== undefined) {
+          svg.append('text')
+            .attr('x', pos.x)
+            .attr('y', pos.y + visualVariables.barHeight + 12)
+            .attr('class', 'historyChart__week')
+            .attr('text-anchor', 'left')
+            .text('W' + (i + 1));
+
           bars[j][i].map(item => {
             item.bars.reverse().map(bar => {
               this.drawSession(svg, bar, visualVariables.pxPerDistance, pos);
@@ -195,11 +234,28 @@ export class HistoryChart extends Vue {
           pos.x += (visualVariables.clusterMargin - visualVariables.barMargin);
           xPosMax = this.getLargestValue(pos.x, xPosMax);
         }
-        pos.y += visualVariables.barHeight * 2;
+        pos.y += visualVariables.marginBottom;
         pos.x = xPosSave;
       }
       pos.x = xPosMax;
+
+      /*svg.append('rect')
+        .attr('x', pos.x - (visualVariables.clusterMargin / 2) - 1)
+        .attr('y', visualVariables.barHeight / 2)
+        .attr('width', 2)
+        .attr('height', ((bars.length - 1) * visualVariables.barHeight) + ((bars.length - 1) * visualVariables.marginBottom))
+        .attr('rx', 0)
+        .attr('ry', 0)
+        .attr('fill', '#E6E6E6')
+        .attr('opacity', 0.5);*/
     }
+
+    pos = {
+      x: 0,
+      y: visualVariables.barHeight,
+    };
+
+    this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
   private historyChart(root, data, selectedClusters) {
@@ -214,9 +270,9 @@ export class HistoryChart extends Vue {
       .attr('height', visualVariables.height);
 
     if (absolute) {
-      this.drawAbsoluteSessions(svg, temp.bars, visualVariables);
+      this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters);
     } else {
-      this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables);
+      this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters);
     }
   }
 

@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
 import * as d3 from 'd3';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 
 @Component({
@@ -25,7 +25,7 @@ export class RangeSlider extends Vue {
       .extent([[0, 0], [width, height]])
       .on('end', function() {
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return;
-        filterBus.$emit(filterEvents.set_Compare_Time_Range, d3.event.selection.map(x.invert));
+        eventBus.$emit(filterEvents.set_Compare_Time_Range, d3.event.selection.map(x.invert));
       });
 
     let g = svg.append('g')

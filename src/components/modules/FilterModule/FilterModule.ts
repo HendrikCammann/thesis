@@ -5,7 +5,7 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {ClusterType, RunType} from '../../../store/state';
 import {ClusterItem} from '../../../models/State/StateModel';
 import {FilterModel, TimeRangeModel} from '../../../models/Filter/FilterModel';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {FilterButton} from '../../partials/FilterButton';
 import {TimeGroupingButton} from '../../partials/TimeGroupingButton';
@@ -48,7 +48,7 @@ export class FilterModule extends Vue {
   public selectedTrainingCluster: string = 'All';
 
   public selectTrainingCluster() {
-    filterBus.$emit(filterEvents.set_Training_Cluster, this.selectedTrainingCluster);
+    eventBus.$emit(filterEvents.set_Training_Cluster, this.selectedTrainingCluster);
   }
 
   public setDateRange() {
@@ -67,12 +67,12 @@ export class FilterModule extends Vue {
   mounted() {
     this.setTimeRange();
 
-    filterBus.$on(filterEvents.selected_Run_Type, (type) => {
-      filterBus.$emit(filterEvents.set_Run_Type, type);
+    eventBus.$on(filterEvents.selected_Run_Type, (type) => {
+      eventBus.$emit(filterEvents.set_Run_Type, type);
     });
 
-    filterBus.$on(filterEvents.selected_Time_Group, (type) => {
-      filterBus.$emit(filterEvents.set_Time_Grouping, type)
+    eventBus.$on(filterEvents.selected_Time_Group, (type) => {
+      eventBus.$emit(filterEvents.set_Time_Grouping, type)
     });
   }
 }

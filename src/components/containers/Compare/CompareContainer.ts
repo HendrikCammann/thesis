@@ -6,15 +6,14 @@ import {mapGetters} from 'vuex';
 import {StackedCompare} from '../../charts/StackedCompare';
 import {CompareModule} from '../../modules/CompareModule';
 import {CompareAddButton} from '../../partials/CompareAddButton';
-import {compareBus, filterBus, modalBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
-import {ModalModule} from '../../modules/ModalModule';
-import {modalEvents} from '../../../events/Modal/modal';
 import {CompareAddModule} from '../../modules/CompareAddModule';
 import {HistoryChart} from '../../charts/HistoryChart';
 import {RangeSlider} from '../../partials/RangeSlider';
 import {filterEvents} from '../../../events/filter';
 import {DonutChart} from '../../charts/DonutChart';
+import {RunType} from '../../../store/state';
 
 
 @Component({
@@ -25,6 +24,7 @@ import {DonutChart} from '../../charts/DonutChart';
     loadingStatus: 'getAppLoadingStatus',
     sortedLists: 'getSortedLists',
     filter: 'getFilter',
+    shownBars: 'getShownBars'
   }),
   components: {
     'stackedCompare': StackedCompare,
@@ -39,6 +39,7 @@ import {DonutChart} from '../../charts/DonutChart';
 export class CompareContainer extends Vue {
   public selectedCluster = '';
   public filterRange = [0, 1140];
+  public hoveredRunType = RunType.All;
 
   public selectTrainingCluster() {
     this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, this.selectedCluster);
@@ -51,20 +52,23 @@ export class CompareContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
-    compareBus.$on(compareEvents.remove_Training_Cluster, (type) => {
+    eventBus.$on(compareEvents.remove_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
     });
 
-    compareBus.$on(compareEvents.add_Training_Cluster, (type) => {
+    eventBus.$on(compareEvents.set_Hovered_Run_Type, (type) => {
+      this.hoveredRunType = type;
+    });
+
+    eventBus.$on(compareEvents.add_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
     });
 
-    filterBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
+    eventBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
       this.filterRange = type;
     });
 
-    filterBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {
-      console.log('event dispatched');
+    eventBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {
       this.$store.dispatch(MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES, type);
     });
   }

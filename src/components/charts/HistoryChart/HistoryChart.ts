@@ -4,7 +4,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 
 @Component({
@@ -273,7 +273,7 @@ export class HistoryChart extends Vue {
       y: visualVariables.barHeight,
     };
 
-    filterBus.$emit(filterEvents.set_Compare_Shown_Bars, shownBars);
+    eventBus.$emit(filterEvents.set_Compare_Shown_Bars, shownBars);
 
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }

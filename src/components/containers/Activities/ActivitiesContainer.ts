@@ -7,7 +7,7 @@ import {ActivityListItem} from '../../modules/ActivityListItem';
 import {SwooshChart} from '../../charts/SwooshChart';
 import {ArcChart} from '../../charts/ArcChart';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {FilterModule} from '../../modules/FilterModule';
@@ -83,19 +83,19 @@ export class ActivitiesContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
-    filterBus.$on(filterEvents.setRunTypeFilter, (type) => {
+    eventBus.$on(filterEvents.setRunTypeFilter, (type) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
     });
 
-    filterBus.$on(filterEvents.set_Training_Cluster, (type) => {
+    eventBus.$on(filterEvents.set_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.SET_FILTERBY_TYPE, type);
     });
 
-    filterBus.$on(filterEvents.set_Time_Grouping, (type) => {
+    eventBus.$on(filterEvents.set_Time_Grouping, (type) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_CLUSTER, type);
     });
 
-    filterBus.$on(filterEvents.set_Run_Type, (type) => {
+    eventBus.$on(filterEvents.set_Run_Type, (type) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
     });
   }

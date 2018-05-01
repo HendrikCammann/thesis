@@ -1,7 +1,7 @@
 /* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 
 @Component({
@@ -15,6 +15,6 @@ export class TimeGroupingButton extends Vue {
   isActive: boolean;
 
   public toggleFilter() {
-    filterBus.$emit(filterEvents.selected_Time_Group, this.content.type)
+    eventBus.$emit(filterEvents.selected_Time_Group, this.content.type)
   }
 }

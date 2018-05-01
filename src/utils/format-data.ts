@@ -11,11 +11,3 @@ export function formatRadius(distance: number, factor: FormatRadiusType): number
 export function getPercentualOffset(valA, valB, factor): number {
   return (Math.abs(valA - valB) * factor);
 }
-
-/*export function formatDate(date: string, outputFormat: FormatDate) {
-  switch (outputFormat) {
-    case FormatDate.Day {
-
-    }
-  }
-}*/

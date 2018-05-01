@@ -5,7 +5,7 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {TitleBox} from '../../partials/TitleBox';
 import {ClusterItem} from '../../../models/State/StateModel';
 import {compareEvents} from '../../../events/Compare/compare';
-import {compareBus} from '../../../main';
+import {eventBus} from '../../../main';
 
 @Component({
   template: require('./compareAddModule.html'),
@@ -22,12 +22,12 @@ export class CompareAddModule extends Vue {
 
   public removeCluster(cluster) {
     event.stopPropagation();
-    compareBus.$emit(compareEvents.remove_Training_Cluster, cluster);
+    eventBus.$emit(compareEvents.remove_Training_Cluster, cluster);
   }
 
   public addCluster(cluster) {
     event.stopPropagation();
-    compareBus.$emit(compareEvents.add_Training_Cluster, cluster);
+    eventBus.$emit(compareEvents.add_Training_Cluster, cluster);
   }
 
   public get unselectedClusters() {

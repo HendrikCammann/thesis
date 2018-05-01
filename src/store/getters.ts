@@ -30,24 +30,36 @@ const getters: GetterTree<State, State> = {
     return state.existingClusters;
   },
 
+
+  // COMPARE
   getSelectedTrainingClusters: (state) => {
     return state.compare.selectedTrainingClusters;
   },
 
+  getShownBars: (state) => {
+    return state.compare.shownBars;
+  },
+
+
+  // EXISTING CLUSTERS
   getCluster: (state) => {
     return (cluster) => {
       return state.existingClusters.find(item => item.clusterName === cluster);
     };
   },
 
+
+  // ACTIVITIES
   getActivity: (state, getters) =>  {
     return (id) => {
       return state.activityList.find(item => item.id === id);
     };
   },
+
   getSelectedActivityId: (state) => {
       return state.selectedActivityId;
   },
+
   getSelectedActivity: (state) => {
     for (let i = 0; i < state.activityList.length; i++) {
       if (state.selectedActivityId === state.activityList[i].id) {
@@ -55,6 +67,7 @@ const getters: GetterTree<State, State> = {
       }
     }
   },
+
   getSelectedActivityStreams: (state) => {
     for (let i = 0; i < state.activityList.length; i++) {
       if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== null) {
@@ -62,6 +75,9 @@ const getters: GetterTree<State, State> = {
       }
     }
   },
+
+
+  // FILTER
   getTimeRange: (state) => {
     return state.filter.timeRange;
   },

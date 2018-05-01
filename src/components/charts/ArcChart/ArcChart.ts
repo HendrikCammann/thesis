@@ -16,7 +16,7 @@ import {
 } from '../../../utils/calculateVisualVariables';
 import {checkIfMatchesRunType, selectAndFilterDataset} from '../../../utils/filter-dataset';
 import {CanvasConstraints, CategoryConnectingOpacity} from '../../../models/VisualVariableModel';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {getKeys} from '../../../utils/array-helper';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
@@ -135,7 +135,7 @@ export class ArcChart extends Vue {
             .attr('fill', element.color)
             .attr('opacity', element.opacity)
             .on('click', function() {
-              filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
+              eventBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
 
           rectXPos += (element.width + visualMeasurements.barMargin);

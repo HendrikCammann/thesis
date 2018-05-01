@@ -1,7 +1,7 @@
 /* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {compareBus, modalBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {modalEvents} from '../../../events/Modal/modal';
 
@@ -16,11 +16,11 @@ export class CompareAddButton extends Vue {
   isAdd: true;
 
   public removeTrainingCluster () {
-    compareBus.$emit(compareEvents.remove_Training_Cluster, this.trainingCluster);
+    eventBus.$emit(compareEvents.remove_Training_Cluster, this.trainingCluster);
   }
 
   public addTrainingCluster () {
-    modalBus.$emit(modalEvents.open_Modal);
+    eventBus.$emit(modalEvents.open_Modal);
   }
 
   mounted() {

@@ -11,9 +11,7 @@ import {FormatDistanceType} from './models/FormatModel';
 
 sync(store, router);
 
-export const filterBus = new Vue();
-export const compareBus = new Vue();
-export const modalBus = new Vue();
+export const eventBus = new Vue();
 
 Vue.filter('formatDistance', function (value) {
   if (!value) return '';

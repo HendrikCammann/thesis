@@ -13,7 +13,7 @@ import {
 } from '../../../utils/calculateVisualVariables';
 import {formatRadius} from '../../../utils/format-data';
 import {FormatDifferenceType, FormatRadiusType} from '../../../models/FormatModel';
-import {filterBus} from '../../../main';
+import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 
 @Component({
@@ -111,7 +111,7 @@ export class SwooshChart extends Vue {
             .attr('fill', element.color)
             .attr('opacity', calculateCategoryOpacity(this.filter.selectedRunType, element.type))
             .on('click', function() {
-              filterBus.$emit(filterEvents.setRunTypeFilter, element.type);
+              eventBus.$emit(filterEvents.setRunTypeFilter, element.type);
             });
           rectXPos += parseFloat(calculateBarLength(data[key].stats.typeCount[anchor].distance, visualMeasurements.calculated.pxPerKm));
         }

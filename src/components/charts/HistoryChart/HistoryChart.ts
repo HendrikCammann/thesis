@@ -8,6 +8,7 @@ import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
 import {CategoryOpacity} from '../../../models/VisualVariableModel';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
+import {RunType} from '../../../store/state';
 
 @Component({
   template: require('./historyChart.html'),
@@ -168,7 +169,10 @@ export class HistoryChart extends Vue {
       .attr('fill', getCategoryColor(bar.categorization.activity_type))
       .attr('opacity', opacity)
       .on('click', () => {
-        that.handleBarClick(bar.id);
+        console.log(bar.name);
+        console.log(bar.date);
+        console.log('------');
+        // that.handleBarClick(bar.id);
       });
   }
 
@@ -200,6 +204,7 @@ export class HistoryChart extends Vue {
       y: visualVariables.barHeight,
     };
     let shownBars = [];
+    //console.log(bars[1]);
 
     for (let i = 0; i < bars.length; i++) {
       let tempArr = [];
@@ -230,51 +235,58 @@ export class HistoryChart extends Vue {
       y: visualVariables.barHeight,
     };
 
+    eventBus.$emit(filterEvents.set_Compare_Shown_Bars, shownBars);
+
     this.drawClusterNames(svg, pos, clusters, visualVariables.marginBottom);
   }
 
-  private drawCompareSessions(svg, maxWeeks, bars, visualVariables, clusters, filterRange): void {
+  private drawGroupedSessions(svg, maxWeeks, bars, visualVariables, clusters, filterRange): void {
     let pos = {
       x: 0,
       y: visualVariables.barHeight,
     };
     let shownBars = [];
+    let longestWeeks = [];
 
-    for (let i = 0; i < maxWeeks; i++) {
-      let xPosMax = pos.x;
-      let xPosSave = xPosMax;
-      pos.y = visualVariables.barHeight;
-
-      for (let j = 0; j < bars.length; j++) {
-        if (!shownBars[j]) {
-          shownBars[j] = [];
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].reverse().map((item, j) => {
+        if (longestWeeks[j] === undefined) {
+          longestWeeks[j] = 0;
         }
-        if (bars[j].reverse()[i] !== undefined) {
-          svg.append('text')
-            .attr('x', pos.x)
-            .attr('y', pos.y + visualVariables.barHeight + 12)
-            .attr('class', 'historyChart__week')
-            .attr('text-anchor', 'left')
-            .text('W' + (i + 1));
-
-          bars[j][i].map(item => {
-            item.bars.reverse().map(bar => {
-              let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
-              let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
-              this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
-              pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
-              if (!isFaded) {
-                shownBars[j].push(bar);
-              }
-            });
-          });
-          pos.x += (visualVariables.clusterMargin - visualVariables.barMargin);
-          xPosMax = this.getLargestValue(pos.x, xPosMax);
+        let count = 0;
+        item.map(activityType => {
+          activityType.bars.reverse().map(bar => {
+            count += bar.base_data.distance;
+          })
+        });
+        if (count > longestWeeks[j]) {
+          longestWeeks[j] = count;
         }
-        pos.y += visualVariables.marginBottom;
-        pos.x = xPosSave;
-      }
-      pos.x = xPosMax;
+      });
+    }
+
+    for (let i = 0; i < bars.length; i++) {
+      let tempArr = [];
+      bars[i].map((item, j) => {
+        this.drawWeekLabel(svg, pos, visualVariables.barHeight, 'W' + (j + 1));
+
+        let posXSave = pos.x;
+        item.map(activityType => {
+          activityType.bars.map(bar => {
+            let temp = pos.x + (bar.base_data.distance * visualVariables.pxPerDistance);
+            let isFaded = (temp > filterRange[1] || temp < filterRange[0]);
+            this.drawSession(svg, bar, visualVariables.pxPerDistance, pos, isFaded);
+            pos.x += ((bar.base_data.distance * visualVariables.pxPerDistance) + visualVariables.barMargin);
+            if (!isFaded) {
+              tempArr.push(bar);
+            }
+          })
+        });
+        pos.x = posXSave + (longestWeeks[j] * visualVariables.pxPerDistance) + (visualVariables.clusterMargin - visualVariables.barMargin);
+      });
+      pos.x = 0;
+      pos.y += visualVariables.marginBottom;
+      shownBars.push(tempArr);
     }
 
     pos = {
@@ -298,9 +310,12 @@ export class HistoryChart extends Vue {
       .attr('height', visualVariables.height);
 
     if (showAbsolute) {
+      // THIS IS WORKING!!
+      console.log('abs');
       this.drawAbsoluteSessions(svg, temp.bars, visualVariables, selectedClusters, filterRange);
     } else {
-      this.drawCompareSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange);
+      console.log('group');
+      this.drawGroupedSessions(svg, temp.maxWeeks, temp.bars, visualVariables, selectedClusters, filterRange)
     }
   }
 

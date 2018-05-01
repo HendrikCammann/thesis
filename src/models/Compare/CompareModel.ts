@@ -7,7 +7,7 @@ export class CompareModel {
   selectedTimeRange: number[];
 
   constructor() {
-    this.showAbsolute = false;
+    this.showAbsolute = true;
     this.selectedTrainingClusters = ['Kandel-2017', 'Karlsruhe-2017', 'Barcelona-2018'];
     this.shownBars = [];
     this.selectedTimeRange = [0, 1140];

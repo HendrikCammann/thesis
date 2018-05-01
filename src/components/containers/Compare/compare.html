@@ -61,7 +61,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <input type="button" value="Show Absolute" @click="toggleHistoryChartMode">
+      <input type="button" v-bind:value="showAbsolute ? 'Group by Weeks' : 'Show Absolute'" @click="toggleHistoryChartMode">
       <history-chart
         :root="'history'"
         :data="sortedLists"

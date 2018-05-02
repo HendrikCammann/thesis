@@ -18,9 +18,6 @@ export class CompareListItem extends Vue {
   trainingClusterDetail: any;
 
   @Prop()
-  filter: FilterModel;
-
-  @Prop()
   data: Object;
 
   @Prop()

@@ -2,12 +2,8 @@
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
-import {FilterModel} from '../../../models/Filter/FilterModel';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
-import {getKeys} from '../../../utils/array-helper';
-import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
-import {RunType} from '../../../store/state';
-import {getDataToCompare} from '../../../utils/compareData/compareData';
+import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryOpacity} from '../../../models/VisualVariableModel';
@@ -21,19 +17,17 @@ export class ArcCompare extends Vue {
   root: string;
 
   @Prop()
-  filter: FilterModel;
-
-  @Prop()
   data: Object;
 
   @Prop()
   loadingStatus: LoadingStatus;
 
+  @Prop()
+  trainingCluster: string[];
+
   @Watch('data')
   @Watch('loadingStatus.activities')
-  @Watch('filter.selectedRunType')
-  @Watch('filter.selectedCluster')
-  @Watch('filter.selectedTrainingCluster')
+  @Watch('trainingCluster')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
       this.arcCompare('#' + this.root, this.data);

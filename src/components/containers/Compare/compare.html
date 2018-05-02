@@ -30,9 +30,8 @@
          :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
       <compare-module
         :index="i"
-        :filter="filter"
-        :data ="sortedLists"
-        :trainingCluster="selectedTrainingClusters[i]"
+        :data="sortedLists"
+        :trainingCluster="selectedTrainingClusters"
         :loadingStatus="loadingStatus"
       ></compare-module>
     </div>

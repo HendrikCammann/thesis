@@ -2,7 +2,6 @@
   <div class="compareModule__chart">
     <arc-compare
       :root="'arcCompare-' + index"
-      :filter="filter"
       :data="sortedData"
       :trainingCluster="trainingCluster"
       :loadingStatus="loadingStatus"
@@ -10,9 +9,8 @@
   </div>
   <div class="compareModule__list">
     <compare-list-item
-      :filter="filter"
       :data="sortedData"
-      :trainingCluster="trainingCluster"
+      :trainingCluster="trainingCluster[index]"
       :loadingStatus="loadingStatus"
       :trainingClusterDetail="trainingClusterDetail"
     ></compare-list-item>

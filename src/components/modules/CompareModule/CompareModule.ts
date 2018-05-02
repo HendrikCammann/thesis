@@ -1,7 +1,6 @@
 /* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {FilterModel} from '../../../models/Filter/FilterModel';
 import {ArcCompare} from '../../charts/ArcCompare';
 import {CompareListItem} from '../../partials/CompareListItem';
 import {getDataToCompare} from '../../../utils/compareData/compareData';
@@ -19,10 +18,7 @@ export class CompareModule extends Vue {
   index: number;
 
   @Prop()
-  trainingCluster: string;
-
-  @Prop()
-  filter: FilterModel;
+  trainingCluster: string[];
 
   @Prop()
   data: Object;
@@ -35,13 +31,19 @@ export class CompareModule extends Vue {
 
   @Watch('data')
   @Watch('loadingStatus.activities')
-  @Watch('filter.selectedRunType')
-  @Watch('filter.selectedCluster')
-  @Watch('filter.selectedTrainingCluster')
+  @Watch('trainingCluster')
+  @Watch('index')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      this.sortedData = getDataToCompare(this.trainingCluster, this.data);
-      this.trainingClusterDetail = this.$store.getters.getCluster(this.trainingCluster);
+      this.sortedData = getDataToCompare(this.trainingCluster[this.index], this.data);
+      this.trainingClusterDetail = this.$store.getters.getCluster(this.trainingCluster[this.index]);
+    }
+  }
+
+  mounted() {
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.sortedData = getDataToCompare(this.trainingCluster[this.index], this.data);
+      this.trainingClusterDetail = this.$store.getters.getCluster(this.trainingCluster[this.index]);
     }
   }
 }

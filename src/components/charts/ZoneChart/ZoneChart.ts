@@ -15,12 +15,20 @@ import {
   formatSecondsToDuration
 } from '../../../utils/time/time-formatter';
 
-interface CircleItem {
+class CircleItem {
   radius: number;
   labelText: string;
   time: number;
   text: string;
   color: ZoneColors;
+
+  constructor () {
+    this.radius = 0;
+    this.labelText = '';
+    this.time = 0;
+    this.text = '';
+    this.color = ZoneColors.Pace;
+  }
 }
 
 @Component({
@@ -182,16 +190,19 @@ export class ZoneChart extends Vue {
    * @param {CircleItem} lowerCircle
    * @param {PositionModel} textPosition
    * @param {number} index
+   * @param {boolean} drawHeartrate
    */
-  private drawChartItem(svg, position: PositionModel, upperCircle: CircleItem, lowerCircle: CircleItem, textPosition: PositionModel, index: number): void {
+  private drawChartItem(svg, position: PositionModel, upperCircle: CircleItem, lowerCircle: CircleItem, textPosition: PositionModel, index: number, drawHeartrate: boolean): void {
 
     this.addText(svg, textPosition, upperCircle.text, 'zoneChart__text zoneChart__text--pace', false, index);
     this.drawHalfCircle(svg, position, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
     this.addLabel(svg, position, upperCircle.labelText, 'zoneChart__label', false, index);
 
-    this.drawHalfCircle(svg, position, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
-    this.addText(svg, textPosition, lowerCircle.text, 'zoneChart__text zoneChart__text--heartrate', true, index);
-    this.addLabel(svg, position, lowerCircle.labelText, 'zoneChart__label', true, index);
+    if (drawHeartrate) {
+      this.drawHalfCircle(svg, position, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
+      this.addText(svg, textPosition, lowerCircle.text, 'zoneChart__text zoneChart__text--heartrate', true, index);
+      this.addLabel(svg, position, lowerCircle.labelText, 'zoneChart__label', true, index);
+    }
   }
 
   /**
@@ -218,6 +229,11 @@ export class ZoneChart extends Vue {
   private zoneChart(root: string, canvasConstraints, data: ActivityZoneModel): void {
     let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
     let showPercentage: boolean = false;
+    let hasHeartrate: boolean = true;
+
+    if (!data.heartrate) {
+      hasHeartrate = false;
+    }
 
     let startPos: PositionModel = {
       x: canvasConstraints.canvasOffset,
@@ -229,10 +245,11 @@ export class ZoneChart extends Vue {
     let totalTimeHeartrate: number = 0;
     for (let i = 0; i < data.pace.distribution_buckets.length; i++) {
       totalTimePace += data.pace.distribution_buckets[i].time;
-      totalTimeHeartrate += data.heartrate.distribution_buckets[i].time;
-
       maxValue = getLargerValue(data.pace.distribution_buckets[i].time, maxValue);
-      maxValue = getLargerValue(data.heartrate.distribution_buckets[i].time, maxValue);
+      if (hasHeartrate) {
+        totalTimeHeartrate += data.heartrate.distribution_buckets[i].time;
+        maxValue = getLargerValue(data.heartrate.distribution_buckets[i].time, maxValue);
+      }
     }
 
     const circleParameter = {
@@ -248,21 +265,25 @@ export class ZoneChart extends Vue {
         text: formatZoneRangesToString(data.pace.distribution_buckets[i].min, data.pace.distribution_buckets[i].max, 2, 'pace'),
         color: ZoneColors.Pace,
       };
-
-      let lowerCircle: CircleItem = {
-        radius: calculateRadiusFromArea(data.heartrate.distribution_buckets[i].time, circleParameter),
-        labelText: '',
-        time: data.heartrate.distribution_buckets[i].time,
-        text: formatZoneRangesToString(data.heartrate.distribution_buckets[i].min, data.heartrate.distribution_buckets[i].max, 0, 'heartrate'),
-        color: ZoneColors.Heartrate,
-      };
+      let lowerCircle = new CircleItem();
+      if (hasHeartrate) {
+        lowerCircle.radius = calculateRadiusFromArea(data.heartrate.distribution_buckets[i].time, circleParameter);
+        lowerCircle.labelText = '';
+        lowerCircle.time = data.heartrate.distribution_buckets[i].time;
+        lowerCircle.text = formatZoneRangesToString(data.heartrate.distribution_buckets[i].min, data.heartrate.distribution_buckets[i].max, 0, 'heartrate');
+        lowerCircle.color = ZoneColors.Heartrate;
+      }
 
       if (showPercentage) {
         upperCircle.labelText = getPercentageFromValue(data.pace.distribution_buckets[i].time, totalTimePace) + '%';
-        lowerCircle.labelText = getPercentageFromValue(data.heartrate.distribution_buckets[i].time, totalTimeHeartrate) + '%';
+        if (hasHeartrate) {
+          lowerCircle.labelText = getPercentageFromValue(data.heartrate.distribution_buckets[i].time, totalTimeHeartrate) + '%';
+        }
       } else {
         upperCircle.labelText = formatSecondsToDuration(data.pace.distribution_buckets[i].time, FormatDurationType.Minutes).multilple;
-        lowerCircle.labelText = formatSecondsToDuration(data.heartrate.distribution_buckets[i].time, FormatDurationType.Minutes).multilple;
+        if (hasHeartrate) {
+          lowerCircle.labelText = formatSecondsToDuration(data.heartrate.distribution_buckets[i].time, FormatDurationType.Minutes).multilple;
+        }
       }
 
       let textPos: PositionModel = {
@@ -272,7 +293,7 @@ export class ZoneChart extends Vue {
 
       startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius);
 
-      this.drawChartItem(svg, startPos, upperCircle, lowerCircle, textPos, i);
+      this.drawChartItem(svg, startPos, upperCircle, lowerCircle, textPos, i, hasHeartrate);
 
       if (i !== data.pace.distribution_buckets.length - 1) {
         startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius) + canvasConstraints.marginBottom;

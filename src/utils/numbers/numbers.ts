@@ -1,4 +1,11 @@
 export function getLargerValue(value, maxValue) {
+  if (value === undefined) {
+    return maxValue;
+  }
+  if (maxValue === undefined) {
+    return value;
+  }
+
   if (value > maxValue) {
     return value;
   } else {

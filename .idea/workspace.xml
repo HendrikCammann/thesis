@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/models/Chart/ChartModels.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/FormatModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/FormatModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/ZoneChart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/charts/ZoneChart/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/time/time-formatter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/time/time-formatter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,25 +15,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HistoryChart.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="169" column="31" selection-start-line="162" selection-start-column="6" selection-end-line="169" selection-end-column="31" />
-              <folding>
-                <element signature="e#21#43#0" expanded="true" />
-                <element signature="n#!!block;n#mapSelectedClustersToData#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#getLargestValue#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#handleBarClick#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#extractBarsFromDataset#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#calculateVisualVariables#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#drawClusterNames#0;n#HistoryChart#0" />
-                <element signature="n#!!block;n#drawAbsoluteSessions#0;n#HistoryChart#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ActivityContainer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="266" lean-forward="true" selection-start-line="266" selection-end-line="266" />
+            <state relative-caret-position="328">
+              <caret line="273" column="49" lean-forward="true" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -64,11 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="time-formatter.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="numbers.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/numbers/numbers.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="time-formatter.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+            <state relative-caret-position="675">
+              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -259,15 +243,15 @@
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/styles/common/_colors.scss" />
         <option value="$PROJECT_DIR$/src/utils/circluarCharts/circularCharts.ts" />
-        <option value="$PROJECT_DIR$/src/utils/numbers/numbers.ts" />
         <option value="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
         <option value="$PROJECT_DIR$/src/models/Chart/ChartModels.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/charts/ZoneChart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html" />
         <option value="$PROJECT_DIR$/src/components/containers/Activity/activity.html" />
         <option value="$PROJECT_DIR$/src/models/FormatModel.ts" />
-        <option value="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" />
         <option value="$PROJECT_DIR$/src/utils/time/time-formatter.ts" />
+        <option value="$PROJECT_DIR$/src/utils/numbers/numbers.ts" />
+        <option value="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" />
       </list>
     </option>
   </component>
@@ -550,12 +534,12 @@
       <workItem from="1525065388055" duration="5783000" />
       <workItem from="1525090910922" duration="18265000" />
       <workItem from="1525152597350" duration="3798000" />
-      <workItem from="1525420862559" duration="25725000" />
+      <workItem from="1525420862559" duration="26640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="410405000" />
+    <option name="totallyTimeSpent" value="411320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -1023,13 +1007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/numbers/numbers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/zones/zones.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1105,20 +1082,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
+    <entry file="file://$PROJECT_DIR$/src/utils/numbers/numbers.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="266" lean-forward="true" selection-start-line="266" selection-end-line="266" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+        <state relative-caret-position="675">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="273" column="49" lean-forward="true" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

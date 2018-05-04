@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,10 +28,20 @@
       <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="273" column="49" lean-forward="true" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
+            <state relative-caret-position="3450">
+              <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#7159#7173#0" />
+                <element signature="e#6970#7032#0" />
+                <element signature="e#7208#7523#0" />
+                <element signature="e#7553#7605#0" />
+                <element signature="e#7824#8169#0" />
+                <element signature="e#8666#9115#0" />
+                <element signature="e#8570#8696#0" />
+                <element signature="e#8702#8752#0" />
+                <element signature="e#9335#9357#0" />
+                <element signature="e#8470#8582#0" />
               </folding>
             </state>
           </provider>
@@ -534,12 +542,12 @@
       <workItem from="1525065388055" duration="5783000" />
       <workItem from="1525090910922" duration="18265000" />
       <workItem from="1525152597350" duration="3798000" />
-      <workItem from="1525420862559" duration="26640000" />
+      <workItem from="1525420862559" duration="27202000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411320000" />
+    <option name="totallyTimeSpent" value="411882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -1098,10 +1106,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="273" column="49" lean-forward="true" selection-start-line="273" selection-start-column="49" selection-end-line="273" selection-end-column="49" />
+        <state relative-caret-position="3450">
+          <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#7159#7173#0" />
+            <element signature="e#6970#7032#0" />
+            <element signature="e#7208#7523#0" />
+            <element signature="e#7553#7605#0" />
+            <element signature="e#7824#8169#0" />
+            <element signature="e#8666#9115#0" />
+            <element signature="e#8570#8696#0" />
+            <element signature="e#8702#8752#0" />
+            <element signature="e#9335#9357#0" />
+            <element signature="e#8470#8582#0" />
           </folding>
         </state>
       </provider>

@@ -9,11 +9,7 @@ import * as d3 from 'd3';
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {ActivityZoneModel} from '../../../models/Activity/ActivityZoneModel';
 import {FormatDurationType} from '../../../models/FormatModel';
-import {
-  DateHoursReturnModel,
-  DateMinutesReturnModel,
-  formatSecondsToDuration
-} from '../../../utils/time/time-formatter';
+import { formatSecondsToDuration } from '../../../utils/time/time-formatter';
 
 class CircleItem {
   radius: number;

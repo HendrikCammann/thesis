@@ -1,0 +1,21 @@
+.zoneChart {
+  &__text {
+    font-size: 12px;
+    fill: $color-grey;
+    font-family: $font-family--secondary;
+
+    &--pace {
+      fill: $color-pace;
+    }
+
+    &--heartrate {
+      fill: $color-heartrate;
+    }
+  }
+
+  &__label {
+    color: $color-black;
+    font-size: 14px;
+    pointer-events: none;
+  }
+}

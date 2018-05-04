@@ -5,3 +5,7 @@ export function getLargerValue(value, maxValue) {
     return maxValue;
   }
 }
+
+export function getPercentageFromValue(value, maxValue) {
+  return Math.round(100 / maxValue * value);
+}

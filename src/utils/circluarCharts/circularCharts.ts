@@ -17,25 +17,3 @@ export function calculateRadiusFromArea(value, circleParameter): number {
 
   return Math.sqrt(factorArea / Math.PI);
 }
-
-export function drawHalfCircle(svg, position, radius, color, bottomHalf): void {
-  let arc = d3.arc();
-  let startAngle = -Math.PI * 0.5;
-  let endAngle = Math.PI * 0.5;
-
-  if (bottomHalf) {
-    startAngle = Math.PI * 0.5;
-    endAngle = Math.PI * 1.5;
-  }
-
-  svg.append('path')
-    .attr('transform', 'translate(' + [ position.x + radius, position.y ] + ')')
-    .attr('opacity', CategoryOpacity.Active)
-    .attr('fill', color)
-    .attr('d', arc({
-      innerRadius: 0,
-      outerRadius: radius,
-      startAngle: startAngle,
-      endAngle: endAngle
-    }));
-}

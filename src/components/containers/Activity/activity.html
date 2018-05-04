@@ -4,6 +4,15 @@
   </div>
 
   <div class="row">
+    <div class="col-md-12">
+      <zone-chart
+        :zones="getSelectedActivityZones"
+      ></zone-chart>
+    </div>
+  </div>
+
+  <!--
+  <div class="row">
     <div v-if="getSelectedActivity.streams">
       <linechart
         :valueDATA="getSelectedActivityStreams.heartrate"
@@ -21,4 +30,5 @@
       {{ getSelectedActivity }}
     </pre>
   </div>
+  -->
 </div>

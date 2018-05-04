@@ -23,9 +23,12 @@ const getters: GetterTree<State, State> = {
   getSortedLists: (state) => {
     return state.sortedLists;
   },
+
+  // CLUSTERS
   getClusters: (state) => {
     return state.existingClusters;
   },
+
   getExistingClusters: (state) => {
     return state.existingClusters;
   },
@@ -76,6 +79,14 @@ const getters: GetterTree<State, State> = {
     for (let i = 0; i < state.activityList.length; i++) {
       if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].streams !== null) {
         return state.activityList[i].streams;
+      }
+    }
+  },
+
+  getSelectedActivityZones: (state) => {
+    for (let i = 0; i < state.activityList.length; i++) {
+      if (state.selectedActivityId === state.activityList[i].id && state.activityList[i].zones !== null) {
+        return state.activityList[i].zones;
       }
     }
   },

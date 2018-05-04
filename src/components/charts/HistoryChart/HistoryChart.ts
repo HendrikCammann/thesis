@@ -169,10 +169,7 @@ export class HistoryChart extends Vue {
       .attr('fill', getCategoryColor(bar.categorization.activity_type))
       .attr('opacity', opacity)
       .on('click', () => {
-        console.log(bar.name);
-        console.log(bar.date);
-        console.log('------');
-        // that.handleBarClick(bar.id);
+        that.handleBarClick(bar.id);
       });
   }
 

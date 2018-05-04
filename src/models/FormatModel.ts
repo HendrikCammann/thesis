@@ -19,3 +19,10 @@ export enum FormatDate {
   Month = 'month',
   Year = 'year',
 }
+
+export enum FormatPaceType {
+  Kmh = 'kmh',
+  Mph = 'mph',
+  MinPerKm = 'minPerKm',
+  MinPerMile = 'minPerMile'
+}

@@ -21,7 +21,6 @@ export enum CategoryColors {
   Default = 'black'
 }
 
-
 export enum ZoneColors {
   Pace = '#43b3e6',
   Heartrate = '#ec407a',

@@ -26,3 +26,8 @@ export enum FormatPaceType {
   MinPerKm = 'minPerKm',
   MinPerMile = 'minPerMile'
 }
+
+export enum FormatDurationType {
+  Minutes = 'minutes',
+  Hours = 'hours',
+}

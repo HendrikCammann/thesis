@@ -6,6 +6,22 @@ import {getLargerValue, getPercentageFromValue} from '../../../utils/numbers/num
 import {formatZoneRangesToString} from '../../../utils/zones/zones';
 import {CategoryOpacity, ZoneColors} from '../../../models/VisualVariableModel';
 import * as d3 from 'd3';
+import {PositionModel} from '../../../models/Chart/ChartModels';
+import {ActivityZoneModel} from '../../../models/Activity/ActivityZoneModel';
+import {FormatDurationType} from '../../../models/FormatModel';
+import {
+  DateHoursReturnModel,
+  DateMinutesReturnModel,
+  formatSecondsToDuration
+} from '../../../utils/time/time-formatter';
+
+interface CircleItem {
+  radius: number;
+  labelText: string;
+  time: number;
+  text: string;
+  color: ZoneColors;
+}
 
 @Component({
   template: require('./zoneChart.html'),
@@ -13,19 +29,22 @@ import * as d3 from 'd3';
 export class ZoneChart extends Vue {
 
   @Prop()
-  zones: any;
+  root: string;
 
-  @Watch('zones.pace')
-  @Watch('zones.heartrate')
-  onPropertyChanged(val: any, oldVal: any) {
-    console.log('changed');
-    if (this.zones !== undefined) {
-      console.log(this.zones);
-      this.zoneChart('#' + 'zone', {width: 1200, height: 300}, this.zones);
-    }
-  }
+  @Prop()
+  zones: ActivityZoneModel | any;
 
-  private drawHalfCircle(svg, position, center, radius, color, time, bottomHalf, id): void {
+  /**
+   * Draws a single halfcircle to a given position
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} radius
+   * @param {string} color
+   * @param {number} time
+   * @param {boolean} bottomHalf
+   * @param {number} id
+   */
+  private drawHalfCircle(svg, position: PositionModel, radius: number, color: string, time: number, bottomHalf: boolean, id: number): void {
     let arc = d3.arc();
     let startAngle = -Math.PI * 0.5;
     let endAngle = Math.PI * 0.5;
@@ -44,10 +63,11 @@ export class ZoneChart extends Vue {
     let yPos = position.y;
 
     svg.append('path')
-      .attr('transform', 'translate(' + [ xPos + center, yPos ] + ')')
+      .attr('transform', 'translate(' + [ xPos, yPos ] + ')')
       .attr('opacity', CategoryOpacity.Active)
       .attr('id', fullId)
       .attr('fill', color)
+      .attr('class', 'zoneChart__circle')
       .attr('d', arc({
         innerRadius: 0,
         outerRadius: radius,
@@ -57,10 +77,10 @@ export class ZoneChart extends Vue {
       .on('mouseenter', () => {
         d3.select('#' + fullId)
           .transition()
-          .attr('transform', 'translate(' + [ xPos + center, yPos - hoverOffset ] + ')');
+          .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
         d3.select('#' + fullPartnerId)
           .transition()
-          .attr('transform', 'translate(' + [ xPos + center, yPos + hoverOffset ] + ')');
+          .attr('transform', 'translate(' + [ xPos, yPos + hoverOffset ] + ')');
 
         d3.select('#' + fullId + 'text')
           .transition()
@@ -79,10 +99,10 @@ export class ZoneChart extends Vue {
       .on('mouseleave', () => {
         d3.select('#' + fullId)
           .transition()
-          .attr('transform', 'translate(' + [ xPos + center, yPos ] + ')');
+          .attr('transform', 'translate(' + [ xPos, yPos ] + ')');
         d3.select('#' + fullPartnerId)
           .transition()
-          .attr('transform', 'translate(' + [ xPos + center, yPos ] + ')');
+          .attr('transform', 'translate(' + [ xPos, yPos ] + ')');
 
         d3.select('#' + fullId + 'text')
           .transition()
@@ -100,7 +120,16 @@ export class ZoneChart extends Vue {
       });
   }
 
-  private addText(svg, position, text, classNames, bottomHalf, id) {
+  /**
+   * Adds a text to a given position
+   * @param svg
+   * @param {PositionModel} position
+   * @param {string} text
+   * @param {string} classNames
+   * @param {boolean} bottomHalf
+   * @param {number} id
+   */
+  private addText(svg, position: PositionModel, text: string, classNames: string, bottomHalf: boolean, id: number): void {
     let posY = position.y;
     if (bottomHalf) {
       posY += 16;
@@ -118,7 +147,16 @@ export class ZoneChart extends Vue {
       .text(text);
   }
 
-  private addLabel(svg, position, centerPosition, text, classNames, bottomHalf, id) {
+  /**
+   * Adds a label to a given position
+   * @param svg
+   * @param {PositionModel} position
+   * @param {string | number} text
+   * @param {string} classNames
+   * @param {boolean} bottomHalf
+   * @param {number} id
+   */
+  private addLabel(svg, position: PositionModel, text: string | number, classNames: string, bottomHalf: boolean, id: number): void {
     let fullId = 'arc' + id + bottomHalf + 'label';
     let posY = position.y;
     if (bottomHalf) {
@@ -127,37 +165,68 @@ export class ZoneChart extends Vue {
       posY -= 5;
     }
     svg.append('text')
-      .attr('x', position.x + centerPosition)
+      .attr('x', position.x)
       .attr('y', posY)
       .attr('class', classNames)
       .attr('text-anchor', 'middle')
       .attr('id', fullId)
-      .text(text + '%');
+      .text(text);
   }
 
-  private drawChartItem(svg, position, centerPosition, upperCircle, lowerCircle, textPosition, index) {
+  /**
+   * Draws a single item of the Chart
+   * Combines drawHalfCircle, addText and addLabel
+   * @param svg
+   * @param {PositionModel} position
+   * @param {CircleItem} upperCircle
+   * @param {CircleItem} lowerCircle
+   * @param {PositionModel} textPosition
+   * @param {number} index
+   */
+  private drawChartItem(svg, position: PositionModel, upperCircle: CircleItem, lowerCircle: CircleItem, textPosition: PositionModel, index: number): void {
 
     this.addText(svg, textPosition, upperCircle.text, 'zoneChart__text zoneChart__text--pace', false, index);
-    this.drawHalfCircle(svg, position, centerPosition, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
-    this.addLabel(svg, position, centerPosition, upperCircle.percentageOfTotalTime, 'zoneChart__label', false, index);
+    this.drawHalfCircle(svg, position, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
+    this.addLabel(svg, position, upperCircle.labelText, 'zoneChart__label', false, index);
 
-    this.drawHalfCircle(svg, position, centerPosition, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
+    this.drawHalfCircle(svg, position, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
     this.addText(svg, textPosition, lowerCircle.text, 'zoneChart__text zoneChart__text--heartrate', true, index);
-    this.addLabel(svg, position, centerPosition, lowerCircle.percentageOfTotalTime, 'zoneChart__label', true, index);
+    this.addLabel(svg, position, lowerCircle.labelText, 'zoneChart__label', true, index);
   }
 
-  private zoneChart(root, canvasConstraints, data): void {
-    let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
-    let horizontalMargin = 20;
+  /**
+   * Adds a divider between the upper and lower circles
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} width
+   */
+  private addDivider (svg, position: PositionModel, width: number): void {
+    svg.append('rect')
+      .attr('x', position.x)
+      .attr('y', position.y)
+      .attr('width', width)
+      .attr('height', 1)
+      .attr('fill', '#E6E6E6');
+  }
 
-    let startPos = {
-      x: 10,
+  /**
+   * Draws the diagram and keeps track of positioning and margins
+   * @param {string} root
+   * @param canvasConstraints
+   * @param {ActivityZoneModel} data
+   */
+  private zoneChart(root: string, canvasConstraints, data: ActivityZoneModel): void {
+    let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
+    let showPercentage: boolean = false;
+
+    let startPos: PositionModel = {
+      x: canvasConstraints.canvasOffset,
       y: 100,
     };
 
-    let maxValue = 0;
-    let totalTimePace = 0;
-    let totalTimeHeartrate = 0;
+    let maxValue: number = 0;
+    let totalTimePace: number = 0;
+    let totalTimeHeartrate: number = 0;
     for (let i = 0; i < data.pace.distribution_buckets.length; i++) {
       totalTimePace += data.pace.distribution_buckets[i].time;
       totalTimeHeartrate += data.heartrate.distribution_buckets[i].time;
@@ -172,48 +241,53 @@ export class ZoneChart extends Vue {
     };
 
     for (let i = 0; i < data.pace.distribution_buckets.length; i++) {
-      let upperCircle = {
+      let upperCircle: CircleItem = {
         radius: calculateRadiusFromArea(data.pace.distribution_buckets[i].time, circleParameter),
-        percentageOfTotalTime: getPercentageFromValue(data.pace.distribution_buckets[i].time, totalTimePace),
+        labelText: '',
         time: data.pace.distribution_buckets[i].time,
         text: formatZoneRangesToString(data.pace.distribution_buckets[i].min, data.pace.distribution_buckets[i].max, 2, 'pace'),
         color: ZoneColors.Pace,
       };
 
-      let lowerCircle = {
+      let lowerCircle: CircleItem = {
         radius: calculateRadiusFromArea(data.heartrate.distribution_buckets[i].time, circleParameter),
-        percentageOfTotalTime: getPercentageFromValue(data.heartrate.distribution_buckets[i].time, totalTimeHeartrate),
+        labelText: '',
         time: data.heartrate.distribution_buckets[i].time,
         text: formatZoneRangesToString(data.heartrate.distribution_buckets[i].min, data.heartrate.distribution_buckets[i].max, 0, 'heartrate'),
         color: ZoneColors.Heartrate,
       };
 
-      let centerPos = getLargerValue(upperCircle.radius, lowerCircle.radius);
+      if (showPercentage) {
+        upperCircle.labelText = getPercentageFromValue(data.pace.distribution_buckets[i].time, totalTimePace) + '%';
+        lowerCircle.labelText = getPercentageFromValue(data.heartrate.distribution_buckets[i].time, totalTimeHeartrate) + '%';
+      } else {
+        upperCircle.labelText = formatSecondsToDuration(data.pace.distribution_buckets[i].time, FormatDurationType.Minutes).multilple;
+        lowerCircle.labelText = formatSecondsToDuration(data.heartrate.distribution_buckets[i].time, FormatDurationType.Minutes).multilple;
+      }
 
-      let textPos = {
-        x: startPos.x + centerPos,
+      let textPos: PositionModel = {
+        x: startPos.x + getLargerValue(upperCircle.radius, lowerCircle.radius),
         y: startPos.y,
       };
 
-      this.drawChartItem(svg, startPos, centerPos, upperCircle, lowerCircle, textPos, i);
+      startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius);
+
+      this.drawChartItem(svg, startPos, upperCircle, lowerCircle, textPos, i);
 
       if (i !== data.pace.distribution_buckets.length - 1) {
-        startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius) * 2 + horizontalMargin;
+        startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius) + canvasConstraints.marginBottom;
       } else {
-        startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius) * 2;
+        startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius);
       }
     }
 
-    svg.append('rect')
-      .attr('x', 0)
-      .attr('y', startPos.y)
-      .attr('width', startPos.x + 10)
-      .attr('height', 1)
-      .attr('fill', 'black')
-      .attr('opacity', 0.2);
+    this.addDivider(svg, {x: 0, y: startPos.y}, startPos.x + canvasConstraints.canvasOffset);
   }
 
+  /**
+   * Vue lifecycle method
+   */
   mounted() {
-    this.zoneChart('#' + 'zone', {width: 1200, height: 300}, this.zones);
+    this.zoneChart('#' + this.root, {width: 1200, height: 300, marginBottom: 20, canvasOffset: 10}, this.zones);
   }
 }

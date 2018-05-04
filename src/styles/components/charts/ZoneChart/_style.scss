@@ -1,8 +1,14 @@
 .zoneChart {
+
+  &__circle {
+    cursor: pointer;
+  }
+
   &__text {
     font-size: 12px;
     fill: $color-grey;
     font-family: $font-family--secondary;
+    pointer-events: none;
 
     &--pace {
       fill: $color-pace;

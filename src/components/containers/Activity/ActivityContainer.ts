@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
-import {State} from '../../../store/state';
 import {mapGetters} from 'vuex';
-import { LineChart } from '../../charts/LineChart/';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {ZoneChart} from '../../charts/ZoneChart';
+import {BarChart} from '../../charts/BarChart';
 
 /* tslint:disable */
 @Component({
@@ -16,7 +15,7 @@ import {ZoneChart} from '../../charts/ZoneChart';
     getSelectedActivityZones: 'getSelectedActivityZones',
   }),
   components: {
-    'linechart': LineChart,
+    'barChart': BarChart,
     'zoneChart': ZoneChart,
   }
 })

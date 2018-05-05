@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {ActivityZoneModel} from '../../../models/Activity/ActivityZoneModel';
 import {FormatDurationType} from '../../../models/FormatModel';
-import { formatSecondsToDuration } from '../../../utils/time/time-formatter';
+import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 
 class CircleItem {
   radius: number;
@@ -224,8 +224,16 @@ export class ZoneChart extends Vue {
    */
   private zoneChart(root: string, canvasConstraints, data: ActivityZoneModel): void {
     let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
-    let showPercentage: boolean = false;
+    let showPercentage: boolean = true;
     let hasHeartrate: boolean = true;
+    let offsetPaceAndHr: any = {
+      differences: [],
+      totalDifference: 0,
+      morePace: [],
+      pace: [],
+      hr: [],
+      differenceInPercent: 0,
+    };
 
     if (!data.heartrate) {
       hasHeartrate = false;
@@ -289,6 +297,14 @@ export class ZoneChart extends Vue {
 
       startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius);
 
+      if (hasHeartrate) {
+        offsetPaceAndHr.pace.push(data.pace.distribution_buckets[i].time );
+        offsetPaceAndHr.hr.push(data.heartrate.distribution_buckets[i].time );
+        offsetPaceAndHr.morePace.push(data.pace.distribution_buckets[i].time > data.heartrate.distribution_buckets[i].time);
+        offsetPaceAndHr.differences.push(Math.abs(data.pace.distribution_buckets[i].time - data.heartrate.distribution_buckets[i].time));
+        offsetPaceAndHr.totalDifference += Math.abs(data.pace.distribution_buckets[i].time - data.heartrate.distribution_buckets[i].time);
+      }
+
       this.drawChartItem(svg, startPos, upperCircle, lowerCircle, textPos, i, hasHeartrate);
 
       if (i !== data.pace.distribution_buckets.length - 1) {
@@ -296,11 +312,41 @@ export class ZoneChart extends Vue {
       } else {
         startPos.x += getLargerValue(upperCircle.radius, lowerCircle.radius);
       }
+
     }
+    offsetPaceAndHr.differenceInPercent = getPercentageFromValue(offsetPaceAndHr.totalDifference, totalTimeHeartrate);
+    if (offsetPaceAndHr.differenceInPercent < 80) {
+      console.log('ok');
+    } else if (offsetPaceAndHr.differenceInPercent < 120 && offsetPaceAndHr.differenceInPercent > 80) {
+      console.log('minimal verschoben');
+    } else if (offsetPaceAndHr.differenceInPercent < 150 && offsetPaceAndHr.differenceInPercent > 120) {
+      console.log('etwas verschoben');
+    } else if (offsetPaceAndHr.differenceInPercent > 150) {
+      console.log('stark verschoben');
+    }
+    console.log(this.isHeartrateOffest(offsetPaceAndHr.morePace));
+    console.log(offsetPaceAndHr);
+
+
 
     this.addDivider(svg, {x: 0, y: startPos.y}, startPos.x + canvasConstraints.canvasOffset);
   }
 
+  private isHeartrateOffest(array) {
+    let ctnTrue = 0;
+    let ctnFalse = 0;
+
+    array.map(value => {
+      if (value === true) {
+        ctnTrue++;
+      } else {
+        ctnFalse++;
+      }
+    });
+
+    console.log(ctnTrue + 'vs ' + ctnFalse);
+    return ctnTrue < ctnFalse;
+  }
   /**
    * Vue lifecycle method
    */

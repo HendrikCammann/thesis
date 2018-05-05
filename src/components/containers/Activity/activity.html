@@ -12,6 +12,15 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <bar-chart
+        :root="'barChart'"
+        :activity="getSelectedActivity"
+      ></bar-chart>
+    </div>
+  </div>
+
   <!--
   <div class="row">
     <div v-if="getSelectedActivity.streams">

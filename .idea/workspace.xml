@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/charts/BarChart/barChart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/charts/BarChart/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/array-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/array-helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,11 +34,16 @@
       <file leaf-file-name="BarChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="61" column="88" selection-start-line="61" selection-start-column="88" selection-end-line="61" selection-end-column="88" />
+            <state relative-caret-position="162">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#43#0" expanded="true" />
+                <element signature="n#!!block;n#addDivider#0;n#BarChart#0" />
+                <element signature="n#!!block;n#maxZoneValues#0;n#BarChart#0" />
+                <element signature="n#!!block;n#extractLapsFromActivity#0;n#BarChart#0" />
+                <element signature="n#!!block;n#calculateHeight#0;n#BarChart#0" />
+                <element signature="n#!!block;n#calculateWidth#0;n#BarChart#0" />
               </folding>
             </state>
           </provider>
@@ -54,11 +52,24 @@
       <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="211" selection-start-line="211" selection-end-line="215" selection-end-column="31" />
+            <state relative-caret-position="372">
+              <caret line="171" selection-start-line="171" selection-end-line="176" selection-end-column="18" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
                 <element signature="n#!!block;n#drawHalfCircle#0;n#ZoneChart#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="format-data.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+              <folding>
+                <element signature="n#!!block;n#formatPaceToRunOutput#0" />
+                <element signature="n#!!block;n#formatPace#0" />
               </folding>
             </state>
           </provider>
@@ -326,12 +337,6 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -490,12 +495,12 @@
       <workItem from="1525065388055" duration="5783000" />
       <workItem from="1525090910922" duration="18265000" />
       <workItem from="1525152597350" duration="3798000" />
-      <workItem from="1525420862559" duration="36302000" />
+      <workItem from="1525420862559" duration="43297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="420982000" />
+    <option name="totallyTimeSpent" value="427977000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -509,7 +514,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5021299" side_tool="true" weight="0.32994455" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32903227" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3287037" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4978701" weight="0.32994455" />
       <window_info id="Capture Tool" order="2" />
@@ -887,19 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/zones/zones.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="61" column="72" selection-start-line="61" selection-start-column="72" selection-end-line="61" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <element signature="n#!!block;n#formatPaceZone#0" />
-            <element signature="n#!!block;n#formatHeartrateZone#0" />
-            <element signature="n#!!block;n#formatZoneRangesToString#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -931,13 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/FormatModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -963,22 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/filter-dataset.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1034,17 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="211" selection-start-line="211" selection-end-line="215" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="n#!!block;n#drawHalfCircle#0;n#ZoneChart#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/barChart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1059,13 +1017,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/zones/zones.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="61" column="72" selection-start-line="61" selection-start-column="72" selection-end-line="61" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+            <element signature="n#!!block;n#formatPaceZone#0" />
+            <element signature="n#!!block;n#formatHeartrateZone#0" />
+            <element signature="n#!!block;n#formatZoneRangesToString#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/filter-dataset.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+          <folding>
+            <element signature="n#!!block;n#formatPaceToRunOutput#0" />
+            <element signature="n#!!block;n#formatPace#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="171" selection-start-line="171" selection-end-line="176" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#drawHalfCircle#0;n#ZoneChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="61" column="88" selection-start-line="61" selection-start-column="88" selection-end-line="61" selection-end-column="88" />
+        <state relative-caret-position="162">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#43#0" expanded="true" />
+            <element signature="n#!!block;n#addDivider#0;n#BarChart#0" />
+            <element signature="n#!!block;n#maxZoneValues#0;n#BarChart#0" />
+            <element signature="n#!!block;n#extractLapsFromActivity#0;n#BarChart#0" />
+            <element signature="n#!!block;n#calculateHeight#0;n#BarChart#0" />
+            <element signature="n#!!block;n#calculateWidth#0;n#BarChart#0" />
           </folding>
         </state>
       </provider>

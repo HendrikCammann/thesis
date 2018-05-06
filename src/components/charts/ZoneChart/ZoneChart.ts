@@ -324,8 +324,8 @@ export class ZoneChart extends Vue {
     } else if (offsetPaceAndHr.differenceInPercent > 150) {
       console.log('stark verschoben');
     }
-    console.log(this.isHeartrateOffest(offsetPaceAndHr.morePace));
-    console.log(offsetPaceAndHr);
+    // console.log(this.isHeartrateOffest(offsetPaceAndHr.morePace));
+    // console.log(offsetPaceAndHr);
 
 
 

@@ -1,0 +1,13 @@
+.arcCompare {
+  &__text {
+    font-size: 12px;
+    fill: $color-grey;
+    font-family: $font-family--secondary;
+    pointer-events: none;
+  }
+  &__label {
+    color: $color-black;
+    font-size: 14px;
+    pointer-events: none;
+  }
+}

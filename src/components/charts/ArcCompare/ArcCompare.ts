@@ -7,6 +7,8 @@ import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryOpacity} from '../../../models/VisualVariableModel';
+import {PositionModel} from '../../../models/Chart/ChartModels';
+import {getPercentageFromValue} from '../../../utils/numbers/numbers';
 
 @Component({
   template: require('./arcCompare.html'),
@@ -53,7 +55,8 @@ export class ArcCompare extends Vue {
       .attr('height', 100);
 
     let draw = [];
-    let startPos = {
+    let totalDistance = 0;
+    let startPos: PositionModel = {
       x: 0,
       y: 100,
     };
@@ -67,32 +70,103 @@ export class ArcCompare extends Vue {
     draw.map(cluster => {
       let sumDistance = 0;
       for (let key in cluster) {
+        totalDistance += cluster[key].distance;
         sumDistance += this.calculateRadiusFromArea(cluster[key].distance) * 2;
       }
       startPos.x = (360 / 2) - (sumDistance / 2);
     });
 
-    draw.map(cluster => {
+    draw.map((cluster, i) => {
       for (let key in cluster) {
+        let labelText = formatDistance(cluster[key].distance, FormatDistanceType.Kilometers).toFixed(0);
+        if (labelText === '0') {
+          labelText = '';
+        } else {
+          labelText += 'km'
+        }
+        let textText = getPercentageFromValue(cluster[key].distance, totalDistance).toString();
+        if (textText === '0') {
+          textText = null;
+        } else {
+          textText += '%';
+        }
         startPos.x += this.calculateRadiusFromArea(cluster[key].distance);
-        this.drawHalfCircle(svg, startPos, cluster[key]);
+        this.addText(svg, startPos, i, root, key, textText);
+        this.drawHalfCircle(svg, startPos, cluster[key], i, root, key);
+        this.addLabel(svg, startPos, i, root, key, labelText);
         startPos.x += this.calculateRadiusFromArea(cluster[key].distance);
       }
     });
   }
 
-  private drawHalfCircle(svg, position, item) {
+  private addText(svg, position: PositionModel, index: number, root: string, key: string, text: number | string) {
+    let fullId = 'arc' + root.replace('#', '') + index + key + 'text';
+    let posY = position.y;
+    svg.append('text')
+      .attr('x', position.x)
+      .attr('y', posY)
+      .attr('text-anchor', 'middle')
+      .attr('class', 'arcCompare__text')
+      .attr('id', fullId)
+      .attr('opacity', 0)
+      .text(text);
+  }
+
+  private addLabel(svg, position: PositionModel, index: number, root: string, key: string, text: number | string) {
+    let fullId = 'arc' + root.replace('#', '') + index + key + 'label';
+    let posY = position.y;
+    svg.append('text')
+      .attr('x', position.x)
+      .attr('y', posY - 5)
+      .attr('class', 'arcCompare__label')
+      .attr('text-anchor', 'middle')
+      .attr('id', fullId)
+      .text(text);
+  }
+
+  private drawHalfCircle(svg, position: PositionModel, item, index: number, root: string, key: string) {
     let arc = d3.arc();
-    return svg.append('path')
-      .attr('transform', 'translate('+[position.x , position.y]+')')
+    let fullId = 'arc' + root.replace('#', '') + index + key;
+    let hoverOffset = 15;
+
+    let xPos = position.x;
+    let yPos = position.y;
+    svg.append('path')
+      .attr('transform', 'translate(' + [ xPos , yPos ] + ')')
       .attr('opacity', CategoryOpacity.Active)
+      .attr('id', fullId)
       .attr('fill', getCategoryColor(item.type))
+      .attr('class', 'arcCompare__circle')
       .attr('d', arc({
         innerRadius: 0,
         outerRadius: this.calculateRadiusFromArea(item.distance),
-        startAngle: -Math.PI*0.5,
-        endAngle: Math.PI*0.5
-      }));
+        startAngle: -Math.PI * 0.5,
+        endAngle: Math.PI * 0.5
+      }))
+      .on('mouseenter', () => {
+        console.log(d3.select('#' + fullId));
+        d3.select('#' + fullId)
+          .transition()
+          .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
+        d3.select('#' + fullId + 'label')
+          .transition()
+          .attr('transform', 'translate(' + [ 0, - hoverOffset ] + ')');
+        d3.select('#' + fullId + 'text')
+          .transition()
+          .attr('opacity', 1);
+      })
+      .on('mouseleave', () => {
+        console.log(d3.select('#' + fullId));
+        d3.select('#' + fullId)
+          .transition()
+          .attr('transform', 'translate(' + [ xPos, yPos ] + ')');
+        d3.select('#' + fullId + 'label')
+          .transition()
+          .attr('transform', 'translate(' + [ 0, 0 ] + ')');
+        d3.select('#' + fullId + 'text')
+          .transition()
+          .attr('opacity', 0);
+      });
   }
 
   mounted() {

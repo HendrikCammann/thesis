@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles/components/charts/ArcCompare/_style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/numbers/numbers.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-end-line="4" />
+              <caret line="3" column="16" selection-start-line="3" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -31,8 +26,8 @@
       <file leaf-file-name="BarChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="222" column="32" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
+            <state relative-caret-position="541">
+              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#43#0" expanded="true" />
@@ -199,7 +194,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1177" />
@@ -210,8 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,6 +309,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -467,12 +462,13 @@
       <workItem from="1525090910922" duration="18265000" />
       <workItem from="1525152597350" duration="3798000" />
       <workItem from="1525420862559" duration="46731000" />
-      <workItem from="1525596756250" duration="9952000" />
+      <workItem from="1525596756250" duration="11394000" />
+      <workItem from="1525618515904" duration="3761000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="441363000" />
+    <option name="totallyTimeSpent" value="446566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -492,7 +488,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="TypeScript" order="7" sideWeight="0.4978701" weight="0.32994455" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18530351" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18690096" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24973376" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.18903089" />
@@ -510,18 +506,18 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32994455" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1970181" />
       <window_info id="Structure" order="1" weight="0.24973376" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.18903089" />
-      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" sideWeight="0.4978701" weight="0.32994455" />
+      <window_info anchor="bottom" id="TODO" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -531,7 +527,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4978701" weight="0.32994455" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021299" side_tool="true" weight="0.32994455" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32994455" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" id="Database" order="6" />
@@ -615,17 +611,27 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3150">
+          <caret line="262" column="29" lean-forward="true" selection-start-line="262" selection-start-column="29" selection-end-line="262" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+            <element signature="n#!!block;n#connectChartItems#0;n#BarChart#0" />
+            <element signature="n#!!block;n#addDivider#0;n#BarChart#0" />
+            <element signature="n#!!block;n#maxZoneValues#0;n#BarChart#0" />
+            <element signature="n#!!block;n#extractLapsFromActivity#0;n#BarChart#0" />
+            <element signature="n#!!block;n#calculateHeight#0;n#BarChart#0" />
+            <element signature="n#!!block;n#calculateWidth#0;n#BarChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
           <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="91" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="n#!!block;n#addText#0;n#ZoneChart#0" />
-            <element signature="n#!!block;n#addDivider#0;n#ZoneChart#0" />
-            <element signature="n#!!block;n#zoneChart#0;n#ZoneChart#0" />
-            <element signature="n#!!block;n#isHeartrateOffest#0;n#ZoneChart#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -844,16 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1817">
           <caret line="299" column="115" lean-forward="true" selection-start-line="299" selection-start-column="115" selection-end-line="299" selection-end-column="115" />
-          <folding>
-            <element signature="e#21#43#0" expanded="true" />
-            <element signature="n#!!block;n#mapSelectedClustersToData#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#getLargestValue#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#handleBarClick#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#extractBarsFromDataset#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#calculateVisualVariables#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#drawClusterNames#0;n#HistoryChart#0" />
-            <element signature="n#!!block;n#drawAbsoluteSessions#0;n#HistoryChart#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -889,10 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="26" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#drawDiagram#0;n#ArcChart#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,9 +894,6 @@
           <caret line="61" column="72" selection-start-line="61" selection-start-column="72" selection-end-line="61" selection-end-column="72" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/filter-dataset.ts">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -945,10 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="54" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="n#!!block;n#formatPaceToRunOutput#0" />
-            <element signature="n#!!block;n#formatPace#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -977,15 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="328" lean-forward="true" selection-start-line="328" selection-end-line="328" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="n#!!block;n#addText#0;n#ZoneChart#0" />
-            <element signature="n#!!block;n#addDivider#0;n#ZoneChart#0" />
-            <element signature="e#9906#10018#0" />
-            <element signature="e#10122#10688#0" />
-            <element signature="e#10843#10963#0" />
-            <element signature="n#!!block;n#isHeartrateOffest#0;n#ZoneChart#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1006,14 +982,14 @@
     <entry file="file://$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-end-line="4" />
+          <caret line="3" column="16" selection-start-line="3" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="222" column="32" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
+        <state relative-caret-position="541">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#43#0" expanded="true" />

@@ -60,7 +60,7 @@ export class BarChart extends Vue {
       let paceHistorgram = d3.histogram().domain([minimumValues.lapMinPace, maxValues.pace]).thresholds(5);
       let hrHistorgram = d3.histogram().domain([minimumValues.lapMinHr, maxValues.heartrate]).thresholds(5);
 
-      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, drawNextToEachOther, offsetBars, offset, paceHistorgram(paceData), hrHistorgram(hrData));
+      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, drawNextToEachOther, offsetBars, offset, paceData, hrData);
       chartItems.pace.push(drawnItem.paceItem);
       chartItems.heartrate.push(drawnItem.heartrateItem);
       startPos.x = drawnItem.xVal;
@@ -105,7 +105,7 @@ export class BarChart extends Vue {
    * @param {number} offsetLaps
    * @returns {number}
    */
-  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, drawNextToEachOther: boolean, offsetBars: number, offsetLaps: number, paceHistorgram, hrHistogram) {
+  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, drawNextToEachOther: boolean, offsetBars: number, offsetLaps: number, paceData: number[], hrData: number[]) {
     let width = this.calculateWidth(lap.distance, pxPerDistance);
 
     let paceHeight = this.calculateHeight(lap.average_speed, maxValues.pace, 150);
@@ -117,7 +117,8 @@ export class BarChart extends Vue {
     let hrMinHeight = this.calculateHeight(minimumValues.lapMinHr, maxValues.heartrate, 150);
 
     this.drawBar(svg, startPos.x, startPos.y - paceHeight, width, this.barHeight, 0.7, '#43b3e6');
-    this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), 0.2, '#43b3e6', paceHistorgram);
+    // this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), 0.2, '#43b3e6', paceData, maxValues.pace, startPos.y);
+    this.drawOffsetRanges(svg, paceData, startPos.x, startPos.y, width, 1, 0.05, '#43b3e6', maxValues.pace);
 
     let paceItem = {
       startX: startPos.x,
@@ -131,6 +132,7 @@ export class BarChart extends Vue {
     if (!drawNextToEachOther) {
       this.drawBar(svg, startPos.x, startPos.y, width, this.barHeight, 0.7, '#ec407a');
       // this.drawOffset(svg, startPos.x, startPos.y, width, this.barHeight, 0.2, '#ec407a');
+      this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, 1, 0.05, '#ec407a', maxValues.heartrate);
       heartrateItem = {
         startX: startPos.x,
         startY: startPos.y - (this.barHeight / 2),
@@ -141,7 +143,8 @@ export class BarChart extends Vue {
     } else {
       startPos.x += width + offsetBars;
       this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, this.barHeight, 0.7, '#ec407a');
-      this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), 0.2, '#ec407a', hrHistogram);
+      // this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), 0.2, '#ec407a', hrHistogram);
+      this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, 1, 0.05, '#ec407a', maxValues.heartrate);
       heartrateItem = {
         startX: startPos.x,
         startY: startPos.y - hrHeight + (this.barHeight / 2),
@@ -215,52 +218,55 @@ export class BarChart extends Vue {
     }
   }
 
-  private drawOffset(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string, histogram) {
-    let totalItems = 0;
+  private drawOffsetRanges(svg, dataPoints: number[], xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string, maxValue: number) {
+    dataPoints.map(item => {
+      let actYPos = this.calculateHeight(item, maxValue, 150);
+      console.log(actYPos);
+      this.drawOffset(svg, xPosition, yPosition - actYPos, width, height, opacity, color);
+    });
+  }
+
+  private drawOffset(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string) {
+    svg.append('rect')
+      .attr('x', xPosition)
+      .attr('y', yPosition)
+      .attr('width', width)
+      .attr('height', height)
+      .attr('opacity', 0.05)
+      .attr('fill', color);
+
+    /*let largest = 0;
     let steps = height / histogram.length;
 
     histogram.map(item => {
-      totalItems += item.length;
+      largest = getLargerValue(item.length, largest);
     });
 
     let leftPoints = [];
     let rightPoints = [];
 
     histogram.map((item, i) => {
-      let percentageOfTotal = getPercentageFromValue(item.length, totalItems);
+      let percentageOfTotal = getPercentageFromValue(item.length, largest);
       let offset = (width / 2) / 100 * percentageOfTotal;
 
-      let xPos = ((xPosition + width) / 2) - offset;
-      let yPos = yPosition + (height - (i * steps));
+      let xPosLeft = ((xPosition + (width / 2) - offset));
+      let xPosRight = ((xPosition + (width / 2) + offset));
+      let yPos = yPosition + height - ((i + 1) * steps);
 
-      leftPoints.push([xPos, yPos]);
+      leftPoints.push([xPosLeft, yPos]);
+      rightPoints.push([xPosRight, yPos]);
+
     });
 
-    histogram.map((item, i) => {
-      let percentageOfTotal = getPercentageFromValue(item.length, totalItems);
-      let offset = (width / 2) / 100 * percentageOfTotal;
-
-      let xPos = ((xPosition + width) / 2) + offset;
-      let yPos = yPosition + (height - (i * steps));
-
-      rightPoints.push([xPos, yPos]);
-    });
-
-    let lineGenerator = d3.line();
+    let lineGenerator = d3.line().curve(d3.curveLinearClosed);
 
     rightPoints.reverse();
 
     svg.append('path')
       .attr('d', lineGenerator([...leftPoints, ...rightPoints]))
-      .attr('fill', 'none')
-      .attr('stroke', color)
-    /*svg.append('rect')
-      .attr('x', xPosition)
-      .attr('y', yPosition)
-      .attr('width', width)
-      .attr('height', height)
+      .attr('fill', color)
       .attr('opacity', opacity)
-      .attr('fill', color);*/
+      .attr('stroke', color);*/
   }
 
   /**

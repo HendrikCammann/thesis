@@ -1,11 +1,11 @@
 .compare {
   $root: &;
-  margin-top: 40px !important;
+  // margin-top: 40px !important;
 
   #{&}__title {
     text-align: center;
-    font-size: $font-size__headline--huge;
-    margin-bottom: 50px;
+    margin-top: 70px;
+    margin-bottom: 90px;
   }
 
   #{&}__subTitle {
@@ -36,6 +36,6 @@
     font-family: $font-family--secondary;
     display: inline-block;
     padding: 5px 30px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }

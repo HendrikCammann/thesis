@@ -15,6 +15,7 @@ import {filterEvents} from '../../../events/filter';
 import {DonutChart} from '../../charts/DonutChart';
 import {RunType} from '../../../store/state';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
+import {HeadlineBox} from '../../partials/HeadlineBox';
 
 
 @Component({
@@ -29,6 +30,7 @@ import {navigationEvents} from '../../../events/Navigation/Navigation';
     showAbsolute: 'getShowAbsolute',
   }),
   components: {
+    'headlineBox': HeadlineBox,
     'stackedCompare': StackedCompare,
     'compareModule': CompareModule,
     'compareAddModule': CompareAddModule,

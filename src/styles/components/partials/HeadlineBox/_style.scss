@@ -1,0 +1,30 @@
+.headlineBox {
+  $root: &;
+
+  #{&}__image {
+    margin-top: -64px;
+    margin-right: 15px;
+    height: 85px;
+    width: auto;
+    display: inline-block;
+  }
+
+  #{&}__content {
+    text-align: left;
+    display: inline-block;
+
+    #{$root}__main {
+      font-size: $font-size__main-headline;
+      color: $color-black;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    #{$root}__sub {
+      font-family: $font-family--secondary;
+      font-size: $font-size__body-text;
+      font-weight: 400;
+      color: $color-gray;
+    }
+  }
+}

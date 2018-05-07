@@ -1,7 +1,11 @@
 <div class="container compare">
   <div class="row">
     <div class="col-md-12 compare__title">
-      Race preparations
+      <headline-box
+        :headline="'Compare your race preparations'"
+        :subHeadline="'Gain insights how you prepared.'"
+        :illustration="'compare'"
+      ></headline-box>
     </div>
   </div>
   <div class="row">
@@ -13,7 +17,7 @@
       <div class="compare__select" v-if="selectedTrainingClusters.length < 3">
         <select v-model="selectedCluster"
                 @change="selectTrainingCluster">
-          <option disabled value="">Compare another preparation</option>
+          <option disabled value="">Add a preparation</option>
           <option v-for="item in existingClusters" v-if="selectedTrainingClusters.indexOf(item.clusterName) < 0 && item.isIndividual"
             :value="item.clusterName"
           >{{ item.clusterName }}</option>

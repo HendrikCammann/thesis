@@ -68,7 +68,7 @@ export class ArcCompare extends Vue {
     let totalDistance = 0;
     let startPos: PositionModel = {
       x: 0,
-      y: 100,
+      y: 99,
     };
 
     let obj = {};
@@ -86,10 +86,13 @@ export class ArcCompare extends Vue {
       startPos.x = (360 / 2) - (sumDistance / 2);
     });
 
-    draw.map((cluster, i) => {
+    let xSave = startPos.x;
+
+    let sumRadius = 0;
+    draw.forEach((cluster, i) => {
       for (let key in cluster) {
         let labelText = formatDistance(cluster[key].distance, FormatDistanceType.Kilometers).toFixed(0);
-        if (labelText === '0') {
+        if (labelText === '0' || parseInt(labelText) < 60) {
           labelText = '';
         } else {
           labelText += 'km'
@@ -105,8 +108,16 @@ export class ArcCompare extends Vue {
         this.drawHalfCircle(svg, startPos, cluster[key], i, root, key);
         this.addLabel(svg, startPos, i, root, key, labelText);
         startPos.x += this.calculateRadiusFromArea(cluster[key].distance);
+        sumRadius += this.calculateRadiusFromArea(cluster[key].distance);
       }
     });
+
+    svg.append('rect')
+      .attr('x', xSave - 10)
+      .attr('y', startPos.y)
+      .attr('fill', '#e6e6e6')
+      .attr('height', 1)
+      .attr('width', sumRadius * 2 + 20);
   }
 
   /**
@@ -120,7 +131,7 @@ export class ArcCompare extends Vue {
    */
   private addText(svg, position: PositionModel, index: number, root: string, key: string, text: number | string): void {
     let fullId = 'arc' + root.replace('#', '') + index + key + 'text';
-    let posY = position.y;
+    let posY = position.y - 2;
     svg.append('text')
       .attr('x', position.x)
       .attr('y', posY)
@@ -164,7 +175,8 @@ export class ArcCompare extends Vue {
   private drawHalfCircle(svg, position: PositionModel, item, index: number, root: string, key: string): void {
     let arc = d3.arc();
     let fullId = 'arc' + root.replace('#', '') + index + key;
-    let hoverOffset = 15;
+    let className = 'arc' + item.type;
+    let hoverOffset = 20;
 
     let xPos = position.x;
     let yPos = position.y;
@@ -173,7 +185,7 @@ export class ArcCompare extends Vue {
       .attr('opacity', CategoryOpacity.Active)
       .attr('id', fullId)
       .attr('fill', getCategoryColor(item.type))
-      .attr('class', 'arcCompare__circle')
+      .attr('class', 'arcCompare__circle ' + className)
       .attr('d', arc({
         innerRadius: 0,
         outerRadius: this.calculateRadiusFromArea(item.distance),

@@ -36,6 +36,11 @@ export class ArcCompare extends Vue {
     }
   }
 
+  /**
+   * Calculates the radius to a given circle area
+   * @param value
+   * @returns {number}
+   */
   private calculateRadiusFromArea(value): number {
     value = formatDistance(value, FormatDistanceType.Kilometers);
     const focusRadius = 70;
@@ -48,7 +53,12 @@ export class ArcCompare extends Vue {
     return Math.sqrt(factorArea / Math.PI);
   }
 
-  private arcCompare(root, data) {
+  /**
+   * Draws the chart
+   * @param {string} root
+   * @param data
+   */
+  private arcCompare(root: string, data): void {
     d3.select(root + " > svg").remove();
     let svg = d3.select(root).append('svg')
       .attr('width', 360)
@@ -99,7 +109,16 @@ export class ArcCompare extends Vue {
     });
   }
 
-  private addText(svg, position: PositionModel, index: number, root: string, key: string, text: number | string) {
+  /**
+   * Adds the text to the circle
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} index
+   * @param {string} root
+   * @param {string} key
+   * @param {number | string} text
+   */
+  private addText(svg, position: PositionModel, index: number, root: string, key: string, text: number | string): void {
     let fullId = 'arc' + root.replace('#', '') + index + key + 'text';
     let posY = position.y;
     svg.append('text')
@@ -112,7 +131,16 @@ export class ArcCompare extends Vue {
       .text(text);
   }
 
-  private addLabel(svg, position: PositionModel, index: number, root: string, key: string, text: number | string) {
+  /**
+   * Adds the label to the circle
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} index
+   * @param {string} root
+   * @param {string} key
+   * @param {number | string} text
+   */
+  private addLabel(svg, position: PositionModel, index: number, root: string, key: string, text: number | string): void {
     let fullId = 'arc' + root.replace('#', '') + index + key + 'label';
     let posY = position.y;
     svg.append('text')
@@ -124,7 +152,16 @@ export class ArcCompare extends Vue {
       .text(text);
   }
 
-  private drawHalfCircle(svg, position: PositionModel, item, index: number, root: string, key: string) {
+  /**
+   * Draws a single halfcircle with hover effects
+   * @param svg
+   * @param {PositionModel} position
+   * @param item
+   * @param {number} index
+   * @param {string} root
+   * @param {string} key
+   */
+  private drawHalfCircle(svg, position: PositionModel, item, index: number, root: string, key: string): void {
     let arc = d3.arc();
     let fullId = 'arc' + root.replace('#', '') + index + key;
     let hoverOffset = 15;
@@ -144,7 +181,6 @@ export class ArcCompare extends Vue {
         endAngle: Math.PI * 0.5
       }))
       .on('mouseenter', () => {
-        console.log(d3.select('#' + fullId));
         d3.select('#' + fullId)
           .transition()
           .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
@@ -156,7 +192,6 @@ export class ArcCompare extends Vue {
           .attr('opacity', 1);
       })
       .on('mouseleave', () => {
-        console.log(d3.select('#' + fullId));
         d3.select('#' + fullId)
           .transition()
           .attr('transform', 'translate(' + [ xPos, yPos ] + ')');

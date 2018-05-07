@@ -1,11 +1,14 @@
 /* tslint:disable */
 import Vue from 'vue';
+import * as d3 from 'd3';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {ActivityModel} from '../../../models/Activity/ActivityModel';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
 import {BarChartItem, PositionModel} from '../../../models/Chart/ChartModels';
 import {getLargerValue, getPercentageFromValue, getSmallerValue} from '../../../utils/numbers/numbers';
 import {BarChartSizes, CategoryColors, CategoryOpacity, ZoneColors} from '../../../models/VisualVariableModel';
+import {formatDistance} from '../../../utils/format-data';
+import {FormatDistanceType} from '../../../models/FormatModel';
 
 @Component({
   template: require('./barChart.html'),
@@ -21,13 +24,15 @@ export class BarChart extends Vue {
     console.log(activity);
     let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
     let data = this.extractLapsFromActivity(activity);
-    let offset = 5;
+    let offset = 0;
     let chartItems = {
       heartrate: [],
       pace: [],
     };
 
-    let offsetBars = 2;
+    let overlap = false;
+
+    let offsetBars = 0;
     let padding = 10;
 
     let startPos: PositionModel = {
@@ -36,9 +41,10 @@ export class BarChart extends Vue {
     };
 
     let maxValues = this.maxZoneValues(data.zones);
-    let displayedWidth = this.displayedWidth(canvasConstraints.width, data.laps.length, offsetBars, offset, padding);
-    let pxPerDistance = this.calculatePxPerDistance(displayedWidth, data.base_data.distance);
+    let displayedWidth = this.displayedWidth(canvasConstraints.width, data.laps.length, offsetBars, offset, padding, overlap);
+    let pxPerDistance = this.calculatePxPerDistance(displayedWidth, data.base_data.distance, overlap);
 
+    let totalDistanceCovered = 0;
     data.laps.map(lap => {
       let hrData = [];
       let paceData = [];
@@ -54,15 +60,43 @@ export class BarChart extends Vue {
         paceData.push(data.streams.speed.data[i]);
       }
 
-      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, offsetBars, offset, paceData, hrData);
+      totalDistanceCovered += lap.distance;
+
+      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, offsetBars, offset, paceData, hrData, overlap, totalDistanceCovered);
       chartItems.pace.push(drawnItem.paceItem);
       chartItems.heartrate.push(drawnItem.heartrateItem);
       startPos.x = drawnItem.xVal;
     });
 
-
     this.connectChartItems(svg, chartItems);
     this.addDivider(svg, 0, startPos.y, startPos.x  + 10,'#E6E6E6');
+
+    startPos.x = padding;
+
+    for (let i = 0; i <= Math.floor(formatDistance(data.base_data.distance, FormatDistanceType.Kilometers)); i++) {
+      let offset;
+      if (!overlap) {
+        offset = this.calculateWidth(FormatDistanceType.Kilometers, pxPerDistance) * 2
+      } else {
+        offset = this.calculateWidth(FormatDistanceType.Kilometers, pxPerDistance)
+      }
+      if (i > 0) {
+        svg.append('rect')
+          .attr('x', startPos.x)
+          .attr('y', startPos.y - startPos.y)
+          .attr('height', 200)
+          .attr('width', 1)
+          .attr('opacity', 0.5)
+          .attr('fill', '#E6E6E6');
+        svg.append('text')
+          .attr('x', startPos.x)
+          .attr('y', startPos.y + 16)
+          .attr('class', 'barChart__scale-label')
+          .attr('text-anchor', 'middle')
+          .text(i);
+      }
+      startPos.x += offset;
+    }
   }
 
   /**
@@ -107,7 +141,7 @@ export class BarChart extends Vue {
    * @param {number[]} hrData
    * @returns {{xVal: number; heartrateItem: BarChartItem; paceItem: BarChartItem}}
    */
-  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, offsetBars: number, offsetLaps: number, paceData: number[], hrData: number[]) {
+  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, offsetBars: number, offsetLaps: number, paceData: number[], hrData: number[], overlap: boolean, distanceCovered: number) {
     // CALCULATION OF VISUAL VARIABLES
     let width = this.calculateWidth(lap.distance, pxPerDistance);
 
@@ -128,15 +162,33 @@ export class BarChart extends Vue {
 
     // ToDo uncomment for overlapping drawing
     // ToDo recalculate DisplayedWidth
-    startPos.x += width + offsetBars;
-
+    if (!overlap) {
+      startPos.x += width + offsetBars;
+    }
 
     // DRAWING THE HEARTRATE VALUES
     this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), CategoryOpacity.Background, ZoneColors.Heartrate);
     this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Heartrate, maxValues.heartrate);
     this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Full, ZoneColors.Heartrate);
     let heartrateItem = new BarChartItem(startPos.x, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2), startPos.x + width, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2));
+
     startPos.x += (width + offsetLaps);
+
+    // DRAW THE DIVIDER
+    /*
+    svg.append('rect')
+      .attr('x', startPos.x - (offsetLaps / 2))
+      .attr('y', startPos.y - startPos.y)
+      .attr('height', 200)
+      .attr('width', 1)
+      .attr('opacity', 0.5)
+      .attr('fill', '#E6E6E6');
+    svg.append('text')
+      .attr('x', startPos.x - (offsetLaps / 2))
+      .attr('y', startPos.y + 14)
+      .attr('class', 'barChart__scale-label')
+      .attr('text-anchor', 'middle')
+      .text(formatDistance(distanceCovered, FormatDistanceType.Kilometers).toFixed(2));*/
 
 
     // RETURN THE DRAWN BARS
@@ -325,8 +377,12 @@ export class BarChart extends Vue {
    * @param {boolean} drawNextToEachOther
    * @returns {number}
    */
-  private calculatePxPerDistance(displayedWidth: number, totalDistance: number): number {
-    return displayedWidth / (totalDistance * 2);
+  private calculatePxPerDistance(displayedWidth: number, totalDistance: number, overlap: boolean): number {
+    if (overlap) {
+      return displayedWidth / totalDistance;
+    } else {
+      return displayedWidth / (totalDistance * 2);
+    }
   };
 
   /**
@@ -338,8 +394,12 @@ export class BarChart extends Vue {
    * @param {number} padding
    * @returns {number}
    */
-  private displayedWidth(canvasWidth: number, amountLaps: number, offsetBars: number, offsetLaps: number, padding: number): number {
-      return (canvasWidth - ((amountLaps * offsetBars) + ((amountLaps - 1) * offsetLaps) + (padding * 2)));
+  private displayedWidth(canvasWidth: number, amountLaps: number, offsetBars: number, offsetLaps: number, padding: number, overlap: boolean): number {
+      if (overlap) {
+        return (canvasWidth - (((amountLaps - 1) * offsetLaps) + (padding * 2)));
+      } else {
+        return (canvasWidth - ((amountLaps * offsetBars) + ((amountLaps - 1) * offsetLaps) + (padding * 2)));
+      }
   }
 
   mounted() {

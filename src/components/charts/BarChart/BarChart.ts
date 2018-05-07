@@ -3,9 +3,9 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {ActivityModel} from '../../../models/Activity/ActivityModel';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
-import {PositionModel} from '../../../models/Chart/ChartModels';
+import {BarChartItem, PositionModel} from '../../../models/Chart/ChartModels';
 import {getLargerValue, getPercentageFromValue, getSmallerValue} from '../../../utils/numbers/numbers';
-import * as d3 from 'd3';
+import {BarChartSizes, CategoryColors, CategoryOpacity, ZoneColors} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./barChart.html'),
@@ -17,14 +17,11 @@ export class BarChart extends Vue {
   @Prop()
   activity: ActivityModel | any;
 
-  private barHeight = 2;
-
   private barChart(root: string, canvasConstraints, activity: ActivityModel) {
     console.log(activity);
     let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
     let data = this.extractLapsFromActivity(activity);
     let offset = 5;
-    let drawNextToEachOther = true;
     let chartItems = {
       heartrate: [],
       pace: [],
@@ -39,10 +36,10 @@ export class BarChart extends Vue {
     };
 
     let maxValues = this.maxZoneValues(data.zones);
-    let displayedWidth = this.displayedWidth(canvasConstraints.width, data.laps.length, offsetBars, offset, padding, drawNextToEachOther);
-    let pxPerDistance = this.calculatePxPerDistance(displayedWidth, data.base_data.distance, drawNextToEachOther);
+    let displayedWidth = this.displayedWidth(canvasConstraints.width, data.laps.length, offsetBars, offset, padding);
+    let pxPerDistance = this.calculatePxPerDistance(displayedWidth, data.base_data.distance);
 
-    data.laps.map((lap, i) => {
+    data.laps.map(lap => {
       let hrData = [];
       let paceData = [];
 
@@ -57,21 +54,23 @@ export class BarChart extends Vue {
         paceData.push(data.streams.speed.data[i]);
       }
 
-      let paceHistorgram = d3.histogram().domain([minimumValues.lapMinPace, maxValues.pace]).thresholds(5);
-      let hrHistorgram = d3.histogram().domain([minimumValues.lapMinHr, maxValues.heartrate]).thresholds(5);
-
-      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, drawNextToEachOther, offsetBars, offset, paceData, hrData);
+      let drawnItem = this.drawChartItem(svg, lap, pxPerDistance, maxValues, minimumValues, startPos, offsetBars, offset, paceData, hrData);
       chartItems.pace.push(drawnItem.paceItem);
       chartItems.heartrate.push(drawnItem.heartrateItem);
       startPos.x = drawnItem.xVal;
     });
 
 
-    // this.connectChartItems(svg, chartItems);
+    this.connectChartItems(svg, chartItems);
     this.addDivider(svg, 0, startPos.y, startPos.x  + 10,'#E6E6E6');
   }
 
-  private connectChartItems(svg, chartItems) {
+  /**
+   * Connects the Single AvgBars
+   * @param svg
+   * @param chartItems
+   */
+  private connectChartItems(svg, chartItems): void {
     for (let key in chartItems) {
       let color;
       if (key === 'pace') {
@@ -95,17 +94,21 @@ export class BarChart extends Vue {
 
   /**
    * Draws a single lap with heartrate and pacebar
+   * and the offset ranges
    * @param svg
    * @param lap
    * @param {number} pxPerDistance
    * @param maxValues
+   * @param minimumValues
    * @param {PositionModel} startPos
-   * @param {boolean} drawNextToEachOther
    * @param {number} offsetBars
    * @param {number} offsetLaps
-   * @returns {number}
+   * @param {number[]} paceData
+   * @param {number[]} hrData
+   * @returns {{xVal: number; heartrateItem: BarChartItem; paceItem: BarChartItem}}
    */
-  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, drawNextToEachOther: boolean, offsetBars: number, offsetLaps: number, paceData: number[], hrData: number[]) {
+  private drawChartItem(svg, lap, pxPerDistance: number, maxValues, minimumValues, startPos: PositionModel, offsetBars: number, offsetLaps: number, paceData: number[], hrData: number[]) {
+    // CALCULATION OF VISUAL VARIABLES
     let width = this.calculateWidth(lap.distance, pxPerDistance);
 
     let paceHeight = this.calculateHeight(lap.average_speed, maxValues.pace, 150);
@@ -116,44 +119,27 @@ export class BarChart extends Vue {
     let hrMaxHeight = this.calculateHeight(lap.max_heartrate, maxValues.heartrate, 150);
     let hrMinHeight = this.calculateHeight(minimumValues.lapMinHr, maxValues.heartrate, 150);
 
-    this.drawBar(svg, startPos.x, startPos.y - paceHeight, width, this.barHeight, 0.7, '#43b3e6');
-    // this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), 0.2, '#43b3e6', paceData, maxValues.pace, startPos.y);
-    this.drawOffsetRanges(svg, paceData, startPos.x, startPos.y, width, 1, 0.05, '#43b3e6', maxValues.pace);
 
-    let paceItem = {
-      startX: startPos.x,
-      startY: startPos.y - paceHeight + (this.barHeight / 2),
-      endX: startPos.x + width,
-      endY: startPos.y - paceHeight + (this.barHeight / 2),
-    };
+    // DRAWING THE PACE VALUES
+    this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), CategoryOpacity.Background, ZoneColors.Pace);
+    this.drawOffsetRanges(svg, paceData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Pace, maxValues.pace);
+    this.drawBar(svg, startPos.x, startPos.y - paceHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Full, ZoneColors.Pace);
+    let paceItem = new BarChartItem(startPos.x, startPos.y - paceHeight + (BarChartSizes.BarHeight / 2), startPos.x + width,  startPos.y - paceHeight + (BarChartSizes.BarHeight  / 2));
 
-    let heartrateItem;
+    // ToDo uncomment for overlapping drawing
+    // ToDo recalculate DisplayedWidth
+    startPos.x += width + offsetBars;
 
-    if (!drawNextToEachOther) {
-      this.drawBar(svg, startPos.x, startPos.y, width, this.barHeight, 0.7, '#ec407a');
-      // this.drawOffset(svg, startPos.x, startPos.y, width, this.barHeight, 0.2, '#ec407a');
-      this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, 1, 0.05, '#ec407a', maxValues.heartrate);
-      heartrateItem = {
-        startX: startPos.x,
-        startY: startPos.y - (this.barHeight / 2),
-        endX: startPos.x + width,
-        endY: startPos.y - (this.barHeight / 2),
-      };
-      startPos.x += (width + offsetLaps);
-    } else {
-      startPos.x += width + offsetBars;
-      this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, this.barHeight, 0.7, '#ec407a');
-      // this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), 0.2, '#ec407a', hrHistogram);
-      this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, 1, 0.05, '#ec407a', maxValues.heartrate);
-      heartrateItem = {
-        startX: startPos.x,
-        startY: startPos.y - hrHeight + (this.barHeight / 2),
-        endX: startPos.x + width,
-        endY: startPos.y - hrHeight + (this.barHeight / 2),
-      };
-      startPos.x += (width + offsetLaps);
-    }
 
+    // DRAWING THE HEARTRATE VALUES
+    this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), CategoryOpacity.Background, ZoneColors.Heartrate);
+    this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Heartrate, maxValues.heartrate);
+    this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Full, ZoneColors.Heartrate);
+    let heartrateItem = new BarChartItem(startPos.x, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2), startPos.x + width, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2));
+    startPos.x += (width + offsetLaps);
+
+
+    // RETURN THE DRAWN BARS
     return {
       xVal: startPos.x,
       heartrateItem: heartrateItem,
@@ -218,21 +204,42 @@ export class BarChart extends Vue {
     }
   }
 
-  private drawOffsetRanges(svg, dataPoints: number[], xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string, maxValue: number) {
+  /**
+   * Adds a fake gradient displaying the different frequencies of zones in the offset
+   * @param svg
+   * @param {number[]} dataPoints
+   * @param {number} xPosition
+   * @param {number} yPosition
+   * @param {number} width
+   * @param {number} height
+   * @param {number} opacity
+   * @param {string} color
+   * @param {number} maxValue
+   */
+  private drawOffsetRanges(svg, dataPoints: number[], xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string, maxValue: number): void {
     dataPoints.map(item => {
       let actYPos = this.calculateHeight(item, maxValue, 150);
-      console.log(actYPos);
       this.drawOffset(svg, xPosition, yPosition - actYPos, width, height, opacity, color);
     });
   }
 
-  private drawOffset(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string) {
+  /**
+   * Draws the overall offset range
+   * @param svg
+   * @param {number} xPosition
+   * @param {number} yPosition
+   * @param {number} width
+   * @param {number} height
+   * @param {number} opacity
+   * @param {string} color
+   */
+  private drawOffset(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string): void {
     svg.append('rect')
       .attr('x', xPosition)
       .attr('y', yPosition)
       .attr('width', width)
       .attr('height', height)
-      .attr('opacity', 0.05)
+      .attr('opacity', opacity)
       .attr('fill', color);
 
     /*let largest = 0;
@@ -279,7 +286,7 @@ export class BarChart extends Vue {
    * @param {number} opacity
    * @param {string} color
    */
-  private drawBar(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string) {
+  private drawBar(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string): void {
     svg.append('rect')
       .attr('x', xPosition)
       .attr('y', yPosition)
@@ -296,7 +303,7 @@ export class BarChart extends Vue {
    * @param {number} indexHeight
    * @returns {number}
    */
-  private calculateHeight(value: number, indexValue: number, indexHeight: number) {
+  private calculateHeight(value: number, indexValue: number, indexHeight: number): number {
     let percentage = (100 / indexValue * value) / 100;
     return indexHeight * percentage;
   }
@@ -307,7 +314,7 @@ export class BarChart extends Vue {
    * @param {number} pxPerDistance
    * @returns {number}
    */
-  private calculateWidth(distance: number, pxPerDistance: number) {
+  private calculateWidth(distance: number, pxPerDistance: number): number {
     return distance * pxPerDistance;
   }
 
@@ -318,20 +325,21 @@ export class BarChart extends Vue {
    * @param {boolean} drawNextToEachOther
    * @returns {number}
    */
-  private calculatePxPerDistance(displayedWidth: number, totalDistance: number, drawNextToEachOther: boolean) {
-    if (drawNextToEachOther) {
-      return displayedWidth / (totalDistance * 2);
-    } else {
-      return displayedWidth / totalDistance;
-    }
+  private calculatePxPerDistance(displayedWidth: number, totalDistance: number): number {
+    return displayedWidth / (totalDistance * 2);
   };
 
-  private displayedWidth(canvasWidth: number, amountLaps: number, offsetBars: number, offsetLaps: number, padding: number, drawNextToEachOther: boolean) {
-    if (drawNextToEachOther) {
+  /**
+   * Calculates the pixels which are aviable for the bars to be drawn
+   * @param {number} canvasWidth
+   * @param {number} amountLaps
+   * @param {number} offsetBars
+   * @param {number} offsetLaps
+   * @param {number} padding
+   * @returns {number}
+   */
+  private displayedWidth(canvasWidth: number, amountLaps: number, offsetBars: number, offsetLaps: number, padding: number): number {
       return (canvasWidth - ((amountLaps * offsetBars) + ((amountLaps - 1) * offsetLaps) + (padding * 2)));
-    } else {
-      return (canvasWidth - (((amountLaps - 1) * offsetLaps) + (padding * 2)));
-    }
   }
 
   mounted() {

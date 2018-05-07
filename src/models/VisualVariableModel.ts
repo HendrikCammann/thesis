@@ -1,7 +1,9 @@
 export enum CategoryOpacity {
   Hidden = 0,
   Active = 0.7,
-  Inactive = 0.15
+  Full = 1,
+  Inactive = 0.1,
+  Background = 0.05,
 }
 
 export enum CategoryConnectingOpacity {
@@ -24,6 +26,11 @@ export enum CategoryColors {
 export enum ZoneColors {
   Pace = '#43b3e6',
   Heartrate = '#ec407a',
+}
+
+export enum BarChartSizes {
+  BarHeight = 2,
+  OffsetBarHeight = 1,
 }
 
 export class CanvasConstraints {

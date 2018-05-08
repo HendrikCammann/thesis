@@ -35,10 +35,48 @@ export class DonutChart extends Vue {
   @Watch('loadingStatus.activities')
   @Watch('hoveredRunType')
   onPropertyChanged(val: any, oldVal: any) {
-    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== undefined) {
-      this.donutChart('#' + this.root + this.index, this.data, this.index);
+    if (val in RunType) {
+      let name;
+      let unit = 'km';
+      let value;
+      if (this.hoveredRunType !== RunType.All) {
+        let data = this.donutData.categories.find(item => {
+          return item.name == this.hoveredRunType
+        });
+        if (data !== undefined) {
+          name = data.name;
+          value = data.value;
+        } else {
+          name = this.hoveredRunType;
+          value = 'No data';
+          unit = ''
+        }
+      } else {
+        name = 'Total distance';
+        value = this.donutData.value;
+      }
+
+      this.textElement.val
+        .transition()
+        .text(value);
+
+      this.textElement.unit
+        .transition()
+        .text(unit);
+
+      this.textElement.name
+        .transition()
+        .text(name)
+
+    } else {
+      if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== undefined) {
+        this.donutChart('#' + this.root + this.index, this.data, this.index);
+      }
     }
   }
+
+  private textElement;
+  private donutData;
 
   private addDataToPie(pie: any, data: any) {
     return (pie(data));
@@ -99,6 +137,7 @@ export class DonutChart extends Vue {
     }
 
     let donutData = this.createDonutPieces(data);
+    this.donutData = donutData;
 
     let width = 260;
     let height = 260;
@@ -122,7 +161,7 @@ export class DonutChart extends Vue {
       .outerRadius(radius);
 
     let pie = d3.pie()
-      .value(function(d: any) { console.log(d); return d.value })
+      .value(function(d: any) { return d.value })
       .padAngle(.01)
       .sort(function(a: any, b: any) {
         return a.index - b.index;
@@ -135,7 +174,6 @@ export class DonutChart extends Vue {
       .attr('class', (d: any) => 'donutChart__segment donutChart__segment--' + d.data.name)
       .attr('opacity', CategoryOpacity.Active)
       .on('mouseover', function(d: any) {
-        console.log(d3.selectAll('.donutChart__segment'));
         d3.selectAll('.donutChart__segment')
           .transition()
           .attr('opacity', CategoryOpacity.Inactive);
@@ -143,13 +181,15 @@ export class DonutChart extends Vue {
         d3.selectAll('.donutChart__segment--' + d.data.name)
           .transition()
           .attr('opacity', CategoryOpacity.Active);
-        // eventBus.$emit(compareEvents.set_Hovered_Run_Type, d.data.name);
+
+        eventBus.$emit(compareEvents.set_Hovered_Run_Type, d.data.name);
       })
       .on('mouseout', function(d: any) {
         d3.selectAll('.donutChart__segment')
           .transition()
           .attr('opacity', CategoryOpacity.Active);
-        // eventBus.$emit(compareEvents.set_Hovered_Run_Type, RunType.All);
+
+        eventBus.$emit(compareEvents.set_Hovered_Run_Type, RunType.All);
       })
       .append('path')
       .attr('d', arc)
@@ -157,33 +197,18 @@ export class DonutChart extends Vue {
       .attr('id', (d: any) => d.data.name + index)
       .attr('fill', (d: any) => getCategoryColor(d.data.name));
 
-      g.append('text')
-        .attr('class', 'value-text')
-        .text(donutData.value)
-        .attr('text-anchor', 'middle')
-        .attr('dy', '2px')
-        .append('tspan')
-        .attr('class', 'value-text-unit')
-        .text('km');
-
-      g.append('text')
-        .attr('class', 'name-text')
-        .text('Total distance')
-        .attr('text-anchor', 'middle')
-        .attr('dy', '20px');
-
-    /*if (this.hoveredRunType !== RunType.All) {
+    if (this.hoveredRunType !== RunType.All) {
       let data = donutData.categories.find(item => {
         return item.name == this.hoveredRunType
       });
       if (data !== undefined) {
-        this.handleHover(g, data.name, data.value);
+        this.textElement = this.handleHover(g, data.name, data.value);
       } else {
-        this.handleHover(g, 'No Data', 0);
+        this.textElement = this.handleHover(g, 'No Data', 0);
       }
     } else {
-      this.handleHover(g, 'Total', donutData.value);
-    }*/
+      this.textElement = this.handleHover(g, 'Total', donutData.value);
+    }
 
     g.selectAll('.labelText')
       .data(donutData.categories)
@@ -206,7 +231,27 @@ export class DonutChart extends Vue {
     }
   }
 
-  private handleHover(g, name, value): void {
+  private handleHover(g, name, value) {
+    let valText = g.append('text')
+      .attr('class', 'value-text')
+      .text(value)
+      .attr('text-anchor', 'middle')
+      .attr('dy', '2px')
+    let valUnit = valText.append('tspan')
+      .attr('class', 'value-text-unit')
+      .text('km');
+
+    let nameText = g.append('text')
+      .attr('class', 'name-text')
+      .text(name)
+      .attr('text-anchor', 'middle')
+      .attr('dy', '20px');
+
+    return {
+      val: valText,
+      unit: valUnit,
+      name: nameText
+    };
   }
 
   mounted() {

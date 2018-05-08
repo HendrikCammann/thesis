@@ -16,6 +16,8 @@ export class RangeSlider extends Vue {
     let width = 1140;
     let height = 15;
 
+    let that = this;
+
     let svg = d3.select('#rangeSlider' + this.index).append('svg')
       .attr('width', width)
       .attr('height', height + 5);
@@ -28,7 +30,7 @@ export class RangeSlider extends Vue {
       .extent([[0, 0], [width, height]])
       .on('end', function() {
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return;
-        eventBus.$emit(filterEvents.set_Compare_Time_Range, d3.event.selection.map(x.invert));
+        eventBus.$emit(filterEvents.set_Compare_Time_Range, { pos: d3.event.selection.map(x.invert), index: that.index});
       });
 
     let g = svg.append('g')

@@ -6,6 +6,7 @@ import {PositionModel} from '../../../models/Chart/ChartModels';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {getKeys} from '../../../utils/array-helper';
+import {CategoryOpacity} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./sessionChart.html'),
@@ -29,7 +30,7 @@ export class SessionChart extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
       console.log('data', this.data);
-      this.sessionChart('#' + this.root, this.data);
+      this.sessionChart('#' + this.root, this.data, this.selectedCluster);
     }
   }
 
@@ -90,14 +91,14 @@ export class SessionChart extends Vue {
    * @param {PositionModel} position
    * @param id
    */
-  private drawActivity(svg, height, width, color, position: PositionModel, id) {
+  private drawActivity(svg, height, width, color, position: PositionModel, id, opacity) {
     svg.append('rect')
       .attr('x', position.x)
       .attr('y', position.y)
       .attr('height', height)
       .attr('width', width)
       .attr('fill', color)
-      .attr('opacity', 0.7)
+      .attr('opacity', opacity)
       .on('click', () => {
         console.log(id);
       });
@@ -122,7 +123,7 @@ export class SessionChart extends Vue {
         for (let i = (correctlyOrderedActivities.length - 1); i >= 0; i--) {
           let activity = this.$store.getters.getActivity(correctlyOrderedActivities[i]);
           let width = activity.base_data.distance * visualVariables.pxPerMeter;
-          this.drawActivity(svg, visualVariables.height, width, getCategoryColor(activity.categorization.activity_type), pos, activity.date);
+          this.drawActivity(svg, visualVariables.height, width, getCategoryColor(activity.categorization.activity_type), pos, activity.date, CategoryOpacity.Active);
           drawnActivities++;
           pos.x += width;
           if (drawnActivities < data[keys[key]].activities.length) {
@@ -140,7 +141,7 @@ export class SessionChart extends Vue {
    * @param {string} root
    * @param data
    */
-  private sessionChart(root: string, data) {
+  private sessionChart(root: string, data, selectedCluster: string) {
     let width = 1140;
     let height = 30;
     let clusterMaxMargin = 250;
@@ -148,16 +149,44 @@ export class SessionChart extends Vue {
     let barHeight = 10;
     let margin = 10;
 
-    let totalClusters = Object.keys(data).length;
-    let totalClusterValues = this.getTotalValuesFromCluster(data);
-    let visualVariables = this.calculateVisualVariables(width, clusterMaxMargin, activityMargin, totalClusterValues.activities, totalClusterValues.distance, totalClusters, margin, barHeight);
-    let svg = setupSvg(root, width, height);
+    let cluster = this.$store.getters.getCluster(selectedCluster);
+
+    let range = {
+      start: 0,
+      end: 1140,
+    };
 
     let position: PositionModel = {
       x: margin,
       y: height - barHeight,
     };
 
-    this.drawChart(svg, visualVariables, position, data);
+    let timeScale = d3.scaleTime().domain([0, width]).range([cluster.timeRange.start, cluster.timeRange.end]);
+    let timeScale2 = d3.scaleTime().domain([0, width]).range([cluster.timeRange.start, cluster.timeRange.end]);
+    let dataCopy = data;
+
+    let startDate = timeScale(range.start);
+    let endDate = timeScale2(range.end);
+
+    /*console.log('cs start', cluster.timeRange.start); // passt
+    console.log('cs end', cluster.timeRange.end); // passt
+
+    console.log('start', startDate);
+    console.log('end', endDate);*/
+
+    for (let key in dataCopy) {
+      if (dataCopy[key].rangeDate >= startDate && dataCopy[key].rangeDate <= endDate) {
+      } else {
+        delete dataCopy[key];
+      }
+    }
+
+    let totalClusters = Object.keys(dataCopy).length;
+    let totalClusterValues = this.getTotalValuesFromCluster(dataCopy);
+    let visualVariables = this.calculateVisualVariables(width, clusterMaxMargin, activityMargin, totalClusterValues.activities, totalClusterValues.distance, totalClusters, margin, barHeight);
+    let svg = setupSvg(root, width, height);
+
+
+    this.drawChart(svg, visualVariables, position, dataCopy);
   }
 }

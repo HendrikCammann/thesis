@@ -47,6 +47,10 @@ const getters: GetterTree<State, State> = {
     return state.compare.shownBars;
   },
 
+  getTimeRanges: (state) => {
+    return state.compare.timeRanges;
+  },
+
 
   // EXISTING CLUSTERS
   getCluster: (state) => {

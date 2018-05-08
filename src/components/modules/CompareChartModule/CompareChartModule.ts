@@ -22,6 +22,9 @@ export class CompareChartModule extends Vue {
   selectedCluster: string;
 
   @Prop()
+  timeRange: any;
+
+  @Prop()
   loadingStatus: LoadingStatus;
 
   public dataStructure = null;
@@ -30,12 +33,11 @@ export class CompareChartModule extends Vue {
   @Watch('data')
   @Watch('loadingStatus.activities')
   @Watch('selectedCluster')
+  @Watch('timeRange.end')
+  @Watch('timeRange.start')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.dataStructure = this.data[this.structure];
-      // console.log('can draw');
-      // console.log(this.data);
-      // console.log(this.selectedCluster);
       // this.historyChart('#' + this.root, this.data, this.selectedClusters, this.filterRange, this.showAbsolute)
     }
   }

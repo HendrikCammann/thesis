@@ -538,7 +538,12 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES]: (state: State, {shownBars}) => {
-    state.compare.shownBars = shownBars;
+    state.compare.shownBars[shownBars.index] = shownBars.bars;
+  },
+
+  [MutationTypes.SET_COMPARE_TIME_RANGE]: (state: State, {timeRange}) => {
+    state.compare.timeRanges[timeRange.index].start = timeRange.pos[0];
+    state.compare.timeRanges[timeRange.index].end = timeRange.pos[1];
   },
 
   [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: (state: State) => {

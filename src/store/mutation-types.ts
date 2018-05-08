@@ -22,6 +22,7 @@ export class MutationTypes {
   public static ADD_SELECTED_TRAINING_CLUSTER = '[Store] ADD_SELECTED_TRAINING_CLUSTER';
 
   public static SET_SHOWN_COMPARE_ACTIVITIES = '[Store] SET_SHOWN_COMPARE_ACTIVITIES';
+  public static SET_COMPARE_TIME_RANGE = '[Store] SET_COMPARE_TIME_RANGE';
   public static TOGGLE_HISTORY_CHART_DISPLAY_MODE = '[Store] TOGGLE_HISTORY_CHART_DISPLAY_MODE';
 
   public static GET_RACE = '[Strava-API] GET_RACE';

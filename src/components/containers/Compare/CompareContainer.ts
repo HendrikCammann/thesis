@@ -28,6 +28,7 @@ import {CompareChartModule} from '../../modules/CompareChartModule';
     filter: 'getFilter',
     shownBars: 'getShownBars',
     showAbsolute: 'getShowAbsolute',
+    timeRanges: 'getTimeRanges',
   }),
   components: {
     'headlineBox': HeadlineBox,
@@ -73,7 +74,8 @@ export class CompareContainer extends Vue {
     });
 
     eventBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
-      this.filterRange = type;
+      // this.filterRange = type.pos;
+      this.$store.dispatch(MutationTypes.SET_COMPARE_TIME_RANGE, type);
     });
 
     eventBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {

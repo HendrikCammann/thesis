@@ -23,7 +23,7 @@ export class DonutChart extends Vue {
   index: number;
 
   @Prop()
-  data: any[];
+  data: any;
 
   @Prop()
   loadingStatus: LoadingStatus;
@@ -31,9 +31,17 @@ export class DonutChart extends Vue {
   @Prop()
   hoveredRunType: RunType;
 
+  @Prop()
+  timeRange: any;
+
+  @Prop()
+  selectedCluster: string;
+
   @Watch('data')
   @Watch('loadingStatus.activities')
   @Watch('hoveredRunType')
+  @Watch('timeRange.end')
+  @Watch('timeRange.start')
   onPropertyChanged(val: any, oldVal: any) {
     if (val in RunType) {
       let name;
@@ -70,7 +78,7 @@ export class DonutChart extends Vue {
 
     } else {
       if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== undefined) {
-        this.donutChart('#' + this.root + this.index, this.data, this.index);
+        this.donutChart('#' + this.root + this.index, this.data, this.index, this.timeRange, this.selectedCluster);
       }
     }
   }
@@ -82,69 +90,96 @@ export class DonutChart extends Vue {
     return (pie(data));
   }
 
-  private createDonutPieces(data): any {
+  private createDonutPieces(data, hiddenCluster): any {
     let values = {
       value: 0,
       categories: []
     };
-    data.map(item => {
-      // console.log(item);
-      if (values.categories[item.categorization.activity_type] === undefined) {
-        values.categories[item.categorization.activity_type] = {
-          value: 0,
-          name: '',
-          index: null
-        };
+    for (let key in data) {
+      console.log()
+      if (hiddenCluster.indexOf(key) < 0) {
+        for (let runType in data[key].stats.typeCount) {
+          if (values.categories[runType] === undefined) {
+            values.categories[runType] = {
+              value: 0,
+              name: '',
+              index: null
+            };
+          }
+          values.categories[runType].value += data[key].stats.typeCount[runType].distance;
+          values.value += data[key].stats.typeCount[runType].distance;
+          switch (runType) {
+            case 'run':
+              values.categories[runType].index = 0;
+              values.categories[runType].name = RunType.Run;
+              break;
+            case 'longRun':
+              values.categories[runType].index = 1;
+              values.categories[runType].name = RunType.LongRun;
+              break;
+            case 'interval':
+              values.categories[runType].index = 2;
+              values.categories[runType].name = RunType.ShortIntervals;
+              break;
+            case 'competition':
+              values.categories[runType].index = 4;
+              values.categories[runType].name = RunType.Competition;
+              break;
+            case 'uncategorized':
+              values.categories[runType].index = 5;
+              values.categories[runType].name = RunType.Uncategorized;
+              break;
+          }
+        }
       }
-
-      values.categories[item.categorization.activity_type].value += item.base_data.distance;
-      values.categories[item.categorization.activity_type].name = item.categorization.activity_type;
-      values.value += item.base_data.distance;
-      switch (item.categorization.activity_type) {
-        case RunType.Run:
-          values.categories[item.categorization.activity_type].index = 0;
-          break;
-        case RunType.LongRun:
-          values.categories[item.categorization.activity_type].index = 1;
-          break;
-        case RunType.ShortIntervals:
-          values.categories[item.categorization.activity_type].index = 2;
-          break;
-        case RunType.Competition:
-          values.categories[item.categorization.activity_type].index = 4;
-          break;
-        case RunType.Uncategorized:
-          values.categories[item.categorization.activity_type].index = 5;
-          break;
-      }
-    });
-
+    }
     let temp = [];
 
     for (let key in values.categories) {
+      console.log(key);
       values.categories[key].value = formatDistance(values.categories[key].value, FormatDistanceType.Kilometers).toFixed(2);
       temp.push(values.categories[key]);
     }
 
     values.categories = temp;
     values.value = parseFloat(formatDistance(values.value, FormatDistanceType.Kilometers).toFixed(2));
+
     return values;
   }
 
-  private donutChart(root, data, index) {
-    if (this.index === 0) {
-      this.createDonutPieces(data);
+  private donutChart(root, data, index, timeRange, selectedCluster) {
+    let dataCopy = data.byWeeks;
+    let cluster = this.$store.getters.getCluster(selectedCluster);
+
+    let timeScale = d3.scaleTime().domain([0, 1140]).range([cluster.timeRange.start, cluster.timeRange.end]);
+    let timeScale2 = d3.scaleTime().domain([0, 1140]).range([cluster.timeRange.start, cluster.timeRange.end]);
+
+    let startDate = timeScale(timeRange.start).toString();
+    let endDate = timeScale2(timeRange.end).toString();
+
+    let hideInDisplay = [];
+    for (let key in dataCopy) {
+      if (Date.parse(dataCopy[key].rangeDate) >= Date.parse(startDate) && Date.parse(dataCopy[key].rangeDate) <= Date.parse(endDate)) {
+      } else {
+        hideInDisplay.push(key);
+      }
     }
 
-    let donutData = this.createDonutPieces(data);
+    /*if (this.index === 0) {
+      this.createDonutPieces(data);
+    }*/
+
+    let donutData = this.createDonutPieces(dataCopy, hideInDisplay);
     this.donutData = donutData;
+
+    console.log(donutData);
 
     let width = 260;
     let height = 260;
     let thickness = 40;
-    let duration = 750;
 
     let radius = Math.min(width, height) / 2.5;
+
 
     d3.select(root + ' > svg').remove();
     let svg = d3.select(root)
@@ -256,7 +291,7 @@ export class DonutChart extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== undefined) {
-      this.donutChart('#' + this.root + this.index, this.data, this.index);
+      // this.donutChart('#' + this.root + this.index, this.data, this.index, this.selectedCluster);
     }
   }
 }

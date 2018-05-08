@@ -1,6 +1,6 @@
 /* tslint:disable */
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {eventBus} from '../../../main';
 import {filterEvents} from '../../../events/filter';
@@ -12,7 +12,14 @@ export class RangeSlider extends Vue {
   @Prop()
   index: number;
 
+  @Prop()
+  range: any;
+
   mounted() {
+    this.rangeSlider();
+  }
+
+  private rangeSlider() {
     let width = 1140;
     let height = 15;
 
@@ -44,7 +51,7 @@ export class RangeSlider extends Vue {
       .attr('ry', 7)
       .style('fill', '#E6E6E6');
 
-    this.positionBrush(g, brush,[0, width].map(x));
+    this.positionBrush(g, brush,[this.range.start, this.range.end].map(x));
   }
 
   private positionBrush(g: any, brush, pos: any) {

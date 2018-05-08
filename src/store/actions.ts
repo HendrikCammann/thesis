@@ -125,6 +125,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_COMPARE_TIME_RANGE]: ({commit}, timeRange) => {
+    commit(MutationTypes.SET_COMPARE_TIME_RANGE, {
+      timeRange
+    });
+  },
+
   [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: ({commit}) => {
     commit(MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE);
   },

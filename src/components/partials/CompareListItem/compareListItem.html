@@ -2,6 +2,7 @@
   <div v-if="data != null">
     <compare-box
       :value="data.stats.distance | formatDistance"
+      :unit="'km'"
       :label="'Total distance'"
     ></compare-box>
     <compare-box
@@ -14,7 +15,8 @@
     ></compare-box>
     <compare-box
       :value="(data.stats.distance / trainingClusterDetail.duration.range) | formatDistance"
-      :label="'ø km per week'"
+      :unit="'km'"
+      :label="'Weekly average'"
     ></compare-box>
     <compare-box
       :value="(data.stats.count / trainingClusterDetail.duration.range).toFixed(1)"

@@ -92,10 +92,11 @@ export class ArcCompare extends Vue {
     draw.forEach((cluster, i) => {
       for (let key in cluster) {
         let labelText = formatDistance(cluster[key].distance, FormatDistanceType.Kilometers).toFixed(0);
+        let unit = '';
         if (labelText === '0' || parseInt(labelText) < 60) {
           labelText = '';
         } else {
-          labelText += 'km'
+          unit = 'km'
         }
         let textText = getPercentageFromValue(cluster[key].distance, totalDistance).toString();
         if (textText === '0') {
@@ -106,7 +107,7 @@ export class ArcCompare extends Vue {
         startPos.x += this.calculateRadiusFromArea(cluster[key].distance);
         this.addText(svg, startPos, i, root, key, textText);
         this.drawHalfCircle(svg, startPos, cluster[key], i, root, key);
-        this.addLabel(svg, startPos, i, root, key, labelText);
+        this.addLabel(svg, startPos, i, root, key, labelText, unit);
         startPos.x += this.calculateRadiusFromArea(cluster[key].distance);
         sumRadius += this.calculateRadiusFromArea(cluster[key].distance);
       }
@@ -151,7 +152,7 @@ export class ArcCompare extends Vue {
    * @param {string} key
    * @param {number | string} text
    */
-  private addLabel(svg, position: PositionModel, index: number, root: string, key: string, text: number | string): void {
+  private addLabel(svg, position: PositionModel, index: number, root: string, key: string, text: number | string, unit: string): void {
     let fullId = 'arc' + root.replace('#', '') + index + key + 'label';
     let posY = position.y;
     svg.append('text')
@@ -160,7 +161,10 @@ export class ArcCompare extends Vue {
       .attr('class', 'arcCompare__label')
       .attr('text-anchor', 'middle')
       .attr('id', fullId)
-      .text(text);
+      .text(text)
+      .append('tspan')
+      .attr('class', 'arcCompare__label-unit')
+      .text(unit)
   }
 
   /**

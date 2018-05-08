@@ -11,6 +11,9 @@ export class CompareBox extends Vue {
   value: string;
 
   @Prop()
+  unit: string;
+
+  @Prop()
   label: string;
 
   mounted() {

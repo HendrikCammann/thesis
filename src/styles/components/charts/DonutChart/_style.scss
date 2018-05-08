@@ -1,9 +1,29 @@
+.donutChart {
+  text-align: center;
+}
+
 .labelText {
-  fill: $color-white;
-  letter-spacing: 1px;
-  font-size: 13px;
-  font-family: $font-family--secondary;
+  fill: $color-black;
+  letter-spacing: 1.2px;
+  font-size: 14px;
+  font-family: $font-family--main;
   pointer-events: none;
+}
+
+.value-text {
+  font-size: $font-size__main-headline--medium;
+  fill: $color-black;
+  font-family: $font-family--main;
+
+  &-unit {
+    font-size: 12px;
+  }
+}
+
+.name-text {
+  font-size: 12px;
+  fill: $color-gray--dark;
+  font-family: $font-family--secondary;
 }
 
 .donutChart__arc {

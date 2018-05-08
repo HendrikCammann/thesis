@@ -15,6 +15,9 @@ export class HeadlineBox extends Vue {
   @Prop()
   illustration: string;
 
+  @Prop()
+  isSubTitle: boolean;
+
   get imagePath() {
     return require('../../../assets/illustrations/' + this.illustration + '.svg')
   }

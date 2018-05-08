@@ -5,12 +5,15 @@
 
   #{&}__value {
     font-size: $font-size__headline--compare;
-    margin-bottom: 3px;
+  }
+
+  #{&}__unit {
+    font-size: $font-size__body-labels;
   }
 
   #{&}__label {
-    font-size: 12px;
-    color: $color-grey;
-    font-family: 'Roboto', sans-serif;
+    font-size: $font-size__body-labels;
+    color: $color-gray--dark;
+    font-family: $font-family--secondary;
   }
 }

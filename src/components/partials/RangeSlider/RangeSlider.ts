@@ -9,11 +9,14 @@ import {filterEvents} from '../../../events/filter';
   template: require('./rangeSlider.html'),
 })
 export class RangeSlider extends Vue {
+  @Prop()
+  index: number;
+
   mounted() {
     let width = 1140;
     let height = 15;
 
-    let svg = d3.select('#rangeSlider').append('svg')
+    let svg = d3.select('#rangeSlider' + this.index).append('svg')
       .attr('width', width)
       .attr('height', height + 5);
 

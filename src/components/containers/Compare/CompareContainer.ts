@@ -3,7 +3,6 @@ import Component from 'vue-class-component';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {MutationTypes} from '../../../store/mutation-types';
 import {mapGetters} from 'vuex';
-import {StackedCompare} from '../../charts/StackedCompare';
 import {CompareModule} from '../../modules/CompareModule';
 import {CompareAddButton} from '../../partials/CompareAddButton';
 import {eventBus} from '../../../main';
@@ -16,6 +15,7 @@ import {DonutChart} from '../../charts/DonutChart';
 import {RunType} from '../../../store/state';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
 import {HeadlineBox} from '../../partials/HeadlineBox';
+import {CompareChartModule} from '../../modules/CompareChartModule';
 
 
 @Component({
@@ -31,10 +31,10 @@ import {HeadlineBox} from '../../partials/HeadlineBox';
   }),
   components: {
     'headlineBox': HeadlineBox,
-    'stackedCompare': StackedCompare,
     'compareModule': CompareModule,
     'compareAddModule': CompareAddModule,
     'compareAddButton': CompareAddButton,
+    'compareChartModule': CompareChartModule,
     'historyChart': HistoryChart,
     'rangeSlider': RangeSlider,
     'donutChart': DonutChart,

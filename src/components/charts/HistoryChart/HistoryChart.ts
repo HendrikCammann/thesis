@@ -120,7 +120,7 @@ export class HistoryChart extends Vue {
     let clusterMaxMargin = 250;
     let barMargin = 1;
     let pxPerDistance = 0;
-    let barHeight = 30;
+    let barHeight = 10;
     let marginBottom = 90;
 
     let displayedWidth = width;
@@ -163,9 +163,7 @@ export class HistoryChart extends Vue {
       .attr('x', pos.x)
       .attr('y', pos.y)
       .attr('width', bar.base_data.distance * factor)
-      .attr('height', 30)
-      .attr('rx', 2)
-      .attr('ry', 2)
+      .attr('height', 10)
       .attr('fill', getCategoryColor(bar.categorization.activity_type))
       .attr('opacity', opacity)
       .on('click', () => {

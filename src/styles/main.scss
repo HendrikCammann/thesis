@@ -28,15 +28,13 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/modules/Navbar/_style";
 @import "components/modules/UserModule/_style";
 @import "components/modules/DayModule/_style";
-@import "components/modules/SliderModule/_style";
-@import "components/modules/BubbleChart/_style";
 @import "components/modules/CompareModule/_style";
 @import "components/modules/CompareAddModule/_style";
 
 @import "components/modal/_style";
 
 @import "components/partials/TitleBox/_style";
-@import "components/partials/TitleBox/_style";
 @import "components/partials/CompareBox/_style";
 @import "components/partials/CompareAddButton/_style";
 @import "components/partials/HeadlineBox/_style";
+@import "components/partials/RangeSlider/_style";

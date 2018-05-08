@@ -38,14 +38,6 @@ export class RangeSlider extends Vue {
       .attr('rx', 7)
       .attr('ry', 7)
       .style('fill', '#E6E6E6');
-    g.selectAll('.selection')
-      .attr('fill', null)
-      .attr('fill-opacity', 1)
-      .style('fill', '#9D9D9D');
-    g.selectAll('rect.handle')
-      .attr('width', 15)
-      .attr('height', 15)
-      .style('fill', '#454545');
 
     this.positionBrush(g, brush,[0, width].map(x));
   }

@@ -10,6 +10,7 @@ import {CategoryOpacity} from '../../../models/VisualVariableModel';
 import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {filterEvents} from '../../../events/filter';
+import {navigationEvents} from '../../../events/Navigation/Navigation';
 
 @Component({
   template: require('./sessionChart.html'),
@@ -104,6 +105,7 @@ export class SessionChart extends Vue {
    * @param id
    */
   private drawActivity(svg, height, width, color, position: PositionModel, id, opacity) {
+    let that = this;
     svg.append('rect')
       .attr('x', position.x)
       .attr('y', position.y)
@@ -112,8 +114,13 @@ export class SessionChart extends Vue {
       .attr('fill', color)
       .attr('opacity', opacity)
       .on('click', () => {
-        console.log(id);
+        that.handleBarClick(id);
       });
+  }
+
+
+  private handleBarClick(id: number): void {
+    eventBus.$emit(navigationEvents.open_Activity_Detail, id);
   }
 
   /**
@@ -137,7 +144,7 @@ export class SessionChart extends Vue {
           for (let i = (correctlyOrderedActivities.length - 1); i >= 0; i--) {
             let activity = this.$store.getters.getActivity(correctlyOrderedActivities[i]);
             let width = activity.base_data.distance * visualVariables.pxPerMeter;
-            this.drawActivity(svg, visualVariables.height, width, getCategoryColor(activity.categorization.activity_type), pos, activity.date, CategoryOpacity.Active);
+            this.drawActivity(svg, visualVariables.height, width, getCategoryColor(activity.categorization.activity_type), pos, activity.id, CategoryOpacity.Active);
             drawnActivities++;
             pos.x += width;
             shownBars.push(activity);

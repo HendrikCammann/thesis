@@ -9,6 +9,7 @@ import {getLargerValue, getPercentageFromValue, getSmallerValue} from '../../../
 import {BarChartSizes, CategoryColors, CategoryOpacity, ZoneColors} from '../../../models/VisualVariableModel';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
+import {line} from 'd3';
 
 @Component({
   template: require('./barChart.html'),
@@ -105,6 +106,8 @@ export class BarChart extends Vue {
    * @param chartItems
    */
   private connectChartItems(svg, chartItems): void {
+    let lineGenerator = d3.line().curve(d3.curveCardinal);
+
     for (let key in chartItems) {
       let color;
       if (key === 'pace') {
@@ -112,15 +115,19 @@ export class BarChart extends Vue {
       } else {
         color = '#ec407a'
       }
+
       for (let i = 0; i < chartItems[key].length; i++) {
         if (chartItems[key][i + 1] !== undefined) {
-          svg.append('line')
+          let points: [number, number][] = [
+            [chartItems[key][i].endX, chartItems[key][i].endY],
+            [chartItems[key][i + 1].startX, chartItems[key][i + 1].startY],
+          ];
+          console.log(points);
+          let pathData = lineGenerator(points);
+          console.log(pathData);
+          svg.append('path')
             .style('stroke', color)
-            .attr('x1', chartItems[key][i].endX)
-            .attr('y1', chartItems[key][i].endY)
-            .attr('x2', chartItems[key][i + 1].startX)
-            .attr('y2', chartItems[key][i + 1].startY)
-            .attr('opacity', 0.5)
+            .attr('d', pathData);
         }
       }
     }
@@ -155,8 +162,10 @@ export class BarChart extends Vue {
 
 
     // DRAWING THE PACE VALUES
-    this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), CategoryOpacity.Background, ZoneColors.Pace);
-    this.drawOffsetRanges(svg, paceData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Pace, maxValues.pace);
+    // this.drawOffset(svg, startPos.x, startPos.y - paceMaxHeight, width, Math.abs(paceMaxHeight - paceMinHeight), CategoryOpacity.Background, ZoneColors.Pace);
+    this.drawMaxValues(svg, startPos.x, startPos.y - paceMaxHeight, width, 1, CategoryOpacity.Active, ZoneColors.Pace);
+    this.drawMaxValues(svg, startPos.x, startPos.y - paceMinHeight, width, 1, CategoryOpacity.Active, ZoneColors.Pace);
+    // this.drawOffsetRanges(svg, paceData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Pace, maxValues.pace);
     this.drawBar(svg, startPos.x, startPos.y - paceHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Full, ZoneColors.Pace);
     let paceItem = new BarChartItem(startPos.x, startPos.y - paceHeight + (BarChartSizes.BarHeight / 2), startPos.x + width,  startPos.y - paceHeight + (BarChartSizes.BarHeight  / 2));
 
@@ -166,10 +175,13 @@ export class BarChart extends Vue {
       startPos.x += width + offsetBars;
     }
 
+
     // DRAWING THE HEARTRATE VALUES
-    this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), CategoryOpacity.Background, ZoneColors.Heartrate);
-    this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Heartrate, maxValues.heartrate);
-    this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Full, ZoneColors.Heartrate);
+    // this.drawOffset(svg, startPos.x, startPos.y - hrMaxHeight, width,  Math.abs(hrMaxHeight - hrMinHeight), CategoryOpacity.Background, ZoneColors.Heartrate);
+    this.drawMaxValues(svg, startPos.x, startPos.y - hrMaxHeight, width, 1, CategoryOpacity.Hidden, ZoneColors.Heartrate);
+    this.drawMaxValues(svg, startPos.x, startPos.y - hrMinHeight, width, 1, CategoryOpacity.Hidden, ZoneColors.Heartrate);
+    // this.drawOffsetRanges(svg, hrData, startPos.x, startPos.y, width, BarChartSizes.OffsetBarHeight, CategoryOpacity.Inactive, ZoneColors.Heartrate, maxValues.heartrate);
+    this.drawBar(svg, startPos.x, startPos.y - hrHeight, width, BarChartSizes.BarHeight , CategoryOpacity.Hidden, ZoneColors.Heartrate);
     let heartrateItem = new BarChartItem(startPos.x, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2), startPos.x + width, startPos.y - hrHeight + (BarChartSizes.BarHeight  / 2));
 
     startPos.x += (width + offsetLaps);
@@ -327,6 +339,50 @@ export class BarChart extends Vue {
       .attr('opacity', opacity)
       .attr('stroke', color);*/
   }
+
+  private drawMaxValues(svg, xPosition: number, yPosition: number, width: number, height: number, opacity: number, color: string): void {
+    svg.append('rect')
+      .attr('x', xPosition)
+      .attr('y', yPosition)
+      .attr('width', width)
+      .attr('height', height)
+      .attr('opacity', opacity)
+      .attr('fill', color);
+
+    /*let largest = 0;
+    let steps = height / histogram.length;
+
+    histogram.map(item => {
+      largest = getLargerValue(item.length, largest);
+    });
+
+    let leftPoints = [];
+    let rightPoints = [];
+
+    histogram.map((item, i) => {
+      let percentageOfTotal = getPercentageFromValue(item.length, largest);
+      let offset = (width / 2) / 100 * percentageOfTotal;
+
+      let xPosLeft = ((xPosition + (width / 2) - offset));
+      let xPosRight = ((xPosition + (width / 2) + offset));
+      let yPos = yPosition + height - ((i + 1) * steps);
+
+      leftPoints.push([xPosLeft, yPos]);
+      rightPoints.push([xPosRight, yPos]);
+
+    });
+
+    let lineGenerator = d3.line().curve(d3.curveLinearClosed);
+
+    rightPoints.reverse();
+
+    svg.append('path')
+      .attr('d', lineGenerator([...leftPoints, ...rightPoints]))
+      .attr('fill', color)
+      .attr('opacity', opacity)
+      .attr('stroke', color);*/
+  }
+
 
   /**
    * Draws a bar

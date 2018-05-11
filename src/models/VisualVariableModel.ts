@@ -50,3 +50,15 @@ export class CanvasConstraints {
     this.barHeight = barHeight;
   }
 }
+
+export class ChartConstraints {
+  padding: number;
+  width: number;
+  height: number;
+
+  constructor(padding, width, height) {
+    this.padding = padding;
+    this.width = width;
+    this.height = height;
+  }
+}

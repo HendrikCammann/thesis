@@ -6,9 +6,8 @@ import {UserModule} from '../../modules/UserModule';
 import {mapGetters} from 'vuex';
 
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
-import {ArcChart} from '../../charts/ArcChart';
 import {DayModule} from '../../modules/DayModule';
-import {SwooshChart} from '../../charts/SwooshChart';
+import {WaveChart} from '../../charts/WaveChart';
 
 @Component({
   template: require('./dashboard.html'),
@@ -20,9 +19,7 @@ import {SwooshChart} from '../../charts/SwooshChart';
   components: {
     'userModule': UserModule,
     'dayModule': DayModule,
-    'arcChart': ArcChart,
-    'swooshChart': SwooshChart,
-
+    'waveChart': WaveChart,
   }
 })
 export class Dashboard extends Vue {

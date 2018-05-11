@@ -1,35 +1,7 @@
 <div class="container dashboard">
   <div class="row">
     <div class="col-md-10 dashboard__content">
-      <!--<div class="row dashboard__row">
-        <div class="col-md-12 dashboard__map">
-          <img src="../../../assets/images/map.png">
-        </div>
-      </div>
-      <div class="row dashboard__row">
-        <div class="col-md-6 dashboard__column">
-          <div class="dashboard__visualization">
-            <div class="dashboard__headline">Trainingsentwicklung der letzen 4 Wochen</div>
-            <arc-chart
-              :root="'#arc'"
-              :canvasConstraints="canvasConstraints"
-              :data="sortedActivities"
-              :filter="filter"
-            ></arc-chart>
-          </div>
-        </div>
-        <div class="col-md-6 dashboard__column">
-          <div class="dashboard__visualization">
-            <div class="dashboard__headline">Trainingsentwicklung der letzen 4 Wochen</div>
-            <swoosh-chart
-              :root="'#swoosh'"
-              :canvasConstraints="canvasConstraints"
-              :data="sortedActivities"
-              :filter="filter"
-            ></swoosh-chart>
-          </div>
-        </div>
-      </div>-->
+      <wave-Chart></wave-Chart>
     </div>
     <div class="col-md-2 dashboard__fixed">
       <user-module class="user-module" :user="user"></user-module>

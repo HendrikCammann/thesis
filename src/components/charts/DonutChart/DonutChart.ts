@@ -96,7 +96,6 @@ export class DonutChart extends Vue {
       categories: []
     };
     for (let key in data) {
-      console.log()
       if (hiddenCluster.indexOf(key) < 0) {
         for (let runType in data[key].stats.typeCount) {
           if (values.categories[runType] === undefined) {
@@ -136,7 +135,6 @@ export class DonutChart extends Vue {
     let temp = [];
 
     for (let key in values.categories) {
-      console.log(key);
       values.categories[key].value = formatDistance(values.categories[key].value, FormatDistanceType.Kilometers).toFixed(2);
       temp.push(values.categories[key]);
     }
@@ -171,8 +169,6 @@ export class DonutChart extends Vue {
 
     let donutData = this.createDonutPieces(dataCopy, hideInDisplay);
     this.donutData = donutData;
-
-    console.log(donutData);
 
     let width = 260;
     let height = 260;

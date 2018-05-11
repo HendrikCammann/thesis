@@ -48,6 +48,28 @@ export class WaveChart extends Vue {
 
   private chartConstraints = new ChartConstraints(20, 500, 500);
 
+  /**
+   *
+   * @param anchor
+   * @param {number} width
+   * @param position
+   * @param {string} color
+   */
+  private drawDivider(anchor: any, width: number, position, color: string): void {
+    anchor.append('rect')
+      .attr('x', position.x)
+      .attr('y', position.y)
+      .attr('height', 1)
+      .attr('width', width)
+      .attr('fill', color);
+  }
+
+  /**
+   *
+   * @param {number} start
+   * @param {number} end
+   * @returns {any}
+   */
   private setupPie(start: number, end: number): any {
     return d3.pie()
       .sort(null)
@@ -58,12 +80,25 @@ export class WaveChart extends Vue {
         });
   }
 
+  /**
+   *
+   * @param {number} radius
+   * @param {number} width
+   * @returns {any}
+   */
   private setupArc(radius: number, width: number): any {
     return d3.arc()
       .outerRadius(radius)
       .innerRadius(radius - width);
   }
 
+  /**
+   *
+   * @param anchor
+   * @param {number[]} values
+   * @param {string} className
+   * @returns {any}
+   */
   private drawArc(anchor: any, values: number[], className: string): any {
     return anchor.selectAll('g.' + className)
       .data(values)
@@ -72,6 +107,16 @@ export class WaveChart extends Vue {
       .attr('class', className);
   }
 
+  /**
+   *
+   * @param anchor
+   * @param arc
+   * @param {string} color
+   * @param {number} opacity
+   * @param {number} index
+   * @param {boolean} upper
+   * @returns {any}
+   */
   private colorArc(anchor: any, arc: any, color: string, opacity: number, index: number, upper: boolean): any {
     let id = '';
     anchor.append('path')
@@ -94,15 +139,15 @@ export class WaveChart extends Vue {
     return id;
   }
 
-  private drawDivider(anchor: any, width: number, position, color: string): void {
-    anchor.append('rect')
-      .attr('x', position.x)
-      .attr('y', position.y)
-      .attr('height', 1)
-      .attr('width', width)
-      .attr('fill', color);
-  }
-
+  /**
+   *
+   * @param anchor
+   * @param values
+   * @param {string} id
+   * @param {string} className
+   * @param {number} positionY
+   * @param {number} opacity
+   */
   private drawArcText(anchor: any, values: any, id: string, className: string, positionY: number, opacity: number): void {
     anchor.selectAll('.' + className)
       .data([values])
@@ -119,16 +164,25 @@ export class WaveChart extends Vue {
       });
   }
 
-  private waveChart(data, constraints: ChartConstraints) {
+  /**
+   *
+   * @param data
+   * @param {ChartConstraints} constraints
+   */
+  private waveChart(data, constraints: ChartConstraints): void {
     let r = 100;
     let width = 15;
     let outlineWidth = 2;
     let margin = 2;
+
+    // INIT SVG
     let vis = d3.select('#wave').append('svg')
       .attr('width', constraints.width)
       .attr('height', constraints.height);
 
-    this.drawDivider(vis, ((r * 2) + (constraints.padding * 2)), {x: 0, y: r}, '#E6E6E6');
+
+    // ADD DIVIDER
+    this.drawDivider(vis, ((r * 2) + (constraints.padding * 2)), {x: 0, y: r + constraints.padding}, '#E6E6E6');
 
 
     // DRAW SINGLE RUN TYPE ARCS
@@ -137,8 +191,10 @@ export class WaveChart extends Vue {
         .data([data[i]])
         .append('g');
 
+
+      // CALCULATE POSITION
       if (i === 0) {
-        vis.attr('transform', 'translate(' + (r + constraints.padding) + ',' + r + ')');
+        vis.attr('transform', 'translate(' + (r + constraints.padding) + ',' + (r + constraints.padding) + ')');
       } else if (i === 1) {
         r -= outlineWidth;
         r -= margin;
@@ -147,27 +203,32 @@ export class WaveChart extends Vue {
         r -= margin;
       }
 
-      let arc: any;
 
+      // SETUP ARC
+      let arc: any;
       if (i === 0) {
         arc = this.setupArc(r, outlineWidth);
       } else {
         arc = this.setupArc(r, width);
       }
 
+
+      // SETUP PIE
       let upperPie = this.setupPie(-0.5, 0.5);
       let lowerPie = this.setupPie(1.5, 0.5);
 
 
-      // SETUP ARCS
+      // DRAW ARCS
       let upperArcs = this.drawArc(vis, upperPie(data[i][0].values.upper), 'upperSlice');
       let lowerArcs = this.drawArc(vis, lowerPie(data[i][0].values.lower), 'lowerSlice');
 
 
-      // DRAW ARCS
+      // COLOR ARCS
       let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), 1, i, true);
       let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
 
+
+      // ADD LABELS TO ARCS
       if (i === 0) {
         this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--upper', -3, 1);
         this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--lower', 14, 0.5);

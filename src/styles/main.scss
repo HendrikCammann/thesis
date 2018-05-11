@@ -19,6 +19,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Dashboard/_style";
 @import "components/containers/Compare/_style";
 
+@import "components/charts/WaveChart/_style";
 @import "components/charts/HistoryChart/_style";
 @import "components/charts/DonutChart/_style";
 @import "components/charts/ZoneChart/_style";

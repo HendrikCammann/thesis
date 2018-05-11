@@ -1,0 +1,8 @@
+.waveChart {
+  $root: &;
+
+  &__text {
+    font-family: $font-family--secondary;
+    font-size: 14px;
+  }
+}

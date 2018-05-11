@@ -1,52 +1,113 @@
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {CategoryOpacity, ChartConstraints} from '../../../models/VisualVariableModel';
+import {ChartConstraints} from '../../../models/VisualVariableModel';
 import * as d3 from 'd3';
 import {RunType} from '../../../store/state';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {loadingStatus, LoadingStatus} from '../../../models/App/AppStatus';
+import {ActivityClusterModel} from '../../../models/Activity/ActivityClusterModel';
+import {getLargerValue} from '../../../utils/numbers/numbers';
+import {formatDistance} from '../../../utils/format-data';
+import {FormatDistanceType} from '../../../models/FormatModel';
 
+class WaveChartValues {
+  upper: number[];
+  lower: number[];
 
+  constructor() {
+    this.upper = [];
+    this.lower = [];
+  }
+}
+
+class WaveChartStructure {
+  label: RunType;
+  values: WaveChartValues;
+
+  constructor() {
+    this.label = null;
+    this.values = new WaveChartValues();
+  }
+}
 @Component({
   template: require('./waveChart.html'),
 })
 export class WaveChart extends Vue {
-  mounted() {
-    this.waveChart(this.data, this.chartConstraints);
+  @Prop()
+  loadingStatus: LoadingStatus;
+
+  @Watch('data')
+  @Watch('loadingStatus.activities')
+  onPropertyChanged(val: any, oldVal: any) {
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.data = this.$store.getters.getActivitiesFromLastTwoWeeks;
+      this.waveChart(this.formatData(this.data), this.chartConstraints);
+    }
   }
 
-  private data = [
-    [{
-      label: RunType.All,
-      values: {
-        upper: [88, 88 - 88],
-        lower: [77, 88 - 77],
-      },
-    }],
-    [{
-      label: RunType.Run,
-      values: {
-        upper: [54, 88 - 54],
-        lower: [56, 88 - 56],
-      }
-    }],
-    [{
-      label: RunType.LongRun,
-      values: {
-        upper: [34, 88 - 34],
-        lower: [21, 88 - 21],
-      }
-    }],
-    [{
-      label: RunType.ShortIntervals,
-      values: {
-        upper: [22, 88 - 22],
-        lower: [65, 88 - 65],
-      }
-    }]
-  ];
+  mounted() {
+    // this.formatData(this.data);
+    // this.waveChart(this.data2, this.chartConstraints);
+  }
 
+  private data: ActivityClusterModel[];
 
   private chartConstraints = new ChartConstraints(20, 500, 500);
+
+  private getHiddenValues(max: number, value: number): number {
+    return max - value;
+  }
+
+  private formatData(data: ActivityClusterModel[]): any {
+    let maxDistance = 0;
+    let total = new WaveChartStructure();
+    let run = new WaveChartStructure();
+    let longRun = new WaveChartStructure();
+    let shortIntervals = new WaveChartStructure();
+    let competition = new WaveChartStructure();
+    let uncategorized = new WaveChartStructure();
+
+    data.forEach((cluster: ActivityClusterModel) => {
+      maxDistance = getLargerValue(cluster.stats.distance, maxDistance);
+    });
+
+    data.forEach((cluster: ActivityClusterModel, i: number) => {
+      console.log(cluster);
+      total.label = RunType.All;
+      run.label = RunType.Run;
+      longRun.label = RunType.LongRun;
+      shortIntervals.label = RunType.ShortIntervals;
+      competition.label = RunType.Competition;
+      uncategorized.label = RunType.Uncategorized;
+
+      let key = 'upper';
+      if (i !== 0) {
+        key = 'lower';
+      }
+
+      total.values[key].push(cluster.stats.distance, FormatDistanceType.Kilometers);
+      total.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.distance));
+
+
+      run.values[key].push(cluster.stats.typeCount.run.distance);
+      run.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.run.distance));
+
+      longRun.values[key].push(cluster.stats.typeCount.longRun.distance);
+      longRun.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.longRun.distance));
+
+      shortIntervals.values[key].push(cluster.stats.typeCount.interval.distance);
+      shortIntervals.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.interval.distance));
+
+      competition.values[key].push(cluster.stats.typeCount.competition.distance);
+      competition.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.competition.distance));
+
+      uncategorized.values[key].push(cluster.stats.typeCount.uncategorized.distance);
+      uncategorized.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.uncategorized.distance));
+    });
+
+    // return [[total]];
+    return [[total], [run], [longRun], [shortIntervals], [competition], [uncategorized]];
+  }
 
   /**
    *
@@ -160,7 +221,7 @@ export class WaveChart extends Vue {
       .attr('xlink:href', '#' + id)
       .attr('opacity', opacity)
       .text((d: any) => {
-        console.log(d); return d[0] + 'km';
+        return d[0] + 'km';
       });
   }
 
@@ -170,10 +231,14 @@ export class WaveChart extends Vue {
    * @param {ChartConstraints} constraints
    */
   private waveChart(data, constraints: ChartConstraints): void {
+    console.log('wave', data);
     let r = 100;
     let width = 15;
     let outlineWidth = 2;
     let margin = 2;
+
+    d3.select('#wave' + ' > svg').remove();
+
 
     // INIT SVG
     let vis = d3.select('#wave').append('svg')

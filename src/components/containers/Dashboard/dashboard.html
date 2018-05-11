@@ -1,7 +1,9 @@
 <div class="container dashboard">
   <div class="row">
     <div class="col-md-10 dashboard__content">
-      <wave-Chart></wave-Chart>
+      <wave-Chart
+        :loadingStatus="loadingStatus"
+      ></wave-Chart>
     </div>
     <div class="col-md-2 dashboard__fixed">
       <user-module class="user-module" :user="user"></user-module>

@@ -13,7 +13,7 @@ import {WaveChart} from '../../charts/WaveChart';
   template: require('./dashboard.html'),
   computed: mapGetters({
     user: 'getAthlete',
-    sortedActivities: 'getSortedActivities',
+    loadingStatus: 'getAppLoadingStatus',
     filter: 'getDashboardFilter',
   }),
   components: {

@@ -30,6 +30,10 @@ const getters: GetterTree<State, State> = {
     return [state.sortedLists['All'].byWeeks[keys[12]], state.sortedLists['All'].byWeeks[keys[27]]];
   },
 
+  getLatestActivity: (state) => {
+    return state.activityList[0];
+  },
+
 
   // CLUSTERS
   getClusters: (state) => {

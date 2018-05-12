@@ -8,6 +8,7 @@ import {mapGetters} from 'vuex';
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {DayModule} from '../../modules/DayModule';
 import {WaveChart} from '../../charts/WaveChart';
+import {MapModule} from '../../modules/MapModule';
 
 @Component({
   template: require('./dashboard.html'),
@@ -20,6 +21,7 @@ import {WaveChart} from '../../charts/WaveChart';
     'userModule': UserModule,
     'dayModule': DayModule,
     'waveChart': WaveChart,
+    'mapModule': MapModule,
   }
 })
 export class Dashboard extends Vue {

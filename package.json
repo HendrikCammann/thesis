@@ -10,7 +10,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production yarn run clean && yarn run test && yarn run compile",
+    "build": "cross-env NODE_ENV=production yarn run clean && yarn run compile",
     "build:parts": "yarn run sass && yarn run compile",
     "ci:teamcity": "karma --env=tc start karma.coverage.js && yarn run coverage:remap",
     "ci:jenkins": "karma --env=jk start karma.coverage.js && yarn run coverage:remap",
@@ -40,7 +40,8 @@
     "vue-class-component": "^6.0.0",
     "vue-cli": "^2.9.1",
     "vue-property-decorator": "^6.0.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-leaflet": "^1.0.2"
   },
   "devDependencies": {
     "@types/d3": "^5.0.0",

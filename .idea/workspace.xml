@@ -4,9 +4,8 @@
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Dashboard/Dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Dashboard/Dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/charts/WaveChart/index.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+              <caret column="28" selection-start-column="28" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -41,17 +40,26 @@
       <file leaf-file-name="WaveChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="4" />
+            <state relative-caret-position="765">
+              <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
                 <element signature="n#!!block;n#getHiddenValues#0;n#WaveChart#0" />
                 <element signature="n#!!block;n#drawDivider#0;n#WaveChart#0" />
                 <element signature="n#!!block;n#setupPie#0;n#WaveChart#0" />
                 <element signature="n#!!block;n#setupArc#0;n#WaveChart#0" />
-                <element signature="n#!!block;n#setupArc#0;n#WaveChart#0" />
                 <element signature="n#!!block;n#colorArc#0;n#WaveChart#0" />
+                <element signature="n#!!block;n#drawArcText#0;n#WaveChart#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -60,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="810">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
             </state>
           </provider>
         </entry>
@@ -82,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/src/store/state.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="615">
-              <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -90,8 +98,8 @@
       <file leaf-file-name="getters.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="27" column="31" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="31" />
+            <state relative-caret-position="600">
+              <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -228,11 +236,11 @@
         <option value="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
         <option value="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" />
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
-        <option value="$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss" />
-        <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Dashboard/Dashboard.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" />
+        <option value="$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss" />
+        <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts" />
       </list>
     </option>
@@ -262,7 +270,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -337,10 +344,35 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
+              <item name="WaveChart" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -498,12 +530,13 @@
       <workItem from="1525707604666" duration="19000" />
       <workItem from="1525710881306" duration="12935000" />
       <workItem from="1525939094302" duration="1790000" />
-      <workItem from="1526024071022" duration="17122000" />
+      <workItem from="1526024071022" duration="17188000" />
+      <workItem from="1526109166355" duration="3258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507587000" />
+    <option name="totallyTimeSpent" value="510911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -523,7 +556,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="TypeScript" order="7" sideWeight="0.4978701" weight="0.32994455" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19595315" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19808307" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24973376" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.18903089" />
@@ -541,12 +574,12 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32994455" />
+      <window_info anchor="bottom" id="Find" order="2" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1970181" />
       <window_info id="Structure" order="1" weight="0.24973376" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -562,9 +595,9 @@
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4978701" weight="0.32994455" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021299" side_tool="true" weight="0.32994455" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32994455" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info id="Favorites" order="6" side_tool="true" />
@@ -662,6 +695,32 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="112" column="4" lean-forward="true" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#getHiddenValues#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#drawDivider#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#setupPie#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#setupArc#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#colorArc#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#drawArcText#0;n#WaveChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -739,9 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="8" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -919,13 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -935,9 +984,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -953,20 +999,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Activity/ActivityClusterModel.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/WaveChart/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/numbers/numbers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -980,34 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/numbers/numbers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="615">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1022,18 +1048,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="4" />
+        <state relative-caret-position="765">
+          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
             <element signature="n#!!block;n#getHiddenValues#0;n#WaveChart#0" />
             <element signature="n#!!block;n#drawDivider#0;n#WaveChart#0" />
             <element signature="n#!!block;n#setupPie#0;n#WaveChart#0" />
             <element signature="n#!!block;n#setupArc#0;n#WaveChart#0" />
-            <element signature="n#!!block;n#setupArc#0;n#WaveChart#0" />
             <element signature="n#!!block;n#colorArc#0;n#WaveChart#0" />
+            <element signature="n#!!block;n#drawArcText#0;n#WaveChart#0" />
           </folding>
         </state>
       </provider>

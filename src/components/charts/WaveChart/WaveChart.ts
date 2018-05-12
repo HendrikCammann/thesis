@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {ChartConstraints} from '../../../models/VisualVariableModel';
+import {CategoryOpacity, ChartConstraints} from '../../../models/VisualVariableModel';
 import * as d3 from 'd3';
 import {RunType} from '../../../store/state';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
@@ -28,6 +28,10 @@ class WaveChartStructure {
     this.label = null;
     this.values = new WaveChartValues();
   }
+
+  public checkValues(): boolean {
+    return (this.values.lower[0] !== 0 || this.values.upper[0] !== 0);
+  }
 }
 @Component({
   template: require('./waveChart.html'),
@@ -46,8 +50,10 @@ export class WaveChart extends Vue {
   }
 
   mounted() {
-    // this.formatData(this.data);
-    // this.waveChart(this.data2, this.chartConstraints);
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.data = this.$store.getters.getActivitiesFromLastTwoWeeks;
+      this.waveChart(this.formatData(this.data), this.chartConstraints);
+    }
   }
 
   private data: ActivityClusterModel[];
@@ -72,7 +78,6 @@ export class WaveChart extends Vue {
     });
 
     data.forEach((cluster: ActivityClusterModel, i: number) => {
-      console.log(cluster);
       total.label = RunType.All;
       run.label = RunType.Run;
       longRun.label = RunType.LongRun;
@@ -85,7 +90,7 @@ export class WaveChart extends Vue {
         key = 'lower';
       }
 
-      total.values[key].push(cluster.stats.distance, FormatDistanceType.Kilometers);
+      total.values[key].push(cluster.stats.distance);
       total.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.distance));
 
 
@@ -105,8 +110,28 @@ export class WaveChart extends Vue {
       uncategorized.values[key].push(this.getHiddenValues(maxDistance, cluster.stats.typeCount.uncategorized.distance));
     });
 
-    // return [[total]];
-    return [[total], [run], [longRun], [shortIntervals], [competition], [uncategorized]];
+    let returnArr = [];
+
+    if (total.checkValues()) {
+      returnArr.push([total]);
+    }
+    if (run.checkValues()) {
+      returnArr.push([run]);
+    }
+    if (longRun.checkValues()) {
+      returnArr.push([longRun]);
+    }
+    if (shortIntervals.checkValues()) {
+      returnArr.push([shortIntervals]);
+    }
+    if (competition.checkValues()) {
+      returnArr.push([competition]);
+    }
+    if (uncategorized.checkValues()) {
+      returnArr.push([uncategorized]);
+    }
+
+    return returnArr;
   }
 
   /**
@@ -209,19 +234,23 @@ export class WaveChart extends Vue {
    * @param {number} positionY
    * @param {number} opacity
    */
-  private drawArcText(anchor: any, values: any, id: string, className: string, positionY: number, opacity: number): void {
+  private drawArcText(anchor: any, values: any, id: string, className: string, positionY: number, opacity: number, offset: string, align: string): void {
     anchor.selectAll('.' + className)
       .data([values])
       .enter().append('text')
       .attr('class', 'waveChart__text ' +  className)
       .attr('dy', positionY)
       .append('textPath')
-      .attr('startOffset', '45%')
-      .attr('text-anchor', 'middle')
+      .attr('startOffset', offset)
+      .attr('text-anchor', align)
       .attr('xlink:href', '#' + id)
       .attr('opacity', opacity)
       .text((d: any) => {
-        return d[0] + 'km';
+        if (d[0] === 0) {
+          return '';
+        } else {
+          return formatDistance(d[0], FormatDistanceType.Kilometers).toFixed(1) + 'km';
+        }
       });
   }
 
@@ -231,7 +260,6 @@ export class WaveChart extends Vue {
    * @param {ChartConstraints} constraints
    */
   private waveChart(data, constraints: ChartConstraints): void {
-    console.log('wave', data);
     let r = 100;
     let width = 15;
     let outlineWidth = 2;
@@ -289,14 +317,17 @@ export class WaveChart extends Vue {
 
 
       // COLOR ARCS
-      let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), 1, i, true);
-      let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
+      let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Active, i, true);
+      let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Inactive, i, false);
 
 
       // ADD LABELS TO ARCS
       if (i === 0) {
-        this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--upper', -3, 1);
-        this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--lower', 14, 0.5);
+        this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--upper', -3, CategoryOpacity.Active, '45%', 'middle');
+        this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--lower', 14, 0.5, '45%', 'middle');
+      } else {
+        this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--small waveChart__text--upper--small', 12, CategoryOpacity.Active, '5px', 'left');
+        this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--small waveChart__text--lower--small', -3, 0.5, '5px', 'left');
       }
     }
   }

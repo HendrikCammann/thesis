@@ -31,7 +31,7 @@ const getters: GetterTree<State, State> = {
   },
 
   getLatestActivity: (state) => {
-    return state.activityList[0];
+    return state.activityList[15];
   },
 
 

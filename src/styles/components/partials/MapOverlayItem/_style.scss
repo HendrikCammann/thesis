@@ -1,0 +1,29 @@
+.mapOverlayItem {
+  $root: &;
+
+  #{&}__image {
+    margin-right: 10px;
+    margin-top: -26px;
+    width: 25px;
+    height: auto;
+    display: inline-block;
+  }
+
+  #{&}__content {
+    text-align: left;
+    display: inline-block;
+
+    #{$root}__value {
+      font-size: $font-size__body-markup;
+      color: $color-white;
+      font-weight: 500;
+    }
+
+    #{$root}__label {
+      font-family: $font-family--secondary;
+      font-size: $font-size__body-labels;
+      font-weight: 400;
+      color: $color-gray;
+    }
+  }
+}

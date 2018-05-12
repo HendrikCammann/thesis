@@ -1,7 +1,38 @@
 .mapModule {
   $root: &;
-  overflow: hidden;
+  position: relative;
   border: 1px solid black;
   height: 400px;
   margin-bottom: 20px;
+
+  #{&}__overlay {
+    width: 100%;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(69,69,69,0) 0%,rgba(69,69,69,0.2) 70%, rgba(69,69,69,0.78) 90%,rgba(69,69,69,0.8) 100%);
+    height: 100%;
+    position: absolute;
+    opacity: 1;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    padding: 10px;
+
+    #{$root}__details {
+      width: 150px;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      text-align: left;
+      opacity: 1;
+
+      #{$root}__detail {
+        margin-bottom: 15px;
+      }
+
+      #{$root}__divider {
+        width: 50px;
+        transform: translate(-20px, 0);
+      }
+    }
+  }
 }

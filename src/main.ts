@@ -8,6 +8,7 @@ import { Navbar } from './components/modules/Navbar/';
 import './styles/main.scss';
 import {formatDistance} from './utils/format-data';
 import {FormatDistanceType} from './models/FormatModel';
+import {NavigationModule} from './components/modules/NavigationModule';
 
 sync(store, router);
 
@@ -24,5 +25,6 @@ new Vue({
   router: router,
   components: {
     'navbar': Navbar,
+    'navigationModule': NavigationModule,
   }
 });

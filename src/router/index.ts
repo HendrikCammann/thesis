@@ -16,27 +16,27 @@ const router = new VueRouter({
   routes: [
     {
       component: AppContainer,
-      name: 'index',
+      name: 'Index',
       path: '/',
     }, {
       component: Dashboard,
-      name: 'dashboard',
+      name: 'Dashboard',
       path: '/dashboard',
     }, {
       component: ActivitiesContainer,
-      name: 'activities',
+      name: 'Wettkämpfe',
       path: '/activities',
     }, {
       component: ActivityContainer,
-      name: 'activity',
+      name: 'Activity',
       path: '/activity/:id',
     }, {
       component: ActivitiesContainer,
-      name: 'performance',
+      name: 'Leistung',
       path: '/performance',
     }, {
       component: CompareContainer,
-      name: 'compare',
+      name: 'Vergleich',
       path: '/compare',
     }
   ],

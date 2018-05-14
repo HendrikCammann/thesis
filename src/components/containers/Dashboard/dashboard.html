@@ -1,17 +1,21 @@
-<div class="container dashboard">
+<div class="container-fluid dashboard">
   <div class="row">
-    <div class="col-md-10 dashboard__content">
-      <wave-Chart
-        :loadingStatus="loadingStatus"
-      ></wave-Chart>
-      <br>
-      <map-module
-        :loaded="loadingStatus"
-      ></map-module>
+    <div class="col-md-12 dashboard__headline">
+      <headline-box
+        :headline="'Dashboard'"
+        :illustration="'stopwatch'"
+      ></headline-box>
     </div>
-    <div class="col-md-2 dashboard__fixed">
-      <user-module class="user-module" :user="user"></user-module>
-      <day-module class="day-module" :date="new Date()"></day-module>
+  </div>
+  <div class="row">
+    <div class="col-md-12 dashboard__content">
+      <div class=""></div>
+      <!--<wave-Chart
+        :loadingStatus="loadingStatus"
+      ></wave-Chart>-->
+      <!--<map-module
+        :loaded="loadingStatus"
+      ></map-module>-->
     </div>
   </div>
 </div>

@@ -2,13 +2,12 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {loadingStatus} from '../../../models/App/AppStatus';
-import {UserModule} from '../../modules/UserModule';
 import {mapGetters} from 'vuex';
 
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
-import {DayModule} from '../../modules/DayModule';
 import {WaveChart} from '../../charts/WaveChart';
 import {MapModule} from '../../modules/MapModule';
+import {HeadlineBox} from '../../partials/HeadlineBox';
 
 @Component({
   template: require('./dashboard.html'),
@@ -18,8 +17,7 @@ import {MapModule} from '../../modules/MapModule';
     filter: 'getDashboardFilter',
   }),
   components: {
-    'userModule': UserModule,
-    'dayModule': DayModule,
+    'headlineBox': HeadlineBox,
     'waveChart': WaveChart,
     'mapModule': MapModule,
   }

@@ -1,11 +1,7 @@
 <div class="headlineBox">
   <img class="headlineBox__image"
-       :class="{ 'headlineBox__image--small': isSubTitle }"
        :src="imagePath">
   <div class="headlineBox__content">
-    <div class="headlineBox__main"
-         :class="{ 'headlineBox__main--small': isSubTitle }">{{ headline }}</div>
-    <div class="headlineBox__sub"
-         :class="{ 'headlineBox__sub--small': isSubTitle }">{{ subHeadline }}</div>
+    <div class="headlineBox__main">{{ headline }}</div>
   </div>
 </div>

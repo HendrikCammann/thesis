@@ -4,6 +4,7 @@
   width: 108px;
   height: 100vh;
   text-align: center;
+  background-color: $color-white;
   border-right: 2px solid $color-grey--light;
 
   #{&}__candy {
@@ -38,7 +39,7 @@
     }
 
     &--lower {
-      transform: translate(0, -61vh);
+      transform: translate(0, -62vh);
     }
 
     #{$root}__item {

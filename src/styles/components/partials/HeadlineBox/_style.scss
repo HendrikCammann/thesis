@@ -2,16 +2,11 @@
   $root: &;
 
   #{&}__image {
-    margin-top: -64px;
-    margin-right: 15px;
-    height: 85px;
+    margin-top: -12px;
+    margin-right: 10px;
+    height: 33px;
     width: auto;
     display: inline-block;
-
-    &--small {
-      margin-top: -45px;
-      height: 58px;
-    }
   }
 
   #{&}__content {
@@ -19,21 +14,10 @@
     display: inline-block;
 
     #{$root}__main {
-      font-size: $font-size__main-headline;
+      font-size: 28px;
       color: $color-black;
-      font-weight: 500;
+      font-weight: 700;
       text-transform: uppercase;
-
-      &--small {
-        font-size: $font-size__main-headline--medium;
-      }
-    }
-
-    #{$root}__sub {
-      font-family: $font-family--secondary;
-      font-size: $font-size__body-text;
-      font-weight: 400;
-      color: $color-gray;
     }
   }
 }

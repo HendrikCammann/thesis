@@ -1,6 +1,16 @@
 .dashboard {
   $root: &;
-  height: calc(100vh - 65px);
+  height: 100vh;
+  margin-left: 108px;
+
+  #{&}__headline {
+    padding: 35px;
+    text-align: center;
+    font-family: $font-family--secondary;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 
   #{&}__row {
     margin: 0;

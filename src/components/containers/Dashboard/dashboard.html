@@ -9,6 +9,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 dashboard__content" v-if="actualWeek">
+      <div class="dashboard__subheadline">Deine aktuelle Trainingswoche</div>
       <last-run-module v-for="activity, i in actualWeek"
         :activity="activity"
         :loaded="loadingStatus"
@@ -21,6 +22,17 @@
       <!--<map-module
         :loaded="loadingStatus"
       ></map-module>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="dashboard__subheadline">Vergleich mit letzter Woche</div>
+      <wave-Chart
+        :loadingStatus="loadingStatus"
+      ></wave-Chart>
+    </div>
+    <div class="col-md-3">
+      <div class="dashboard__subheadline">Deine aktuelle Trainingswoche</div>
     </div>
   </div>
 </div>

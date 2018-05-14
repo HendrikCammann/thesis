@@ -28,7 +28,7 @@ const getters: GetterTree<State, State> = {
   // ACTIVITIES
   getActivitiesFromLastTwoWeeks: (state) => {
     let keys = getKeys(state.sortedLists['All'].byWeeks);
-    return [state.sortedLists['All'].byWeeks[keys[12]], state.sortedLists['All'].byWeeks[keys[27]]];
+    return [state.sortedLists['All'].byWeeks[keys[0]], state.sortedLists['All'].byWeeks[keys[1]]];
   },
 
   getLatestActivity: (state) => {

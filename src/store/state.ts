@@ -2,7 +2,7 @@ import {ActivityModel} from '../models/Activity/ActivityModel';
 import {FilterModel} from '../models/Filter/FilterModel';
 import {LoadingStatus, loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
-import {ClusterItem} from '../models/State/StateModel';
+import {ClusterItem, ClusterWrapper} from '../models/State/StateModel';
 import {CompareModel} from '../models/Compare/CompareModel';
 
 export enum RunType {
@@ -32,7 +32,7 @@ export class State {
   public selectedActivityId: number;
   public selectedTrainingClusters: string[];
 
-  public sortedLists: Object;
+  public sortedLists: any;
   public existingClusters: ClusterItem[];
 
   public filter: FilterModel;
@@ -44,7 +44,7 @@ export class State {
     this.user = new UserModel();
     this.appLoadingStatus = new LoadingStatus();
 
-    this.sortedLists = {};
+    this.sortedLists = { All: new ClusterWrapper()};
 
     this.existingClusters = [];
 

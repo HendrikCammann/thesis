@@ -19,6 +19,13 @@
   #{&}__content {
     // padding: 0;
 
+    .last-run-module {
+      width: calc((100% / 7) - 7px);
+      &:not(:last-of-type) {
+        margin-right: 8px;
+      }
+    }
+
     #{$root}__map {
       height: 350px;
       padding: 0;

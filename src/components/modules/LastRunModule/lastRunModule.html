@@ -1,0 +1,26 @@
+<div class="lastRunModule"
+  v-if="activity"
+  v-on:click="handleClick">
+  <div class="lastRunModule__map" v-if="activity.map.map">
+    <leaflet-map :bounds="mapOptions.bounds" :options="{ scrollWheelZoom: false }">
+      <leaflet-tilelayer :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+      <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.polylineColor"></leaflet-polyline>
+    </leaflet-map>
+  </div>
+  <div class="lastRunModule__map"  v-if="!activity.map.map">
+
+  </div>
+  <div class="lastRunModule__information">
+    <div class="lastRunModule__title">
+      {{ activityName(activity.name) }}
+    </div>
+    <div class="lastRunModule__type">
+      {{ activity.categorization.activity_type }}
+    </div>
+    <div class="lastRunModule__stats">
+      <span class="lastRunModule__stats--value">{{ activity.base_data.distance | formatDistance }}<span class="lastRunModule__stats--unit">km</span></span>
+      <span class="lastRunModule__stats--value">{{ activity.average_data.speed | formatPace }}<span class="lastRunModule__stats--unit">/km</span></span>
+      <span class="lastRunModule__stats--value">{{ activity.average_data.heartrate | round }}<span class="lastRunModule__stats--unit">bpm</span></span>
+    </div>
+  </div>
+</div>

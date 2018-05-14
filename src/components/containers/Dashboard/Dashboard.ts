@@ -8,16 +8,22 @@ import {CanvasConstraints} from '../../../models/VisualVariableModel';
 import {WaveChart} from '../../charts/WaveChart';
 import {MapModule} from '../../modules/MapModule';
 import {HeadlineBox} from '../../partials/HeadlineBox';
+import {LastRunModule} from '../../modules/LastRunModule';
+import {navigationEvents} from '../../../events/Navigation/Navigation';
+import {eventBus} from '../../../main';
 
 @Component({
   template: require('./dashboard.html'),
   computed: mapGetters({
     user: 'getAthlete',
+    latestActivity: 'getLatestActivity',
+    actualWeek: 'getActualWeekActivities',
     loadingStatus: 'getAppLoadingStatus',
     filter: 'getDashboardFilter',
   }),
   components: {
     'headlineBox': HeadlineBox,
+    'lastRunModule': LastRunModule,
     'waveChart': WaveChart,
     'mapModule': MapModule,
   }
@@ -36,5 +42,12 @@ export class Dashboard extends Vue {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
+
+    eventBus.$on(navigationEvents.open_Activity_Detail, (activityId) => {
+      this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activityId);
+      this.$router.push({
+        path: '/activity/' + activityId
+      });
+    });
   }
 }

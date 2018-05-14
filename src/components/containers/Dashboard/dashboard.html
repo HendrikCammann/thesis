@@ -8,8 +8,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 dashboard__content">
-      <div class=""></div>
+    <div class="col-md-12 dashboard__content" v-if="actualWeek">
+      <last-run-module v-for="activity, i in actualWeek"
+        :activity="activity"
+        :loaded="loadingStatus"
+        :index="i"
+        class="last-run-module"
+      ></last-run-module>
       <!--<wave-Chart
         :loadingStatus="loadingStatus"
       ></wave-Chart>-->

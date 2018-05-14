@@ -5,8 +5,8 @@ import store from './store/index';
 
 // import styles
 import './styles/main.scss';
-import {formatDistance} from './utils/format-data';
-import {FormatDistanceType} from './models/FormatModel';
+import {formatDistance, formatPace} from './utils/format-data';
+import {FormatDistanceType, FormatPaceType} from './models/FormatModel';
 import {NavigationModule} from './components/modules/NavigationModule';
 
 sync(store, router);
@@ -16,6 +16,16 @@ export const eventBus = new Vue();
 Vue.filter('formatDistance', function (value) {
   if (!value) return '';
   return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2);
+});
+
+Vue.filter('formatPace', function (value) {
+  if (!value) return '';
+  return formatPace(value, FormatPaceType.MinPerKm).formattedVal;
+});
+
+Vue.filter('round', function (value) {
+  if (!value) return '';
+  return Math.round(value);
 });
 
 new Vue({

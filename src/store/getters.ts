@@ -1,6 +1,7 @@
 import {GetterTree} from 'vuex';
 import {State} from './state';
 import {getKeys} from '../utils/array-helper';
+import {ActivityModel} from '../models/Activity/ActivityModel';
 
 // State , RootState
 const getters: GetterTree<State, State> = {
@@ -31,7 +32,32 @@ const getters: GetterTree<State, State> = {
   },
 
   getLatestActivity: (state) => {
-    return state.activityList[15];
+    return state.activityList[0];
+  },
+
+  getActualWeekActivities: (state) => {
+    let keys = getKeys(state.sortedLists['All'].byWeeks);
+    if (keys.length !== 0) {
+      let arr = [];
+      state.sortedLists['All'].byWeeks[keys[0]].activities.forEach(id => {
+        arr.push(state.activityList.find(item => item.id === id));
+      });
+
+      arr.sort((a, b) => {
+        return +new Date(a.date) - +new Date(b.date);
+      });
+
+      let returnArr = [new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel()];
+
+      arr.forEach(item => {
+        if (new Date(item.date).getDay() === 0) {
+          returnArr[6] = item;
+        } else {
+          returnArr[new Date(item.date).getDay() - 1] = item;
+        }
+      });
+      return returnArr;
+    }
   },
 
 

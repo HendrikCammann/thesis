@@ -5,7 +5,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 import {ClusterWrapper} from '../../../models/State/StateModel';
-import {getPercentageFromValue} from '../../../utils/numbers/numbers';
+import {getLargerValue, getPercentageFromValue} from '../../../utils/numbers/numbers';
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
@@ -18,6 +18,9 @@ import {CategoryColors} from '../../../models/VisualVariableModel';
 export class TrainChart extends Vue {
   @Prop()
   root: string;
+
+  @Prop()
+  anchors: string[];
 
   @Prop()
   preparation: string;
@@ -37,9 +40,22 @@ export class TrainChart extends Vue {
   @Watch('loadingStatus.activities')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);
       this.trainChart(this.root, data);
     }
+  }
+
+  private getMaxValue(anchors: string[]) {
+    let maxValue = 0;
+    anchors.forEach(anchor => {
+      let data = this.$store.state.sortedLists[anchor];
+      data = data.byWeeks;
+      for (let key in data) {
+        maxValue = getLargerValue(data[key].stats.distance, maxValue);
+      }
+    });
+    return maxValue;
   }
 
   private getData(preparation: string): ClusterWrapper {
@@ -251,7 +267,7 @@ export class TrainChart extends Vue {
       .attr('opacity', 1);
   }
 
-  private drawChangeArc(svg: any, position: PositionModel, legPositions: any, radius: number, height: number, totalDifference: number, percentualDifference: number, left: boolean) {
+  private drawChangeArc(svg: any, position: PositionModel, legPositions: any, radius: number, height: number, totalDifference: any, percentualDifference: number, left: boolean) {
     let arc = d3.arc();
     let startAngle = -Math.PI * 2;
     let endAngle = -Math.PI;
@@ -259,7 +275,8 @@ export class TrainChart extends Vue {
     let textOffset = 25;
     let textAnchor = 'left';
 
-    let arcOffsetX = Math.round(percentualDifference / 5);
+    // let arcOffsetX = Math.round(percentualDifference / 8);
+    let arcOffsetX = Math.abs(totalDifference);
 
     let x = position.x;
     let y = position.y + (height / 2);
@@ -274,6 +291,7 @@ export class TrainChart extends Vue {
       x -= arcOffsetX;
     } else {
       x += arcOffsetX;
+      totalDifference = '+' + totalDifference;
     }
 
     svg.append('path')
@@ -297,7 +315,6 @@ export class TrainChart extends Vue {
           .attr('opacity', 0.1)
           .attr('height', height);
       });
-      console.log(percentualDifference);
       x += arcOffsetX;
     } else {
       legPositions.forEach(item => {
@@ -338,6 +355,13 @@ export class TrainChart extends Vue {
       .attr('fill', color)
       .attr('text-anchor', 'right')
       .text(distance);
+
+    svg.append('text')
+      .attr('x', position.x + width + 4)
+      .attr('y', position.y + 30)
+      .attr('fill', color)
+      .attr('text-anchor', 'right')
+      .text('km');
   }
 
 

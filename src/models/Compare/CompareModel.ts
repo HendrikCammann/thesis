@@ -9,7 +9,7 @@ export class CompareModel {
 
   constructor() {
     this.showAbsolute = true;
-    this.selectedTrainingClusters = ['Kandel-2017', 'Karlsruhe-2017', 'Hannover-2018'];
+    this.selectedTrainingClusters = ['Fulda-2016', 'Karlsruhe-2017', 'Barcelona-2018'];
     this.shownBars = [];
     this.selectedTimeRange = [0, 1140];
     this.timeRanges = [

@@ -1,7 +1,16 @@
 <div class="container-fluid competitions">
-  <train-chart
-    :root="'train'"
-    :preparation="selectedTrainingClusters[0]"
-    :loadingStatus="loadingStatus"
-  ></train-chart>
+  <div class="container">
+    <div class="row">
+      <div
+        v-for="(item, i) in selectedTrainingClusters"
+        :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+        <train-chart
+          :root="'train' + i"
+          :anchors="selectedTrainingClusters"
+          :preparation="selectedTrainingClusters[i]"
+          :loadingStatus="loadingStatus"
+        ></train-chart>
+      </div>
+    </div>
+  </div>
 </div>

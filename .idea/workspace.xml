@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Competitions/competitions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Competitions/competitions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="71" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="33" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-677">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="524">
+              <caret line="293" column="46" lean-forward="true" selection-start-line="293" selection-start-column="46" selection-end-line="293" selection-end-column="46" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
                 <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
@@ -50,7 +61,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>stackedCompare</find>
       <find>selected</find>
       <find>maxChange</find>
       <find>maxArcHeight</find>
@@ -80,6 +90,7 @@
       <find>Unfolded</find>
       <find>folded</find>
       <find>console</find>
+      <find>console.</find>
     </findStrings>
     <replaceStrings>
       <replace>getDiagrammColor</replace>
@@ -120,7 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/containers/App/AppContainer.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/App/app.html" />
         <option value="$PROJECT_DIR$/config/webpack.config.prod.js" />
         <option value="$PROJECT_DIR$/src/components/modules/MapModule/index.ts" />
@@ -170,6 +180,7 @@
         <option value="$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts" />
         <option value="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Competitions/competitions.html" />
+        <option value="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" />
         <option value="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" />
       </list>
     </option>
@@ -274,6 +285,19 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="Compare" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,12 +471,12 @@
       <workItem from="1526316588109" duration="14067000" />
       <workItem from="1526335395763" duration="1588000" />
       <workItem from="1526376584522" duration="7556000" />
-      <workItem from="1526885168619" duration="12565000" />
+      <workItem from="1526885168619" duration="14034000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556884000" />
+    <option name="totallyTimeSpent" value="558353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -637,7 +661,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Navbar/Navbar.html" />
     <entry file="file://$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -901,13 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4382">
@@ -945,34 +961,10 @@
     <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="46" column="20" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1037">
           <caret line="125" column="3" lean-forward="true" selection-start-line="125" selection-start-column="3" selection-end-line="125" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/competitions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -1004,10 +996,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="71" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="33" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Compare/CompareModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/competitions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-677">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="524">
+          <caret line="293" column="46" lean-forward="true" selection-start-line="293" selection-start-column="46" selection-end-line="293" selection-end-column="46" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
             <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />

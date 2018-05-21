@@ -497,6 +497,10 @@ const mutations: MutationTree<State> = {
     state.filter.selectedRunType = runType;
   },
 
+  [MutationTypes.SET_SHOW_EVERYTHING]: (state: State) => {
+    state.filter.showEverything = !state.filter.showEverything;
+  },
+
   [MutationTypes.SET_SELECTED_CLUSTER]: (state: State, {clusterType}) => {
     state.filter.selectedCluster = clusterType;
   },

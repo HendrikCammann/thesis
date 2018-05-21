@@ -142,6 +142,10 @@ const getters: GetterTree<State, State> = {
     return state.filter.selectedRunType;
   },
 
+  getShowEverything: (state) => {
+    return state.filter.showEverything;
+  },
+
   getSelectedClusterType: (state) => {
     return state.filter.selectedCluster;
   },

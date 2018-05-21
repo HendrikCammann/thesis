@@ -1,4 +1,4 @@
-import {Component, Prop} from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import Vue from 'vue';
 import {TrainChart} from '../../charts/TrainChart';
 import {LoadingStatus} from '../../../models/App/AppStatus';
@@ -25,4 +25,7 @@ export class TrainCompareModule extends Vue {
 
   @Prop()
   selectedRunType: RunType;
+
+  @Prop()
+  isUnfolded: boolean;
 }

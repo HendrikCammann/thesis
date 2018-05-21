@@ -33,4 +33,8 @@ export class SmartFilterModule extends Vue {
   public handleFilterClick(type: RunType) {
     this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
   }
+
+  public handleViewClick() {
+    this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING);
+  }
 }

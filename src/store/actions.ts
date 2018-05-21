@@ -77,6 +77,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_SHOW_EVERYTHING]: ({commit}) => {
+    commit(MutationTypes.SET_SHOW_EVERYTHING, {
+
+    });
+  },
+
   [MutationTypes.SET_SELECTED_CLUSTER]: ({commit}, clusterType) => {
     commit(MutationTypes.SET_SELECTED_CLUSTER, {
       clusterType

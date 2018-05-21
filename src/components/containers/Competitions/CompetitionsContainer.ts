@@ -12,6 +12,7 @@ import {SmartFilterModule} from '../../modules/SmartFilterModule';
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
+    showEverything: 'getShowEverything'
   }),
   components: {
     'trainCompare': TrainCompareModule,

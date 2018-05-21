@@ -34,8 +34,9 @@ export class TrainChart extends Vue {
   @Prop()
   selectedRunType: RunType;
 
+  @Prop()
+  showEverything: boolean;
 
-  private isFolded: boolean = true;
   // private selectedRunType: RunType = RunType.All;
 
   private width = 359;
@@ -49,7 +50,9 @@ export class TrainChart extends Vue {
 
   @Watch('loadingStatus.activities')
   @Watch('selectedRunType')
+  @Watch('showEverything')
   onPropertyChanged(val: any, oldVal: any) {
+    console.log('changed');
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
@@ -110,7 +113,7 @@ export class TrainChart extends Vue {
    */
   private trainChart(root: string, data: ClusterWrapper) {
     let svg = setupSvg('#' + root, this.width, this.height);
-    if (this.isFolded) {
+    if (this.showEverything) {
       let barItems = this.calculateFoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
       this.drawFoldedConnections(svg, barItems);
       this.drawFoldedWeekChanges(svg, barItems);
@@ -454,7 +457,7 @@ export class TrainChart extends Vue {
         let height = barItems[i].length;
         let distance = barItems[i].distance;
 
-        if (this.selectedRunType !== RunType.All && this.isFolded) {
+        if (this.selectedRunType !== RunType.All && this.showEverything) {
           this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Inactive, true);
           let bar = barItems[i].percentages.find(item => {
             return item.type === this.selectedRunType;

@@ -26,24 +26,24 @@
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="59" column="7" lean-forward="true" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+            <state relative-caret-position="344">
+              <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!block;n#getLongestPreparations#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#getMaxValue#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#getData#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#trainChart#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#calculateUnfoldedChart#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawUnfoldedConnections#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawFoldedWeekChanges#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawDotConnection#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawChangeArc#0;n#TrainChart#0" />
                 <element signature="e#9356#9607#0" />
                 <element signature="e#9481#9499#0" />
+                <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
               </folding>
             </state>
           </provider>
@@ -207,7 +207,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1177" />
@@ -300,6 +300,12 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -473,15 +479,15 @@
       <workItem from="1526316588109" duration="14067000" />
       <workItem from="1526335395763" duration="1588000" />
       <workItem from="1526376584522" duration="7556000" />
-      <workItem from="1526885168619" duration="18588000" />
+      <workItem from="1526885168619" duration="19581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="562907000" />
+    <option name="totallyTimeSpent" value="563900000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1022,13 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="160" column="18" lean-forward="true" selection-start-line="160" selection-start-column="18" selection-end-line="160" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-182">
@@ -1036,26 +1035,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/calculateVisualVariables.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="59" column="7" lean-forward="true" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+        <state relative-caret-position="344">
+          <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#getLongestPreparations#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#getMaxValue#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#getData#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#trainChart#0;n#TrainChart#0" />
             <element signature="n#!!block;n#calculateUnfoldedChart#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawUnfoldedConnections#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawFoldedWeekChanges#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
             <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawDotConnection#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawChangeArc#0;n#TrainChart#0" />
             <element signature="e#9356#9607#0" />
             <element signature="e#9481#9499#0" />
+            <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
           </folding>
         </state>
       </provider>

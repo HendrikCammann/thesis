@@ -84,10 +84,10 @@ export function calculateCategoryOpacity(filter: RunType, type: RunType): number
     return CategoryOpacity.Hidden;
   }
   if (filter === RunType.All) {
-    return CategoryOpacity.Active;
+    return CategoryOpacity.Full;
   }
   if (type === filter) {
-    return CategoryOpacity.Active;
+    return CategoryOpacity.Full;
   }
   return CategoryOpacity.Inactive;
 }

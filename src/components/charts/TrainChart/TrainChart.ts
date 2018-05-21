@@ -10,8 +10,9 @@ import {PositionModel} from '../../../models/Chart/ChartModels';
 import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
-import {CategoryColors} from '../../../models/VisualVariableModel';
-import {getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {CategoryColors, CategoryOpacity} from '../../../models/VisualVariableModel';
+import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {RunType} from '../../../store/state';
 
 @Component({
   template: require('./trainChart.html'),
@@ -29,7 +30,8 @@ export class TrainChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
-  private isFolded: boolean = true;
+  private isFolded: boolean = false;
+  private selectedRunType: RunType = RunType.Run;
 
   private width = 300;
   private height: number;
@@ -50,6 +52,11 @@ export class TrainChart extends Vue {
     }
   }
 
+  /**
+   *
+   * @param {string[]} anchors
+   * @returns {number}
+   */
   private calculateSvgHeight(anchors: string[]): number {
     let longestPreparation = 0;
     anchors.forEach(anchor => {
@@ -153,7 +160,7 @@ export class TrainChart extends Vue {
         if (data[key].stats.typeCount[anchor].type !== null) {
           color = getCategoryColor(data[key].stats.typeCount[anchor].type);
         }
-        let barItem = this.calculateBar(barLength, position, distance, color);
+        let barItem = this.calculateBar(barLength, position, distance, color, data[key].stats.typeCount[anchor].type);
         weekBars.push(barItem);
         position.x += (this.width / 6);
       }
@@ -181,6 +188,7 @@ export class TrainChart extends Vue {
     for (let i = 0; i < barItems.length; i++) {
       for (let j = 0; j < barItems[i].length; j++) {
         if (this.checkIfBarExists(barItems[i][j]) && i < barItems.length - 1) {
+          let opacity = calculateCategoryOpacity(this.selectedRunType, barItems[i][j].type);
           if (this.checkIfBarExists(barItems[i + 1][j])) {
             let position: PositionModel = {
               x: barItems[i][j].xStart,
@@ -190,7 +198,7 @@ export class TrainChart extends Vue {
             let length = Math.abs(barItems[i][j].yEnd - barItems[i + 1][j].yStart) - (2 * padding);
             let barWidth = barItems[i][j].width;
 
-            this.drawLineConnection(svg, position, length, barWidth, barItems[i][j].color);
+            this.drawLineConnection(svg, position, length, barWidth, barItems[i][j].color, opacity);
           } else {
             for (let k = (i + 1); k < barItems.length; k++) {
               if (this.checkIfBarExists(barItems[k][j])) {
@@ -202,7 +210,7 @@ export class TrainChart extends Vue {
                 let length = Math.abs(barItems[i][j].yEnd - barItems[k][j].yStart) - (2 * padding);
                 let barWidth = barItems[i][j].width;
 
-                this.drawDotConnection(svg, position, length, barWidth, barItems[i][j].color);
+                this.drawDotConnection(svg, position, length, barWidth, barItems[i][j].color, opacity);
                 break;
               }
             }
@@ -229,8 +237,10 @@ export class TrainChart extends Vue {
           let width = barItems[i][j].width;
           let height = barItems[i][j].length;
           let distance = barItems[i][j].distance;
+          let color = barItems[i][j].color;
+          let opacity = calculateCategoryOpacity(this.selectedRunType, barItems[i][j].type);
 
-          this.drawBar(svg, position, width, height, barItems[i][j].color, distance);
+          this.drawBar(svg, position, width, height, color, distance, opacity);
         }
       }
     }
@@ -274,7 +284,7 @@ export class TrainChart extends Vue {
 
       let barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
       let distance = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
-      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default);
+      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default, RunType.All);
       barItems.push(barItem);
 
       position.y += weekHeight;
@@ -306,7 +316,7 @@ export class TrainChart extends Vue {
           let length = Math.abs(barItems[i].yEnd - barItems[i + 1].yStart) - (2 * padding);
           let barWidth = barItems[i].width;
 
-          this.drawLineConnection(svg, position, length, barWidth, CategoryColors.Default);
+          this.drawLineConnection(svg, position, length, barWidth, CategoryColors.Default, CategoryOpacity.Full);
         } else {
           for (let k = (i + 1); k < barItems.length; k++) {
             if (this.checkIfBarExists(barItems[k])) {
@@ -318,7 +328,7 @@ export class TrainChart extends Vue {
               let length = Math.abs(barItems[i].yEnd - barItems[k].yStart) - (2 * padding);
               let barWidth = barItems[i].width;
 
-              this.drawDotConnection(svg, position, length, barWidth, barItems[i].color);
+              this.drawDotConnection(svg, position, length, barWidth, barItems[i].color, CategoryOpacity.Full);
               break;
             }
           }
@@ -385,7 +395,7 @@ export class TrainChart extends Vue {
         let height = barItems[i].length;
         let distance = barItems[i].distance;
 
-        this.drawBar(svg, position, width, height, barItems[i].color, distance);
+        this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full);
       }
     }
   }
@@ -406,7 +416,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @returns {{xStart: number; yStart: number; xEnd: number; yEnd: number; width: number; length: number}}
    */
-  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors) {
+  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType) {
     let width = this.barWidth;
     return {
       xStart: position.x,
@@ -416,6 +426,7 @@ export class TrainChart extends Vue {
       width: width,
       length: barLength,
       distance: distance,
+      type: type,
       color: color,
     };
   }
@@ -473,7 +484,7 @@ export class TrainChart extends Vue {
    * @param {number} barWidth
    * @param {CategoryColors} color
    */
-  private drawLineConnection(svg: any, position: PositionModel, length: number, barWidth: number, color: CategoryColors) {
+  private drawLineConnection(svg: any, position: PositionModel, length: number, barWidth: number, color: CategoryColors, opacity: CategoryOpacity) {
     let width = 3;
     svg.append('rect')
       .attr('x', position.x + (barWidth / 2) - (width / 2))
@@ -483,7 +494,7 @@ export class TrainChart extends Vue {
       .attr('height', length)
       .attr('width', width)
       .attr('fill', color)
-      .attr('opacity', 1);
+      .attr('opacity', opacity);
   }
 
   /**
@@ -494,7 +505,7 @@ export class TrainChart extends Vue {
    * @param {number} barWidth
    * @param {CategoryColors} color
    */
-  private drawDotConnection(svg: any, position: PositionModel, length: number, barWidth: number, color: CategoryColors) {
+  private drawDotConnection(svg: any, position: PositionModel, length: number, barWidth: number, color: CategoryColors, opacity: CategoryOpacity) {
     let width = 3;
     let margin = 4;
     let i = 0;
@@ -505,7 +516,7 @@ export class TrainChart extends Vue {
         .attr('cy', position.y + 2)
         .attr('r', 1.5)
         .attr('fill', color)
-        .attr('opacity', 1);
+        .attr('opacity', opacity);
       position.y += (width + margin);
       i += (width + margin);
     }
@@ -602,7 +613,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @param {string | number} distance
    */
-  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number) {
+  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number, opacity: number) {
     svg.append('rect')
       .attr('x', position.x)
       .attr('y', position.y)
@@ -611,13 +622,14 @@ export class TrainChart extends Vue {
       .attr('height', height)
       .attr('width', width)
       .attr('fill', color)
-      .attr('opacity', 1);
+      .attr('opacity', opacity);
 
     svg.append('text')
       .attr('x', position.x + width + 4)
       .attr('y', position.y + 14)
       .attr('fill', color)
       .attr('text-anchor', 'right')
+      .attr('opacity', opacity)
       .text(distance);
 
     svg.append('text')
@@ -625,6 +637,7 @@ export class TrainChart extends Vue {
       .attr('y', position.y + 30)
       .attr('fill', color)
       .attr('text-anchor', 'right')
+      .attr('opacity', opacity)
       .text('km');
   }
 

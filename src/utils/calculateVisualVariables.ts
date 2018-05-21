@@ -128,7 +128,7 @@ export function calculateBarLength(distance: number, factor: number): string {
  * @param {RunType} type
  * @returns {string}
  */
-export function getCategoryColor(type: RunType): string {
+export function getCategoryColor(type: RunType): CategoryColors {
   switch (type) {
     case RunType.Run:
       return CategoryColors.Run;

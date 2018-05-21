@@ -7,6 +7,7 @@ import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
 import {Dashboard} from '../components/containers/Dashboard';
 import {CompareContainer} from '../components/containers/Compare';
+import {CompetitionsContainer} from '../components/containers/Competitions';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -23,9 +24,9 @@ const router = new VueRouter({
       name: 'Dashboard',
       path: '/dashboard',
     }, {
-      component: ActivitiesContainer,
+      component: CompetitionsContainer,
       name: 'Wettkämpfe',
-      path: '/activities',
+      path: '/competitions',
     }, {
       component: ActivityContainer,
       name: 'Activity',

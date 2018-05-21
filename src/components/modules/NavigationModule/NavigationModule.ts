@@ -8,7 +8,7 @@ import { Link } from './Link';
 export class NavigationModule extends Vue {
   links: Link[] = [
     new Link('Dashboard', '/dashboard', 'stopwatch'),
-    new Link('Wettkämpfe', '/activities', 'trophy'),
+    new Link('Wettkämpfe', '/competitions', 'trophy'),
     new Link('Leistung', '/performance', 'bottle'),
     new Link('Vergleich', '/compare', 'compare'),
     new Link('Einheiten', '/activities', 'run-shoe'),

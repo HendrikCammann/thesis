@@ -2,20 +2,22 @@
   v-if="activity"
   v-on:click="handleClick">
   <div class="lastRunModule__map" v-if="activity.map.map">
-    <leaflet-map :bounds="mapOptions.bounds" :options="{ scrollWheelZoom: false }">
-      <leaflet-tilelayer :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
-      <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.polylineColor"></leaflet-polyline>
+    <leaflet-map :bounds="mapOptions.bounds" :style="'background-color:' + mapOptions.polylineBgColor" :options="{ scrollWheelZoom: false }">
+      <leaflet-tilelayer class="lastRunModule__map--hidden" :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+      <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.textColor"></leaflet-polyline>
     </leaflet-map>
   </div>
   <div class="lastRunModule__map"  v-if="!activity.map.map">
-
+    <img v-if="!checkFuture()" class="lastRunModule__restday" src="../../../assets/illustrations/tea.svg">
   </div>
-  <div class="lastRunModule__information">
+  <div class="lastRunModule__information"
+       :class="{ 'lastRunModule__information--faded': checkFuture() }"
+  >
     <div class="lastRunModule__title">
       {{ activityName(activity.name) }}
     </div>
     <div class="lastRunModule__type">
-      {{ activity.categorization.activity_type }}
+      {{ activity.map.map ? activity.categorization.activity_type : '-' }}
     </div>
     <div class="lastRunModule__stats">
       <span class="lastRunModule__stats--value">{{ activity.base_data.distance | formatDistance }}<span class="lastRunModule__stats--unit">km</span></span>

@@ -15,12 +15,12 @@ export enum CategoryConnectingOpacity {
 }
 
 export enum CategoryColors {
-  Run = '#43b3e6',
+  Run = '#7BC9ED',
   Competition = '#faa628',
   LongRun = '#273866',
   ShortIntervals = '#ec407a',
-  Uncategorized = '#9D9D9D',
-  Default = 'black'
+  Uncategorized = 'green',
+  Default = '#454545'
 }
 
 export enum ZoneColors {

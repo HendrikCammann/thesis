@@ -171,10 +171,10 @@ export class DonutChart extends Vue {
     this.donutData = donutData;
 
     let width = 260;
-    let height = 260;
+    let height = 230;
     let thickness = 40;
 
-    let radius = Math.min(width, height) / 2.5;
+    let radius = (Math.min(width, height) / 2) - 10;
 
 
     d3.select(root + ' > svg').remove();

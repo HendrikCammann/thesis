@@ -1,5 +1,6 @@
 .compare {
   $root: &;
+  margin-left: 108px;
   // margin-top: 40px !important;
 
   #{&}__title {
@@ -9,9 +10,26 @@
   }
 
   #{&}__subTitle {
-    text-align: center;
-    margin-top: 150px;
+    background-color: black;
+    padding: 25px;
+    margin-top: 100px;
     margin-bottom: 50px;
+
+    #{$root}__subTitle-text {
+      color: $color-white;
+      font-size: 22px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-align: left;
+    }
+  }
+
+  #{&}__donut {
+    text-align: center;
+    font-family: $font-family--secondary;
+    font-size: 14px;
+    color: #9D9D9D;
   }
 
   #{&}__menu {

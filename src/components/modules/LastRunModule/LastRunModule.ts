@@ -35,7 +35,9 @@ export class LastRunModule extends Vue {
     latLngs: [],
     bounds: null,
     marker: L.latLng(47.413220, -1.219482),
-    polylineColor: '',
+    polylineBgColor: '#F4F4F4',
+    polylineColor: '#454545',
+    textColor: '#454545',
   };
 
   @Watch('loaded.activities')
@@ -65,6 +67,14 @@ export class LastRunModule extends Vue {
       }
     }
   }
+
+  private checkFuture(): boolean {
+    // Todo use correct Date;
+    // let date = new Date().getDay();
+    let date = 6;
+    return this.index >= date;
+  }
+
   private handleClick(): void {
     if (this.activity.id) {
       eventBus.$emit(navigationEvents.open_Activity_Detail, this.activity.id);
@@ -74,7 +84,7 @@ export class LastRunModule extends Vue {
   private initMap(activity: ActivityModel) {
     if (activity.name) {
       let polyline = L.polyline(decodePolyline(activity.map.map.summary_polyline));
-      this.mapOptions.polylineColor = getCategoryColor(activity.categorization.activity_type);
+      this.mapOptions.textColor = getCategoryColor(activity.categorization.activity_type);
       this.mapOptions.bounds = polyline.getBounds();
       this.mapOptions.latLngs = decodePolyline(activity.map.map.summary_polyline);
     }

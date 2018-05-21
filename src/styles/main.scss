@@ -4,10 +4,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// @import '~font-awesome/css/font-awesome.css';
 @import "~leaflet/dist/leaflet.css";
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:300,400,700');
 
 // common
 @import "common/_colors";
@@ -19,6 +18,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Activities/_style";
 @import "components/containers/Dashboard/_style";
 @import "components/containers/Compare/_style";
+@import "components/containers/Competitions/_style";
 
 @import "components/charts/WaveChart/_style";
 @import "components/charts/HistoryChart/_style";

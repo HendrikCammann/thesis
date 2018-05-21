@@ -6,8 +6,16 @@
   border-radius: 2px;
   cursor: pointer;
 
+  .leaflet-container {
+    border-radius: 2px;
+  }
+
   .leaflet-control-container {
     display: none;
+  }
+
+  .leaflet-tile-pane {
+    visibility: hidden;
   }
 
   &:hover {
@@ -16,14 +24,24 @@
 
   #{&}__map {
     width: 100%;
-    height: 140px;
-    background-color: $color-grey--light;
+    height: 180px;
+    background-color: #F4F4F4;
     border-radius: 2px;
+    text-align: center;
+  }
+
+  #{&}__restday {
+    transform: translate(0, 82px);
+    opacity: 0.5;
   }
 
   #{&}__information {
-    padding: 8px;
+    padding: 10px;
     padding-bottom: 16px;
+
+    &--faded {
+      opacity: 0.3;
+    }
 
     #{$root}__title {
       font-size: 16px;
@@ -37,6 +55,7 @@
 
     #{$root}__type {
       font-size: 14px;
+      font-weight: 400;
       color: $color-grey;
     }
 
@@ -45,6 +64,7 @@
       color: $color-black;
       font-weight: 700;
       margin-top: 24px;
+
 
       &--value {
         margin-right: 6px;

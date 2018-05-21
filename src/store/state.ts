@@ -56,12 +56,6 @@ export class State {
 
     this.filter = new FilterModel();
 
-    this.dashboardFilter = new FilterModel();
-    this.dashboardFilter.selectedCluster = ClusterType.ByWeeks;
-    this.dashboardFilter.showEverything = false;
-    this.dashboardFilter.timeRange.isRange = true;
-    this.dashboardFilter.timeRange.end = new Date();
-    this.dashboardFilter.timeRange.start = new Date(this.dashboardFilter.timeRange.end.getFullYear(), this.dashboardFilter.timeRange.end.getMonth(), this.dashboardFilter.timeRange.end.getDay() - 14);
   }
 }
 

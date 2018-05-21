@@ -28,6 +28,8 @@ export class TrainChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
+  private isFolded: boolean = false;
+
   private width = 300;
   private height = 4000;
   private padding = 8;
@@ -35,7 +37,7 @@ export class TrainChart extends Vue {
   private weekHeight = this.itemHeight - (2 * this.padding);
   private barWidth = 15;
 
-  private largestValue = 62481;
+  private largestValue: number;
 
   @Watch('loadingStatus.activities')
   onPropertyChanged(val: any, oldVal: any) {
@@ -46,6 +48,11 @@ export class TrainChart extends Vue {
     }
   }
 
+  /**
+   * get maximal Distance from all data
+   * @param {string[]} anchors
+   * @returns {number}
+   */
   private getMaxValue(anchors: string[]) {
     let maxValue = 0;
     anchors.forEach(anchor => {
@@ -58,16 +65,101 @@ export class TrainChart extends Vue {
     return maxValue;
   }
 
+  /**
+   * get the Cluster from store
+   * @param {string} preparation
+   * @returns {ClusterWrapper}
+   */
   private getData(preparation: string): ClusterWrapper {
     return this.$store.state.sortedLists[preparation];
   }
 
+  /**
+   * wraps all functions and checks if folded or unfolded
+   * @param {string} root
+   * @param {ClusterWrapper} data
+   */
   private trainChart(root: string, data: ClusterWrapper) {
     let svg = setupSvg('#' + root, this.width, this.height);
-    let barItems = this.drawFoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
-    this.drawFoldedConnections(svg, barItems);
-    this.drawFoldedWeekChanges(svg, barItems);
-    this.drawFoldedBars(svg, barItems);
+    if (this.isFolded) {
+      let barItems = this.calculateFoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
+      this.drawFoldedConnections(svg, barItems);
+      this.drawFoldedWeekChanges(svg, barItems);
+      this.drawFoldedBars(svg, barItems);
+    } else {
+      let barItems = this.calculateUnfoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
+      this.drawUnfoldedBars(svg, barItems);
+    }
+  }
+
+
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////// UNFOLDED ////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+
+  private calculateUnfoldedChart(svg: any, data: any, weekHeight: number, padding: number, largestValue: number): any {
+    let position: PositionModel = {
+      x: this.width / 6,
+      y: 15,
+    };
+    let positionDivider: PositionModel = {
+      x: 0,
+      y: 15,
+    };
+    let barItems = [];
+
+    let index = 0;
+    let duration = getKeys(data);
+    duration = duration.length;
+
+    for (let key in data) {
+      this.drawDivider(svg, this.width, (duration - index), positionDivider, '#F3F3F3');
+      position.y += padding;
+      positionDivider.y += padding;
+
+      let weekBars = [];
+      for (let anchor in data[key].stats.typeCount) {
+        let barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].distance);
+        let distance = formatDistance(data[key].stats.typeCount[anchor].distance, FormatDistanceType.Kilometers).toFixed(0);
+        let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default);
+        weekBars.push(barItem);
+        position.x += (this.width / 6);
+      }
+      barItems.push(weekBars);
+
+      position.x = this.width / 6;
+      position.y += weekHeight;
+      positionDivider.y += weekHeight;
+      position.y += padding;
+      positionDivider.y += padding;
+
+      index++;
+    }
+
+    return barItems;
+  }
+
+  private drawUnfoldedBars(svg: any, barItems: any) {
+    console.log(barItems);
+    for (let i = 0; i < barItems.length; i++) {
+      // console.log(barItems[i]);
+      for (let j = 0; j < barItems[i].length; j++) {
+        if (this.checkIfBarExists(barItems[i][j])) {
+          let position: PositionModel = {
+            x: barItems[i][j].xStart,
+            y: barItems[i][j].yStart,
+          };
+
+          let width = barItems[i][j].width;
+          let height = barItems[i][j].length;
+          let distance = barItems[i][j].distance;
+
+          this.drawBar(svg, position, width, height, CategoryColors.Default, distance);
+        }
+      }
+    }
   }
 
 
@@ -77,7 +169,16 @@ export class TrainChart extends Vue {
   ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
 
-  private drawFoldedChart(svg: any, data: any, weekHeight: number, padding: number, largestValue: number): any {
+  /**
+   * calculates the Bar positions
+   * @param svg
+   * @param data
+   * @param {number} weekHeight
+   * @param {number} padding
+   * @param {number} largestValue
+   * @returns {any}
+   */
+  private calculateFoldedChart(svg: any, data: any, weekHeight: number, padding: number, largestValue: number): any {
     let position: PositionModel = {
       x: this.width / 2,
       y: 15,
@@ -99,7 +200,7 @@ export class TrainChart extends Vue {
 
       let barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
       let distance = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
-      let barItem = this.calculateBar(svg, barLength, position, distance, CategoryColors.Default);
+      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default);
       barItems.push(barItem);
 
       position.y += weekHeight;
@@ -113,6 +214,11 @@ export class TrainChart extends Vue {
     return barItems;
   }
 
+  /**
+   * applies the Connections to the svg
+   * @param svg
+   * @param barItems
+   */
   private drawFoldedConnections(svg: any, barItems: any) {
     let padding = 4;
     for (let i = 0; i < barItems.length; i++) {
@@ -132,6 +238,11 @@ export class TrainChart extends Vue {
     }
   }
 
+  /**
+   * applies the Arcs to the svg
+   * @param svg
+   * @param barItems
+   */
   private drawFoldedWeekChanges(svg: any, barItems: any) {
     for (let i = 0; i < barItems.length; i++) {
       if (this.checkIfBarExists(barItems[i]) && i < barItems.length - 1) {
@@ -168,6 +279,11 @@ export class TrainChart extends Vue {
     }
   }
 
+  /**
+   * applies the Bars to the svg
+   * @param svg
+   * @param barItems
+   */
   private drawFoldedBars(svg: any, barItems: any) {
     for (let i = 0; i < barItems.length; i++) {
       if (this.checkIfBarExists(barItems[i])) {
@@ -201,7 +317,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @returns {{xStart: number; yStart: number; xEnd: number; yEnd: number; width: number; length: number}}
    */
-  private calculateBar(svg: any, barLength: number, position: PositionModel, distance: number | string, color: CategoryColors) {
+  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors) {
     let width = this.barWidth;
     return {
       xStart: position.x,
@@ -226,6 +342,11 @@ export class TrainChart extends Vue {
     return weekHeight * percentage;
   }
 
+  /**
+   * checks if Bar exists and has to be drawn
+   * @param barItem
+   * @returns {boolean}
+   */
   private checkIfBarExists(barItem: any) {
     return (barItem.length !== undefined && barItem.length > 0);
   }
@@ -254,6 +375,14 @@ export class TrainChart extends Vue {
       .attr('fill', color);
   }
 
+  /**
+   * connects the single Bars
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} length
+   * @param {number} barWidth
+   * @param {CategoryColors} color
+   */
   private drawLineConnection(svg: any, position: PositionModel, length: number, barWidth: number, color: CategoryColors) {
     let width = 3;
     svg.append('rect')
@@ -267,6 +396,17 @@ export class TrainChart extends Vue {
       .attr('opacity', 1);
   }
 
+  /**
+   * draws Arcs between the Bars
+   * @param svg
+   * @param {PositionModel} position
+   * @param legPositions
+   * @param {number} radius
+   * @param {number} height
+   * @param totalDifference
+   * @param {number} percentualDifference
+   * @param {boolean} left
+   */
   private drawChangeArc(svg: any, position: PositionModel, legPositions: any, radius: number, height: number, totalDifference: any, percentualDifference: number, left: boolean) {
     let arc = d3.arc();
     let startAngle = -Math.PI * 2;
@@ -338,6 +478,15 @@ export class TrainChart extends Vue {
 
   }
 
+  /**
+   * draws Bar with label
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} width
+   * @param {number} height
+   * @param {CategoryColors} color
+   * @param {string | number} distance
+   */
   private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number) {
     svg.append('rect')
       .attr('x', position.x)

@@ -13,6 +13,7 @@ import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryColors, CategoryOpacity} from '../../../models/VisualVariableModel';
 import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {RunType} from '../../../store/state';
+import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 
 @Component({
   template: require('./trainChart.html'),
@@ -30,7 +31,7 @@ export class TrainChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
-  private isFolded: boolean = false;
+  private isFolded: boolean = true;
   private selectedRunType: RunType = RunType.Run;
 
   private width = 300;
@@ -160,7 +161,7 @@ export class TrainChart extends Vue {
         if (data[key].stats.typeCount[anchor].type !== null) {
           color = getCategoryColor(data[key].stats.typeCount[anchor].type);
         }
-        let barItem = this.calculateBar(barLength, position, distance, color, data[key].stats.typeCount[anchor].type);
+        let barItem = this.calculateBar(barLength, position, distance, color, data[key].stats.typeCount[anchor].type, null);
         weekBars.push(barItem);
         position.x += (this.width / 6);
       }
@@ -240,7 +241,7 @@ export class TrainChart extends Vue {
           let color = barItems[i][j].color;
           let opacity = calculateCategoryOpacity(this.selectedRunType, barItems[i][j].type);
 
-          this.drawBar(svg, position, width, height, color, distance, opacity);
+          this.drawBar(svg, position, width, height, color, distance, opacity, false);
         }
       }
     }
@@ -284,7 +285,8 @@ export class TrainChart extends Vue {
 
       let barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
       let distance = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
-      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default, RunType.All);
+      let percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.distance);
+      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default, RunType.All, percentages);
       barItems.push(barItem);
 
       position.y += weekHeight;
@@ -315,8 +317,13 @@ export class TrainChart extends Vue {
 
           let length = Math.abs(barItems[i].yEnd - barItems[i + 1].yStart) - (2 * padding);
           let barWidth = barItems[i].width;
+          let opacity = CategoryOpacity.Full;
 
-          this.drawLineConnection(svg, position, length, barWidth, CategoryColors.Default, CategoryOpacity.Full);
+          if (this.selectedRunType !== RunType.All) {
+            opacity = CategoryOpacity.Inactive;
+          }
+
+          this.drawLineConnection(svg, position, length, barWidth, CategoryColors.Default, opacity);
         } else {
           for (let k = (i + 1); k < barItems.length; k++) {
             if (this.checkIfBarExists(barItems[k])) {
@@ -327,8 +334,13 @@ export class TrainChart extends Vue {
 
               let length = Math.abs(barItems[i].yEnd - barItems[k].yStart) - (2 * padding);
               let barWidth = barItems[i].width;
+              let opacity = CategoryOpacity.Full;
 
-              this.drawDotConnection(svg, position, length, barWidth, barItems[i].color, CategoryOpacity.Full);
+              if (this.selectedRunType !== RunType.All) {
+                opacity = CategoryOpacity.Inactive;
+              }
+
+              this.drawDotConnection(svg, position, length, barWidth, barItems[i].color, opacity);
               break;
             }
           }
@@ -346,33 +358,75 @@ export class TrainChart extends Vue {
     for (let i = 0; i < barItems.length; i++) {
       if (this.checkIfBarExists(barItems[i]) && i < barItems.length - 1) {
         if (this.checkIfBarExists(barItems[i + 1])) {
-          let position: PositionModel = {
-            x: barItems[i].xStart + (this.barWidth / 2),
-            y: (barItems[i].yStart + barItems[i + 1].yStart) / 2
-          };
+          if (this.selectedRunType === RunType.All) {
+            let position: PositionModel = {
+              x: barItems[i].xStart + (this.barWidth / 2),
+              y: (barItems[i].yStart + barItems[i + 1].yStart) / 2
+            };
 
-          let isLeft = barItems[i].distance < barItems[i + 1].distance;
-          let totalDifference = barItems[i].distance - barItems[i + 1].distance;
-          let percentualDifference: number;
+            let isLeft = barItems[i].distance < barItems[i + 1].distance;
+            let totalDifference = barItems[i].distance - barItems[i + 1].distance;
+            let percentualDifference: number;
 
-          if (barItems[i].distance > barItems[i + 1].distance) {
-            percentualDifference = getPercentageFromValue(barItems[i].distance, barItems[i + 1].distance);
-          } else {
-            percentualDifference = getPercentageFromValue(barItems[i + 1].distance, barItems[i].distance);
-          }
-
-          let legPositions = [
-            {
-              x: barItems[i].xStart,
-              y: barItems[i].yStart,
-            },
-            {
-              x: barItems[i + 1].xStart,
-              y: barItems[i + 1].yStart,
+            if (barItems[i].distance > barItems[i + 1].distance) {
+              percentualDifference = getPercentageFromValue(barItems[i].distance, barItems[i + 1].distance);
+            } else {
+              percentualDifference = getPercentageFromValue(barItems[i + 1].distance, barItems[i].distance);
             }
-          ];
 
-          this.drawChangeArc(svg, position, legPositions, this.itemHeight / 2, 6, totalDifference, percentualDifference, isLeft);
+            let legPositions = [
+              {
+                x: barItems[i].xStart,
+                y: barItems[i].yStart,
+              },
+              {
+                x: barItems[i + 1].xStart,
+                y: barItems[i + 1].yStart,
+              }
+            ];
+
+            this.drawChangeArc(svg, position, legPositions, this.itemHeight / 2, 6, totalDifference, percentualDifference, isLeft);
+          } else {
+            let bar = barItems[i].percentages.find(item => {
+              return item.type === this.selectedRunType;
+            });
+
+            if (bar !== undefined && bar.percentage > 0) {
+              let nextBar = barItems[i + 1].percentages.find(item => {
+                return item.type === this.selectedRunType;
+              });
+
+              if (nextBar !== undefined && nextBar.percentage > 0) {
+                let position: PositionModel = {
+                  x: barItems[i].xStart + (this.barWidth / 2),
+                  y: (barItems[i].yStart + barItems[i + 1].yStart) / 2
+                };
+
+                let isLeft = bar.distance < nextBar.distance;
+                let totalDifference = (bar.distance - nextBar.distance).toFixed(0);
+                let percentualDifference: number;
+
+                if (bar.distance > nextBar.distance) {
+                  percentualDifference = getPercentageFromValue(bar.distance, nextBar.distance);
+                } else {
+                  percentualDifference = getPercentageFromValue(bar.distance, nextBar.distance);
+                }
+
+                let legPositions = [
+                  {
+                    x: barItems[i].xStart,
+                    y: barItems[i].yStart,
+                  },
+                  {
+                    x: barItems[i + 1].xStart,
+                    y: barItems[i + 1].yStart,
+                  }
+                ];
+
+                this.drawChangeArc(svg, position, legPositions, this.itemHeight / 2, 6, totalDifference, percentualDifference, isLeft);
+              }
+            }
+          }
         }
       }
     }
@@ -395,7 +449,20 @@ export class TrainChart extends Vue {
         let height = barItems[i].length;
         let distance = barItems[i].distance;
 
-        this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full);
+        if (this.selectedRunType !== RunType.All && this.isFolded) {
+          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Inactive, true);
+          let bar = barItems[i].percentages.find(item => {
+            return item.type === this.selectedRunType;
+          });
+          if (bar !== undefined) {
+            let overlayHeight = height * (bar.percentage / 100);
+            let overlayDistance = bar.distance.toFixed(0);
+            let color = getCategoryColor(bar.type);
+            this.drawBar(svg, position, width, overlayHeight, color, overlayDistance, CategoryOpacity.Full, false);
+          }
+        } else {
+          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full, false);
+        }
       }
     }
   }
@@ -416,7 +483,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @returns {{xStart: number; yStart: number; xEnd: number; yEnd: number; width: number; length: number}}
    */
-  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType) {
+  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType, percentages: any) {
     let width = this.barWidth;
     return {
       xStart: position.x,
@@ -428,7 +495,27 @@ export class TrainChart extends Vue {
       distance: distance,
       type: type,
       color: color,
+      percentages: percentages,
     };
+  }
+
+  /**
+   *
+   * @param {ActivityClusterTypeCountModel} typeCount
+   * @param {number} distance
+   * @returns {any[]}
+   */
+  private calculatePercentageOfTotal(typeCount: ActivityClusterTypeCountModel, distance: number) {
+    let percentages = [];
+    for (let key in typeCount) {
+      let item = {
+        percentage: getPercentageFromValue(typeCount[key].distance, distance),
+        distance: formatDistance(typeCount[key].distance, FormatDistanceType.Kilometers),
+        type: typeCount[key].type,
+      };
+      percentages.push(item);
+    }
+    return percentages;
   }
 
   /**
@@ -613,7 +700,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @param {string | number} distance
    */
-  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number, opacity: number) {
+  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number, opacity: number, hideLabel: boolean) {
     svg.append('rect')
       .attr('x', position.x)
       .attr('y', position.y)
@@ -624,21 +711,23 @@ export class TrainChart extends Vue {
       .attr('fill', color)
       .attr('opacity', opacity);
 
-    svg.append('text')
-      .attr('x', position.x + width + 4)
-      .attr('y', position.y + 14)
-      .attr('fill', color)
-      .attr('text-anchor', 'right')
-      .attr('opacity', opacity)
-      .text(distance);
+    if (!hideLabel) {
+      svg.append('text')
+        .attr('x', position.x + width + 4)
+        .attr('y', position.y + 14)
+        .attr('fill', color)
+        .attr('text-anchor', 'right')
+        .attr('opacity', opacity)
+        .text(distance);
 
-    svg.append('text')
-      .attr('x', position.x + width + 4)
-      .attr('y', position.y + 30)
-      .attr('fill', color)
-      .attr('text-anchor', 'right')
-      .attr('opacity', opacity)
-      .text('km');
+      svg.append('text')
+        .attr('x', position.x + width + 4)
+        .attr('y', position.y + 30)
+        .attr('fill', color)
+        .attr('text-anchor', 'right')
+        .attr('opacity', opacity)
+        .text('km');
+    }
   }
 
 

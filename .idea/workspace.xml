@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/calculateVisualVariables.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,20 +26,27 @@
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
+            <state relative-caret-position="468">
+              <caret line="405" column="83" selection-start-line="405" selection-start-column="83" selection-end-line="405" selection-end-column="83" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!block;n#onPropertyChanged#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#getLongestPreparations#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#getMaxValue#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#getData#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#trainChart#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#calculateUnfoldedChart#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawUnfoldedConnections#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
-                <element signature="n#!!block;n#drawFoldedWeekChanges#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
+                <element signature="e#4122#4633#0" />
+                <element signature="e#8993#9511#0" />
+                <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawDotConnection#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawChangeArc#0;n#TrainChart#0" />
                 <element signature="e#9356#9607#0" />
                 <element signature="e#9481#9499#0" />
@@ -479,12 +486,12 @@
       <workItem from="1526316588109" duration="14067000" />
       <workItem from="1526335395763" duration="1588000" />
       <workItem from="1526376584522" duration="7556000" />
-      <workItem from="1526885168619" duration="19581000" />
+      <workItem from="1526885168619" duration="22056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="563900000" />
+    <option name="totallyTimeSpent" value="566375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
@@ -1044,20 +1051,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
+        <state relative-caret-position="468">
+          <caret line="405" column="83" selection-start-line="405" selection-start-column="83" selection-end-line="405" selection-end-column="83" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#onPropertyChanged#0;n#TrainChart#0" />
             <element signature="n#!!block;n#getLongestPreparations#0;n#TrainChart#0" />
             <element signature="n#!!block;n#getMaxValue#0;n#TrainChart#0" />
             <element signature="n#!!block;n#getData#0;n#TrainChart#0" />
             <element signature="n#!!block;n#trainChart#0;n#TrainChart#0" />
             <element signature="n#!!block;n#calculateUnfoldedChart#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawUnfoldedConnections#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
-            <element signature="n#!!block;n#drawFoldedWeekChanges#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
+            <element signature="e#4122#4633#0" />
+            <element signature="e#8993#9511#0" />
+            <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
             <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawDotConnection#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawChangeArc#0;n#TrainChart#0" />
             <element signature="e#9356#9607#0" />
             <element signature="e#9481#9499#0" />

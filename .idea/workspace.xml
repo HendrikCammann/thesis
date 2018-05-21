@@ -16,8 +16,8 @@
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="307" column="4" lean-forward="true" selection-start-line="307" selection-start-column="4" selection-end-line="307" selection-end-column="4" />
+            <state relative-caret-position="-677">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
                 <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
@@ -34,63 +34,6 @@
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5750">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
-                <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisualVariableModel.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="state.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/state.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="46" column="20" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompetitionsContainer.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="competitions.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/competitions.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zoneChart.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -504,12 +447,12 @@
       <workItem from="1526316588109" duration="14067000" />
       <workItem from="1526335395763" duration="1588000" />
       <workItem from="1526376584522" duration="7556000" />
-      <workItem from="1526885168619" duration="12071000" />
+      <workItem from="1526885168619" duration="12565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556390000" />
+    <option name="totallyTimeSpent" value="556884000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -1043,6 +986,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5750">
@@ -1054,17 +1004,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="307" column="4" lean-forward="true" selection-start-line="307" selection-start-column="4" selection-end-line="307" selection-end-column="4" />
+        <state relative-caret-position="-677">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
             <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />

@@ -11,7 +11,6 @@ import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryColors} from '../../../models/VisualVariableModel';
-import {pbkdf2Sync} from 'crypto';
 
 @Component({
   template: require('./trainChart.html'),
@@ -128,7 +127,13 @@ export class TrainChart extends Vue {
 
           let isLeft = barItems[i].distance < barItems[i + 1].distance;
           let totalDifference = barItems[i].distance - barItems[i + 1].distance;
-          let percentualDifference = getPercentageFromValue(barItems[i].distance, barItems[i + 1].distance);
+          let percentualDifference: number;
+
+          if (barItems[i].distance > barItems[i + 1].distance) {
+            percentualDifference = getPercentageFromValue(barItems[i].distance, barItems[i + 1].distance);
+          } else {
+            percentualDifference = getPercentageFromValue(barItems[i + 1].distance, barItems[i].distance);
+          }
 
           let legPositions = [
             {
@@ -292,6 +297,7 @@ export class TrainChart extends Vue {
           .attr('opacity', 0.1)
           .attr('height', height);
       });
+      console.log(percentualDifference);
       x += arcOffsetX;
     } else {
       legPositions.forEach(item => {
@@ -305,10 +311,10 @@ export class TrainChart extends Vue {
       });
       x -= arcOffsetX;
     }
-    
+
     svg.append('text')
       .attr('x', x + textOffset)
-      .attr('y', y)
+      .attr('y', y + 7)
       .attr('fill', color)
       .attr('text-anchor', textAnchor)
       .text(totalDifference + 'km');

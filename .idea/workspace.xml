@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/trainChart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/containers/Competitions/competitions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/containers/Competitions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/containers/Competitions/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DonutChart/DonutChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/DonutChart/DonutChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/LastRunModule/LastRunModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/LastRunModule/LastRunModule.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/LastRunModule/lastRunModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/LastRunModule/lastRunModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/NavigationModule/NavigationModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/NavigationModule/NavigationModule.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/DonutChart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/charts/DonutChart/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Compare/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Compare/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Dashboard/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Dashboard/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/LastRunModule/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/LastRunModule/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,14 +16,34 @@
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
-              <caret line="224" column="1" lean-forward="true" selection-start-line="224" selection-start-column="1" selection-end-line="224" selection-end-column="1" />
+            <state relative-caret-position="544">
+              <caret line="307" column="4" lean-forward="true" selection-start-line="307" selection-start-column="4" selection-end-line="307" selection-end-column="4" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-                <element signature="n#!!block;n#drawUnfoldedChart#0;n#TrainChart#0" />
-                <element signature="e#1758#1786#0" />
-                <element signature="e#1884#1915#0" />
+                <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#checkIfBarExists#0;n#TrainChart#0" />
                 <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
+                <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
+                <element signature="e#9356#9607#0" />
+                <element signature="e#9481#9499#0" />
+                <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArcChart.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5750">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
+                <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
               </folding>
             </state>
           </provider>
@@ -57,18 +54,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
               <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArcCompare.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -122,9 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filterCluster</find>
-      <find>labelArc</find>
-      <find>PI</find>
       <find>stackedCompare</find>
       <find>selected</find>
       <find>maxChange</find>
@@ -144,7 +126,6 @@
       <find>'value'</find>
       <find>&quot;</find>
       <find>lowerSlice</find>
-      <find>console</find>
       <find>88</find>
       <find>icon</find>
       <find>favicon</find>
@@ -152,10 +133,12 @@
       <find>headlineBox</find>
       <find>compare</find>
       <find>cur</find>
+      <find>drawBar</find>
+      <find>Unfolded</find>
+      <find>folded</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
-      <replace>drawArc</replace>
-      <replace>innerLine</replace>
       <replace>getDiagrammColor</replace>
       <replace>diagram</replace>
       <replace>diagramColor</replace>
@@ -184,6 +167,8 @@
       <replace>let</replace>
       <replace>mapOverlayItem</replace>
       <replace>stopwatch</replace>
+      <replace>calculateBar</replace>
+      <replace>Folded</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -309,7 +294,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="charts" type="462c0819:PsiDirectoryNode" />
-              <item name="ArcCompare" type="462c0819:PsiDirectoryNode" />
+              <item name="ArcChart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -519,12 +504,12 @@
       <workItem from="1526316588109" duration="14067000" />
       <workItem from="1526335395763" duration="1588000" />
       <workItem from="1526376584522" duration="7556000" />
-      <workItem from="1526885168619" duration="6819000" />
+      <workItem from="1526885168619" duration="12071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="551138000" />
+    <option name="totallyTimeSpent" value="556390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -709,13 +694,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/Navbar/Navbar.html" />
     <entry file="file://$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
@@ -1038,16 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Competitions/CompetitionsContainer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1065,6 +1033,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="16" selection-start-line="3" selection-end-line="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5750">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!block;n#arcChart#0;n#ArcChart#0" />
+            <element signature="n#!!block;n#setupSvg#0;n#ArcChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/VisualVariableModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1074,14 +1063,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="224" column="1" lean-forward="true" selection-start-line="224" selection-start-column="1" selection-end-line="224" selection-end-column="1" />
+        <state relative-caret-position="544">
+          <caret line="307" column="4" lean-forward="true" selection-start-line="307" selection-start-column="4" selection-end-line="307" selection-end-column="4" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-            <element signature="n#!!block;n#drawUnfoldedChart#0;n#TrainChart#0" />
-            <element signature="e#1758#1786#0" />
-            <element signature="e#1884#1915#0" />
+            <element signature="n#!!block;n#drawFoldedChart#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawFoldedConnections#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawUnfoldedBars#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#barLength#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#checkIfBarExists#0;n#TrainChart#0" />
             <element signature="n#!!block;n#drawDivider#0;n#TrainChart#0" />
+            <element signature="n#!!block;n#drawLineConnection#0;n#TrainChart#0" />
+            <element signature="e#9356#9607#0" />
+            <element signature="e#9481#9499#0" />
+            <element signature="n#!!block;n#drawBar#0;n#TrainChart#0" />
           </folding>
         </state>
       </provider>

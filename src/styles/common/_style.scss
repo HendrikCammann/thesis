@@ -5,47 +5,12 @@ body {
   color: $color-black;
 }
 
+.card {
+  $root: &;
 
-$color-red: #E12D53;
-/* tell the SVG path to be a thin blue line without any area fill */
-.heartrate {
-  stroke: $color-red;
-  stroke-width: 1;
-  fill: none;
-  opacity: 0.3;
-
-  &__scale {
-    text {
-      fill: $color-red;
-    }
+  &__wrapper {
+    padding: 16px;
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.1);
   }
-
-  &__avg {
-    stroke: $color-red;
-    stroke-width: 1;
-    stroke-dasharray: 5,5;
-    stroke-opacity: 0.5;
-  }
-}
-
-.pace {
-  stroke: blue;
-  stroke-width: 1;
-  fill: none;
-  opacity: 0.3;
-
-  &__scale {
-    text {
-      fill: blue;
-    }
-  }
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.no-pointer {
-  pointer-events: none;
 }
 

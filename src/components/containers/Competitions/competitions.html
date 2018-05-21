@@ -1,15 +1,22 @@
 <div class="container-fluid competitions">
-  <div class="container">
-    <div class="row">
+  <div class="container competitions__filter">
+    <smart-filter></smart-filter>
+  </div>
+  <div class="container card__wrapper">
+    <div class="row competitions__wrapper">
+      <div class="competitions__weeks">
+        Woche
+      </div>
       <div
         v-for="(item, i) in selectedTrainingClusters"
         :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
-        <train-chart
+        <train-compare
           :root="'train' + i"
           :anchors="selectedTrainingClusters"
           :preparation="selectedTrainingClusters[i]"
           :loadingStatus="loadingStatus"
-        ></train-chart>
+          :selectedRunType="selectedRunType"
+        ></train-compare>
       </div>
     </div>
   </div>

@@ -31,10 +31,14 @@ export class TrainChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
-  private isFolded: boolean = true;
-  private selectedRunType: RunType = RunType.Run;
+  @Prop()
+  selectedRunType: RunType;
 
-  private width = 300;
+
+  private isFolded: boolean = true;
+  // private selectedRunType: RunType = RunType.All;
+
+  private width = 359;
   private height: number;
   private padding = 8;
   private itemHeight = 150;
@@ -44,6 +48,7 @@ export class TrainChart extends Vue {
   private largestValue: number;
 
   @Watch('loadingStatus.activities')
+  @Watch('selectedRunType')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.height = this.calculateSvgHeight(this.anchors);

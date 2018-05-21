@@ -1,0 +1,39 @@
+.smartFilter {
+  $root: &;
+  position: relative;
+
+  #{&}__content {
+    text-align: right;
+    position: absolute;
+    top: -312px;
+    right: 8px;
+    width: 200px;
+
+    #{$root}__item {
+      &--icon {
+        transform: translate(0, 15px);
+        margin-top: 8px;
+        margin-left: 8px;
+        display: inline-block;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+        background-color: blue;
+      }
+    }
+  }
+
+  #{&}__button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: $color-black;
+    text-align: center;
+
+    img {
+      height: 30px;
+      width: 30px;
+      transform: translateY(17px);
+    }
+  }
+}

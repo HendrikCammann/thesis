@@ -1,18 +1,21 @@
 import {Component} from 'vue-property-decorator';
 import Vue from 'vue';
-import {TrainChart} from '../../charts/TrainChart';
 import {mapGetters} from 'vuex';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {MutationTypes} from '../../../store/mutation-types';
+import {TrainCompareModule} from '../../modules/TrainCompareModule';
+import {SmartFilterModule} from '../../modules/SmartFilterModule';
 
 @Component({
   template: require('./competitions.html'),
   computed: mapGetters({
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     loadingStatus: 'getAppLoadingStatus',
+    selectedRunType: 'getSelectedRunType',
   }),
   components: {
-    'trainChart': TrainChart,
+    'trainCompare': TrainCompareModule,
+    'smartFilter': SmartFilterModule,
   },
 })
 export class CompetitionsContainer extends Vue {

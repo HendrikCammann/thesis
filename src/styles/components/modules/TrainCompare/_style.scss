@@ -1,0 +1,16 @@
+.trainCompare {
+  $root: &;
+  margin-top: 40px;
+
+  #{&}__headline {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 50px;
+
+    img {
+      margin-left: 4px;
+      transform: translate(0, -2px);
+      height: 15px;
+    }
+  }
+}

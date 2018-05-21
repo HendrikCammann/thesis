@@ -1,0 +1,15 @@
+<div class="smartFilter">
+  <div class="smartFilter__content">
+    <div v-for="item in Runtypes"
+      @click="handleFilterClick(item.type)"
+      class="smartFilter__item">
+      {{ item.name }}
+      <div class="smartFilter__item--icon">
+
+      </div>
+    </div>
+  </div>
+  <div class="smartFilter__button">
+    <img src="../../../assets/icons/filter.svg">
+  </div>
+</div>

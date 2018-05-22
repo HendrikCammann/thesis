@@ -1,0 +1,6 @@
+<div class="activityListItem"
+     @click="openDetailView"
+>
+  <span class="activityListItem__day">{{ getDayName() }}:</span>
+  <span :style="{ color: getColor() }">{{ activity.name }}</span>
+</div>

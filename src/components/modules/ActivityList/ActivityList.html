@@ -1,7 +1,7 @@
 <div class="activity">
   <div class="activity__week" v-for="item in formatedData">
-    <div v-for="ac in item">
-      {{ ac.name }} {{ ac.date }}
-    </div>
+    <activity-list-item v-for="ac in item"
+      :activity="ac"
+    ></activity-list-item>
   </div>
 </div>

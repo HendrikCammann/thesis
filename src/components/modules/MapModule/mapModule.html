@@ -1,6 +1,6 @@
 <div class="mapModule">
   <leaflet-map :bounds="mapOptions.bounds" :options="{ scrollWheelZoom: false }">
-    <leaflet-tilelayer :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+    <leaflet-tilelayer :url="mapOptions.live" :attribution="mapOptions.attribution"></leaflet-tilelayer>
     <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="'red'"></leaflet-polyline>
   </leaflet-map>
   <div class="mapModule__overlay">

@@ -23,6 +23,9 @@ export class MapModule extends Vue {
   @Prop()
   loaded: LoadingStatus;
 
+  @Prop()
+  activity: any;
+
   private ac = null;
   private overlayData = null;
 
@@ -30,7 +33,8 @@ export class MapModule extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loaded.activities === loadingStatus.Loaded) {
       this.ac = this.$store.getters.getLatestActivity;
-      this.initMap(this.ac);
+      console.log(this.activity);
+      this.initMap(this.activity);
     }
   }
 
@@ -93,5 +97,9 @@ export class MapModule extends Vue {
 
     }
     return points
+  }
+
+  mounted() {
+    this.initMap(this.activity);
   }
 }

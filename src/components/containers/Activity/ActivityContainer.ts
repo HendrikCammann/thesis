@@ -5,6 +5,7 @@ import {mapGetters} from 'vuex';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {ZoneChart} from '../../charts/ZoneChart';
 import {BarChart} from '../../charts/BarChart';
+import {MapModule} from '../../modules/MapModule';
 
 /* tslint:disable */
 @Component({
@@ -13,10 +14,12 @@ import {BarChart} from '../../charts/BarChart';
     getSelectedActivity: 'getSelectedActivity',
     getSelectedActivityStreams: 'getSelectedActivityStreams',
     getSelectedActivityZones: 'getSelectedActivityZones',
+    loadingStatus: 'getAppLoadingStatus',
   }),
   components: {
     'barChart': BarChart,
     'zoneChart': ZoneChart,
+    'mapModule': MapModule,
   }
 })
 export class ActivityContainer extends Vue {

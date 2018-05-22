@@ -5,6 +5,15 @@
 
   <div class="row">
     <div class="col-md-12">
+      <map-module
+        :loadingStatus="loadingStatus"
+        :activity="getSelectedActivity"
+      ></map-module>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <zone-chart
         :root="'zones'"
         :zones="getSelectedActivityZones"

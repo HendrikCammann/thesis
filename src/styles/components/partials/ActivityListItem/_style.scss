@@ -1,0 +1,7 @@
+.activityListItem {
+  $root: &;
+
+  #{&}__day {
+    color: $color-grey--light
+  }
+}

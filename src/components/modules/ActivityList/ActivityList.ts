@@ -1,14 +1,17 @@
 /* tslint:disable */
 import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import {MutationTypes} from '../../../store/mutation-types';
 import {loadingStatus, LoadingStatus} from '../../../models/App/AppStatus';
 import {RunType} from '../../../store/state';
 import {ClusterWrapper} from '../../../models/State/StateModel';
 import {getKeys} from '../../../utils/array-helper';
+import {ActivityListItem} from '../../partials/ActivityListItem';
 
 @Component({
   template: require('./ActivityList.html'),
+  components: {
+  'activityListItem': ActivityListItem,
+  }
 })
 export class ActivityList extends Vue {
   @Prop()
@@ -35,7 +38,6 @@ export class ActivityList extends Vue {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       let data = this.getData(this.preparation);
       this.formatedData = this.formatData(data, this.clustering);
-      console.log(this.formatedData);
     }
   }
 
@@ -50,7 +52,6 @@ export class ActivityList extends Vue {
 
   private formatData(data: ClusterWrapper, clustering: string) {
     let keys = getKeys(data[clustering]);
-    // keys = keys.reverse();
 
     let itemsGroupedByClustering = [];
     keys.forEach(key => {
@@ -69,6 +70,9 @@ export class ActivityList extends Vue {
   }
 
   mounted() {
-
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      let data = this.getData(this.preparation);
+      this.formatedData = this.formatData(data, this.clustering);
+    }
   }
 }

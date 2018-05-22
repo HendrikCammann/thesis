@@ -122,9 +122,9 @@ export class BarChart extends Vue {
             [chartItems[key][i].endX, chartItems[key][i].endY],
             [chartItems[key][i + 1].startX, chartItems[key][i + 1].startY],
           ];
-          console.log(points);
+          // console.log(points);
           let pathData = lineGenerator(points);
-          console.log(pathData);
+          // console.log(pathData);
           svg.append('path')
             .style('stroke', color)
             .attr('d', pathData);

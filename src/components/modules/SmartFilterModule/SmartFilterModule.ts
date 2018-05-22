@@ -2,6 +2,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {RunType} from '../../../store/state';
 import {MutationTypes} from '../../../store/mutation-types';
+import {CategoryColors} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./smartFilterModule.html'),
@@ -10,27 +11,33 @@ export class SmartFilterModule extends Vue {
   private Runtypes = [
     {
       type: RunType.All,
-      name: 'Alle'
+      name: 'Alle',
+      color: CategoryColors.Default
     },
     {
       type: RunType.Run,
-      name: 'Lauf'
+      name: 'Lauf',
+      color: CategoryColors.Run
     },
     {
       type: RunType.LongRun,
-      name: 'Langer Lauf'
+      name: 'Langer Lauf',
+      color: CategoryColors.LongRun
     },
     {
       type: RunType.ShortIntervals,
-      name: 'Intervalle'
+      name: 'Intervalle',
+      color: CategoryColors.ShortIntervals
     },
     {
       type: RunType.Competition,
-      name: 'Wettkämpfe'
+      name: 'Wettkämpfe',
+      color: CategoryColors.Competition
     },
     {
       type: RunType.Uncategorized,
-      name: 'Rest'
+      name: 'Rest',
+      color: CategoryColors.Uncategorized
     }
   ];
 

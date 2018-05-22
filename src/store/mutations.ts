@@ -559,12 +559,10 @@ const mutations: MutationTree<State> = {
       state.compare.selectedWeeks[preparation] = [];
     }
     state.compare.selectedWeeks[preparation].push(week);
-    console.log(state.compare.selectedWeeks);
   },
 
   [MutationTypes.DESELECT_COMPARE_WEEK]: (state: State, {week, preparation}) => {
     state.compare.selectedWeeks[preparation] = state.compare.selectedWeeks[preparation].filter(item => item !== week);
-    console.log(state.compare.selectedWeeks);
   },
 
 

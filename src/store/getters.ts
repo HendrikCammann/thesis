@@ -80,6 +80,10 @@ const getters: GetterTree<State, State> = {
     return state.compare.showAbsolute;
   },
 
+  getSelectedWeeks: (state) => {
+    return state.compare.selectedWeeks;
+  },
+
   getShownBars: (state) => {
     return state.compare.shownBars;
   },

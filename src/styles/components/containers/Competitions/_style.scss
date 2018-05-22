@@ -9,9 +9,11 @@
     bottom: 60px;
     z-index: 10;
     left: calc(50% + 54px);
+    pointer-events: none;
     transform: translateX(-50%);
 
     .smartFilter {
+      pointer-events: all;
       float: right;
       transform: translateX(94px);
     }

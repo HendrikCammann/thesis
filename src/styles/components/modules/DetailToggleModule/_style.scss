@@ -1,0 +1,18 @@
+.detailToggle {
+  $root: &;
+  position: relative;
+
+  #{&}__button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: $color-black;
+    text-align: center;
+
+    img {
+      height: 30px;
+      width: 30px;
+      transform: translateY(16px);
+    }
+  }
+}

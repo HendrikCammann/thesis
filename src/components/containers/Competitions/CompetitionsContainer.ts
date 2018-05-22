@@ -13,6 +13,7 @@ import {DoughnutChart} from '../../charts/DoughnutChart';
 import {RunType} from '../../../store/state';
 import {compareEvents} from '../../../events/Compare/compare';
 import {ModalButtonModule} from '../../modules/ModalButtonModule';
+import {DetailToggleModule} from '../../modules/DetailToggleModule';
 
 @Component({
   template: require('./competitions.html'),
@@ -29,6 +30,7 @@ import {ModalButtonModule} from '../../modules/ModalButtonModule';
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
     'modalButton': ModalButtonModule,
+    'detailToggle': DetailToggleModule,
     'compareModule': CompareModule,
     'modalModule': ModalModule,
     'doughnutChart': DoughnutChart,

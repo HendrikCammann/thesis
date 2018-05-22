@@ -1,5 +1,6 @@
 .activity {
   $root: &;
+  margin-top: 20px;
 
   #{&}__week {
     height: 150px;

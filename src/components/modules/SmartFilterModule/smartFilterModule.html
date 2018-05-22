@@ -1,13 +1,5 @@
 <div class="smartFilter">
   <div class="smartFilter__content" v-if="isShown">
-    <div class="smartFilter__item"
-         @click="handleViewClick()"
-    >
-
-      <div class="smartFilter__item--name">Detail</div>
-      <div class="smartFilter__item--icon"
-      ></div>
-    </div>
     <div v-for="item in Runtypes"
       @click="handleFilterClick(item.type)"
       class="smartFilter__item">

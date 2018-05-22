@@ -34,11 +34,15 @@ const router = new VueRouter({
     }, {
       component: ActivitiesContainer,
       name: 'Leistung',
-      path: '/activities',
+      path: '/performance',
     }, {
       component: CompareContainer,
       name: 'Vergleich',
       path: '/compare',
+    }, {
+      component: ActivitiesContainer,
+      name: 'Einheiten',
+      path: '/activities',
     }
   ],
 });

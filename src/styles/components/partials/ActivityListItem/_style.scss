@@ -1,5 +1,6 @@
 .activityListItem {
   $root: &;
+  margin-bottom: 2px;
 
   #{&}__day {
     color: $color-grey--light

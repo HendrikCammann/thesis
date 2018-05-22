@@ -1,0 +1,8 @@
+<div class="detailToggle">
+  <div class="detailToggle__button"
+       @click="handleViewClick()"
+  >
+    <img v-if="isUnfolded" src="../../../assets/icons/detail.svg">
+    <img v-if="!isUnfolded" src="../../../assets/icons/schedule.svg">
+  </div>
+</div>

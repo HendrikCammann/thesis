@@ -47,10 +47,6 @@ export class SmartFilterModule extends Vue {
     this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, type);
   }
 
-  public handleViewClick() {
-    this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING);
-  }
-
   public toggleFilter() {
     this.isShown = !this.isShown;
   }

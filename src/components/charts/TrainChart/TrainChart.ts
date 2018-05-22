@@ -38,6 +38,9 @@ export class TrainChart extends Vue {
   @Prop()
   showEverything: boolean;
 
+  @Prop()
+  clustering: string;
+
   // private selectedRunType: RunType = RunType.All;
 
   private width = 359;
@@ -77,7 +80,7 @@ export class TrainChart extends Vue {
     let longestPreparation = 0;
     anchors.forEach(anchor => {
       let data = this.$store.state.sortedLists[anchor];
-      data = data.byWeeks;
+      data = data[this.clustering];
       let keys = getKeys(data);
       longestPreparation = getLargerValue(keys.length, longestPreparation);
     });
@@ -94,7 +97,7 @@ export class TrainChart extends Vue {
     let longestPreparation = 0;
     anchors.forEach(anchor => {
       let data = this.$store.state.sortedLists[anchor];
-      data = data.byWeeks;
+      data = data[this.clustering];
       let keys = getKeys(data);
       longestPreparation = getLargerValue(keys.length, longestPreparation);
       for (let key in data) {
@@ -128,13 +131,13 @@ export class TrainChart extends Vue {
   private trainChart(root: string, data: ClusterWrapper) {
     let svg = setupSvg('#' + root, this.width, this.height);
     if (this.showEverything) {
-      let barItems = this.calculateFoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
+      let barItems = this.calculateFoldedChart(svg, data[this.clustering], this.weekHeight, this.padding, this.largestValue);
       this.drawFoldedConnections(svg, barItems);
       this.drawFoldedWeekChanges(svg, barItems);
       this.drawFoldedBars(svg, barItems);
       this.drawFoldedCheckboxes(svg, barItems);
     } else {
-      let barItems = this.calculateUnfoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
+      let barItems = this.calculateUnfoldedChart(svg, data[this.clustering], this.weekHeight, this.padding, this.largestValue);
       this.drawUnfoldedConnections(svg, barItems);
       this.drawUnfoldedBars(svg, barItems);
     }

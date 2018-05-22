@@ -1,0 +1,7 @@
+.activity {
+  $root: &;
+
+  #{&}__week {
+    height: 150px;
+  }
+}

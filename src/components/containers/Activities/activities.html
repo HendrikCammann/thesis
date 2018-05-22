@@ -1,53 +1,26 @@
-<div class="container">
-  <filter-module
-    :clusters="clusters"
-    :filter="filter"
-    :filterOptions="runTypeFilters"
-    :timeGroupOptions="timeGrouping"
-  ></filter-module>
-
-  <hr>
-
-  <arc-chart
-    :root="'arc'"
-    :canvasConstraints="canvasConstraints"
-    :data="sortedLists"
-    :loadingStatus="loadingStatus"
-    :filter="filter"
-  ></arc-chart>
-
-  <slider-module
-    :root="'slider'"
-    :filter="filter"
-  ></slider-module>
-
-  <!--<swoosh-chart
-    :root="'#swoosh'"
-    :canvasConstraints="canvasConstraints"
-    :data="sortedLists"
-    :filter="filter"
-  ></swoosh-chart>-->
-
-  <hr>
-
-  <!--
-  <div v-if="sortedLists.All">
-    <div v-for="timeRange in sortedLists.All.byWeeks">
+<div class="container-fluid activities">
+  <div class="container card__wrapper">
       <div class="row">
-        <h1 style="display: inline-block">{{ timeRange.rangeName }}</h1>
-        <span>TotalDistance: {{ timeRange.stats.distance / 1000 }}</span> |
-        <span>Time: {{ timeRange.stats.time }}</span> |
-        <span>Run: {{ timeRange.stats.typeCount.run.amount }} ({{ timeRange.stats.typeCount.run.distance / 1000 }}km)</span> |
-        <span>longRun: {{ timeRange.stats.typeCount.longRun.amount }} ({{ timeRange.stats.typeCount.longRun.distance / 1000 }}km)</span> |
-        <span>interval: {{ timeRange.stats.typeCount.interval.amount }} ({{ timeRange.stats.typeCount.interval.distance / 1000 }}km)</span> |
-        <span>competiton: {{ timeRange.stats.typeCount.competition.amount }} ({{ timeRange.stats.typeCount.competition.distance / 1000 }}km)</span>
+        <div class="col-md-4">
+          <train-chart
+            :root="'train'"
+            :anchors="['All']"
+            :preparation="'All'"
+            :loadingStatus="loadingStatus"
+            :selectedRunType="selectedRunType"
+            :showEverything="showEverything"
+            :clustering="'byWeeks'"
+          ></train-chart>
+        </div>
+        <div class="col-md-8">
+          <activity-list
+            :preparation="'All'"
+            :loadingStatus="loadingStatus"
+            :selectedRunType="selectedRunType"
+            :showEverything="showEverything"
+            :clustering="'byWeeks'"
+          ></activity-list>
+        </div>
       </div>
-      <activity-list-item
-        v-for="item in timeRange.activities"
-        :activityId="item"
-      ></activity-list-item>
-    </div>
   </div>
-  -->
-
 </div>

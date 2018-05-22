@@ -1,7 +1,7 @@
 .compareBox {
   $root: &;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
 
   #{&}__value {
     font-size: $font-size__headline--compare;

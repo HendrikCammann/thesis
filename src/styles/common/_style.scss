@@ -8,9 +8,15 @@ body {
 .card {
   $root: &;
 
+  &__label {
+    margin-bottom: 8px;
+    color: $color-grey--light;
+  }
+
   &__wrapper {
     padding: 16px;
     box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.1);
+    margin-bottom: 40px;
   }
 }
 

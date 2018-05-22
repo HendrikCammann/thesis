@@ -5,6 +5,7 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {MutationTypes} from '../../../store/mutation-types';
 import {TrainCompareModule} from '../../modules/TrainCompareModule';
 import {SmartFilterModule} from '../../modules/SmartFilterModule';
+import {CompareModule} from '../../modules/CompareModule';
 
 @Component({
   template: require('./competitions.html'),
@@ -12,11 +13,13 @@ import {SmartFilterModule} from '../../modules/SmartFilterModule';
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
-    showEverything: 'getShowEverything'
+    showEverything: 'getShowEverything',
+    sortedLists: 'getSortedLists',
   }),
   components: {
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
+    'compareModule': CompareModule,
   },
 })
 export class CompetitionsContainer extends Vue {

@@ -2,6 +2,37 @@
   <div class="container competitions__filter">
     <smart-filter></smart-filter>
   </div>
+
+  <div class="container card__label">
+    <div class="row">
+      <div class="col-md-12">
+        Zusammenfassung
+      </div>
+    </div>
+  </div>
+
+  <div class="container card__wrapper">
+    <div class="row competitions__wrapper">
+      <div v-for="(item, i) in selectedTrainingClusters"
+           :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+        <compare-module
+          :index="i"
+          :data="sortedLists"
+          :trainingCluster="selectedTrainingClusters"
+          :loadingStatus="loadingStatus"
+        ></compare-module>
+      </div>
+    </div>
+  </div>
+
+  <div class="container card__label">
+    <div class="row">
+      <div class="col-md-12">
+        Trainingsentwicklung
+      </div>
+    </div>
+  </div>
+
   <div class="container card__wrapper">
     <div class="row competitions__wrapper">
       <div class="competitions__weeks">

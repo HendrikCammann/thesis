@@ -3,7 +3,7 @@
     <compare-box
       :value="data.stats.distance | formatDistance"
       :unit="'km'"
-      :label="'Total distance'"
+      :label="'Gesamtumfang'"
     ></compare-box>
     <compare-box
       :value="trainingClusterDetail.duration.range.toString()"
@@ -11,16 +11,16 @@
     ></compare-box>
     <compare-box
       :value="data.stats.count.toString()"
-      :label="'Sessions'"
+      :label="'Einheiten'"
     ></compare-box>
     <compare-box
       :value="(data.stats.distance / trainingClusterDetail.duration.range) | formatDistance"
       :unit="'km'"
-      :label="'Weekly average'"
+      :label="'ø Wochenumfang'"
     ></compare-box>
     <compare-box
       :value="(data.stats.count / trainingClusterDetail.duration.range).toFixed(1)"
-      :label="'Sessions per week'"
+      :label="'ø Einheiten/Woche'"
     ></compare-box>
   </div>
 </div>

@@ -554,6 +554,20 @@ const mutations: MutationTree<State> = {
     state.compare.showAbsolute = !state.compare.showAbsolute;
   },
 
+  [MutationTypes.SELECT_COMPARE_WEEK]: (state: State, {week, preparation}) => {
+    if (state.compare.selectedWeeks[preparation] === undefined) {
+      state.compare.selectedWeeks[preparation] = [];
+    }
+    state.compare.selectedWeeks[preparation].push(week);
+    console.log(state.compare.selectedWeeks);
+  },
+
+  [MutationTypes.DESELECT_COMPARE_WEEK]: (state: State, {week, preparation}) => {
+    state.compare.selectedWeeks[preparation] = state.compare.selectedWeeks[preparation].filter(item => item !== week);
+    console.log(state.compare.selectedWeeks);
+  },
+
+
 };
 
 export default mutations;

@@ -14,6 +14,12 @@ export enum CategoryConnectingOpacity {
   ActivityArea = 0.1,
 }
 
+export enum Colors {
+  Black = '#454545',
+  LightGray = '#D9D9D9',
+  White = '#FFFFFF',
+}
+
 export enum CategoryColors {
   Run = '#7BC9ED',
   Competition = '#faa628',

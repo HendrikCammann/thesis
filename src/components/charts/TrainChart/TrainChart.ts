@@ -10,10 +10,11 @@ import {PositionModel} from '../../../models/Chart/ChartModels';
 import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
-import {CategoryColors, CategoryOpacity} from '../../../models/VisualVariableModel';
+import {CategoryColors, CategoryOpacity, Colors} from '../../../models/VisualVariableModel';
 import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
+import {MutationTypes} from '../../../store/mutation-types';
 
 @Component({
   template: require('./trainChart.html'),
@@ -52,7 +53,6 @@ export class TrainChart extends Vue {
   @Watch('selectedRunType')
   @Watch('showEverything')
   onPropertyChanged(val: any, oldVal: any) {
-    console.log('changed');
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
@@ -60,6 +60,13 @@ export class TrainChart extends Vue {
       this.trainChart(this.root, data);
     }
   }
+
+
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////// CALCULATIONS ////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
 
   /**
    *
@@ -106,6 +113,13 @@ export class TrainChart extends Vue {
     return this.$store.state.sortedLists[preparation];
   }
 
+
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////// MAIN ////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
+
   /**
    * wraps all functions and checks if folded or unfolded
    * @param {string} root
@@ -118,6 +132,7 @@ export class TrainChart extends Vue {
       this.drawFoldedConnections(svg, barItems);
       this.drawFoldedWeekChanges(svg, barItems);
       this.drawFoldedBars(svg, barItems);
+      this.drawFoldedCheckboxes(svg, barItems);
     } else {
       let barItems = this.calculateUnfoldedChart(svg, data.byWeeks, this.weekHeight, this.padding, this.largestValue);
       this.drawUnfoldedConnections(svg, barItems);
@@ -476,6 +491,22 @@ export class TrainChart extends Vue {
   }
 
 
+  private drawFoldedCheckboxes(svg: any, barItems: any) {
+    for (let i = 0; i < barItems.length; i++) {
+      if (this.checkIfBarExists(barItems[i])) {
+        let position: PositionModel = {
+          x: this.width - 16,
+          y: barItems[i].yStart,
+        };
+
+        let id = 'checkbox_' + i + '_' + this.preparation;
+
+        this.drawCheckbox(svg, position, 8, id, barItems[i], this.preparation);
+      }
+    }
+  }
+
+
   ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
   ////////////// GENERAL /////////////////////////////////////////////////
@@ -738,6 +769,28 @@ export class TrainChart extends Vue {
     }
   }
 
+  public drawCheckbox(svg: any, position: PositionModel, radius: number, id: string, barItem: any, preparation: string) {
+    svg.append('circle')
+      .attr('cx', position.x - radius)
+      .attr('cy', position.y + radius)
+      .attr('r', radius)
+      .attr('stroke', Colors.LightGray)
+      .attr('id', id)
+      .attr('class', 'trainChart__checkbox')
+      .style('fill', Colors.White)
+      .on('click', () => {
+        let item = document.getElementById(id);
+        let week = barItem;
+        if (item.style.fill === 'rgb(69, 69, 69)') {
+          item.style.fill = Colors.White;
+          this.$store.dispatch(MutationTypes.DESELECT_COMPARE_WEEK, {week, preparation});
+        } else {
+          item.style.fill = Colors.Black;
+          this.$store.dispatch(MutationTypes.SELECT_COMPARE_WEEK, {week, preparation});
+        }
+      });
+  }
+
 
   ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
@@ -747,6 +800,7 @@ export class TrainChart extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);
       this.trainChart(this.root, data);

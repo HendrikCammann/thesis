@@ -26,5 +26,8 @@ export class MutationTypes {
   public static SET_COMPARE_TIME_RANGE = '[Store] SET_COMPARE_TIME_RANGE';
   public static TOGGLE_HISTORY_CHART_DISPLAY_MODE = '[Store] TOGGLE_HISTORY_CHART_DISPLAY_MODE';
 
+  public static SELECT_COMPARE_WEEK = '[Store] SELECT_COMPARE_WEEK';
+  public static DESELECT_COMPARE_WEEK = '[Store] DESELECT_COMPARE_WEEK';
+
   public static GET_RACE = '[Strava-API] GET_RACE';
 }

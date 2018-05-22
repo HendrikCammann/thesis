@@ -141,6 +141,18 @@ const actions: ActionTree<State, State> = {
     commit(MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE);
   },
 
+  [MutationTypes.SELECT_COMPARE_WEEK]: ({commit}, {week, preparation}) => {
+    commit(MutationTypes.SELECT_COMPARE_WEEK, {
+      week, preparation
+    });
+  },
+
+  [MutationTypes.DESELECT_COMPARE_WEEK]: ({commit}, {week, preparation}) => {
+    commit(MutationTypes.DESELECT_COMPARE_WEEK, {
+      week, preparation
+    });
+  },
+
 };
 
 export default actions;

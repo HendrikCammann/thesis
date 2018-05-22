@@ -4,16 +4,22 @@
 
   #{&}__content {
     text-align: right;
-    position: absolute;
-    top: -352px;
-    right: 8px;
-    width: 200px;
+    width: max-content;
+    transform: translate(-8px, 0);
+    //position: absolute;
+    //top: -352px;
+    //right: 8px;
 
     #{$root}__item {
+      margin-bottom: 4px;
+      &--name {
+        transform: translate(-4px, -15px);
+        display: inline-block;
+      }
       &--icon {
-        transform: translate(0, 15px);
-        margin-top: 8px;
-        margin-left: 8px;
+        //transform: translate(0, 15px);
+        //margin-top: 8px;
+        //margin-left: 8px;
         display: inline-block;
         height: 45px;
         width: 45px;
@@ -24,6 +30,7 @@
   }
 
   #{&}__button {
+    float: right;
     height: 60px;
     width: 60px;
     border-radius: 50%;

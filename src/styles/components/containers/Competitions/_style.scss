@@ -7,15 +7,24 @@
     position: fixed;
     text-align: right;
     bottom: 60px;
+    right: 0;
     z-index: 10;
-    left: calc(50% + 54px);
+    width: 60px;
+    // left: calc(50% + 54px);
     pointer-events: none;
-    transform: translateX(-50%);
+    // transform: translateX(-50%);
 
-    .smartFilter {
+    .modalButton {
       pointer-events: all;
       float: right;
-      transform: translateX(94px);
+      //transform: translateX(94px);
+    }
+
+    .smartFilter {
+      margin-top: 16px;
+      pointer-events: all;
+      float: right;
+      //transform: translateX(94px);
     }
   }
 

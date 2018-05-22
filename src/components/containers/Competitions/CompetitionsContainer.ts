@@ -12,12 +12,14 @@ import {modalEvents} from '../../../events/Modal/modal';
 import {DoughnutChart} from '../../charts/DoughnutChart';
 import {RunType} from '../../../store/state';
 import {compareEvents} from '../../../events/Compare/compare';
+import {ModalButtonModule} from '../../modules/ModalButtonModule';
 
 @Component({
   template: require('./competitions.html'),
   computed: mapGetters({
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     selectedWeeks: 'getSelectedWeeks',
+    selectedWeeksLength: 'getSelectedWeeksLength',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
     showEverything: 'getShowEverything',
@@ -26,6 +28,7 @@ import {compareEvents} from '../../../events/Compare/compare';
   components: {
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
+    'modalButton': ModalButtonModule,
     'compareModule': CompareModule,
     'modalModule': ModalModule,
     'doughnutChart': DoughnutChart,

@@ -9,6 +9,10 @@ import {MutationTypes} from '../../../store/mutation-types';
 export class SmartFilterModule extends Vue {
   private Runtypes = [
     {
+      type: RunType.All,
+      name: 'Alle'
+    },
+    {
       type: RunType.Run,
       name: 'Lauf'
     },

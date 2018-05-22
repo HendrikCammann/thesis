@@ -84,6 +84,12 @@ const getters: GetterTree<State, State> = {
     return state.compare.selectedWeeks;
   },
 
+  getSelectedWeeksLength: (state) => {
+    let length = 0;
+    let keys = getKeys(state.compare.selectedWeeks);
+    return 3;
+  },
+
   getShownBars: (state) => {
     return state.compare.shownBars;
   },

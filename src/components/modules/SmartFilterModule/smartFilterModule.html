@@ -3,18 +3,15 @@
     <div class="smartFilter__item"
          @click="handleViewClick()"
     >
-      Detail
-      <div class="smartFilter__item--icon">
 
-      </div>
+      <div class="smartFilter__item--name">Detail</div>
+      <div class="smartFilter__item--icon"></div>
     </div>
     <div v-for="item in Runtypes"
       @click="handleFilterClick(item.type)"
       class="smartFilter__item">
-      {{ item.name }}
-      <div class="smartFilter__item--icon">
-
-      </div>
+      <div class="smartFilter__item--name">{{ item.name }}</div>
+      <div class="smartFilter__item--icon"></div>
     </div>
   </div>
   <div class="smartFilter__button"

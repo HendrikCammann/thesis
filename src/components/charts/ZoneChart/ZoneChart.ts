@@ -77,8 +77,8 @@ export class ZoneChart extends Vue {
         outerRadius: radius,
         startAngle: startAngle,
         endAngle: endAngle
-      }))
-      .on('mouseenter', () => {
+      }));
+      /*.on('mouseenter', () => {
         d3.select('#' + fullId)
           .transition()
           .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
@@ -121,7 +121,93 @@ export class ZoneChart extends Vue {
         d3.select('#' + fullPartnerId + 'label')
           .transition()
           .attr('transform', 'translate(0, 0)');
-      });
+      });*/
+  }
+
+  /**
+   * Draws a single halfcircle to a given position
+   * @param svg
+   * @param {PositionModel} position
+   * @param {number} radius
+   * @param {string} color
+   * @param {number} time
+   * @param {boolean} bottomHalf
+   * @param {number} id
+   */
+  private drawHalfCircleShould(svg, position: PositionModel, radius: number, color: string, time: number, bottomHalf: boolean, id: number): void {
+    let arc = d3.arc();
+    let startAngle = -Math.PI * 0.5;
+    let endAngle = Math.PI * 0.5;
+    let hoverOffset = 22;
+
+    if (bottomHalf) {
+      startAngle = Math.PI * 0.5;
+      endAngle = Math.PI * 1.5;
+      hoverOffset *= -1;
+    }
+
+    let fullId = 'arc' + id + bottomHalf;
+    let fullPartnerId = 'arc' + id + !bottomHalf;
+
+    let xPos = position.x;
+    let yPos = position.y;
+
+    svg.append('path')
+      .attr('transform', 'translate(' + [ xPos, yPos ] + ')')
+      .attr('opacity', CategoryOpacity.Full)
+      .attr('id', fullId)
+      .attr('fill', color)
+      .attr('class', 'zoneChart__circle')
+      .attr('d', arc({
+        innerRadius: radius - 1,
+        outerRadius: radius,
+        startAngle: startAngle,
+        endAngle: endAngle
+      }));
+    /*.on('mouseenter', () => {
+      d3.select('#' + fullId)
+        .transition()
+        .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
+      d3.select('#' + fullPartnerId)
+        .transition()
+        .attr('transform', 'translate(' + [ xPos, yPos + hoverOffset ] + ')');
+
+      d3.select('#' + fullId + 'text')
+        .transition()
+        .attr('opacity', 1);
+      d3.select('#' + fullPartnerId + 'text')
+        .transition()
+        .attr('opacity', 1);
+
+      d3.select('#' + fullId + 'label')
+        .transition()
+        .attr('transform', 'translate(' + [ 0, - hoverOffset ] + ')');
+      d3.select('#' + fullPartnerId + 'label')
+        .transition()
+        .attr('transform', 'translate(' + [ 0, hoverOffset ] + ')');
+    })
+    .on('mouseleave', () => {
+      d3.select('#' + fullId)
+        .transition()
+        .attr('transform', 'translate(' + [ xPos, yPos ] + ')');
+      d3.select('#' + fullPartnerId)
+        .transition()
+        .attr('transform', 'translate(' + [ xPos, yPos ] + ')');
+
+      d3.select('#' + fullId + 'text')
+        .transition()
+        .attr('opacity', 0);
+      d3.select('#' + fullPartnerId + 'text')
+        .transition()
+        .attr('opacity', 0);
+
+      d3.select('#' + fullId + 'label')
+        .transition()
+        .attr('transform', 'translate(0, 0)');
+      d3.select('#' + fullPartnerId + 'label')
+        .transition()
+        .attr('transform', 'translate(0, 0)');
+    });*/
   }
 
   /**
@@ -190,15 +276,25 @@ export class ZoneChart extends Vue {
    */
   private drawChartItem(svg, position: PositionModel, upperCircle: CircleItem, lowerCircle: CircleItem, textPosition: PositionModel, index: number, drawHeartrate: boolean): void {
 
-    this.addText(svg, textPosition, upperCircle.text, 'zoneChart__text zoneChart__text--pace', false, index);
-    this.drawHalfCircle(svg, position, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
-    this.addLabel(svg, position, upperCircle.labelText, 'zoneChart__label', false, index);
-
     if (drawHeartrate) {
+      this.drawHalfCircle(svg, position, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
+      this.drawHalfCircle(svg, position, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
+
+      this.drawHalfCircleShould(svg, position, upperCircle.radius, lowerCircle.color, upperCircle.time, true, index);
+      this.drawHalfCircleShould(svg, position, lowerCircle.radius, upperCircle.color, upperCircle.time, false, index);
+
+    }
+
+    /*this.addText(svg, textPosition, upperCircle.text, 'zoneChart__text zoneChart__text--pace', false, index);
+    this.drawHalfCircleShould(svg, position, upperCircle.radius, lowerCircle.color, upperCircle.time, true, index);
+    this.drawHalfCircle(svg, position, upperCircle.radius, upperCircle.color, upperCircle.time, false, index);
+    this.addLabel(svg, position, upperCircle.labelText, 'zoneChart__label', false, index);*/
+
+    /*if (drawHeartrate) {
       this.drawHalfCircle(svg, position, lowerCircle.radius, lowerCircle.color, upperCircle.time, true, index);
       this.addText(svg, textPosition, lowerCircle.text, 'zoneChart__text zoneChart__text--heartrate', true, index);
       this.addLabel(svg, position, lowerCircle.labelText, 'zoneChart__label', true, index);
-    }
+    }*/
   }
 
   /**
@@ -351,6 +447,6 @@ export class ZoneChart extends Vue {
    * Vue lifecycle method
    */
   mounted() {
-    this.zoneChart('#' + this.root, {width: 554, height: 300, marginBottom: 20, canvasOffset: 10}, this.zones);
+    this.zoneChart('#' + this.root, {width: 540, height: 200, marginBottom: 20, canvasOffset: 10}, this.zones);
   }
 }

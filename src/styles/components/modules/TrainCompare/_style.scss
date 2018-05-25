@@ -1,4 +1,8 @@
 .trainCompare {
   $root: &;
-  margin-top: 32px;
+
+  #{&}__competition {
+    text-align: center;
+    margin-bottom: 24px;
+  }
 }

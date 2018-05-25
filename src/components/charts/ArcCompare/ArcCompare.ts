@@ -62,14 +62,14 @@ export class ArcCompare extends Vue {
   private arcCompare(root: string, data): void {
     d3.select(root + " > svg").remove();
     let svg = d3.select(root).append('svg')
-      .attr('width', 360)
+      .attr('width', 325)
       .attr('height', 100);
 
     let draw = [];
     let totalDistance = 0;
     let startPos: PositionModel = {
       x: 0,
-      y: 99,
+      y: 100 - 25,
     };
 
     let obj = {};
@@ -84,7 +84,7 @@ export class ArcCompare extends Vue {
         totalDistance += cluster[key].distance;
         sumDistance += this.calculateRadiusFromArea(cluster[key].distance) * 2;
       }
-      startPos.x = (360 / 2) - (sumDistance / 2);
+      startPos.x = (325 / 2) - (sumDistance / 2);
     });
 
     let xSave = startPos.x;
@@ -158,7 +158,7 @@ export class ArcCompare extends Vue {
     let posY = position.y;
     svg.append('text')
       .attr('x', position.x)
-      .attr('y', posY - 5)
+      .attr('y', posY + 15)
       .attr('class', 'arcCompare__label')
       .attr('text-anchor', 'middle')
       .attr('id', fullId)
@@ -196,8 +196,8 @@ export class ArcCompare extends Vue {
         outerRadius: this.calculateRadiusFromArea(item.distance),
         startAngle: -Math.PI * 0.5,
         endAngle: Math.PI * 0.5
-      }))
-      .on('mouseenter', () => {
+      }));
+      /*.on('mouseenter', () => {
         d3.select('#' + fullId)
           .transition()
           .attr('transform', 'translate(' + [ xPos, yPos - hoverOffset ] + ')');
@@ -218,7 +218,7 @@ export class ArcCompare extends Vue {
         d3.select('#' + fullId + 'text')
           .transition()
           .attr('opacity', 0);
-      });
+      });*/
   }
 
   mounted() {

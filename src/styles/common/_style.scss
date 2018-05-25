@@ -5,4 +5,27 @@ body {
   color: $color-black;
 }
 
+.clearfix::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.card {
+  $root: &;
+  padding: 16px;
+  border-radius: 24px;
+  box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.1);
+}
+
+.sectionLabel {
+  $root: &;
+  font-family: 'Nobile', sans-serif;
+  font-weight: 700;
+  color: $color-black;
+  font-size: 36px;
+  margin: 136px 0 40px -15px;
+}
+
 

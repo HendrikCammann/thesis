@@ -1,15 +1,19 @@
 <div class="trainCompare">
-  <!--<div class="trainCompare__headline">
-    {{ preparation }} <img src="../../../assets/illustrations/shoe.svg">
-  </div>-->
-  <train-chart
-    :root="root"
-    :anchors="anchors"
+  <competition-module
+    class="trainCompare__competition"
     :preparation="preparation"
     :loadingStatus="loadingStatus"
-    :selectedRunType="selectedRunType"
-    :showEverything="isUnfolded"
-    :clustering="'byWeeks'"
-  ></train-chart>
+  ></competition-module>
+  <div class="card">
+    <train-chart
+      :root="root"
+      :anchors="anchors"
+      :preparation="preparation"
+      :loadingStatus="loadingStatus"
+      :selectedRunType="selectedRunType"
+      :showEverything="isUnfolded"
+      :clustering="'byWeeks'"
+    ></train-chart>
+  </div>
 </div>
 

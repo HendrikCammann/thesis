@@ -11,7 +11,7 @@ import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryColors, CategoryOpacity, Colors} from '../../../models/VisualVariableModel';
-import {calculateBarLength, calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 import {MutationTypes} from '../../../store/mutation-types';
@@ -43,7 +43,7 @@ export class TrainChart extends Vue {
 
   // private selectedRunType: RunType = RunType.All;
 
-  private width = 350;
+  private width = 325;
   private height: number;
   private padding = 8;
   private itemHeight = 150;
@@ -77,14 +77,16 @@ export class TrainChart extends Vue {
    * @returns {number}
    */
   private calculateSvgHeight(anchors: string[]): number {
-    let longestPreparation = 0;
+    let length = 0;
     anchors.forEach(anchor => {
       let data = this.$store.state.sortedLists[anchor];
       data = data[this.clustering];
       let keys = getKeys(data);
-      longestPreparation = getLargerValue(keys.length, longestPreparation);
+      if (anchor === this.preparation) {
+        length = keys.length;
+      }
     });
-    return longestPreparation * this.itemHeight;
+    return length * this.itemHeight;
   }
 
   /**
@@ -607,8 +609,9 @@ export class TrainChart extends Vue {
    */
   private drawDivider(svg: any, width: number, weekIndex: number, position: PositionModel, color: string) {
     svg.append('text')
+      .attr('class', 'trainChart__divider-label')
       .attr('x', position.x)
-      .attr('y', position.y + 7)
+      .attr('y', position.y + 6)
       .attr('fill', '#D9D9D9')
       .attr('text-anchor', 'left')
       .text(weekIndex);
@@ -689,7 +692,7 @@ export class TrainChart extends Vue {
     let trianglePos = position.x + this.barWidth;
 
     // let arcOffsetX = Math.round(percentualDifference / 8);
-    let arcOffsetX = Math.abs(totalDifference);
+    let arcOffsetX = 15;
 
     let x = position.x;
     let y = position.y + (height / 2);
@@ -744,6 +747,7 @@ export class TrainChart extends Vue {
     }
 
     svg.append('text')
+      .attr('class', 'trainChart__arc-label')
       .attr('x', x + textOffset)
       .attr('y', y + 5)
       .attr('fill', color)
@@ -774,6 +778,7 @@ export class TrainChart extends Vue {
 
     if (!hideLabel) {
       svg.append('text')
+        .attr('class', 'trainChart__bar-label')
         .attr('x', position.x + width + 4)
         .attr('y', position.y + 14)
         .attr('fill', color)

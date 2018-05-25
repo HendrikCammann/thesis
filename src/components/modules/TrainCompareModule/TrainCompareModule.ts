@@ -3,10 +3,12 @@ import Vue from 'vue';
 import {TrainChart} from '../../charts/TrainChart';
 import {LoadingStatus} from '../../../models/App/AppStatus';
 import {RunType} from '../../../store/state';
+import {CompetitionModule} from '../CompetitionModule';
 
 @Component({
   template: require('./trainCompareModule.html'),
   components: {
+    'competitionModule': CompetitionModule,
     'trainChart': TrainChart,
   },
 })

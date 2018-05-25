@@ -27,9 +27,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/ZoneChart/_style";
 @import "components/charts/ArcCompare/_style";
 @import "components/charts/BarChart/_style";
+@import "components/charts/TrainChart/_style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/CardModule/_style";
+@import "components/modules/CompetitionModule/_style";
 @import "components/modules/NavigationModule/_style";
 @import "components/modules/LastRunModule/_style";
 @import "components/modules/CompareModule/_style";
@@ -42,6 +44,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "components/modal/_style";
 
+@import "components/partials/Button/_style";
 @import "components/partials/ActivityListItem/_style";
 @import "components/partials/TagItem/_style";
 @import "components/partials/TitleBox/_style";

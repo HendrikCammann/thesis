@@ -1,19 +1,29 @@
 .compareModule {
   $root: &;
 
-  &__headline {
+  #{&}__headline {
     text-align: center;
     font-family: $font-family--main;
     font-size: 16px;
     font-weight: 500;
     color: $color-black;
+    margin-bottom: 24px;
 
     &-text {
       margin-bottom: 4px;
     }
   }
 
+  #{&}__divider {
+    margin: 8px 15px 40px 15px;
+  }
+
   #{&}__chart {
     text-align: center;
+  }
+
+  #{&}__cta {
+    margin: 0 auto 12px auto;
+    width: fit-content;
   }
 }

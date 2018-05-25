@@ -1,18 +1,36 @@
 <div class="compareModule">
-  <div class="compareModule__chart">
-    <!--<arc-compare
-      :root="'arcCompare-' + index"
-      :data="sortedData"
-      :trainingCluster="trainingCluster"
-      :loadingStatus="loadingStatus"
-    ></arc-compare>-->
+  <div class="compareModule__headline">
+    <div class="compareModule__headline-text">{{ trainingCluster[index] }}</div>
+    <tag-item
+      :name="'Halbmarathon'"
+      :color="'#43b3e6'"
+    ></tag-item>
   </div>
-  <div class="compareModule__list">
-    <compare-list-item
-      :data="sortedData"
-      :trainingCluster="trainingCluster[index]"
-      :loadingStatus="loadingStatus"
-      :trainingClusterDetail="trainingClusterDetail"
-    ></compare-list-item>
+  <div class="card clearfix">
+    <div class="compareModule__chart">
+      <arc-compare
+        :root="'arcCompare-' + index"
+        :data="sortedData"
+        :trainingCluster="trainingCluster"
+        :loadingStatus="loadingStatus"
+      ></arc-compare>
+    </div>
+
+    <hr class="compareModule__divider">
+
+    <div class="compareModule__list">
+      <compare-list-item
+        :data="sortedData"
+        :trainingCluster="trainingCluster[index]"
+        :loadingStatus="loadingStatus"
+        :trainingClusterDetail="trainingClusterDetail"
+      ></compare-list-item>
+    </div>
+
+    <div class="compareModule__cta">
+      <button-main
+        :name="'Detailanalyse'"
+      ></button-main>
+    </div>
   </div>
 </div>

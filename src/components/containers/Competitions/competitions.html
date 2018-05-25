@@ -29,45 +29,39 @@
   </div>
 
   <div class="container">
-    <card-module
-      :headline="'Zusammenfassung'"
-      :useHeadline="false"
-      :useOuterLables="true"
-    >
-      <template slot="outerContent">
-        <div class="row">
-          <div
-            v-for="(item, i) in selectedTrainingClusters"
-            :class="['col-md-' + (12 / selectedTrainingClusters.length)]"
-          >
-            <div class="compareModule__headline">
-              <div class="compareModule__headline-text">{{ selectedTrainingClusters[i] }}</div>
-              <tag-item
-                :name="'Halbmarathon'"
-                :color="'#43b3e6'"
-              ></tag-item>
-            </div>
-          </div>
-        </div>
-      </template>
-      <template slot="innerContent">
-        <div class="row competitions__wrapper">
-          <div v-for="(item, i) in selectedTrainingClusters"
-               :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
-            <compare-module
-              :index="i"
-              :data="sortedLists"
-              :trainingCluster="selectedTrainingClusters"
-              :loadingStatus="loadingStatus"
-            ></compare-module>
-          </div>
-        </div>
-      </template>
-    </card-module>
+    <div class="row">
+      <div v-for="(item, i) in selectedTrainingClusters"
+           :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+        <compare-module
+          :index="i"
+          :data="sortedLists"
+          :trainingCluster="selectedTrainingClusters"
+          :loadingStatus="loadingStatus"
+        ></compare-module>
+      </div>
+    </div>
   </div>
 
   <div class="container">
-    <card-module
+    <div class="row sectionLabel">
+      <div class="col-md-12">
+        Vorbereitungsverlauf
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="(item, i) in selectedTrainingClusters"
+           :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+        <train-compare
+          :root="'train' + i"
+          :anchors="selectedTrainingClusters"
+          :preparation="selectedTrainingClusters[i]"
+          :loadingStatus="loadingStatus"
+          :selectedRunType="selectedRunType"
+          :isUnfolded="showEverything"
+        ></train-compare>
+      </div>
+    </div>
+    <!--<card-module
       :headline="'Vorbereitungsverlauf'"
       :useHeadline="true"
       :useOuterLables="false"
@@ -91,6 +85,6 @@
           </div>
         </div>
       </template>
-    </card-module>
+    </card-module>-->
   </div>
 </div>

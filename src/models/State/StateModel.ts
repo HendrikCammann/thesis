@@ -17,14 +17,16 @@ export class ClusterItem {
   };
   duration: any;
   type: ClusterTypes;
+  eventId: number;
 
-  constructor(name, id, individual, timeRange, type) {
+  constructor(name, id, individual, timeRange, type, eventId) {
     this.clusterName = name;
     this.id = id;
     this.isIndividual = individual;
     this.timeRange = timeRange;
     this.duration = getWeeksBetweenDates(timeRange.end, timeRange.start);
     this.type = type;
+    this.eventId = eventId;
   }
 }
 

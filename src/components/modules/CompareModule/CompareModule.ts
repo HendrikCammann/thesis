@@ -6,12 +6,14 @@ import {CompareListItem} from '../../partials/CompareListItem';
 import {getDataToCompare} from '../../../utils/compareData/compareData';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {TagItem} from '../../partials/TagItem';
+import {Button} from '../../partials/Button';
 
 @Component({
   template: require('./compareModule.html'),
   components: {
     'arcCompare': ArcCompare,
     'compareListItem': CompareListItem,
+    'button-main': Button,
     'tagItem': TagItem
   }
 })

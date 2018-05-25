@@ -1,14 +1,18 @@
 .compareBox {
   $root: &;
   text-align: center;
-  margin-top: 24px;
+  margin: 32px 0;
 
   #{&}__value {
-    font-size: $font-size__headline--compare;
+    font-family: $font-family--secondary;
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: 700;
   }
 
   #{&}__unit {
-    font-size: $font-size__body-labels;
+    font-weight: 400;
+    font-size: 12px;
   }
 
   #{&}__label {

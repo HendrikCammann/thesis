@@ -1,0 +1,11 @@
+<div class="cardModule">
+  <div v-if="useHeadline" class="cardModule__label">
+    {{ headline }}
+  </div>
+  <div v-if="useOuterLables" class="cardModule__outerLabels">
+    <slot name="outerContent"></slot>
+  </div>
+  <div class="cardModule__wrapper">
+    <slot name="innerContent"></slot>
+  </div>
+</div>

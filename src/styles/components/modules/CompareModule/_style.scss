@@ -1,16 +1,15 @@
 .compareModule {
   $root: &;
 
-  #{&}__headline {
+  &__headline {
     text-align: center;
-    font-size: 20px;
-    margin-top: 40px;
-    margin-bottom: 10px;
+    font-family: $font-family--main;
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-black;
 
-    img {
-      margin-left: 4px;
-      transform: translate(0, -2px);
-      height: 15px;
+    &-text {
+      margin-bottom: 4px;
     }
   }
 

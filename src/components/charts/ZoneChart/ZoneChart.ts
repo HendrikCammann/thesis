@@ -351,6 +351,6 @@ export class ZoneChart extends Vue {
    * Vue lifecycle method
    */
   mounted() {
-    this.zoneChart('#' + this.root, {width: 1200, height: 300, marginBottom: 20, canvasOffset: 10}, this.zones);
+    this.zoneChart('#' + this.root, {width: 554, height: 300, marginBottom: 20, canvasOffset: 10}, this.zones);
   }
 }

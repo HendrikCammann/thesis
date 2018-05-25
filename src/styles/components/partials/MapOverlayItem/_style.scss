@@ -10,18 +10,18 @@
   }
 
   #{&}__content {
-    text-align: left;
+    text-align: right;
     display: inline-block;
 
     #{$root}__value {
-      font-size: $font-size__body-markup;
-      color: $color-white;
+      font-size: 22px;
+      color: $color-black;
       font-weight: 500;
     }
 
     #{$root}__label {
       font-family: $font-family--secondary;
-      font-size: $font-size__body-labels;
+      font-size: 14px;
       font-weight: 400;
       color: $color-gray;
     }

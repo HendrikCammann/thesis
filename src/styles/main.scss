@@ -5,7 +5,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~leaflet/dist/leaflet.css";
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Nobile:400,500,700');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:300,400,700');
 
 // common
@@ -19,6 +19,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Dashboard/_style";
 @import "components/containers/Compare/_style";
 @import "components/containers/Competitions/_style";
+@import "components/containers/Activity/_style";
 
 @import "components/charts/WaveChart/_style";
 @import "components/charts/HistoryChart/_style";
@@ -28,6 +29,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/BarChart/_style";
 
 @import "components/modules/ActivityList/_style";
+@import "components/modules/CardModule/_style";
 @import "components/modules/NavigationModule/_style";
 @import "components/modules/LastRunModule/_style";
 @import "components/modules/CompareModule/_style";
@@ -41,6 +43,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/modal/_style";
 
 @import "components/partials/ActivityListItem/_style";
+@import "components/partials/TagItem/_style";
 @import "components/partials/TitleBox/_style";
 @import "components/partials/MapOverlayItem/_style";
 @import "components/partials/CompareBox/_style";

@@ -1,0 +1,30 @@
+.activityDetail {
+  $root: &;
+  margin-left: 108px;
+  padding-top: 80px;
+
+  #{&}__headline {
+    margin-top: 75px;
+    margin-bottom: 40px;
+
+    #{$root}__name {
+      font-family: $font-family--main;
+      font-size: 22px;
+      font-weight: 500;
+      color: $color-black;
+    }
+
+    #{$root}__date {
+      font-family: $font-family--main;
+      font-size: 16px;
+      font-weight: 400;
+      color: #B4B4B4;
+    }
+  }
+
+  #{&}__zone {
+    &-text {
+      line-height: 1.5;
+    }
+  }
+}

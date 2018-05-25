@@ -5,12 +5,14 @@ import {ArcCompare} from '../../charts/ArcCompare';
 import {CompareListItem} from '../../partials/CompareListItem';
 import {getDataToCompare} from '../../../utils/compareData/compareData';
 import {loadingStatus} from '../../../models/App/AppStatus';
+import {TagItem} from '../../partials/TagItem';
 
 @Component({
   template: require('./compareModule.html'),
   components: {
     'arcCompare': ArcCompare,
-    'compareListItem': CompareListItem
+    'compareListItem': CompareListItem,
+    'tagItem': TagItem
   }
 })
 export class CompareModule extends Vue {
@@ -25,6 +27,8 @@ export class CompareModule extends Vue {
 
   @Prop()
   loadingStatus: any;
+
+  public type: string = 'Halbmarathon';
 
   public sortedData: any = null;
   public trainingClusterDetail: any = null;

@@ -14,6 +14,8 @@ import {RunType} from '../../../store/state';
 import {compareEvents} from '../../../events/Compare/compare';
 import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
+import {CardModule} from '../../modules/CardModule';
+import {TagItem} from '../../partials/TagItem';
 
 @Component({
   template: require('./competitions.html'),
@@ -21,12 +23,15 @@ import {DetailToggleModule} from '../../modules/DetailToggleModule';
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     selectedWeeks: 'getSelectedWeeks',
     selectedWeeksLength: 'getSelectedWeeksLength',
+    existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
     showEverything: 'getShowEverything',
     sortedLists: 'getSortedLists',
   }),
   components: {
+    'cardModule': CardModule,
+    'tagItem': TagItem,
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
     'modalButton': ModalButtonModule,
@@ -38,6 +43,7 @@ import {DetailToggleModule} from '../../modules/DetailToggleModule';
 })
 export class CompetitionsContainer extends Vue {
   public showModal = false;
+  public selectedCluster = '';
   public hoveredRunType = RunType.All;
 
   public openModal() {
@@ -55,6 +61,14 @@ export class CompetitionsContainer extends Vue {
 
     eventBus.$on(compareEvents.set_Hovered_Run_Type, (type) => {
       this.hoveredRunType = type;
+    });
+
+    eventBus.$on(compareEvents.add_Training_Cluster, (type) => {
+      this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
+    });
+
+    eventBus.$on(compareEvents.remove_Training_Cluster, (type) => {
+      this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
     });
 
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {

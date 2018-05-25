@@ -1,0 +1,21 @@
+.cardModule {
+  $root: &;
+
+  &__label {
+    margin-bottom: 8px;
+    margin-left: 16px;
+    color: $color-black;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &__outerLabels {
+    padding: 16px;
+  }
+
+  &__wrapper {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.1);
+  }
+}

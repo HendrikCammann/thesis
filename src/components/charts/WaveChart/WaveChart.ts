@@ -317,18 +317,18 @@ export class WaveChart extends Vue {
 
 
       // COLOR ARCS
-      let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Active, i, true);
-      let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Inactive, i, false);
+      let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Full, i, true);
+      let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
 
 
       // ADD LABELS TO ARCS
       if (i === 0) {
-        this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--upper', -3, CategoryOpacity.Active, '45%', 'middle');
-        this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--lower', 14, 0.5, '45%', 'middle');
-      } else {
+        this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--upper', -3, CategoryOpacity.Active, '46%', 'middle');
+        this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--lower', 14, 0.5, '42%', 'middle');
+      } /*else {
         this.drawArcText(vis, data[i][0].values.upper, upperArcID, 'waveChart__text--small waveChart__text--upper--small', 12, CategoryOpacity.Active, '5px', 'left');
         this.drawArcText(vis, data[i][0].values.lower, lowerArcID, 'waveChart__text--small waveChart__text--lower--small', -3, 0.5, '5px', 'left');
-      }
+      }*/
     }
   }
 }

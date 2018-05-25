@@ -66,53 +66,31 @@
     </card-module>
   </div>
 
-  <!--<div class="container card__label">
-    <div class="row">
-      <div class="col-md-12">
-        Zusammenfassung
-      </div>
-    </div>
+  <div class="container">
+    <card-module
+      :headline="'Vorbereitungsverlauf'"
+      :useHeadline="true"
+      :useOuterLables="false"
+    >
+      <template slot="innerContent">
+        <div class="row competitions__wrapper">
+          <div class="competitions__weeks">
+            Woche
+          </div>
+          <div
+            v-for="(item, i) in selectedTrainingClusters"
+            :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
+            <train-compare
+              :root="'train' + i"
+              :anchors="selectedTrainingClusters"
+              :preparation="selectedTrainingClusters[i]"
+              :loadingStatus="loadingStatus"
+              :selectedRunType="selectedRunType"
+              :isUnfolded="showEverything"
+            ></train-compare>
+          </div>
+        </div>
+      </template>
+    </card-module>
   </div>
-
-  <div class="container card__wrapper">
-    <div class="row competitions__wrapper">
-      <div v-for="(item, i) in selectedTrainingClusters"
-           :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
-        <compare-module
-          :index="i"
-          :data="sortedLists"
-          :trainingCluster="selectedTrainingClusters"
-          :loadingStatus="loadingStatus"
-        ></compare-module>
-      </div>
-    </div>
-  </div>-->
-
-  <!--<div class="container card__label">
-    <div class="row">
-      <div class="col-md-12">
-        Trainingsentwicklung
-      </div>
-    </div>
-  </div>
-
-  <div class="container card__wrapper">
-    <div class="row competitions__wrapper">
-      <div class="competitions__weeks">
-        Woche
-      </div>
-      <div
-        v-for="(item, i) in selectedTrainingClusters"
-        :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
-        <train-compare
-          :root="'train' + i"
-          :anchors="selectedTrainingClusters"
-          :preparation="selectedTrainingClusters[i]"
-          :loadingStatus="loadingStatus"
-          :selectedRunType="selectedRunType"
-          :isUnfolded="showEverything"
-        ></train-compare>
-      </div>
-    </div>
-  </div>-->
 </div>

@@ -38,10 +38,11 @@
     position: relative;
 
     #{$root}__weeks {
+      font-family: $font-family--main;
       position: absolute;
       width: 100px;
       left: -100px;
-      top: 121px;
+      top: 48px;
       padding-right: 16px;
       text-align: right;
       color: $color-grey--light;

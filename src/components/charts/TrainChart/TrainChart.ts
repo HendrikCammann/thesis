@@ -11,7 +11,7 @@ import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType} from '../../../models/FormatModel';
 import {CategoryColors, CategoryOpacity, Colors} from '../../../models/VisualVariableModel';
-import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {calculateBarLength, calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 import {MutationTypes} from '../../../store/mutation-types';
@@ -43,7 +43,7 @@ export class TrainChart extends Vue {
 
   // private selectedRunType: RunType = RunType.All;
 
-  private width = 359;
+  private width = 350;
   private height: number;
   private padding = 8;
   private itemHeight = 150;
@@ -175,6 +175,7 @@ export class TrainChart extends Vue {
     duration = duration.length;
 
     for (let key in data) {
+      console.log(data[key]);
       this.drawDivider(svg, this.width, (duration - index), positionDivider, '#F3F3F3');
       position.y += padding;
       positionDivider.y += padding;
@@ -385,10 +386,15 @@ export class TrainChart extends Vue {
       if (this.checkIfBarExists(barItems[i]) && i < barItems.length - 1) {
         if (this.checkIfBarExists(barItems[i + 1])) {
           if (this.selectedRunType === RunType.All) {
+            let midBarOne = ((barItems[i].yStart + barItems[i].yEnd) / 2 ) - 4;
+            let midBarTwo = ((barItems[i + 1].yStart + barItems[i + 1].yEnd) / 2) - 4;
+
             let position: PositionModel = {
               x: barItems[i].xStart + (this.barWidth / 2),
-              y: (barItems[i].yStart + barItems[i + 1].yStart) / 2
+              y: (midBarOne + midBarTwo) / 2
             };
+
+            let radius = Math.abs(midBarOne - midBarTwo) / 2;
 
             let isLeft = barItems[i].distance < barItems[i + 1].distance;
             let totalDifference = barItems[i].distance - barItems[i + 1].distance;
@@ -403,15 +409,15 @@ export class TrainChart extends Vue {
             let legPositions = [
               {
                 x: barItems[i].xStart,
-                y: barItems[i].yStart,
+                y: midBarOne,
               },
               {
                 x: barItems[i + 1].xStart,
-                y: barItems[i + 1].yStart,
+                y: midBarTwo,
               }
             ];
 
-            this.drawChangeArc(svg, position, legPositions, this.itemHeight / 2, 6, totalDifference, percentualDifference, isLeft);
+            this.drawChangeArc(svg, position, legPositions, radius, 6, totalDifference, percentualDifference, isLeft);
           } else {
             let bar = barItems[i].percentages.find(item => {
               return item.type === this.selectedRunType;
@@ -423,9 +429,16 @@ export class TrainChart extends Vue {
               });
 
               if (nextBar !== undefined && nextBar.percentage > 0) {
+                let overlayLengthBarOne = bar.distance;
+                let overlayLengthBarTwo = nextBar.distance;
+                let midBarOne = ((barItems[i].yStart + (barItems[i].yStart + overlayLengthBarOne)) / 2);
+                let midBarTwo = ((barItems[i + 1].yStart + (barItems[i + 1].yStart + overlayLengthBarTwo)) / 2);
+
+                let radius = Math.abs(midBarOne - midBarTwo) / 2;
+
                 let position: PositionModel = {
                   x: barItems[i].xStart + (this.barWidth / 2),
-                  y: (barItems[i].yStart + barItems[i + 1].yStart) / 2
+                  y: (midBarOne + midBarTwo) / 2
                 };
 
                 let isLeft = bar.distance < nextBar.distance;
@@ -441,15 +454,15 @@ export class TrainChart extends Vue {
                 let legPositions = [
                   {
                     x: barItems[i].xStart,
-                    y: barItems[i].yStart,
+                    y: midBarOne,
                   },
                   {
                     x: barItems[i + 1].xStart,
-                    y: barItems[i + 1].yStart,
+                    y: midBarTwo,
                   }
                 ];
 
-                this.drawChangeArc(svg, position, legPositions, this.itemHeight / 2, 6, totalDifference, percentualDifference, isLeft);
+                this.drawChangeArc(svg, position, legPositions, radius, 6, totalDifference, percentualDifference, isLeft);
               }
             }
           }
@@ -527,6 +540,9 @@ export class TrainChart extends Vue {
    */
   private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType, percentages: any) {
     let width = this.barWidth;
+    if (barLength < width && barLength !== 0) {
+      barLength = width;
+    }
     return {
       xStart: position.x,
       yStart: position.y,
@@ -667,8 +683,10 @@ export class TrainChart extends Vue {
     let startAngle = -Math.PI * 2;
     let endAngle = -Math.PI;
     let color = '#7ED321';
-    let textOffset = 25;
-    let textAnchor = 'left';
+    let textOffset = radius;
+    let textAnchor = 'middle';
+
+    let trianglePos = position.x + this.barWidth;
 
     // let arcOffsetX = Math.round(percentualDifference / 8);
     let arcOffsetX = Math.abs(totalDifference);
@@ -681,11 +699,12 @@ export class TrainChart extends Vue {
       endAngle *= -1;
       color = '#D0021B';
       textOffset *= -1;
-      textOffset -= 35;
-      textAnchor = 'right';
+      textOffset -= arcOffsetX;
       x -= arcOffsetX;
+      trianglePos = position.x;
     } else {
       x += arcOffsetX;
+      textOffset += arcOffsetX;
       totalDifference = '+' + totalDifference;
     }
 
@@ -726,7 +745,7 @@ export class TrainChart extends Vue {
 
     svg.append('text')
       .attr('x', x + textOffset)
-      .attr('y', y + 7)
+      .attr('y', y + 5)
       .attr('fill', color)
       .attr('text-anchor', textAnchor)
       .text(totalDifference + 'km');
@@ -760,15 +779,15 @@ export class TrainChart extends Vue {
         .attr('fill', color)
         .attr('text-anchor', 'right')
         .attr('opacity', opacity)
-        .text(distance);
+        .text(distance + 'km');
 
-      svg.append('text')
+      /*svg.append('text')
         .attr('x', position.x + width + 4)
         .attr('y', position.y + 30)
         .attr('fill', color)
         .attr('text-anchor', 'right')
         .attr('opacity', opacity)
-        .text('km');
+        .text('km');*/
     }
   }
 

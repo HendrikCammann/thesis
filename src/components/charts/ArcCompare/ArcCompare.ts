@@ -32,6 +32,7 @@ export class ArcCompare extends Vue {
   @Watch('trainingCluster')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
+      console.log(this.data);
       this.arcCompare('#' + this.root, this.data);
     }
   }

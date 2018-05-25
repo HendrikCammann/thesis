@@ -7,6 +7,7 @@ import {getDataToCompare} from '../../../utils/compareData/compareData';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {TagItem} from '../../partials/TagItem';
 import {Button} from '../../partials/Button';
+import {getLargerValue} from '../../../utils/numbers/numbers';
 
 @Component({
   template: require('./compareModule.html'),
@@ -34,6 +35,8 @@ export class CompareModule extends Vue {
 
   public sortedData: any = null;
   public trainingClusterDetail: any = null;
+  public longestDistance: number = null;
+  public longestDistanceTotal: number = null;
 
   @Watch('data')
   @Watch('loadingStatus.activities')
@@ -42,6 +45,17 @@ export class CompareModule extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.sortedData = getDataToCompare(this.trainingCluster[this.index], this.data);
+      let longestDistance = 0;
+      let longestDistanceTotal = 0;
+      this.trainingCluster.forEach(cluster => {
+        longestDistanceTotal = getLargerValue(this.data[cluster].stats.distance, longestDistanceTotal);
+        let keys = this.data[cluster].stats.typeCount;
+        for (let key in keys) {
+          longestDistance = getLargerValue(this.data[cluster].stats.typeCount[key].distance, longestDistance);
+        }
+      });
+      this.longestDistance = longestDistance;
+      this.longestDistanceTotal = longestDistanceTotal;
       this.trainingClusterDetail = this.$store.getters.getCluster(this.trainingCluster[this.index]);
     }
   }

@@ -27,12 +27,17 @@ export class ArcCompare extends Vue {
   @Prop()
   trainingCluster: string[];
 
+  @Prop()
+  longestDistance: number;
+
+  @Prop()
+  longestDistanceTotal: number;
+
   @Watch('data')
   @Watch('loadingStatus.activities')
   @Watch('trainingCluster')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
-      console.log(this.data);
       this.arcCompare('#' + this.root, this.data);
     }
   }
@@ -43,10 +48,11 @@ export class ArcCompare extends Vue {
    * @returns {number}
    */
   private calculateRadiusFromArea(value): number {
-    value = formatDistance(value, FormatDistanceType.Kilometers);
-    const focusRadius = 70;
+    // value = formatDistance(value, FormatDistanceType.Kilometers);
+    const focusRadius = 100 * getPercentageFromValue(this.longestDistance, this.longestDistanceTotal) / 100;
+
     const focusArea = Math.PI * Math.pow(focusRadius, 2);
-    const focusDistance = 1000;
+    const focusDistance = this.longestDistance;
 
     let factorFromFocus = 100 / focusDistance * value;
     let factorArea = focusArea / 100 * factorFromFocus;

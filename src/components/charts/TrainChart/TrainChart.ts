@@ -177,7 +177,6 @@ export class TrainChart extends Vue {
     duration = duration.length;
 
     for (let key in data) {
-      console.log(data[key]);
       this.drawDivider(svg, this.width, (duration - index), positionDivider, '#F3F3F3');
       position.y += padding;
       positionDivider.y += padding;

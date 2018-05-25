@@ -17,6 +17,10 @@ body {
   padding: 16px;
   border-radius: 24px;
   box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.1);
+
+  &--tight {
+    padding: 0;
+  }
 }
 
 .sectionLabel {
@@ -28,4 +32,11 @@ body {
   margin: 136px 0 40px -15px;
 }
 
+.vue2leaflet-map {
+  border-radius: 24px;
+}
+
+.no-padding {
+  padding: 0;
+}
 

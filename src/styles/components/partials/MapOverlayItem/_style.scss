@@ -1,13 +1,6 @@
 .mapOverlayItem {
   $root: &;
-
-  #{&}__image {
-    margin-right: 10px;
-    margin-top: -26px;
-    width: 25px;
-    height: auto;
-    display: inline-block;
-  }
+  font-family: $font-family--secondary;
 
   #{&}__content {
     text-align: right;
@@ -16,14 +9,13 @@
     #{$root}__value {
       font-size: 22px;
       color: $color-black;
-      font-weight: 500;
+      font-weight: 700;
     }
 
     #{$root}__label {
-      font-family: $font-family--secondary;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 400;
-      color: $color-gray;
+      color: #9D9D9D;
     }
   }
 }

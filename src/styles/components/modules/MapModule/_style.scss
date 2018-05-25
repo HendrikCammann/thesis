@@ -10,7 +10,7 @@
   }
 
   #{&}__overlay {
-    width: 135px;
+    width: fit-content;
     pointer-events: none;
     background-color: rgba(255, 255, 255, 0.8);
     height: 100%;
@@ -19,19 +19,14 @@
     z-index: 1000;
     top: 0;
     right: 0;
-    padding: 10px;
+    padding: 36px;
 
     #{$root}__details {
-      width: 150px;
-      position: absolute;
-      top: 55%;
-      transform: translateY(-50%);
-      right: 32px;
-      text-align: right;
+      margin-top: 55%;
       opacity: 1;
 
       #{$root}__detail {
-        margin-bottom: 15px;
+        margin-bottom: 25px;
       }
     }
   }

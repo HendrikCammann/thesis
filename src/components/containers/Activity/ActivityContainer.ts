@@ -3,9 +3,8 @@ import Component from 'vue-class-component';
 import {MutationTypes} from '../../../store/mutation-types';
 import {mapGetters} from 'vuex';
 import {loadingStatus} from '../../../models/App/AppStatus';
-import {ZoneChart} from '../../charts/ZoneChart';
-import {BarChart} from '../../charts/BarChart';
 import {MapModule} from '../../modules/MapModule';
+import {ZoneModule} from '../../modules/ZoneModule';
 
 /* tslint:disable */
 @Component({
@@ -17,13 +16,13 @@ import {MapModule} from '../../modules/MapModule';
     loadingStatus: 'getAppLoadingStatus',
   }),
   components: {
-    'barChart': BarChart,
-    'zoneChart': ZoneChart,
+    'zoneModule': ZoneModule,
     'mapModule': MapModule,
   }
 })
 export class ActivityContainer extends Vue {
   mounted() {
+    // console.log(this.$route, this.$store.getters.getSelectedActivityId);
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);

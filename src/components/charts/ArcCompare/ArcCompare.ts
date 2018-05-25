@@ -36,8 +36,10 @@ export class ArcCompare extends Vue {
   @Watch('data')
   @Watch('loadingStatus.activities')
   @Watch('trainingCluster')
+  @Watch('longestDistance')
+  @Watch('longestDistanceTotal')
   onPropertyChanged(val: any, oldVal: any) {
-    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
+    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null && this.longestDistanceTotal !== null) {
       this.arcCompare('#' + this.root, this.data);
     }
   }
@@ -228,7 +230,7 @@ export class ArcCompare extends Vue {
   }
 
   mounted() {
-    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null) {
+    if (this.loadingStatus.activities === loadingStatus.Loaded && this.data !== null && this.longestDistanceTotal !== null) {
       this.arcCompare('#' + this.root, this.data);
     }
   }

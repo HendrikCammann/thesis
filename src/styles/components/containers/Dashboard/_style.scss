@@ -2,79 +2,12 @@
   $root: &;
   height: 100vh;
   margin-left: 108px;
+  padding-top: 80px;
 
-  #{&}__headline {
-    padding: 24px;
-    padding-bottom: 16px;
-    color: $color-white;
-    background-color: $color-black;
-    text-align: center;
-    font-family: $font-family--secondary;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 24px;
-    letter-spacing: 2px;
-  }
-
-  #{&}__subheadline {
-    padding: 8px;
-    text-align: left;
-    font-family: $font-family--secondary;
-    color: $color-gray;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  #{&}__row {
-    margin: 0;
-  }
-
-  #{&}__content {
-    margin-bottom: 40px;
-
-    .last-run-module {
-      width: calc((100% / 7) - 14px);
-      &:not(:last-of-type) {
-        margin-right: 16px;
-      }
+  .last-run-module {
+    width: calc((100% / 7) - 14px);
+    &:not(:last-of-type) {
+      margin-right: 16px;
     }
-
-    #{$root}__map {
-      height: 350px;
-      padding: 0;
-      box-shadow: inset 0px 0px 4px 0px rgba(130,130,130,0.2);
-
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
-    #{$root}__column {
-      padding-top: 20px;
-      padding-left: 0;
-      padding-right: 10px;
-
-      &:last-of-type {
-        padding-right: 0;
-        padding-left: 10px;
-      }
-    }
-
-    #{$root}__visualization {
-      padding: 20px;
-      #{$root}__headline {
-        font-size: 14px;
-        margin-bottom: 10px;
-      }
-    }
-  }
-
-  #{&}__fixed {
-    .user-module, .day-module {
-      margin-bottom: 50px;
-    }
-    padding: 0;
   }
 }

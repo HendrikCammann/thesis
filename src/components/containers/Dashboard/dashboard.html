@@ -1,4 +1,15 @@
 <div class="container-fluid dashboard">
+  <div class="row">
+    <div class="col-md-12" v-if="actualWeek">
+      <last-run-module
+        v-for="activity, i in actualWeek"
+        :activity="activity"
+        :loaded="loadingStatus"
+        :index="i"
+        class="last-run-module"
+      ></last-run-module>
+    </div>
+  </div>
   <!--<div class="row">
     <div class="col-md-12 dashboard__headline">
       <headline-box
@@ -7,9 +18,10 @@
       ></headline-box>
     </div>
   </div>-->
-  <div class="row">
+  <!--<div class="row">
     <div class="col-md-12 dashboard__content" v-if="actualWeek">
       <div class="dashboard__subheadline">Deine aktuelle Trainingswoche</div>
+
       <last-run-module v-for="activity, i in actualWeek"
         :activity="activity"
         :loaded="loadingStatus"
@@ -21,9 +33,9 @@
       ></wave-Chart>
       <!--<map-module
         :loaded="loadingStatus"
-      ></map-module>-->
+      ></map-module>
     </div>
-  </div>
+  </div>-->
   <!--<div class="row">
     <div class="col-md-3">
       <div class="dashboard__subheadline">Vergleich mit letzter Woche</div>

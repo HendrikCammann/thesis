@@ -8,4 +8,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 export class Button extends Vue {
   @Prop()
   name: string;
+
+  @Prop()
+  isSmall: boolean;
 }

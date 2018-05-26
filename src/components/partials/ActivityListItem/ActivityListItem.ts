@@ -13,7 +13,7 @@ export class ActivityListItem extends Vue {
 
   private getDayName() {
     let date = new Date(this.activity.date);
-    return getDayName(date.getDay());
+    return getDayName(date.getDay(), false);
   }
 
   private getColor() {

@@ -47,15 +47,32 @@ const getters: GetterTree<State, State> = {
         return +new Date(a.date) - +new Date(b.date);
       });
 
-      let returnArr = [new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel()];
+      let temp = [new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel(), new ActivityModel()];
 
       arr.forEach(item => {
         if (new Date(item.date).getDay() === 0) {
-          returnArr[6] = item;
+          temp[6] = item;
         } else {
-          returnArr[new Date(item.date).getDay() - 1] = item;
+          temp[new Date(item.date).getDay() - 1] = item;
         }
       });
+
+      let returnArr = [[], [], [], [], [], [], []];
+
+      let save;
+      temp.forEach(item => {
+        if (item.date !== null) {
+          if (new Date(item.date).getDay() === 0) {
+            returnArr[6].push(item);
+            save = item;
+          } else {
+            returnArr[new Date(item.date).getDay() - 1].push(item);
+          }
+        }
+      });
+      returnArr[2].push(save);
+
+      // console.log(returnArr);
       return returnArr;
     }
   },

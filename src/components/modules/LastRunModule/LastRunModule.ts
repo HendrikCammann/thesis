@@ -9,6 +9,9 @@ import {loadingStatus, LoadingStatus} from '../../../models/App/AppStatus';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
 import {eventBus} from '../../../main';
+import {Button} from '../../partials/Button';
+import {getDayName} from '../../../utils/time/time-formatter';
+import {TagItem} from '../../partials/TagItem';
 
 @Component({
   template: require('./lastRunModule.html'),
@@ -16,11 +19,13 @@ import {eventBus} from '../../../main';
     'leafletMap': LMap,
     'leafletTilelayer': LTileLayer,
     'leafletPolyline': LPolyline,
+    'buttonMain': Button,
+    'tagItem': TagItem,
   }
 })
 export class LastRunModule extends Vue {
   @Prop()
-  activity: any;
+  activity: any[];
 
   @Prop()
   loaded: LoadingStatus;
@@ -28,28 +33,32 @@ export class LastRunModule extends Vue {
   @Prop()
   index: number;
 
+  private selectedActivity = 0;
+
   private mapOptions = {
     url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     live: 'https://api.mapbox.com/styles/v1/hendrikcammann/cj7ab0l1w8yzp2ss6i2w69j67/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGVuZHJpa2NhbW1hbm4iLCJhIjoiY2oyNHpoZHlvMDA1eTMzbzVwOWNyNjd4MCJ9.-19NU5n0lJHJoe_0fayULA\n',
     attribution:'',
+    center: L.latLng(47.413220, -1.219482),
     latLngs: [],
+    zoom: 3,
     bounds: null,
-    marker: L.latLng(47.413220, -1.219482),
     polylineBgColor: '#F4F4F4',
     polylineColor: '#454545',
     textColor: '#454545',
   };
 
   @Watch('loaded.activities')
+  @Watch('selectedActivity')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loaded.activities === loadingStatus.Loaded) {
-      this.initMap(this.activity);
+      this.initMap(this.activity[this.selectedActivity]);
     }
   }
 
   mounted() {
-    if (this.loaded.activities === loadingStatus.Loaded) {
-      this.initMap(this.activity);
+    if (this.loaded.activities === loadingStatus.Loaded && this.activity.length) {
+      this.initMap(this.activity[this.selectedActivity]);
     }
   }
 
@@ -71,14 +80,47 @@ export class LastRunModule extends Vue {
   private checkFuture(): boolean {
     // Todo use correct Date;
     // let date = new Date().getDay();
-    let date = 6;
-    return this.index >= date;
+    let date = 5;
+    return this.index > date;
+  }
+
+  private isToday(): boolean {
+    // Todo use correct Date;
+    // let date = new Date().getDay();
+    let date = 5;
+    return this.index === date;
   }
 
   private handleClick(): void {
-    if (this.activity.id) {
-      eventBus.$emit(navigationEvents.open_Activity_Detail, this.activity.id);
+    event.preventDefault();
+    console.log('in');
+    if (this.activity[this.selectedActivity].id) {
+      eventBus.$emit(navigationEvents.open_Activity_Detail, this.activity[this.selectedActivity].id);
     }
+  }
+
+  private getDayName() {
+    let day;
+    if (this.index === 6) {
+      day = 0;
+    } else {
+      day = this.index + 1
+    }
+    return getDayName(day, true);
+  }
+
+  private activityCount() {
+    return '+' + (this.activity.length - 1);
+  }
+
+  private colorSliderDot(index: number) {
+    return index === this.selectedActivity;
+  }
+
+  private selectRun(index) {
+    event.preventDefault();
+    console.log('fire');
+    this.selectedActivity = index;
   }
 
   private initMap(activity: ActivityModel) {

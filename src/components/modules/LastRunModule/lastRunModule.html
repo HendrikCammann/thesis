@@ -1,28 +1,112 @@
 <div class="lastRunModule"
-  v-if="activity"
-  v-on:click="handleClick">
-  <div class="lastRunModule__map" v-if="activity.map.map">
-    <leaflet-map :bounds="mapOptions.bounds" :style="'background-color:' + mapOptions.polylineBgColor" :options="{ scrollWheelZoom: false }">
-      <leaflet-tilelayer class="lastRunModule__map--hidden" :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
-      <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.textColor"></leaflet-polyline>
-    </leaflet-map>
-  </div>
-  <div class="lastRunModule__map"  v-if="!activity.map.map">
-    <img v-if="!checkFuture()" class="lastRunModule__restday" src="../../../assets/illustrations/tea.svg">
-  </div>
-  <div class="lastRunModule__information"
-       :class="{ 'lastRunModule__information--faded': checkFuture() }"
+     :class="{ 'lastRunModule--pullup' : activity.length > 0 && checkFuture() || activity.length === 0 }"
+>
+  <div class="lastRunModule__headline"
+       :class="{ 'lastRunModule__headline--active': isToday()}"
   >
-    <div class="lastRunModule__title">
-      {{ activityName(activity.name) }}
+    {{ getDayName() }}
+  </div>
+  <div class="lastRunModule__wrapper" v-if="activity.length > 0 && !checkFuture()">
+    <div class="lastRunModule__fake card" v-if="activity.length > 1"></div>
+    <div class="lastRunModule__content card card--tight" @click="handleClick">
+      <div class="lastRunModule__map" v-if="activity[selectedActivity].map.map">
+        <leaflet-map :bounds="mapOptions.bounds" :style="'background-color:' + mapOptions.polylineBgColor" :options="{ scrollWheelZoom: false }">
+          <leaflet-tilelayer class="lastRunModule__map--hidden" :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+          <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.textColor"></leaflet-polyline>
+        </leaflet-map>
+        <button-main
+          :name="'Detailansicht'"
+          :isSmall="true"
+        ></button-main>
+      </div>
+      <div class="lastRunModule__information">
+        <div class="lastRunModule__title">
+          {{ activityName(activity[selectedActivity].name) }}
+        </div>
+        <div class="lastRunModule__type">
+          {{ activity[selectedActivity].map.map ? activity[selectedActivity].categorization.activity_type : '-' }}
+        </div>
+        <div class="lastRunModule__stats">
+          <span class="lastRunModule__stats--value">{{ activity[selectedActivity].base_data.distance | formatDistance }}<span class="lastRunModule__stats--unit">km</span></span>
+          <span class="lastRunModule__stats--value">{{ activity[selectedActivity].average_data.speed | formatPace }}<span class="lastRunModule__stats--unit">/km</span></span>
+          <span class="lastRunModule__stats--value">{{ activity[selectedActivity].average_data.heartrate | round }}<span class="lastRunModule__stats--unit">bpm</span></span>
+        </div>
+      </div>
     </div>
-    <div class="lastRunModule__type">
-      {{ activity.map.map ? activity.categorization.activity_type : '-' }}
+    <div class="lastRunModule__slider" v-if="activity.length > 1">
+      <div class="lastRunModule__dot" v-for="(item, i) in activity"
+           @click="selectRun(i)"
+           :class="{'lastRunModule__dot--active' : colorSliderDot(i)}"
+      ></div>
     </div>
-    <div class="lastRunModule__stats">
-      <span class="lastRunModule__stats--value">{{ activity.base_data.distance | formatDistance }}<span class="lastRunModule__stats--unit">km</span></span>
-      <span class="lastRunModule__stats--value">{{ activity.average_data.speed | formatPace }}<span class="lastRunModule__stats--unit">/km</span></span>
-      <span class="lastRunModule__stats--value">{{ activity.average_data.heartrate | round }}<span class="lastRunModule__stats--unit">bpm</span></span>
+  </div>
+
+  <div v-if="activity.length > 0 && checkFuture()">
+    <div class="lastRunModule__wrapper lastRunModule__empty">
+      <div class="lastRunModule__content card card--tight">
+        <div class="lastRunModule__map">
+          <img src="../../../assets/illustrations/tea.svg">
+        </div>
+        <div class="lastRunModule__information">
+          <div class="lastRunModule__title">
+            -
+          </div>
+          <div class="lastRunModule__type">
+            -
+          </div>
+          <div class="lastRunModule__stats">
+            <span class="lastRunModule__stats--value">hi</span>
+            <span class="lastRunModule__stats--value">hi</span>
+            <span class="lastRunModule__stats--value">hi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="activity.length === 0 && isToday()">
+    <div class="lastRunModule__wrapper lastRunModule__empty">
+      <div class="lastRunModule__content card card--tight">
+        <div class="lastRunModule__map">
+          <img class="lastRunModule__img-today" src="../../../assets/illustrations/run-shoe.svg">
+        </div>
+        <div class="lastRunModule__information">
+          <div class="lastRunModule__title">
+            Auf gehts!
+          </div>
+          <div class="lastRunModule__type">
+            -
+          </div>
+          <div class="lastRunModule__stats">
+            <span class="lastRunModule__stats--value">hi</span>
+            <span class="lastRunModule__stats--value">hi</span>
+            <span class="lastRunModule__stats--value">hi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="activity.length === 0 && !isToday()">
+    <div class="lastRunModule__wrapper lastRunModule__empty">
+      <div class="lastRunModule__content card card--tight">
+          <div class="lastRunModule__map">
+            <img src="../../../assets/illustrations/tea.svg">
+          </div>
+          <div class="lastRunModule__information">
+            <div class="lastRunModule__title">
+              Ruhetag
+            </div>
+            <div class="lastRunModule__type">
+              Regeneration
+            </div>
+            <div class="lastRunModule__stats">
+              <span class="lastRunModule__stats--value">hi</span>
+              <span class="lastRunModule__stats--value">hi</span>
+              <span class="lastRunModule__stats--value">hi</span>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>

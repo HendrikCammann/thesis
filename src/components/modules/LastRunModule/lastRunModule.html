@@ -4,7 +4,7 @@
   >
     {{ getDayName() }}
   </div>
-  <div class="lastRunModule__wrapper" v-if="activity.length > 0 && !checkFuture()">
+  <div class="lastRunModule__wrapper" v-if="activity.length > 0">
     <div class="lastRunModule__fake card" v-if="activity.length > 1"></div>
     <div class="lastRunModule__content card card--tight" @click="handleClick">
       <div class="lastRunModule__map" v-if="activity[selectedActivity].map.map">
@@ -36,29 +36,6 @@
            @click="selectRun(i)"
            :class="{'lastRunModule__dot--active' : colorSliderDot(i)}"
       ></div>
-    </div>
-  </div>
-
-  <div v-if="activity.length > 0 && checkFuture()">
-    <div class="lastRunModule__wrapper lastRunModule__empty">
-      <div class="lastRunModule__content card card--tight">
-        <div class="lastRunModule__map">
-          <img src="../../../assets/illustrations/tea.svg">
-        </div>
-        <div class="lastRunModule__information">
-          <div class="lastRunModule__title">
-            -
-          </div>
-          <div class="lastRunModule__type">
-            -
-          </div>
-          <div class="lastRunModule__stats">
-            <span class="lastRunModule__stats--value">hi</span>
-            <span class="lastRunModule__stats--value">hi</span>
-            <span class="lastRunModule__stats--value">hi</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 

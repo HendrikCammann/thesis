@@ -1,27 +1,14 @@
 .compareAddButton {
   $root: &;
-  font-family: $font-family--main;
-  font-weight: 400;
-  // letter-spacing: -0.5px;
+  font-family: $font-family--secondary;
   color: $color-black;
   display: inline-block;
-  padding: 7px 60px;
+  padding: 7px 64px;
   font-size: 16px;
-  border-right: 2px solid $color-grey--light;
+  font-weight: 700;
+  border-right: 2px solid #F3F3F3;
 
   &:last-of-type {
     border: none;
-  }
-
-  i {
-    cursor: pointer;
-  }
-
-  #{&}__title {
-    i {
-      font-size: 12px;
-      margin-left: 7px;
-      transform: translate(0px, -2px);
-    }
   }
 }

@@ -14,12 +14,11 @@ import {RunType} from '../../../store/state';
 import {compareEvents} from '../../../events/Compare/compare';
 import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
-import {CardModule} from '../../modules/CardModule';
-import {TagItem} from '../../partials/TagItem';
 import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
+import {CompareAddModule} from '../../modules/CompareAddModule';
 
 @Component({
-  template: require('./competitions.html'),
+  template: require('./comparison.html'),
   computed: mapGetters({
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     selectedWeeks: 'getSelectedWeeks',
@@ -32,22 +31,23 @@ import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
     sortedLists: 'getSortedLists',
   }),
   components: {
-    'cardModule': CardModule,
-    'tagItem': TagItem,
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
     'displayToggle': DisplayTypeToggleModule,
     'modalButton': ModalButtonModule,
     'detailToggle': DetailToggleModule,
+    'compareAdd': CompareAddModule,
     'compareModule': CompareModule,
     'modalModule': ModalModule,
     'doughnutChart': DoughnutChart,
   },
 })
-export class CompetitionsContainer extends Vue {
+export class ComparisonContainer extends Vue {
   public showModal = false;
   public selectedCluster = '';
   public hoveredRunType = RunType.All;
+
+  private progressStep = 0;
 
   public openModal() {
     eventBus.$emit(modalEvents.open_Modal);

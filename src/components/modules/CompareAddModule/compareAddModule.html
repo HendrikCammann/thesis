@@ -1,19 +1,7 @@
-<div class="compareAddModule">
-    <title-box
-      :title="'Choose Racepreperations'"
-    ></title-box>
-    <div class="compareAddModule__stripes"></div>
-    <div class="compareAddModule__content">
-      <div v-for="item in selectedClusters"
-           class="compareAddModule__item"
-      >
-        {{ item }} <i @click="removeCluster(item)" class="fa fa-times"></i>
-      </div>
-      <hr>
-      <div v-for="item in unselectedClusters"
-           class="compareAddModule__item"
-      >
-        {{ item.clusterName }} <i @click="addCluster(item.clusterName)" class="fa fa-plus"></i>
-      </div>
+<div class="compareAddModule card">
+    <div class="compareAddModule__action">
+      <compare-add-button v-for="item in selectedClusters"
+        :trainingCluster="item"
+      ></compare-add-button>
     </div>
 </div>

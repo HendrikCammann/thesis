@@ -39,7 +39,7 @@ const getters: GetterTree<State, State> = {
     let keys = getKeys(state.sortedLists['All'].byWeeks);
     if (keys.length !== 0) {
       let arr = [];
-      state.sortedLists['All'].byWeeks[keys[38]].activities.forEach(id => {
+      state.sortedLists['All'].byWeeks[keys[0]].activities.forEach(id => {
         arr.push(state.activityList.find(item => item.id === id));
       });
 

@@ -1,26 +1,8 @@
 .compareAddModule {
   $root: &;
-  background-color: $color-white;
   color: $color-black;
-  padding: 35px;
 
-  #{&}__stripes {
-    background: repeating-linear-gradient(
-        to right,
-        $color-grey--light,
-        $color-grey--light 2px,
-        $color-transparent 2px,
-        $color-transparent 4px
-    );
-    height: 70px;
-  }
-
-  #{&}__item {
-    margin: 10px 0;
-    i {
-      cursor: pointer;
-      margin-left: 5px;
-      transform: translate(0, -1px);
-    }
+  #{&}__action {
+    text-align: center;
   }
 }

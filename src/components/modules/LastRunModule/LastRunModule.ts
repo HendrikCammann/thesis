@@ -78,28 +78,27 @@ export class LastRunModule extends Vue {
   }
 
   private checkFuture(): boolean {
-    // Todo use correct Date;
     let date = new Date().getDay();
     let _index;
     if (this.index === 6) {
       _index = 0;
     } else {
-      _index = this.index - 1;
+      _index = this.index + 1;
     }
+    console.log(_index, date);
     return _index > date;
   }
 
   private isToday(): boolean {
-    // Todo use correct Date;
     let _index;
     if (this.index === 6) {
       _index = 0;
     } else {
-      _index = _index - 1;
+      _index = this.index + 1;
     }
 
     let date = new Date().getDay();
-    return this.index === date;
+    return _index === date;
   }
 
   private handleClick(): void {

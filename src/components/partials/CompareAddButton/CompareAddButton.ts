@@ -12,9 +12,6 @@ export class CompareAddButton extends Vue {
   @Prop()
   trainingCluster: string;
 
-  @Prop()
-  isAdd: true;
-
   public removeTrainingCluster () {
     eventBus.$emit(compareEvents.remove_Training_Cluster, this.trainingCluster);
   }

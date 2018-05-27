@@ -1,0 +1,19 @@
+<div class="displayTypeToggle">
+  <div class="displayTypeToggle__content" v-if="isShown">
+    <div v-for="item in DisplayTypes"
+         @click="handleFilterClick(item.type, item.img)"
+         class="displayTypeToggle__item">
+      <div class="displayTypeToggle__item--name"
+           :class="{'displayTypeToggle__item--name-active' : selectedDisplayType === item.type}"
+      >{{ item.name }}</div>
+      <div class="displayTypeToggle__item--icon">
+      </div>
+    </div>
+  </div>
+  <div class="displayTypeToggle__button"
+       @click="toggleFilter()"
+  >
+    <img :src="`../../../assets/icons/${active}.svg`">
+  </div>
+</div>
+

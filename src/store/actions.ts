@@ -77,6 +77,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_SELECTED_DISPLAYTYPE]: ({commit}, type) => {
+    commit(MutationTypes.SET_SELECTED_DISPLAYTYPE, {
+      type
+    });
+  },
+
   [MutationTypes.SET_SHOW_EVERYTHING]: ({commit}) => {
     commit(MutationTypes.SET_SHOW_EVERYTHING, {
 

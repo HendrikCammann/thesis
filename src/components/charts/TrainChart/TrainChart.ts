@@ -45,6 +45,9 @@ export class TrainChart extends Vue {
   @Prop()
   showDate: boolean;
 
+  @Prop()
+  selectedDisplayType: DisplayType;
+
 
   private type = DisplayType.Duration;
 
@@ -61,6 +64,7 @@ export class TrainChart extends Vue {
 
   @Watch('loadingStatus.activities')
   @Watch('selectedRunType')
+  @Watch('selectedDisplayType')
   @Watch('showEverything')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
@@ -110,7 +114,7 @@ export class TrainChart extends Vue {
       let keys = getKeys(data);
       longestPreparation = getLargerValue(keys.length, longestPreparation);
       for (let key in data) {
-        switch (this.type) {
+        switch (this.selectedDisplayType) {
           case DisplayType.Distance:
             maxValue = getLargerValue(data[key].stats.distance, maxValue);
             break;
@@ -203,7 +207,7 @@ export class TrainChart extends Vue {
         let barLength;
         let label;
 
-        switch (this.type) {
+        switch (this.selectedDisplayType) {
           case DisplayType.Distance:
             barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].distance);
             label = formatDistance(data[key].stats.typeCount[anchor].distance, FormatDistanceType.Kilometers).toFixed(0);
@@ -348,7 +352,7 @@ export class TrainChart extends Vue {
       let label;
       let percentages;
 
-      switch (this.type) {
+      switch (this.selectedDisplayType) {
         case DisplayType.Distance:
           barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
           label = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
@@ -484,7 +488,7 @@ export class TrainChart extends Vue {
               if (nextBar !== undefined && nextBar.percentage > 0) {
                 let overlayLengthBarOne = bar.distance;
                 let overlayLengthBarTwo = nextBar.distance;
-                if (this.type === DisplayType.Duration) {
+                if (this.selectedDisplayType === DisplayType.Duration) {
                   overlayLengthBarOne = overlayLengthBarOne / 1000;
                   overlayLengthBarTwo = overlayLengthBarTwo / 1000;
                 }
@@ -553,7 +557,7 @@ export class TrainChart extends Vue {
           if (bar !== undefined) {
             let overlayHeight = height * (bar.percentage / 100);
             let overlayDistance;
-            switch (this.type) {
+            switch (this.selectedDisplayType) {
               case DisplayType.Distance:
                 overlayDistance = bar.distance.toFixed(0);
                 break;
@@ -635,7 +639,7 @@ export class TrainChart extends Vue {
     let percentages = [];
     for (let key in typeCount) {
       let item;
-      switch (this.type) {
+      switch (this.selectedDisplayType) {
         case DisplayType.Distance:
           item = {
             percentage: getPercentageFromValue(typeCount[key].distance, distance),
@@ -841,7 +845,7 @@ export class TrainChart extends Vue {
       x -= arcOffsetX;
     }
 
-    if (this.type === DisplayType.Distance) {
+    if (this.selectedDisplayType === DisplayType.Distance) {
       svg.append('text')
         .attr('class', 'trainChart__arc-label')
         .attr('x', x + textOffset)
@@ -882,7 +886,7 @@ export class TrainChart extends Vue {
       .attr('opacity', opacity);
 
     if (!hideLabel) {
-      if (this.type === DisplayType.Distance) {
+      if (this.selectedDisplayType === DisplayType.Distance) {
         svg.append('text')
           .attr('class', 'trainChart__bar-label')
           .attr('x', position.x + width + 4)

@@ -8,6 +8,7 @@ import {TrainChart} from '../../charts/TrainChart';
 import {SmartFilterModule} from '../../modules/SmartFilterModule';
 import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
+import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
 
 @Component({
   template: require('./activities.html'),
@@ -15,6 +16,7 @@ import {DetailToggleModule} from '../../modules/DetailToggleModule';
     sortedLists: 'getSortedLists',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
+    selectedDisplayType: 'getSelectedDisplayType',
     showEverything: 'getShowEverything',
     selectedWeeksLength: 'getSelectedWeeksLength',
   }),
@@ -22,6 +24,7 @@ import {DetailToggleModule} from '../../modules/DetailToggleModule';
     'trainChart': TrainChart,
     'activityList': ActivityList,
     'smartFilter': SmartFilterModule,
+    'displayToggle': DisplayTypeToggleModule,
     'modalButton': ModalButtonModule,
     'detailToggle': DetailToggleModule,
   }

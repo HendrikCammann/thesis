@@ -25,6 +25,7 @@
     <detail-toggle
       :isUnfolded="showEverything"
     ></detail-toggle>
+    <display-toggle></display-toggle>
     <smart-filter></smart-filter>
   </div>
 
@@ -57,6 +58,7 @@
           :preparation="selectedTrainingClusters[i]"
           :loadingStatus="loadingStatus"
           :selectedRunType="selectedRunType"
+          :selectedDisplayType="selectedDisplayType"
           :isUnfolded="showEverything"
         ></train-compare>
       </div>

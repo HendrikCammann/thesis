@@ -1,11 +1,9 @@
 <div class="container-fluid activities">
   <div class="container activities__filter">
-    <modal-button
-      :counter="selectedWeeksLength"
-    ></modal-button>
     <detail-toggle
       :isUnfolded="showEverything"
     ></detail-toggle>
+    <display-toggle></display-toggle>
     <smart-filter></smart-filter>
   </div>
 
@@ -19,6 +17,7 @@
               :preparation="'All'"
               :loadingStatus="loadingStatus"
               :selectedRunType="selectedRunType"
+              :selectedDisplayType="selectedDisplayType"
               :showEverything="showEverything"
               :clustering="'byWeeks'"
               :showDate="false"

@@ -508,6 +508,10 @@ const mutations: MutationTree<State> = {
     state.filter.selectedRunType = runType;
   },
 
+  [MutationTypes.SET_SELECTED_DISPLAYTYPE]: (state: State, {type}) => {
+    state.filter.selectedDisplayType = type;
+  },
+
   [MutationTypes.SET_SHOW_EVERYTHING]: (state: State) => {
     state.filter.showEverything = !state.filter.showEverything;
   },

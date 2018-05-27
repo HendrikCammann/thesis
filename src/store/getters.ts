@@ -154,6 +154,10 @@ const getters: GetterTree<State, State> = {
     return state.filter.selectedRunType;
   },
 
+  getSelectedDisplayType: (state) => {
+    return state.filter.selectedDisplayType;
+  },
+
   getShowEverything: (state) => {
     return state.filter.showEverything;
   },

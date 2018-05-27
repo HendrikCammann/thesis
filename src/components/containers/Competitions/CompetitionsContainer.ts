@@ -16,6 +16,7 @@ import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
 import {CardModule} from '../../modules/CardModule';
 import {TagItem} from '../../partials/TagItem';
+import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
 
 @Component({
   template: require('./competitions.html'),
@@ -26,6 +27,7 @@ import {TagItem} from '../../partials/TagItem';
     existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
+    selectedDisplayType: 'getSelectedDisplayType',
     showEverything: 'getShowEverything',
     sortedLists: 'getSortedLists',
   }),
@@ -34,6 +36,7 @@ import {TagItem} from '../../partials/TagItem';
     'tagItem': TagItem,
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
+    'displayToggle': DisplayTypeToggleModule,
     'modalButton': ModalButtonModule,
     'detailToggle': DetailToggleModule,
     'compareModule': CompareModule,

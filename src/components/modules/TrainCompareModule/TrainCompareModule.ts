@@ -2,7 +2,7 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import Vue from 'vue';
 import {TrainChart} from '../../charts/TrainChart';
 import {LoadingStatus} from '../../../models/App/AppStatus';
-import {RunType} from '../../../store/state';
+import {DisplayType, RunType} from '../../../store/state';
 import {CompetitionModule} from '../CompetitionModule';
 
 @Component({
@@ -30,4 +30,7 @@ export class TrainCompareModule extends Vue {
 
   @Prop()
   isUnfolded: boolean;
+
+  @Prop()
+  selectedDisplayType: DisplayType;
 }

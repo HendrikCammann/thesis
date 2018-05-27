@@ -42,6 +42,9 @@ export class TrainChart extends Vue {
   @Prop()
   clustering: string;
 
+  @Prop()
+  showDate: boolean;
+
 
   private type = DisplayType.Duration;
 
@@ -479,7 +482,6 @@ export class TrainChart extends Vue {
               });
 
               if (nextBar !== undefined && nextBar.percentage > 0) {
-                console.log(bar);
                 let overlayLengthBarOne = bar.distance;
                 let overlayLengthBarTwo = nextBar.distance;
                 if (this.type === DisplayType.Duration) {
@@ -692,20 +694,29 @@ export class TrainChart extends Vue {
    * @param {string} color
    */
   private drawDivider(svg: any, width: number, weekIndex: number, position: PositionModel, color: string) {
-    svg.append('text')
-      .attr('class', 'trainChart__divider-label')
-      .attr('x', position.x)
-      .attr('y', position.y + 6)
-      .attr('fill', '#D9D9D9')
-      .attr('text-anchor', 'left')
-      .text(weekIndex);
+    if (this.showDate) {
+      svg.append('text')
+        .attr('class', 'trainChart__divider-label')
+        .attr('x', position.x)
+        .attr('y', position.y + 6)
+        .attr('fill', '#D9D9D9')
+        .attr('text-anchor', 'left')
+        .text(weekIndex);
 
-    svg.append('rect')
-      .attr('x', position.x + this.barWidth)
-      .attr('y', position.y)
-      .attr('height', 1)
-      .attr('width', width - this.barWidth)
-      .attr('fill', color);
+      svg.append('rect')
+        .attr('x', position.x + this.barWidth)
+        .attr('y', position.y)
+        .attr('height', 1)
+        .attr('width', width - this.barWidth)
+        .attr('fill', color);
+    } else {
+      svg.append('rect')
+        .attr('x', position.x)
+        .attr('y', position.y)
+        .attr('height', 1)
+        .attr('width', width)
+        .attr('fill', color);
+    }
   }
 
   /**

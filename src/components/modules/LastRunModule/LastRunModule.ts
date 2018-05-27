@@ -79,15 +79,26 @@ export class LastRunModule extends Vue {
 
   private checkFuture(): boolean {
     // Todo use correct Date;
-    // let date = new Date().getDay();
-    let date = 5;
-    return this.index > date;
+    let date = new Date().getDay();
+    let _index;
+    if (this.index === 6) {
+      _index = 0;
+    } else {
+      _index = this.index - 1;
+    }
+    return _index > date;
   }
 
   private isToday(): boolean {
     // Todo use correct Date;
-    // let date = new Date().getDay();
-    let date = 5;
+    let _index;
+    if (this.index === 6) {
+      _index = 0;
+    } else {
+      _index = _index - 1;
+    }
+
+    let date = new Date().getDay();
     return this.index === date;
   }
 
@@ -119,7 +130,6 @@ export class LastRunModule extends Vue {
 
   private selectRun(index) {
     event.preventDefault();
-    console.log('fire');
     this.selectedActivity = index;
   }
 

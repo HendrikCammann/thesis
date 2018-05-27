@@ -73,7 +73,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 4, 19),
       end: new Date(2017, 8, 20),
     };
-    activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1187823373));
   }
 
   if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
@@ -81,7 +81,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 10, 11),
       end: new Date(2018, 1, 12),
     };
-    activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1401989504));
   }
 
   if (temp <= new Date(2017, 2, 12) && temp >= new Date(2016, 9, 12)) {
@@ -89,7 +89,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2016, 9, 12),
       end: new Date(2017, 2, 13),
     };
-    activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 897076217));
   }
 
   if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
@@ -97,7 +97,7 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
       start: new Date(2017, 10, 8),
       end: new Date(2018, 3, 9),
     };
-    activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+    activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1496287411));
   }
 
   activity.categorization.type = item.type;
@@ -415,7 +415,7 @@ const mutations: MutationTree<State> = {
           start: new Date(2016, 6, 17),
           end: new Date(2016, 8, 10),
         };
-        activity.categorization.cluster_anchors.push(new ClusterItem('Fulda-2016', ('Fulda-2016-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+        activity.categorization.cluster_anchors.push(new ClusterItem('Fulda-2016', ('Fulda-2016-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 708383513));
       }
 
       if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
@@ -423,7 +423,7 @@ const mutations: MutationTree<State> = {
           start: new Date(2017, 4, 19),
           end: new Date(2017, 8, 20),
         };
-        activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+        activity.categorization.cluster_anchors.push(new ClusterItem('Karlsruhe-2017', ('Karlsruhe-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1187823373));
       }
 
       if (temp <= new Date(2018, 1, 11) && temp >= new Date(2017, 10, 11)) {
@@ -431,7 +431,7 @@ const mutations: MutationTree<State> = {
           start: new Date(2017, 10, 11),
           end: new Date(2018, 1, 12),
         };
-        activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+        activity.categorization.cluster_anchors.push(new ClusterItem('Barcelona-2018', ('Barcelona-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1401989504));
       }
 
       if (temp <= new Date(2017, 2, 12) && temp >= new Date(2016, 9, 12)) {
@@ -439,7 +439,7 @@ const mutations: MutationTree<State> = {
           start: new Date(2016, 9, 12),
           end: new Date(2017, 2, 13),
         };
-        activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 1564934153));
+        activity.categorization.cluster_anchors.push(new ClusterItem('Kandel-2017', ('Kandel-2017-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Halfmarathon, 897076217));
       }
 
       if (temp <= new Date(2018, 3, 9) && temp >= new Date(2017, 10, 8)) {
@@ -447,7 +447,7 @@ const mutations: MutationTree<State> = {
           start: new Date(2017, 10, 8),
           end: new Date(2018, 3, 9),
         };
-        activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1564934153));
+        activity.categorization.cluster_anchors.push(new ClusterItem('Hannover-2018', ('Hannover-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1496287411));
       }
     });
 

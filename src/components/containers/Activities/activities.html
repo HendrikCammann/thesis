@@ -12,24 +12,31 @@
   <div class="container card__wrapper">
       <div class="row">
         <div class="col-md-4">
-          <train-chart
-            :root="'train'"
-            :anchors="['All']"
-            :preparation="'All'"
-            :loadingStatus="loadingStatus"
-            :selectedRunType="selectedRunType"
-            :showEverything="showEverything"
-            :clustering="'byWeeks'"
-          ></train-chart>
+          <div class="card">
+            <train-chart
+              :root="'train'"
+              :anchors="['All']"
+              :preparation="'All'"
+              :loadingStatus="loadingStatus"
+              :selectedRunType="selectedRunType"
+              :showEverything="showEverything"
+              :clustering="'byWeeks'"
+            ></train-chart>
+          </div>
         </div>
-        <div class="col-md-8">
-          <activity-list
-            :preparation="'All'"
-            :loadingStatus="loadingStatus"
-            :selectedRunType="selectedRunType"
-            :showEverything="showEverything"
-            :clustering="'byWeeks'"
-          ></activity-list>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-7">
+          <div class="card">
+            <activity-list
+              :preparation="'All'"
+              :loadingStatus="loadingStatus"
+              :selectedRunType="selectedRunType"
+              :showEverything="showEverything"
+              :clustering="'byWeeks'"
+            ></activity-list>
+          </div>
         </div>
       </div>
   </div>

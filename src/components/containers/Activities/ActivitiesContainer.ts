@@ -16,6 +16,7 @@ import {DetailToggleModule} from '../../modules/DetailToggleModule';
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',
     showEverything: 'getShowEverything',
+    selectedWeeksLength: 'getSelectedWeeksLength',
   }),
   components: {
     'trainChart': TrainChart,

@@ -2,11 +2,6 @@
   $root: &;
   font-family: $font-family--secondary;
   display: inline-block;
-  cursor: pointer;
-
-  &-pullup {
-
-  }
 
   .vue2leaflet-map {
     border-top-left-radius: 24px;
@@ -25,6 +20,7 @@
 
   #{&}__wrapper {
     position: relative;
+    cursor: pointer;
 
     #{$root}__content {
       z-index: 1;
@@ -131,6 +127,11 @@
   }
 
   #{&}__empty {
+    #{$root}__wrapper {
+      cursor: no-drop;
+      pointer-events: none;
+    }
+
     #{$root}__map {
       position: relative;
       background-color: $color-white !important;

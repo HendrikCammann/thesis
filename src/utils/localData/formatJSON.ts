@@ -17,6 +17,10 @@ export function reformatJSON(data) {
       }
     }
   }
-  
+
+  data = data.sort( (a: any, b: any) => {
+    return +new Date(b.date) - +new Date(a.date);
+  });
+
   return data;
 }

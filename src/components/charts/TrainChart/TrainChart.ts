@@ -46,7 +46,7 @@ export class TrainChart extends Vue {
   private width = 325;
   private height: number;
   private padding = 8;
-  private itemHeight = 150;
+  private itemHeight = 180;
   private weekHeight = this.itemHeight - (2 * this.padding);
   private barWidth = 15;
 

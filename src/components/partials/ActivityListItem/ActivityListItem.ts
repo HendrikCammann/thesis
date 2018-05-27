@@ -9,21 +9,21 @@ import {MutationTypes} from '../../../store/mutation-types';
 })
 export class ActivityListItem extends Vue {
   @Prop()
-  activity: any;
+  activity: any[];
 
-  private getDayName() {
-    let date = new Date(this.activity.date);
+  private getDayName(activity) {
+    let date = new Date(activity.date);
     return getDayName(date.getDay(), false);
   }
 
-  private getColor() {
-    return getCategoryColor(this.activity.categorization.activity_type);
+  private getColor(activity) {
+    return getCategoryColor(activity.categorization.activity_type);
   }
 
-  private openDetailView() {
-    this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, this.activity.id);
+  private openDetailView(activity) {
+    this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activity.id);
     this.$router.push({
-      path: '/activity/' + this.activity.id
+      path: '/activity/' + activity.id
     });
   }
 

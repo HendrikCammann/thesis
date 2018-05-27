@@ -5,10 +5,12 @@ class TypeCountModel {
   distance: number;
   type: RunType;
   activities: number[];
+  duration: number;
 
   constructor() {
     this.amount = 0;
     this.distance = 0;
+    this.duration = 0;
     this.type = null;
     this.activities = [];
   }

@@ -9,12 +9,13 @@ import {getLargerValue, getPercentageFromValue} from '../../../utils/numbers/num
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {getKeys} from '../../../utils/array-helper';
 import {formatDistance} from '../../../utils/format-data';
-import {FormatDistanceType} from '../../../models/FormatModel';
+import {FormatDistanceType, FormatDurationType} from '../../../models/FormatModel';
 import {CategoryColors, CategoryOpacity, Colors} from '../../../models/VisualVariableModel';
 import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calculateVisualVariables';
-import {RunType} from '../../../store/state';
+import {DisplayType, RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 import {MutationTypes} from '../../../store/mutation-types';
+import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 
 @Component({
   template: require('./trainChart.html'),
@@ -40,6 +41,9 @@ export class TrainChart extends Vue {
 
   @Prop()
   clustering: string;
+
+
+  private type = DisplayType.Duration;
 
   // private selectedRunType: RunType = RunType.All;
 
@@ -103,7 +107,17 @@ export class TrainChart extends Vue {
       let keys = getKeys(data);
       longestPreparation = getLargerValue(keys.length, longestPreparation);
       for (let key in data) {
-        maxValue = getLargerValue(data[key].stats.distance, maxValue);
+        switch (this.type) {
+          case DisplayType.Distance:
+            maxValue = getLargerValue(data[key].stats.distance, maxValue);
+            break;
+          case DisplayType.Duration:
+            maxValue = getLargerValue(data[key].stats.time, maxValue);
+            break;
+          case DisplayType.Intensity:
+            maxValue = getLargerValue(data[key].stats.time, maxValue);
+            break;
+        }
       }
     });
     return maxValue;
@@ -183,13 +197,29 @@ export class TrainChart extends Vue {
 
       let weekBars = [];
       for (let anchor in data[key].stats.typeCount) {
-        let barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].distance);
-        let distance = formatDistance(data[key].stats.typeCount[anchor].distance, FormatDistanceType.Kilometers).toFixed(0);
+        let barLength;
+        let label;
+
+        switch (this.type) {
+          case DisplayType.Distance:
+            barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].distance);
+            label = formatDistance(data[key].stats.typeCount[anchor].distance, FormatDistanceType.Kilometers).toFixed(0);
+            break;
+          case DisplayType.Duration:
+            barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].duration);
+            label = data[key].stats.typeCount[anchor].duration;
+            break;
+          case DisplayType.Intensity:
+            barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].duration);
+            label = 'int';
+            break;
+        }
         let color = CategoryColors.Default;
         if (data[key].stats.typeCount[anchor].type !== null) {
           color = getCategoryColor(data[key].stats.typeCount[anchor].type);
         }
-        let barItem = this.calculateBar(barLength, position, distance, color, data[key].stats.typeCount[anchor].type, null);
+
+        let barItem = this.calculateBar(barLength, position, label, color, data[key].stats.typeCount[anchor].type, null);
         weekBars.push(barItem);
         position.x += (this.width / 6);
       }
@@ -311,10 +341,29 @@ export class TrainChart extends Vue {
       position.y += padding;
       positionDivider.y += padding;
 
-      let barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
-      let distance = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
-      let percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.distance);
-      let barItem = this.calculateBar(barLength, position, distance, CategoryColors.Default, RunType.All, percentages);
+      let barLength;
+      let label;
+      let percentages;
+
+      switch (this.type) {
+        case DisplayType.Distance:
+          barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
+          label = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
+          percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.distance);
+          break;
+        case DisplayType.Duration:
+          barLength = this.barLength(weekHeight, largestValue, data[key].stats.time);
+          label = data[key].stats.time;
+          percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
+          break;
+        case DisplayType.Intensity:
+          barLength = this.barLength(weekHeight, largestValue, data[key].stats.time);
+          label = 'int';
+          percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
+          break;
+      }
+
+      let barItem = this.calculateBar(barLength, position, label, CategoryColors.Default, RunType.All, percentages);
       barItems.push(barItem);
 
       position.y += weekHeight;
@@ -430,8 +479,13 @@ export class TrainChart extends Vue {
               });
 
               if (nextBar !== undefined && nextBar.percentage > 0) {
+                console.log(bar);
                 let overlayLengthBarOne = bar.distance;
                 let overlayLengthBarTwo = nextBar.distance;
+                if (this.type === DisplayType.Duration) {
+                  overlayLengthBarOne = overlayLengthBarOne / 1000;
+                  overlayLengthBarTwo = overlayLengthBarTwo / 1000;
+                }
                 let midBarOne = ((barItems[i].yStart + (barItems[i].yStart + overlayLengthBarOne)) / 2);
                 let midBarTwo = ((barItems[i + 1].yStart + (barItems[i + 1].yStart + overlayLengthBarTwo)) / 2);
 
@@ -496,7 +550,18 @@ export class TrainChart extends Vue {
           });
           if (bar !== undefined) {
             let overlayHeight = height * (bar.percentage / 100);
-            let overlayDistance = bar.distance.toFixed(0);
+            let overlayDistance;
+            switch (this.type) {
+              case DisplayType.Distance:
+                overlayDistance = bar.distance.toFixed(0);
+                break;
+              case DisplayType.Duration:
+                overlayDistance = bar.distance.toFixed(0);
+                break;
+              case DisplayType.Intensity:
+                overlayDistance = bar.distance.toFixed(0);
+                break;
+            }
             let color = getCategoryColor(bar.type);
             this.drawBar(svg, position, width, overlayHeight, color, overlayDistance, CategoryOpacity.Full, false);
           }
@@ -567,11 +632,31 @@ export class TrainChart extends Vue {
   private calculatePercentageOfTotal(typeCount: ActivityClusterTypeCountModel, distance: number) {
     let percentages = [];
     for (let key in typeCount) {
-      let item = {
-        percentage: getPercentageFromValue(typeCount[key].distance, distance),
-        distance: formatDistance(typeCount[key].distance, FormatDistanceType.Kilometers),
-        type: typeCount[key].type,
-      };
+      let item;
+      switch (this.type) {
+        case DisplayType.Distance:
+          item = {
+            percentage: getPercentageFromValue(typeCount[key].distance, distance),
+            distance: formatDistance(typeCount[key].distance, FormatDistanceType.Kilometers),
+            type: typeCount[key].type,
+          };
+          break;
+        case DisplayType.Duration:
+          item = {
+            percentage: getPercentageFromValue(typeCount[key].duration, distance),
+            distance: typeCount[key].duration,
+            type: typeCount[key].type,
+          };
+          break;
+        case DisplayType.Intensity:
+          item = {
+            percentage: getPercentageFromValue(typeCount[key].duration, distance),
+            distance: typeCount[key].duration,
+            type: typeCount[key].type,
+          };
+          break;
+      }
+
       percentages.push(item);
     }
     return percentages;
@@ -745,13 +830,23 @@ export class TrainChart extends Vue {
       x -= arcOffsetX;
     }
 
-    svg.append('text')
-      .attr('class', 'trainChart__arc-label')
-      .attr('x', x + textOffset)
-      .attr('y', y + 5)
-      .attr('fill', color)
-      .attr('text-anchor', textAnchor)
-      .text(totalDifference + 'km');
+    if (this.type === DisplayType.Distance) {
+      svg.append('text')
+        .attr('class', 'trainChart__arc-label')
+        .attr('x', x + textOffset)
+        .attr('y', y + 5)
+        .attr('fill', color)
+        .attr('text-anchor', textAnchor)
+        .text(totalDifference + 'km');
+    } else {
+      svg.append('text')
+        .attr('class', 'trainChart__arc-label')
+        .attr('x', x + textOffset)
+        .attr('y', y + 5)
+        .attr('fill', color)
+        .attr('text-anchor', textAnchor)
+        .text(totalDifference);
+    }
 
   }
 
@@ -776,14 +871,25 @@ export class TrainChart extends Vue {
       .attr('opacity', opacity);
 
     if (!hideLabel) {
-      svg.append('text')
-        .attr('class', 'trainChart__bar-label')
-        .attr('x', position.x + width + 4)
-        .attr('y', position.y + 14)
-        .attr('fill', color)
-        .attr('text-anchor', 'right')
-        .attr('opacity', opacity)
-        .text(distance + 'km');
+      if (this.type === DisplayType.Distance) {
+        svg.append('text')
+          .attr('class', 'trainChart__bar-label')
+          .attr('x', position.x + width + 4)
+          .attr('y', position.y + 14)
+          .attr('fill', color)
+          .attr('text-anchor', 'right')
+          .attr('opacity', opacity)
+          .text(distance + 'km');
+      } else {
+        svg.append('text')
+          .attr('class', 'trainChart__bar-label')
+          .attr('x', position.x + width + 4)
+          .attr('y', position.y + 14)
+          .attr('fill', color)
+          .attr('text-anchor', 'right')
+          .attr('opacity', opacity)
+          .text(distance);
+      }
 
       /*svg.append('text')
         .attr('x', position.x + width + 4)

@@ -17,6 +17,12 @@ export enum RunType {
   Uncategorized = 'Uncategorized',
 }
 
+export enum DisplayType {
+  Distance = 'Distance',
+  Intensity = 'Intensity',
+  Duration = 'Duration',
+}
+
 export enum ClusterType {
   All = 'All',
   ByYears = 'ByYears',

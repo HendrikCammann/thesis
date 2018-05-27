@@ -1,4 +1,4 @@
-import {ClusterType, RunType} from '../../store/state';
+import {ClusterType, DisplayType, RunType} from '../../store/state';
 
 export class TimeRangeModel {
   start: Date;
@@ -17,6 +17,7 @@ export class FilterModel {
   selectedCluster: ClusterType;
   selectedTrainingCluster: string;
   selectedRunTypTrainingCluster: RunType;
+  selectedDisplayType: DisplayType;
   timeRange: TimeRangeModel;
   showEverything: boolean;
 
@@ -25,6 +26,7 @@ export class FilterModel {
     this.selectedCluster = ClusterType.ByMonths;
     this.timeRange = new TimeRangeModel();
     this.selectedTrainingCluster = 'All';
+    this.selectedDisplayType = DisplayType.Distance;
     this.selectedRunTypTrainingCluster = RunType.All;
     this.showEverything = true;
   }

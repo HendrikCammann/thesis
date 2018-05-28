@@ -8,6 +8,11 @@
   </div>
 
   <div class="container card__wrapper">
+    <div class="row sectionLabel">
+      <div class="col-md-12">
+        Trainingstagebuch
+      </div>
+    </div>
       <div class="row">
         <div class="col-md-4">
           <div class="card">
@@ -25,7 +30,12 @@
           </div>
         </div>
         <div class="col-md-1">
-
+          <date-module
+            :preparation="'All'"
+            :loadingStatus="loadingStatus"
+            :selectedRunType="selectedRunType"
+            :clustering="'byWeeks'"
+          ></date-module>
         </div>
         <div class="col-md-7">
           <div class="card">

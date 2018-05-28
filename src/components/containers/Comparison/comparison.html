@@ -10,8 +10,12 @@
         <div class="col-md-12">
           <compare-add
             :selectedClusters="selectedTrainingClusters"
+            :existingClusters="existingClusters"
           ></compare-add>
         </div>
+      </div>
+      <div class="row">
+        <input type="button" @click="nextStep()" value="'hi'">
       </div>
     </div>
   </div>

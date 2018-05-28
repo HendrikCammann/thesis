@@ -9,6 +9,7 @@ import {SmartFilterModule} from '../../modules/SmartFilterModule';
 import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
 import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
+import {DateModule} from '../../modules/DateModule';
 
 @Component({
   template: require('./activities.html'),
@@ -25,6 +26,7 @@ import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
     'activityList': ActivityList,
     'smartFilter': SmartFilterModule,
     'displayToggle': DisplayTypeToggleModule,
+    'dateModule': DateModule,
     'modalButton': ModalButtonModule,
     'detailToggle': DetailToggleModule,
   }

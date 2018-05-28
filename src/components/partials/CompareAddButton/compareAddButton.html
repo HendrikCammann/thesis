@@ -1,3 +1,11 @@
 <div class="compareAddButton">
-  <span class="compareAddButton__title">{{ trainingCluster }}</span>
+  <div v-if="!isAdd">
+    <div class="compareAddButton__circle"></div><div class="compareAddButton__title">{{ trainingCluster }}</div>
+  </div>
+  <div v-if="isAdd">
+    <select @change="addTrainingCluster()" v-model="selectedValue">
+      <option disabled value="">Please select one</option>
+      <option v-for="item in chooseableClusters" :value="item.clusterName">{{ item.clusterName }}</option>
+    </select>
+  </div>
 </div>

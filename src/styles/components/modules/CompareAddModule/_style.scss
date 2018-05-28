@@ -5,4 +5,22 @@
   #{&}__action {
     text-align: center;
   }
+
+  #{&}__filter {
+
+    #{$root}__circle {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      background-color: red;
+    }
+
+    #{$root}__name {
+      display: inline-block;
+    }
+
+    font-size: 12px;
+    font-weight: 700;
+  }
 }

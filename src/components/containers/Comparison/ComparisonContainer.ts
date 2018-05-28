@@ -53,6 +53,10 @@ export class ComparisonContainer extends Vue {
     eventBus.$emit(modalEvents.open_Modal);
   }
 
+  private nextStep() {
+    this.progressStep = 1;
+  }
+
   mounted() {
     eventBus.$on(modalEvents.close_Modal, () => {
       this.showModal = false;

@@ -3,6 +3,10 @@
   margin-left: 108px;
   padding-top: 80px;
 
+  .dateModule {
+    margin-top: 30px;
+  }
+
   #{&}__filter {
     position: fixed;
     text-align: right;

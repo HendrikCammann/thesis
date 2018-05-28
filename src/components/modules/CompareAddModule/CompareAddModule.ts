@@ -12,4 +12,7 @@ import {CompareAddButton} from '../../partials/CompareAddButton';
 export class CompareAddModule extends Vue {
   @Prop()
   selectedClusters: string[];
+
+  @Prop()
+  existingClusters: any[];
 }

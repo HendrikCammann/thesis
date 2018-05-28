@@ -1,0 +1,8 @@
+.dateModule {
+  $root: &;
+  text-align: center;
+
+  #{&}__group {
+    height: 180px;
+  }
+}

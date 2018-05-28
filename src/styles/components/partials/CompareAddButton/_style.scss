@@ -8,6 +8,20 @@
   font-weight: 700;
   border-right: 2px solid #F3F3F3;
 
+  #{&}__circle {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right: 4px;
+    // transform: translate(0, 1px);
+  }
+
+  #{&}__title {
+    display: inline-block;
+  }
+
   &:last-of-type {
     border: none;
   }

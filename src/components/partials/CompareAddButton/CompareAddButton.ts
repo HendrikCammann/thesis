@@ -12,12 +12,31 @@ export class CompareAddButton extends Vue {
   @Prop()
   trainingCluster: string;
 
+  @Prop()
+  isAdd: boolean;
+
+  @Prop()
+  trainingClusters: string[];
+
+  @Prop()
+  existingClusters: any[];
+
+  private selectedValue = '';
+
   public removeTrainingCluster () {
     eventBus.$emit(compareEvents.remove_Training_Cluster, this.trainingCluster);
   }
 
   public addTrainingCluster () {
-    eventBus.$emit(modalEvents.open_Modal);
+    eventBus.$emit(compareEvents.add_Training_Cluster, this.selectedValue);
+  }
+
+  get chooseableClusters() {
+    return this.existingClusters.filter(item => {
+      if (this.trainingClusters.indexOf(item.clusterName) < 0 && item.clusterName !== 'All') {
+        return item;
+      }
+    })
   }
 
   mounted() {

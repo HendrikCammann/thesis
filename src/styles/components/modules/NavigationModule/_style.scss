@@ -1,10 +1,12 @@
 .navigationModule {
   $root: &;
   position: fixed;
+  z-index: 9999;
   width: 100%;
   height: 75px;
   text-align: center;
   background-color: $color-white;
+  // border-bottom: 1px solid $color-grey--light;
   box-shadow: 0 1px 20px 0 rgba(34, 34, 34, 0.1);
 
   #{&}__content {

@@ -1,0 +1,49 @@
+<div class="currentWeek">
+  <div class="currentWeek__content" v-if="data != null">
+    <div class="currentWeek__stat">
+      <img class="currentWeek__icon" src="../../../assets/icons/calendar--gray.svg">
+      <div class="currentWeek__label">
+        Einheiten
+      </div>
+      <div class="currentWeek__count">
+        {{ data.sessions }}
+      </div>
+    </div>
+    <div class="currentWeek__stat">
+      <img class="currentWeek__icon" src="../../../assets/icons/restday--gray.svg">
+      <div class="currentWeek__label">
+        Ruhetage
+      </div>
+      <div class="currentWeek__count">
+        {{ data.restdays }}
+      </div>
+    </div>
+    <div class="currentWeek__stat">
+      <img class="currentWeek__icon" src="../../../assets/icons/distance--gray.svg">
+      <div class="currentWeek__label">
+        Distanz
+      </div>
+      <div class="currentWeek__count">
+        {{ data.distance }}
+      </div>
+    </div>
+    <div class="currentWeek__stat">
+      <img class="currentWeek__icon" src="../../../assets/icons/clock--gray.svg">
+      <div class="currentWeek__label">
+        Dauer
+      </div>
+      <div class="currentWeek__count">
+        {{ data.duration }}
+      </div>
+    </div>
+    <div class="currentWeek__stat">
+      <img class="currentWeek__icon" src="../../../assets/icons/running--gray.svg">
+      <div class="currentWeek__label">
+        Intensität
+      </div>
+      <div class="currentWeek__count">
+        {{ data.intensity }}
+      </div>
+    </div>
+  </div>
+</div>

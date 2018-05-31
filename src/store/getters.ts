@@ -39,7 +39,7 @@ const getters: GetterTree<State, State> = {
     let keys = getKeys(state.sortedLists['All'].byWeeks);
     if (keys.length !== 0) {
       let arr = [];
-      state.sortedLists['All'].byWeeks[keys[0]].activities.forEach(id => {
+      state.sortedLists['All'].byWeeks[keys[1]].activities.forEach(id => {
         arr.push(state.activityList.find(item => item.id === id));
       });
 
@@ -62,6 +62,33 @@ const getters: GetterTree<State, State> = {
 
       return returnArr;
     }
+  },
+
+  getActualMonthStats: (state) => {
+    let keys = getKeys(state.sortedLists['All'].byMonths);
+    let arr = [];
+    if (keys.length !== 0) {
+      state.sortedLists['All'].byMonths[keys[0]].activities.forEach(id => {
+        arr.push(state.activityList.find(item => item.id === id));
+      });
+    }
+    let duration = 0;
+    let intensity = 0;
+    let distance = 0;
+    let amount = arr.length;
+
+    arr.forEach(item => {
+      duration += item.base_data.duration;
+      distance += item.base_data.distance;
+      intensity += 0;
+    });
+
+    return {
+      duration: duration,
+      intensity: intensity,
+      distance: distance,
+      amount: amount,
+    };
   },
 
 

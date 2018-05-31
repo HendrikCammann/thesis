@@ -3,6 +3,7 @@ body {
   font-size: 16px;
   font-family: 'Muli', sans-serif;
   color: $color-black;
+  background-color: #FBFBFB;
 }
 
 .clearfix::after {
@@ -10,6 +11,26 @@ body {
   display: block;
   height: 0;
   clear: both;
+}
+
+.text {
+  &--strong {
+    font-weight: 700;
+  }
+}
+
+.vcenter-content {
+ display: flex;
+ // justify-content: center;
+ align-items: center;
+ height: 100%;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .card {
@@ -40,4 +61,17 @@ body {
 .no-padding {
   padding: 0;
 }
+
+@media (min-width: 1400px) {
+  .container {
+    width: 1370px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    width: 1570px;
+  }
+}
+
 

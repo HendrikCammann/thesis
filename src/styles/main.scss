@@ -6,8 +6,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~leaflet/dist/leaflet.css";
 @import url('https://fonts.googleapis.com/css?family=Muli:400,600,700,900');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 // common
 @import "common/_colors";
 @import "common/_style";
@@ -30,6 +29,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/TrainChart/_style";
 
 @import "components/modules/ActivityList/_style";
+@import "components/modules/CurrentWeek/_style";
+@import "components/modules/User/_style";
+@import "components/modules/PreparationTeaser/_style";
 @import "components/modules/CardModule/_style";
 @import "components/modules/DateModule/_style";
 @import "components/modules/CompetitionModule/_style";

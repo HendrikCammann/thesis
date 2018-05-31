@@ -1,13 +1,33 @@
 .dashboard {
   $root: &;
   height: 100vh;
-  margin-left: 108px;
-  padding-top: 80px;
+  padding-top: 75px;
+  font-family: $font-family--main;
 
-  .last-run-module {
-    width: calc((100% / 7) - 14px);
-    &:not(:last-of-type) {
-      margin-right: 16px;
+  #{&}__content {
+    margin-top: 56px;
+
+    #{$root}__row {
+      margin-top: 56px;
+    }
+
+    #{$root}__preparation {
+      text-align: right;
+    }
+
+    #{$root}__label {
+      font-family: $font-family--secondary;
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-grey;
+    }
+
+    #{$root}__month {
+      background-color: $color-white;
+      border-radius: 8px;
+      height: 30px;
+      width: 90px;
+      box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2);
     }
   }
 }

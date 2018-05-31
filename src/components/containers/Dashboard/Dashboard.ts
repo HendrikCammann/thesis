@@ -11,6 +11,9 @@ import {HeadlineBox} from '../../partials/HeadlineBox';
 import {LastRunModule} from '../../modules/LastRunModule';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
 import {eventBus} from '../../../main';
+import {UserModule} from '../../modules/User';
+import {PreparationTeaserModule} from '../../modules/PreparationTeaser';
+import {CurrentWeekModule} from '../../modules/CurrentWeek';
 
 @Component({
   template: require('./dashboard.html'),
@@ -18,10 +21,14 @@ import {eventBus} from '../../../main';
     user: 'getAthlete',
     latestActivity: 'getLatestActivity',
     actualWeek: 'getActualWeekActivities',
+    monthStats: 'getActualMonthStats',
     loadingStatus: 'getAppLoadingStatus',
     filter: 'getDashboardFilter',
   }),
   components: {
+    'userModule': UserModule,
+    'preparationTeaserModule': PreparationTeaserModule,
+    'currentWeekModule': CurrentWeekModule,
     'headlineBox': HeadlineBox,
     'lastRunModule': LastRunModule,
     'waveChart': WaveChart,
@@ -33,10 +40,10 @@ export class Dashboard extends Vue {
   public canvasConstraints = new CanvasConstraints(0, 420, 300, 50, 1, 5);
 
   mounted() {
-    if (this.$store.getters.getAppLoadingStatus.athlete === loadingStatus.NotLoaded) {
+    /*if (this.$store.getters.getAppLoadingStatus.athlete === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_ATHLETE_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ATHLETE);
-    }
+    }*/
 
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);

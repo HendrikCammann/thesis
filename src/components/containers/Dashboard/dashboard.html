@@ -1,5 +1,52 @@
 <div class="container-fluid dashboard">
-  <div class="row">
+  <div class="container dashboard__content">
+    <div class="row vcenter-content">
+      <div class="col-md-5 dashboard__personal">
+        <user-module></user-module>
+      </div>
+      <div class="col-md-7 dashboard__preparation">
+        <preparation-teaser-module></preparation-teaser-module>
+      </div>
+    </div>
+
+    <div class="row dashboard__row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="dashboard__label">
+              Deine bisherige Woche
+            </div>
+            <current-week-module
+              v-if="actualWeek"
+              :activities="actualWeek"
+              :loaded="loadingStatus"
+            ></current-week-module>
+          </div>
+
+          <div class="col-md-5">
+            <div class="dashboard__label">
+              Dein bisheriger Monat
+            </div>
+            <div class="dashboard__month">
+              {{ monthStats }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <!--<div class="dashboard__label">
+          Deine letzten Trainingseinheiten
+        </div>
+        <div v-if="actualWeek">
+          <last-run-module
+            :activities="actualWeek"
+            :loaded="loadingStatus"
+          ></last-run-module>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <!--<div class="row">
     <div class="col-md-12" v-if="actualWeek">
       <last-run-module
         v-for="activity, i in actualWeek"

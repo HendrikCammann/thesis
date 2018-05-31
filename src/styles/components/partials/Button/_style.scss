@@ -1,13 +1,30 @@
 .buttonMain {
-  font-family: $font-family--main;
-  font-size: 16px;
-  color: $color-white;
-  letter-spacing: 0.5px;
-  border-radius: 30px;
-  width: fit-content;
-  background-color: $color-black;
-  padding: 9px 32px 5px 32px;
-  box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.5);
+  display: inline-block;
+  #{&}__content {
+    font-family: $font-family--main;
+    cursor: pointer;
+    font-size: 16px;
+    color: #9b59b6;
+    border-radius: 30px;
+    width: fit-content;
+    background-color: $color-white;
+    padding: 0 32px;
+    height: 40px;
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2);
+    background-image: linear-gradient(to left,
+      transparent,
+      transparent 50%,
+      #9b59b6 50%,
+      #9b59b6);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .2s ease-in;
+
+    &:hover {
+      background-position: 0 0;
+      color: white;
+    }
+  }
 
   &--small {
     font-size: 12px;

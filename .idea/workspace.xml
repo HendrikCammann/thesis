@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/trainChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/TrainChart/trainChart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/dateModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/DateModule/dateModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_font-styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_font-styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/TrainChart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/charts/TrainChart/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/DateModule/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/DateModule/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/NavigationModule/navigationModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/NavigationModule/navigationModule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,29 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_font-styles.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_font-styles.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-            </state>
-          </provider>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="_style.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            <state relative-caret-position="555">
+              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navigationModule.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/modules/NavigationModule/navigationModule.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -134,8 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/utils/localData/formatJSON.ts" />
-        <option value="$PROJECT_DIR$/src/components/modules/ActivityList/ActivityList.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/models/Activity/ActivityClusterModel.ts" />
         <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
@@ -185,6 +170,8 @@
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/styles/common/_font-styles.scss" />
         <option value="$PROJECT_DIR$/src/styles/common/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/modules/NavigationModule/navigationModule.html" />
+        <option value="$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss" />
       </list>
     </option>
   </component>
@@ -256,6 +243,21 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="NavigationModule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -263,7 +265,24 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="NavigationModule" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -446,12 +465,12 @@
       <workItem from="1527324285002" duration="31109000" />
       <workItem from="1527426096884" duration="1995000" />
       <workItem from="1527506678966" duration="9323000" />
-      <workItem from="1527778738028" duration="72000" />
+      <workItem from="1527778738028" duration="1118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="667272000" />
+    <option name="totallyTimeSpent" value="668318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -680,27 +699,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityList/ActivityList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="96" selection-start-line="17" selection-start-column="96" selection-end-line="17" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="17" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/CompareModule/compareModule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/TrainCompareModule/trainCompareModule.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1015,10 +1013,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="600">
+          <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1029,10 +1027,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
+    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/NavigationModule/navigationModule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
         </state>
       </provider>
     </entry>

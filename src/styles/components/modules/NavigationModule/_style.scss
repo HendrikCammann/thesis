@@ -1,82 +1,56 @@
 .navigationModule {
   $root: &;
   position: fixed;
-  width: 108px;
-  height: 100vh;
+  width: 100%;
+  height: 75px;
   text-align: center;
   background-color: $color-white;
-  border-right: 2px solid $color-grey--light;
-
-  #{&}__candy {
-    width: 4px;
-    height: 100vh;
-
-    &--run {
-      height: 25vh;
-      background-color: $color-run;
-    }
-
-    &--longRun {
-      height: 25vh;
-      background-color: $color-longRun;
-    }
-
-    &--interval {
-      height: 25vh;
-      background-color: $color-interval;
-    }
-
-    &--competition {
-      height: 25vh;
-      background-color: $color-competition;
-    }
-  }
+  box-shadow: 0 1px 20px 0 rgba(34, 34, 34, 0.1);
 
   #{&}__content {
-
-    &--upper {
-      transform: translate(0, -83vh);
-    }
-
-    &--lower {
-      transform: translate(0, -62vh);
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: 300;
+    color: $color-black;
 
     #{$root}__item {
-      padding-top: 25px;
-      font-size: 14px;
-      font-family: $font-family--secondary;
+      display: inline-block;
+      margin: 0 32px;
       cursor: pointer;
+      -webkit-transition: .2s ease-in-out;
+      -moz-transition: .2s ease-in-out;
+      -o-transition: .2s ease-in-out;
+      transition: .2s ease-in-out;
 
-      &--active {
-        font-weight: bold;
+      &::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: $color-black;
+        transition: width .3s;
       }
 
       &:hover {
+        transform: translate(0, -4px);
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+
+      &--active {
         font-weight: 700;
 
-        .navigationModule__item-img {
-          filter: grayscale(0%);
+        &::after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 2px;
+          background: $color-black;
         }
-      }
-
-      &-img {
-        width: auto;
-        height: 30px;
-        margin-bottom: 6px;
-        filter: grayscale(100%);
-
-        &--active {
-          filter: grayscale(0%);
-        }
-      }
-
-      &-divider {
-        height: 1px;
-        margin: 0 auto;
-        margin-top: 24px;
-        background-color: $color-grey--light;
-        width: 50px;
       }
     }
   }

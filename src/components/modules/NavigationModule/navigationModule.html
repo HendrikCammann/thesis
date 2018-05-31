@@ -1,38 +1,9 @@
-<div class="navigationModule">
-  <div class="navigationModule__candy">
-    <div class="navigationModule__candy--run">
-
-    </div>
-    <div class="navigationModule__candy--longRun">
-
-    </div>
-    <div class="navigationModule__candy--interval">
-
-    </div>
-    <div class="navigationModule__candy--competition">
-
-    </div>
-  </div>
-  <div class="navigationModule__content">
-    <div class="navigationModule__content--upper">
-      <div class="navigationModule__item"
-           v-for="link, i in links"
-           :class="{'navigationModule__item--active' : $route.name == link.name}"
-           v-on:click="handleNavigation(link.path)">
-        <img class="navigationModule__item-img"
-             :class="{'navigationModule__item-img--active' : $route.name == link.name}"
-             :src="'../../../assets/illustrations/' + link.illustration + '.svg'">
-        <div>{{ link.name }}</div>
-        <hr v-if="i < links.length - 1" class="navigationModule__item-divider">
-      </div>
-    </div>
-    <div class="navigationModule__content--lower">
-      <div class="navigationModule__item">
-        <img class="navigationModule__item-img"
-             :class="{'navigationModule__item-img--active' : $route.name == 'Einstellungen'}"
-             :src="'../../../assets/illustrations/' + 'female' + '.svg'">
-        <div>Einstellungen</div>
-      </div>
-    </div>
+<div class="navigationModule container-fluid">
+  <div class="navigationModule__content container">
+    <div class="navigationModule__item"
+         v-for="link, i in links"
+         :class="{'navigationModule__item--active' : $route.name == link.name}"
+         @click="handleNavigation(link.path)"
+    >{{ link.name }}</div>
   </div>
 </div>

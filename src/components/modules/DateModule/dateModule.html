@@ -1,5 +1,10 @@
 <div class="dateModule">
   <div class="dateModule__group" v-for="(item, j) in formatedData">
-    {{ item.end }} bis {{ item.start }}
+    <div class="dateModule__year">
+      {{ isNewYear(item.year) }}
+    </div>
+    <div class="dateModule__range">
+      {{ item.end }} - {{ item.start }}
+    </div>
   </div>
 </div>

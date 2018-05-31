@@ -23,6 +23,7 @@ export class DateModule extends Vue {
   clustering: string;
 
   private formatedData = null;
+  private _year = null;
 
   @Watch('loadingStatus.activities')
   @Watch('selectedRunType')
@@ -41,6 +42,21 @@ export class DateModule extends Vue {
    */
   private getData(preparation: string): ClusterWrapper {
     return this.$store.state.sortedLists[preparation];
+  }
+
+  private isNewYear(year: string | number) {
+    if (this._year === null) {
+      this._year = year;
+      return year;
+    } else {
+      if (year !== this._year) {
+        this._year = year;
+        return year;
+      } else {
+        this._year = year;
+        return null;
+      }
+    }
   }
 
   private formatData(data: ClusterWrapper, clustering: string) {
@@ -77,8 +93,9 @@ export class DateModule extends Vue {
         let subtract2 = moment(durationObject.end).subtract(i, 'week').toDate();
 
         let obj = {
-          start: moment(subtract1).format('DD-MM-YYYY'),
-          end: moment(subtract2).format('DD-MM-YYYY'),
+          start: moment(subtract1).format('DD.MM'),
+          end: moment(subtract2).format('DD.MM'),
+          year: moment(subtract1).format('YYYY'),
         };
 
         temp.push(obj);
@@ -87,8 +104,9 @@ export class DateModule extends Vue {
         let d2 = moment(durationObject.end);
 
         let obj = {
-          start: moment(d1).format('DD-MM-YYYY'),
-          end: moment(d2).format('DD-MM-YYYY'),
+          start: moment(d1).format('DD.MM'),
+          end: moment(d2).format('DD.MM'),
+          year: moment(d1).format('YYYY'),
         };
         temp.push(obj);
       }
@@ -101,5 +119,12 @@ export class DateModule extends Vue {
     // console.log(temp);
 
     return temp;
+  }
+
+  mounted() {
+    if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      let data = this.getData(this.preparation);
+      this.formatedData = this.formatData(data, this.clustering);
+    }
   }
 }

@@ -7,6 +7,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~leaflet/dist/leaflet.css";
 @import url('https://fonts.googleapis.com/css?family=Muli:400,600,700,900');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
 // common
 @import "common/_colors";
 @import "common/_style";
@@ -29,6 +30,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/TrainChart/_style";
 
 @import "components/modules/ActivityList/_style";
+@import "components/modules/ActivityStats/_style";
+@import "components/modules/ActivityGraphs/_style";
 @import "components/modules/CurrentWeek/_style";
 @import "components/modules/User/_style";
 @import "components/modules/PreparationTeaser/_style";
@@ -50,7 +53,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/modal/_style";
 
 @import "components/partials/Button/_style";
+@import "components/partials/Toggle/_style";
 @import "components/partials/ActivityListItem/_style";
+@import "components/partials/ActivityStatsItem/_style";
 @import "components/partials/TagItem/_style";
 @import "components/partials/TitleBox/_style";
 @import "components/partials/MapOverlayItem/_style";

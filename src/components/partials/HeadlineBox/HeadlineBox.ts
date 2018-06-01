@@ -1,18 +1,20 @@
-/* tslint:disable */
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
 
 @Component({
   template: require('./headlineBox.html'),
 })
 export class HeadlineBox extends Vue {
   @Prop()
-  headline: string;
+  public headline: string;
 
   @Prop()
-  illustration: string;
+  public label: string;
+
+  @Prop()
+  public image: string;
 
   get imagePath() {
-    return require('../../../assets/illustrations/' + this.illustration + '.svg')
+    return require('../../../assets/icons/' + this.image + '.svg');
   }
 }

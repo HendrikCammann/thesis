@@ -2,7 +2,11 @@
   <div class="container dashboard__content">
     <div class="row vcenter-content">
       <div class="col-md-5 dashboard__personal">
-        <user-module></user-module>
+        <user-module
+          :headline="'Hendrik Cammann'"
+          :label="'Marathonläufer'"
+          :image="'https://images.pexels.com/photos/28054/pexels-photo-28054.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'"
+        ></user-module>
       </div>
       <div class="col-md-7 dashboard__preparation">
         <preparation-teaser-module></preparation-teaser-module>
@@ -34,7 +38,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <!--<div class="dashboard__label">
+        <div class="dashboard__label">
           Deine letzten Trainingseinheiten
         </div>
         <div v-if="actualWeek">
@@ -42,7 +46,7 @@
             :activities="actualWeek"
             :loaded="loadingStatus"
           ></last-run-module>
-        </div>-->
+        </div>
       </div>
     </div>
   </div>

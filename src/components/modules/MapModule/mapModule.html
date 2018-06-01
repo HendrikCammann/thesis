@@ -1,37 +1,7 @@
 <div class="mapModule">
+  <div class="mapModule__overlay"></div>
   <leaflet-map :bounds="mapOptions.bounds" :options="{ scrollWheelZoom: false }">
-    <leaflet-tilelayer :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
-    <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="'red'"></leaflet-polyline>
+    <leaflet-tilelayer :url="mapOptions.live" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+    <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.polylineColor"></leaflet-polyline>
   </leaflet-map>
-  <div class="mapModule__overlay">
-      <div class="mapModule__details" v-if="overlayData">
-        <map-overlay-item
-          class="mapModule__detail"
-          :value="overlayData.distance"
-          :label="'Distanz'"
-          :illustration="'stopwatch'"
-        ></map-overlay-item>
-
-        <map-overlay-item
-          class="mapModule__detail"
-          :value="overlayData.duration"
-          :label="'Dauer'"
-          :illustration="'stopwatch'"
-        ></map-overlay-item>
-
-        <map-overlay-item
-          class="mapModule__detail"
-          :value="overlayData.heartrate"
-          :label="'ø HF'"
-          :illustration="'stopwatch'"
-        ></map-overlay-item>
-
-        <map-overlay-item
-          class="mapModule__detail"
-          :value="overlayData.speed"
-          :label="'ø Pace'"
-          :illustration="'stopwatch'"
-        ></map-overlay-item>
-      </div>
-  </div>
 </div>

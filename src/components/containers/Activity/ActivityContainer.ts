@@ -5,6 +5,9 @@ import {mapGetters} from 'vuex';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {MapModule} from '../../modules/MapModule';
 import {ZoneModule} from '../../modules/ZoneModule';
+import {HeadlineBox} from '../../partials/HeadlineBox';
+import {ActivityStatsModule} from '../../modules/ActivityStats';
+import {ActivityGraphs} from '../../modules/ActivityGraphs';
 
 /* tslint:disable */
 @Component({
@@ -16,8 +19,11 @@ import {ZoneModule} from '../../modules/ZoneModule';
     loadingStatus: 'getAppLoadingStatus',
   }),
   components: {
-    'zoneModule': ZoneModule,
     'mapModule': MapModule,
+    'headlineBox': HeadlineBox,
+    'activityStats': ActivityStatsModule,
+    'activityGraphs': ActivityGraphs,
+    'zoneModule': ZoneModule,
   }
 })
 export class ActivityContainer extends Vue {

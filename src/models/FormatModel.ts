@@ -30,4 +30,5 @@ export enum FormatPaceType {
 export enum FormatDurationType {
   Minutes = 'minutes',
   Hours = 'hours',
+  Dynamic = 'dynamic'
 }

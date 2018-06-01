@@ -1,15 +1,45 @@
 <div class="container-fluid activityDetail">
-  <div class="container">
-    <div class="card card--tight">
-      <div class="row">
-        <div class="col-md-12">
-          <map-module
-            :loadingStatus="loadingStatus"
-            :activity="getSelectedActivity"
-          ></map-module>
-        </div>
+
+  <div class="row activityDetail__map">
+    <div class="col-md-12 no-padding">
+      <map-module
+        :loadingStatus="loadingStatus"
+        :activity="getSelectedActivity"
+      ></map-module>
+    </div>
+  </div>
+
+
+  <div class="container activityDetail__content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <headline-box
+          :headline="getSelectedActivity.name"
+          :label="new Date(getSelectedActivity.date).toLocaleDateString('de-DE', { hour12: false, hour: 'numeric', minute: 'numeric'})"
+          :image="'running--gray'"
+        ></headline-box>
       </div>
     </div>
+
+    <div class="row activityDetail__row">
+      <div class="col-md-12">
+        <activity-stats
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-stats>
+      </div>
+    </div>
+
+    <div class="row activityDetail__row">
+      <div class="col-md-12">
+        <activity-graphs
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-graphs>
+      </div>
+    </div>
+
   </div>
 
   <!--<div class="container activityDetail__headline">
@@ -21,7 +51,7 @@
     </div>
   </div>-->
 
-  <div class="container">
+  <!--<div class="container">
     <div class="row sectionLabel">
       <div class="col-md-12">
         {{ getSelectedActivity.name }}
@@ -47,8 +77,8 @@
           oder passe die Zonen an deinen aktuellen Leistungsstand an.
         </p>
       </div>
-    </div>-->
-  </div>
+    </div>
+  </div>-->
 
 
   <!--<div class="row">

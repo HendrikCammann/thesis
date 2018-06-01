@@ -1,0 +1,7 @@
+.activityGraphs {
+  $root: &;
+
+  #{&}__toggle {
+    text-align: center;
+  }
+}

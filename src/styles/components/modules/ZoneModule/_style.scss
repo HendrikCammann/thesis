@@ -1,8 +1,15 @@
 .zoneModule {
   $root: &;
+  margin-top: 40px;
+
+  #{&}__content {
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2);
+    background-color: $color-white;
+  }
 
   #{&}__text {
-    margin-top: 31px;
     font-size: 16px;
     line-height: 1.5;
   }

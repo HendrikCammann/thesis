@@ -1,10 +1,22 @@
 .title {
   $root: &;
-  font-size: 16px;
-  letter-spacing: 2px;
-  line-height: 35px;
+  font-family: $font-family--secondary;
   text-transform: uppercase;
-  color: $color-white;
-  background-color: $color-black;
-  text-align: center;
+  font-size: 80px;
+  line-height: 80px;
+  color: $color-grey--light;
+  font-weight: 700;
+  margin-left: -48px;
+  margin-bottom: -16px;
+  position: relative;
+
+  #{&}__label {
+    font-size: 16px;
+    color: $color-black;
+    text-transform: none;
+    top: -6px;
+    left: 48px;
+    font-weight: 600;
+    position: absolute;
+  }
 }

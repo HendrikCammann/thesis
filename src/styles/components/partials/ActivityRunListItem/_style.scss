@@ -19,13 +19,5 @@
       font-weight: 700;
       color: $color-black;
     }
-
-    #{$root}__bar {
-      margin-top: 4px;
-      height: 3px;
-      border-radius: 10px;
-      width: 90%;
-      background-color: red;
-    }
   }
 }

@@ -8,6 +8,7 @@ import {ZoneModule} from '../../modules/ZoneModule';
 import {HeadlineBox} from '../../partials/HeadlineBox';
 import {ActivityStatsModule} from '../../modules/ActivityStats';
 import {ActivityGraphs} from '../../modules/ActivityGraphs';
+import {TitleBox} from '../../partials/TitleBox';
 
 /* tslint:disable */
 @Component({
@@ -21,6 +22,7 @@ import {ActivityGraphs} from '../../modules/ActivityGraphs';
   components: {
     'mapModule': MapModule,
     'headlineBox': HeadlineBox,
+    'titleBox': TitleBox,
     'activityStats': ActivityStatsModule,
     'activityGraphs': ActivityGraphs,
     'zoneModule': ZoneModule,

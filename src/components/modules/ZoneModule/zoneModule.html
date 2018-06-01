@@ -1,18 +1,22 @@
-<div class="zoneModule card">
-  <div class="row">
+<div class="zoneModule">
+  <div class="row vcenter-content">
     <div class="col-md-6 zoneModule__chart">
-      <zone-chart
-        :root="'zones'"
-        :zones="zones"
-      ></zone-chart>
+      <div>
+        <zone-chart
+          :root="'zones'"
+          :zones="zones"
+        ></zone-chart>
+      </div>
     </div>
     <div class="col-md-6 zoneModule__text">
+      <div class="zoneModule__content">
         Dieser Lauf war für den Körper sehr intensiv, dadurch hast Du deine XXX
         verbessern können.
         Deine Herzfrequenz- und Pacezonen weichen stark voneinander ab. In
         diesem Fall war die Herzfrequenz zu hoch für das gelaufene Tempo.
         Wenn dies häufiger passiert, überlege dir etwas langsamer zu trainieren,
         oder passe die Zonen an deinen aktuellen Leistungsstand an.
+      </div>
     </div>
   </div>
 </div>

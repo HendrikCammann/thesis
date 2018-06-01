@@ -8,4 +8,7 @@ import {Component, Prop} from 'vue-property-decorator';
 export class TitleBox extends Vue {
   @Prop()
   title: string;
+
+  @Prop()
+  subtitle: string;
 }

@@ -11,11 +11,7 @@
     margin-top: 24px;
 
     #{$root}__graph {
-      height: 400px;
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2);
-      background-color: $color-white;
+
     }
 
     #{$root}__list {

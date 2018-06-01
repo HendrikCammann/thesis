@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="row activityDetail__row">
+    <div class="row activityDetail__row-small">
       <div class="col-md-12">
         <activity-stats
           :loaded="loadingStatus"
@@ -32,6 +32,26 @@
     </div>
 
     <div class="row activityDetail__row">
+      <div class="col-md-12">
+        <title-box
+          :title="'Leistungsverteilung'"
+          :subtitle="'Erfahre ob dein Herzfrequenz mit deiner Geschwindigkeit übereinstimmt'"
+        ></title-box>
+      </div>
+      <div class="col-md-12">
+        <zone-module
+          :zones="getSelectedActivityZones"
+        ></zone-module>
+      </div>
+    </div>
+
+    <div class="row activityDetail__row">
+      <div class="col-md-12 headline">
+        <title-box
+          :title="'Detailansicht'"
+          :subtitle="'Erfahre wie sich die Parameter im Verlauf der Einheit entwickelt haben'"
+        ></title-box>
+      </div>
       <div class="col-md-12">
         <activity-graphs
           :loaded="loadingStatus"

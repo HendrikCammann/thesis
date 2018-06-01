@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/MapModule/mapModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/MapModule/mapModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/activityRunListItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/activityRunListItem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityGraphs/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/ActivityGraphs/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ZoneModule/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/ZoneModule/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/ActivityRunListItem/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/partials/ActivityRunListItem/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/TitleBox/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/partials/TitleBox/_style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,64 +15,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="activity.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/activity.html">
+      <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TitleBox.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+            <state relative-caret-position="898">
+              <caret line="544" column="56" selection-start-line="544" selection-start-column="56" selection-end-line="544" selection-end-column="56" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!block;n#drawHalfCircleShould#0;n#ZoneChart#0" />
+                <element signature="n#!!block;n#drawChartItem#0;n#ZoneChart#0" />
+                <element signature="n#!!block;n#addDivider#0;n#ZoneChart#0" />
+                <element signature="e#9720#9734#0" />
+                <element signature="e#9931#9945#0" />
+                <element signature="n#!!block;n#getMaximiumTime#0;n#ZoneChart#0" />
+                <element signature="n#!!block;n#zoneChart#0;n#ZoneChart#0" />
+                <element signature="e#10613#10749#0" />
+                <element signature="n#!!block;n#isHeartrateOffest#0;n#ZoneChart#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/partials/TitleBox/_style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/modules/ZoneModule/_style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zoneModule.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="zoneModule.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
@@ -93,29 +45,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_colors.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
+      <file leaf-file-name="ActivityRunList.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="titleBox.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activityGraphs.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="855">
+              <caret line="58" column="3" lean-forward="true" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#21#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -204,8 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/styles/components/modules/NavigationModule/_style.scss" />
-        <option value="$PROJECT_DIR$/src/styles/components/modules/MapModule/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html" />
         <option value="$PROJECT_DIR$/src/components/modules/User/user.html" />
         <option value="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" />
@@ -233,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/styles/components/modules/ActivityRunList/index.ts" />
         <option value="$PROJECT_DIR$/src/events/Detail/detail.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/Toggle/Toggle.ts" />
-        <option value="$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts" />
         <option value="$PROJECT_DIR$/src/store/state.ts" />
         <option value="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/ActivityRunListItem.ts" />
         <option value="$PROJECT_DIR$/src/components/modules/ActivityGraphs/ActivityGraphs.ts" />
@@ -255,6 +190,9 @@
         <option value="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/modules/ZoneModule/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html" />
+        <option value="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" />
+        <option value="$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts" />
+        <option value="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" />
       </list>
     </option>
   </component>
@@ -321,22 +259,15 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
+              <item name="ZoneChart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -344,7 +275,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="ActivityGraphs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -352,7 +282,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="MapModule" type="462c0819:PsiDirectoryNode" />
+              <item name="ActivityRunList" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -360,73 +290,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="ZoneModule" type="462c0819:PsiDirectoryNode" />
+              <item name="DateModule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="TitleBox" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="ZoneModule" type="462c0819:PsiDirectoryNode" />
@@ -612,12 +481,12 @@
       <workItem from="1527324285002" duration="31109000" />
       <workItem from="1527426096884" duration="1995000" />
       <workItem from="1527506678966" duration="9323000" />
-      <workItem from="1527778738028" duration="36853000" />
+      <workItem from="1527778738028" duration="40271000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="704053000" />
+    <option name="totallyTimeSpent" value="707471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -862,7 +731,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="35" />
+      <option name="time" value="39" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -870,30 +739,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/models/FormatModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="50" column="10" lean-forward="true" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!block;n#getDayName#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityStats/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/partials/Button/Button.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1094,17 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/modules/ActivityRunList/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1205,13 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1222,24 +1049,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/activity.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="744">
           <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1271,10 +1084,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ZoneModule/ZoneModule.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="58" column="3" lean-forward="true" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="898">
+          <caret line="544" column="56" selection-start-line="544" selection-start-column="56" selection-end-line="544" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!block;n#drawHalfCircleShould#0;n#ZoneChart#0" />
+            <element signature="n#!!block;n#drawChartItem#0;n#ZoneChart#0" />
+            <element signature="n#!!block;n#addDivider#0;n#ZoneChart#0" />
+            <element signature="e#9720#9734#0" />
+            <element signature="e#9931#9945#0" />
+            <element signature="n#!!block;n#getMaximiumTime#0;n#ZoneChart#0" />
+            <element signature="n#!!block;n#zoneChart#0;n#ZoneChart#0" />
+            <element signature="e#10613#10749#0" />
+            <element signature="n#!!block;n#isHeartrateOffest#0;n#ZoneChart#0" />
+          </folding>
         </state>
       </provider>
     </entry>

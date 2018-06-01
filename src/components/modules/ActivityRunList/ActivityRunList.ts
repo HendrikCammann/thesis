@@ -27,7 +27,6 @@ export class ActivityRunList extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     if (this.data !== null) {
       this.formattedData = this.initData(this.data);
-      console.log('d', this.formattedData);
     }
   }
 
@@ -62,7 +61,6 @@ export class ActivityRunList extends Vue {
   mounted() {
     if (this.data !== null) {
       this.formattedData = this.initData(this.data);
-      console.log('d', this.formattedData);
     }
   }
 }

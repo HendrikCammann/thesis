@@ -112,8 +112,6 @@ export class DateModule extends Vue {
       }
     }
 
-    console.log(temp);
-
     // console.log(temp);
     // console.log('-----');
     // console.log(temp);

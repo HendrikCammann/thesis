@@ -10,6 +10,7 @@ import {PositionModel} from '../../../models/Chart/ChartModels';
 import {ActivityZoneModel} from '../../../models/Activity/ActivityZoneModel';
 import {FormatDurationType} from '../../../models/FormatModel';
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
+import has = Reflect.has;
 
 class CircleItem {
   radius: number;
@@ -211,59 +212,6 @@ export class ZoneChart extends Vue {
   }
 
   /**
-   * Adds a text to a given position
-   * @param svg
-   * @param {PositionModel} position
-   * @param {string} text
-   * @param {string} classNames
-   * @param {boolean} bottomHalf
-   * @param {number} id
-   */
-  private addText(svg, position: PositionModel, text: string, classNames: string, bottomHalf: boolean, id: number): void {
-    let posY = position.y;
-    if (bottomHalf) {
-      posY += 16;
-    } else {
-      posY -= 5;
-    }
-    let fullId = 'arc' + id + bottomHalf + 'text';
-    svg.append('text')
-      .attr('x', position.x)
-      .attr('y', posY)
-      .attr('id', fullId)
-      .attr('class', classNames)
-      .attr('text-anchor', 'middle')
-      .attr('opacity', 0)
-      .text(text);
-  }
-
-  /**
-   * Adds a label to a given position
-   * @param svg
-   * @param {PositionModel} position
-   * @param {string | number} text
-   * @param {string} classNames
-   * @param {boolean} bottomHalf
-   * @param {number} id
-   */
-  private addLabel(svg, position: PositionModel, text: string | number, classNames: string, bottomHalf: boolean, id: number): void {
-    let fullId = 'arc' + id + bottomHalf + 'label';
-    let posY = position.y;
-    if (bottomHalf) {
-      posY += 16;
-    } else {
-      posY -= 5;
-    }
-    svg.append('text')
-      .attr('x', position.x)
-      .attr('y', posY)
-      .attr('class', classNames)
-      .attr('text-anchor', 'middle')
-      .attr('id', fullId)
-      .text(text);
-  }
-
-  /**
    * Draws a single item of the Chart
    * Combines drawHalfCircle, addText and addLabel
    * @param svg
@@ -318,6 +266,153 @@ export class ZoneChart extends Vue {
    * @param canvasConstraints
    * @param {ActivityZoneModel} data
    */
+  private chart(root: string, canvasConstraints, data: ActivityZoneModel): void {
+    let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
+    let hasHeartrate: boolean = true;
+    if (!data.heartrate) {
+      hasHeartrate = false;
+    }
+    let offsetBetweenCircles = 16;
+    let drawableWidth = canvasConstraints.width - (4 * offsetBetweenCircles);
+    let drawableHeight = canvasConstraints.height / 2;
+
+    let maxValues = this.getMaximumTime(data, hasHeartrate);
+    let circles = this.createCircles(data, maxValues, hasHeartrate, drawableHeight, canvasConstraints);
+
+    this.drawCircles(circles, svg, hasHeartrate);
+
+  }
+
+  private drawCircles(circles, svg, hasHeartrate) {
+    console.log(circles);
+    circles.forEach(circle => {
+      if (hasHeartrate) {
+        this.drawCircle(svg, circle.position, circle.pace.is, 'blue', false);
+        this.drawCircle(svg, circle.position, circle.hr.is, 'red', true);
+      } else {
+        this.drawCircle(svg, circle.position, circle.pace.is, 'blue', false);
+      }
+    });
+  }
+
+  private drawCircle(svg, position, radius, color, bottom) {
+    let arc = d3.arc();
+    let startAngle = -Math.PI * 0.5;
+    let endAngle = Math.PI * 0.5;
+
+    if (bottom) {
+      startAngle = Math.PI * 0.5;
+      endAngle = Math.PI * 1.5;
+    }
+
+    let xPos = position.x;
+    let yPos = position.y;
+
+    svg.append('path')
+      .attr('transform', 'translate(' + [ xPos, yPos ] + ')')
+      .attr('opacity', CategoryOpacity.Active)
+      .attr('fill', color)
+      .attr('class', 'zoneChart__circle')
+      .attr('d', arc({
+        innerRadius: 0,
+        outerRadius: radius,
+        startAngle: startAngle,
+        endAngle: endAngle
+      }));
+  }
+
+  private createCircles(data, maxValues, hasHeartrate: boolean, maxHeight: number, canvasConstraints) {
+    let paceRadius = [];
+    let hrRadius = [];
+
+    data.pace.distribution_buckets.forEach(bucket => {
+      let perc = getPercentageFromValue(bucket.time, maxValues.max) / 100;
+      let height = Math.round(maxHeight * perc);
+      paceRadius.push(height);
+    });
+
+    if (hasHeartrate) {
+      data.heartrate.distribution_buckets.forEach(bucket => {
+        let perc = getPercentageFromValue(bucket.time, maxValues.max) / 100;
+        let height = Math.round(maxHeight * perc);
+        hrRadius.push(height);
+      });
+    }
+
+    let startX = 0;
+
+    let arr = [];
+    if (hasHeartrate) {
+      for (let i = 0; i < paceRadius.length; i++) {
+        let pace = {
+          is: paceRadius[i],
+          should: hrRadius[i],
+        };
+        let hr = {
+          is: hrRadius[i],
+          should: paceRadius[i],
+        };
+        startX += getLargerValue(paceRadius[i], hrRadius[i]);
+        arr.push({
+          position: {
+            x: startX,
+            y: canvasConstraints.height / 2,
+          },
+          pace: pace,
+          hr: hr,
+        });
+        startX += getLargerValue(paceRadius[i], hrRadius[i]);
+        startX += 16;
+      }
+    } else {
+      for (let i = 0; i < paceRadius.length; i++) {
+        let pace = {
+          is: paceRadius[i],
+          should: paceRadius[i],
+        };
+        startX += paceRadius[i];
+        arr.push({
+          position: {
+            x: startX,
+            y: canvasConstraints.height / 2,
+          },
+          pace: pace,
+          hr: null,
+        });
+        startX += paceRadius[i];
+        startX += 16;
+      }
+    }
+
+    return arr;
+  }
+
+  private getMaximumTime(data, hasHeartrate: boolean) {
+    let maximum = 0;
+    let totalTimePace = 0;
+    let totalTimeHr = 0;
+
+    data.pace.distribution_buckets.forEach(bucket => {
+      totalTimePace += bucket.time;
+      maximum = getLargerValue(bucket.time, maximum);
+    });
+
+    if (hasHeartrate) {
+      data.heartrate.distribution_buckets.forEach(bucket => {
+        totalTimeHr += bucket.time;
+        maximum = getLargerValue(bucket.time, maximum);
+      });
+    }
+
+    return {
+      max: maximum,
+      maxOfTotal: getPercentageFromValue(maximum, totalTimePace) / 100,
+      totalTimePace: totalTimePace,
+      totalTimeHr: totalTimeHr,
+    };
+  }
+
+
   private zoneChart(root: string, canvasConstraints, data: ActivityZoneModel): void {
     let svg = setupSvg(root, canvasConstraints.width, canvasConstraints.height);
     let showPercentage: boolean = true;
@@ -447,6 +542,6 @@ export class ZoneChart extends Vue {
    * Vue lifecycle method
    */
   mounted() {
-    this.zoneChart('#' + this.root, {width: 540, height: 200, marginBottom: 20, canvasOffset: 10}, this.zones);
+    this.chart('#' + this.root, {width: 540, height: 175, marginBottom: 20, canvasOffset: 10}, this.zones);
   }
 }

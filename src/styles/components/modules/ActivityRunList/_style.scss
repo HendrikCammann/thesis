@@ -1,0 +1,22 @@
+.activityRunList {
+
+  #{&}__content {
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 20px 0 rgba(34, 34, 34, 0.2);
+    background-color: $color-white;
+    margin-top: 12px;
+    max-height: 359px;
+    overflow-y: scroll;
+  }
+
+  #{&}__icons {
+    margin-top: 4px;
+    margin-left: 50px;
+    img {
+      margin: 0 16px;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}

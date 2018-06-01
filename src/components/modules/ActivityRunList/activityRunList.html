@@ -1,3 +1,18 @@
 <div class="activityRunList">
-  works
+  <div class="activityRunList__icons">
+    <img src="../../../assets/icons/distance--gray.svg">
+    <img src="../../../assets/icons/distance--gray.svg">
+    <img src="../../../assets/icons/distance--gray.svg">
+  </div>
+  <div v-if="formattedData !== null" class="activityRunList__content">
+    <div class="activityRunList__list">
+      <run-list-item
+        v-for="(item, i) in formattedData.data"
+        :data="item"
+        :max="formattedData.max"
+        :selectedType="selectedType"
+        :index="i"
+      ></run-list-item>
+    </div>
+  </div>
 </div>

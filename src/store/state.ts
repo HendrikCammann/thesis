@@ -21,6 +21,8 @@ export enum DisplayType {
   Distance = 'Distance',
   Intensity = 'Intensity',
   Duration = 'Duration',
+  Heartrate = 'Heartrate',
+  Pace = 'Pace',
 }
 
 export enum ClusterType {

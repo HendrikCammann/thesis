@@ -1,0 +1,31 @@
+.activityRunListItem {
+  $root: &;
+
+  #{&}__content {
+    margin-bottom: 12px;
+
+    #{$root}__index {
+      width: 24px;
+      display: inline-block;
+      color: $color-gray;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    #{$root}__distance, #{$root}__heartrate, #{$root}__pace {
+      display: inline-block;
+      margin-right: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      color: $color-black;
+    }
+
+    #{$root}__bar {
+      margin-top: 4px;
+      height: 3px;
+      border-radius: 10px;
+      width: 90%;
+      background-color: red;
+    }
+  }
+}

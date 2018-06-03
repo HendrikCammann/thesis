@@ -1,0 +1,18 @@
+.buttonStandard {
+  $root: &;
+
+  height: 60px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-family: $font-family--main;
+  font-weight: 700;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  cursor: pointer;
+
+  background-color: $colors-text;
+
+  #{&}__text {
+    transform: translate(0, 1px);
+    color: $colors-white;
+  }
+}

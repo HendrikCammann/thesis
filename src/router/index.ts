@@ -37,7 +37,7 @@ const router = new VueRouter({
       path: '/performance',
     }, {
       component: CompareContainer,
-      name: 'Test',
+      name: 'Vergleich',
       path: '/compare',
     }, {
       component: ActivitiesContainer,

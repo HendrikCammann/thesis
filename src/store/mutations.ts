@@ -553,7 +553,16 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.ADD_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {
-    state.compare.selectedTrainingClusters.push(cluster);
+    if (state.compare.selectedTrainingClusters.indexOf(cluster) === -1 && state.compare.selectedTrainingClusters.length < 2) {
+      state.compare.selectedTrainingClusters.push(cluster);
+    } else if (state.compare.selectedTrainingClusters.indexOf(cluster) === -1 && state.compare.selectedTrainingClusters.length === 2) {
+      state.compare.selectedTrainingClusters.splice(0, 1);
+      state.compare.selectedTrainingClusters.push(cluster);
+    } else {
+      state.compare.selectedTrainingClusters = state.compare.selectedTrainingClusters.filter(item => item !== cluster);
+    }
+
+    console.log(state.compare.selectedTrainingClusters);
   },
 
   [MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES]: (state: State, {shownBars}) => {

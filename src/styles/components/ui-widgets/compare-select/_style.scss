@@ -1,0 +1,17 @@
+.compareSelect {
+  $root: &;
+
+  .contentBox {
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  #{&}__cta {
+    position: fixed;
+    width: calc(100% - 32px);
+    bottom: 24px;
+  }
+}

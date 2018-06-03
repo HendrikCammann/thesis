@@ -1,0 +1,45 @@
+.contentBox {
+  $root: &;
+  padding: 24px 16px;
+  font-family: $font-family--main;
+  position: relative;
+  overflow: hidden;
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  #{&}__content {
+    z-index: 1;
+
+    #{$root}__value {
+      font-size: 20px;
+      color: $colors-text;
+      font-weight: 700;
+    }
+
+    #{$root}__label {
+      font-size: 14px;
+      color: $colors-subline;
+      font-weight: 400;
+    }
+  }
+
+  #{&}__image {
+    position: absolute;
+    opacity: 0.1;
+    top: 11px;
+    right: 16px;
+
+    &--active {
+      opacity: 0.4;
+    }
+
+    img {
+      position: relative;
+      z-index: 0;
+      height: 72px;
+      width: auto;
+    }
+  }
+}

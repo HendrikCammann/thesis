@@ -1,0 +1,32 @@
+<div class="compareBoxes" v-if="data != null">
+  <div class="compareBoxes__content">
+    <div class="box-wrapper">
+      <div class="box-label">
+        Wettkampf
+      </div>
+      <div class="box-content">
+        <div class="column column--half" v-for="item in data.competitions">
+          <div @click="handleEventClick(item.id)">
+            <content-box
+              :data="item.box"
+            ></content-box>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-wrapper">
+      <div class="box-label">
+        Stammdaten
+      </div>
+      <div class="box-content">
+        <div class="column column--half" v-for="cluster in data.basics">
+          <content-box v-for="item in cluster"
+            :data="item"
+          ></content-box>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

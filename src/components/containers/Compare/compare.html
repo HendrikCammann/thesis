@@ -1,5 +1,27 @@
 <div class="container-fluid compare">
-  <div class="row">
+  <div v-if="isSelection" class="container compare__content">
+    <div class="box-wrapper">
+      <div class="box-label">
+        Wähle zwei Vorbereitungen
+      </div>
+      <div class="box-content">
+        <compare-select
+          :clusters="existingClusters"
+          :selectedClusters="selectedTrainingClusters"
+          :loadingStatus="loadingStatus"
+        ></compare-select>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="!isSelection" class="container compare__content">
+    <compare-boxes
+      :clusters="selectedTrainingClustersFull"
+      :clusterData="selectedTrainingClustersData"
+      :loadingStatus="loadingStatus"
+    ></compare-boxes>
+  </div>
+  <!--<div class="row">
     <div class="col-md-12 compare__title">
       <headline-box
         :headline="'Compare your race preparations'"
@@ -29,7 +51,7 @@
 
   <!-- FIRST GLANCE OVERVIEW -->
 
-  <div class="row">
+  <!--<div class="row">
     <div v-for="(item, i) in selectedTrainingClusters"
          :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
       <compare-module
@@ -44,7 +66,7 @@
 
   <!-- DEEP COMPARE -->
 
-  <div class="row compare__subTitle">
+  <!--<div class="row compare__subTitle">
     <div class="container">
       <div class="col-md-10 col-md-offset-1 compare__subTitle-text">
         See how you did prepare yourself <br>
@@ -82,7 +104,7 @@
         ></compare-chart-module>
       </div>
   </div>
-  </div>
+  </div>-->
 
 
 

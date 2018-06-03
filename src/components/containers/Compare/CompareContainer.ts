@@ -3,24 +3,17 @@ import Component from 'vue-class-component';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {MutationTypes} from '../../../store/mutation-types';
 import {mapGetters} from 'vuex';
-import {CompareModule} from '../../modules/CompareModule';
-import {CompareAddButton} from '../../partials/CompareAddButton';
 import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
-import {CompareAddModule} from '../../modules/CompareAddModule';
-import {HistoryChart} from '../../charts/HistoryChart';
-import {RangeSlider} from '../../partials/RangeSlider';
-import {filterEvents} from '../../../events/filter';
-import {DonutChart} from '../../charts/DonutChart';
-import {RunType} from '../../../store/state';
-import {navigationEvents} from '../../../events/Navigation/Navigation';
-import {HeadlineBox} from '../../partials/HeadlineBox';
-import {CompareChartModule} from '../../modules/CompareChartModule';
+import {CompareSelect} from '../../ui-widgets/compare-select';
+import {CompareBoxes} from '../../ui-widgets/compare-boxes';
 
 
 @Component({
   template: require('./compare.html'),
   computed: mapGetters({
+    selectedTrainingClustersData: 'getSelectedTrainingClustersData',
+    selectedTrainingClustersFull: 'getSelectedTrainingClustersFull',
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
@@ -31,62 +24,31 @@ import {CompareChartModule} from '../../modules/CompareChartModule';
     timeRanges: 'getTimeRanges',
   }),
   components: {
-    'headlineBox': HeadlineBox,
-    'compareModule': CompareModule,
-    'compareAddModule': CompareAddModule,
-    'compareAddButton': CompareAddButton,
-    'compareChartModule': CompareChartModule,
-    'historyChart': HistoryChart,
-    'rangeSlider': RangeSlider,
-    'donutChart': DonutChart,
+    'compare-select': CompareSelect,
+    'compare-boxes': CompareBoxes
   }
 })
 export class CompareContainer extends Vue {
-  public selectedCluster = '';
-  public filterRange = [0, 1140];
-  public hoveredRunType = RunType.All;
-
-  public selectTrainingCluster() {
-    this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, this.selectedCluster);
-    this.selectedCluster = '';
-  }
-
-  public toggleHistoryChartMode() {
-    this.$store.dispatch(MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE);
-  }
-
+  public isSelection = true;
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
-    eventBus.$on(compareEvents.remove_Training_Cluster, (type) => {
-      this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
+    eventBus.$on(compareEvents.start_Compare, () => {
+      this.$router.push({ path: `/compare?step=${'compare'}` });
     });
+  }
 
-    eventBus.$on(compareEvents.set_Hovered_Run_Type, (type) => {
-      this.hoveredRunType = type;
-    });
-
-    eventBus.$on(compareEvents.add_Training_Cluster, (type) => {
-      this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
-    });
-
-    eventBus.$on(filterEvents.set_Compare_Time_Range, (type) => {
-      // this.filterRange = type.pos;
-      this.$store.dispatch(MutationTypes.SET_COMPARE_TIME_RANGE, type);
-    });
-
-    eventBus.$on(filterEvents.set_Compare_Shown_Bars, (type) => {
-      this.$store.dispatch(MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES, type);
-    });
-
-    eventBus.$on(navigationEvents.open_Activity_Detail, (activityId) => {
-      this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activityId);
-      this.$router.push({
-        path: '/activity/' + activityId
-      });
-    });
+  updated() {
+    if (this.$route.query.step && this.$route.query.step === 'compare') {
+      if (this.$store.getters.getSelectedTrainingClusters.length === 2) {
+        this.isSelection = false;
+      } else {
+        this.$router.push({ path: `/compare` });
+        this.isSelection = true;
+      }
+    }
   }
 }

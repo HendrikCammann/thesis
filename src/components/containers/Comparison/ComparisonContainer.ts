@@ -70,10 +70,6 @@ export class ComparisonContainer extends Vue {
       this.hoveredRunType = type;
     });
 
-    eventBus.$on(compareEvents.add_Training_Cluster, (type) => {
-      this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);
-    });
-
     eventBus.$on(compareEvents.remove_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, type);
     });

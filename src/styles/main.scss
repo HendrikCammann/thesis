@@ -5,13 +5,13 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~leaflet/dist/leaflet.css";
-@import url('https://fonts.googleapis.com/css?family=Muli:400,600,700,900');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700');
 
 // common
 @import "common/_colors";
 @import "common/_style";
 @import "common/_font-styles";
+@import "common/_animations";
 
 // components
 @import "components/containers/App/_style";
@@ -28,6 +28,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/ArcCompare/_style";
 @import "components/charts/BarChart/_style";
 @import "components/charts/TrainChart/_style";
+
+@import "components/ui-elements/content-box/_style";
+@import "components/ui-elements/button/_style";
+
+@import "components/ui-widgets/compare-select/_style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/ActivityStats/_style";

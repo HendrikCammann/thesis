@@ -1,0 +1,17 @@
+<div class="contentBox card"
+     :class="{'contentBox--clickable': isClickable}"
+     @click="handleClick()">
+  <div class="contentBox__content">
+    <div class="contentBox__value">
+      {{ data.value }}
+    </div>
+    <div class="contentBox__label">
+      {{ data.label }}
+    </div>
+  </div>
+  <div class="contentBox__image"
+     :class="{'contentBox__image--active': data.isActive}"
+  >
+    <img :src="'../../../assets/icons/' + data.icon + iconColor + '.svg'">
+  </div>
+</div>

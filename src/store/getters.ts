@@ -103,6 +103,27 @@ const getters: GetterTree<State, State> = {
 
 
   // COMPARE
+  getSelectedTrainingClustersData: (state) => {
+    let arr = [];
+    state.existingClusters.forEach(cluster => {
+      if (state.compare.selectedTrainingClusters.indexOf(cluster.clusterName) > - 1) {
+        arr.push(cluster);
+      }
+    });
+    return arr;
+  },
+
+  getSelectedTrainingClustersFull: (state) => {
+    let arr = [];
+    state.compare.selectedTrainingClusters.forEach(cluster => {
+      arr.push({
+        data: state.sortedLists[cluster],
+        name: cluster,
+      });
+    });
+    return arr;
+  },
+
   getSelectedTrainingClusters: (state) => {
     return state.compare.selectedTrainingClusters;
   },

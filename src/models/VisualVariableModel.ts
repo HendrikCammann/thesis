@@ -15,8 +15,8 @@ export enum CategoryConnectingOpacity {
 }
 
 export enum Colors {
-  Black = '#454545',
-  LightGray = '#D9D9D9',
+  Black = '#4f5b64',
+  LightGray = '#adb7bf',
   White = '#FFFFFF',
 }
 
@@ -26,7 +26,7 @@ export enum CategoryColors {
   LongRun = '#273866',
   ShortIntervals = '#ec407a',
   Uncategorized = 'green',
-  Default = '#454545'
+  Default = '#4f5b64'
 }
 
 export enum ZoneColors {

@@ -132,22 +132,6 @@ const getters: GetterTree<State, State> = {
     return state.compare.showAbsolute;
   },
 
-  getSelectedWeeks: (state) => {
-    return state.compare.selectedWeeks;
-  },
-
-  getSelectedWeeksLength: (state) => {
-    return 3;
-  },
-
-  getShownBars: (state) => {
-    return state.compare.shownBars;
-  },
-
-  getTimeRanges: (state) => {
-    return state.compare.timeRanges;
-  },
-
 
   // EXISTING CLUSTERS
   getCluster: (state) => {

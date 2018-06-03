@@ -565,28 +565,8 @@ const mutations: MutationTree<State> = {
     console.log(state.compare.selectedTrainingClusters);
   },
 
-  [MutationTypes.SET_SHOWN_COMPARE_ACTIVITIES]: (state: State, {shownBars}) => {
-    state.compare.shownBars[shownBars.index] = shownBars.bars;
-  },
-
-  [MutationTypes.SET_COMPARE_TIME_RANGE]: (state: State, {timeRange}) => {
-    state.compare.timeRanges[timeRange.index].start = timeRange.pos[0];
-    state.compare.timeRanges[timeRange.index].end = timeRange.pos[1];
-  },
-
   [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: (state: State) => {
     state.compare.showAbsolute = !state.compare.showAbsolute;
-  },
-
-  [MutationTypes.SELECT_COMPARE_WEEK]: (state: State, {week, preparation}) => {
-    if (state.compare.selectedWeeks[preparation] === undefined) {
-      state.compare.selectedWeeks[preparation] = [];
-    }
-    state.compare.selectedWeeks[preparation].push(week);
-  },
-
-  [MutationTypes.DESELECT_COMPARE_WEEK]: (state: State, {week, preparation}) => {
-    state.compare.selectedWeeks[preparation] = state.compare.selectedWeeks[preparation].filter(item => item !== week);
   },
 
 

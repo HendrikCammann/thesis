@@ -1,0 +1,11 @@
+.compareBoxes {
+  $root: &;
+
+  .contentBox {
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

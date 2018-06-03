@@ -1,5 +1,7 @@
 <div class="compareBoxes" v-if="data != null">
   <div class="compareBoxes__content">
+    <div class="dividerLine"></div>
+
     <div class="box-wrapper">
       <div class="box-label">
         Wettkampf
@@ -15,6 +17,8 @@
       </div>
     </div>
 
+    <div class="dividerLine"></div>
+
     <div class="box-wrapper">
       <div class="box-label">
         Stammdaten
@@ -27,6 +31,23 @@
         </div>
       </div>
     </div>
+
+    <div class="dividerLine"></div>
+
+    <div class="box-wrapper">
+      <div class="box-label">
+        Durchschnittswerte
+      </div>
+      <div class="box-content">
+        <div class="column column--half" v-for="cluster in data.averages">
+          <content-box v-for="item in cluster"
+                       :data="item"
+          ></content-box>
+        </div>
+      </div>
+    </div>
+
+    <div class="dividerLine"></div>
 
   </div>
 </div>

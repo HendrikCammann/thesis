@@ -1,18 +1,25 @@
 <div class="compareSelect">
-  <div class="compareSelect__content" v-if="contentBoxData != null">
-    <content-box
-      v-for="item in contentBoxData"
-      :data="item"
-      :isClickable="true"
-    ></content-box>
-  </div>
-  <transition name="fade">
-    <div class="compareSelect__cta"
-         @click="startCompare()"
-         v-if="showCta()">
-      <button-standard
-        :label="'Vorbereitungen vergleichen'"
-      ></button-standard>
+  <div class="box-wrapper">
+    <div class="box-label">
+      Wähle zwei Vorbereitungen
     </div>
-  </transition>
+    <div class="box-content">
+      <div class="compareSelect__content" v-if="contentBoxData != null">
+        <content-box
+          v-for="item in contentBoxData"
+          :data="item"
+          :isClickable="true"
+        ></content-box>
+      </div>
+      <transition name="fade">
+        <div class="compareSelect__cta"
+             @click="startCompare()"
+             v-if="showCta()">
+          <button-standard
+            :label="'Vorbereitungen vergleichen'"
+          ></button-standard>
+        </div>
+      </transition>
+    </div>
+  </div>
 </div>

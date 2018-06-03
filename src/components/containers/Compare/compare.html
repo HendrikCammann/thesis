@@ -1,17 +1,10 @@
 <div class="container-fluid compare">
   <div v-if="isSelection" class="container compare__content">
-    <div class="box-wrapper">
-      <div class="box-label">
-        Wähle zwei Vorbereitungen
-      </div>
-      <div class="box-content">
-        <compare-select
-          :clusters="existingClusters"
-          :selectedClusters="selectedTrainingClusters"
-          :loadingStatus="loadingStatus"
-        ></compare-select>
-      </div>
-    </div>
+    <compare-select
+      :clusters="existingClusters"
+      :selectedClusters="selectedTrainingClusters"
+      :loadingStatus="loadingStatus"
+    ></compare-select>
   </div>
 
   <div v-if="!isSelection" class="container compare__content">

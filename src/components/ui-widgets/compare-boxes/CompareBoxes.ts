@@ -11,6 +11,8 @@ import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType, FormatDurationType} from '../../../models/FormatModel';
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 import {ContentBox} from '../../ui-elements/content-box';
+import {MutationTypes} from '../../../store/mutation-types';
+import {getLargerValue} from '../../../utils/numbers/numbers';
 
 @Component({
   template: require('./compareBoxes.html'),
@@ -59,6 +61,14 @@ export class CompareBoxes extends Vue {
       });
     });
 
+    let maxSessionAvg = 0;
+    let maxKm = 0;
+
+    clusters.forEach(cluster => {
+      maxSessionAvg = getLargerValue((cluster.data.stats.count / durations[cluster.name]), maxSessionAvg);
+      maxKm = getLargerValue((formatDistance(cluster.data.stats.distance, FormatDistanceType.Kilometers) / durations[cluster.name]), maxSessionAvg);
+    });
+
     clusters.forEach(cluster => {
       let basicItems: ContentBoxModel[] = [];
 
@@ -80,10 +90,12 @@ export class CompareBoxes extends Vue {
       let averageItems: ContentBoxModel[] = [];
 
       let avgDistance = distance / duration;
-      averageItems.push(new ContentBoxModel(avgDistance.toFixed(2) + 'km', 'ø Wochenumfang', ContentBoxIcons.Distance, false));
+      let disAc = avgDistance === maxKm;
+      averageItems.push(new ContentBoxModel(avgDistance.toFixed(2) + 'km', 'ø Wochenumfang', ContentBoxIcons.Distance, disAc));
 
       let avgSessions = sessions / duration;
-      averageItems.push(new ContentBoxModel(avgSessions.toFixed(1), 'ø Wocheneinheiten', ContentBoxIcons.Run, false));
+      let secAc = avgSessions === maxSessionAvg;
+      averageItems.push(new ContentBoxModel(avgSessions.toFixed(1), 'ø Wocheneinheiten', ContentBoxIcons.Run, secAc));
 
       averages.push(averageItems);
     });
@@ -96,7 +108,10 @@ export class CompareBoxes extends Vue {
   }
 
   private handleEventClick(id) {
-    console.log(id);
+    this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, id);
+    this.$router.push({
+      path: '/activity/' + id
+    });
   }
 
   mounted() {

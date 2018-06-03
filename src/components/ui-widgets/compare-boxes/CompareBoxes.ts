@@ -117,7 +117,6 @@ export class CompareBoxes extends Vue {
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.data = this.initData(this.clusters, this.clusterData);
-      console.log(this.data.basics);
     }
   }
 }

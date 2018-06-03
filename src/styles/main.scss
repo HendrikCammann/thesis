@@ -31,9 +31,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "components/ui-elements/content-box/_style";
 @import "components/ui-elements/button/_style";
+@import "components/ui-elements/toggle/_style";
 
 @import "components/ui-widgets/compare-select/_style";
 @import "components/ui-widgets/compare-boxes/_style";
+@import "components/ui-widgets/compare-graph/_style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/ActivityStats/_style";

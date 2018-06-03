@@ -7,6 +7,7 @@ import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {CompareSelect} from '../../ui-widgets/compare-select';
 import {CompareBoxes} from '../../ui-widgets/compare-boxes';
+import {CompareGraph} from '../../ui-widgets/compare-graph';
 
 
 @Component({
@@ -25,7 +26,8 @@ import {CompareBoxes} from '../../ui-widgets/compare-boxes';
   }),
   components: {
     'compare-select': CompareSelect,
-    'compare-boxes': CompareBoxes
+    'compare-boxes': CompareBoxes,
+    'compare-graph': CompareGraph,
   }
 })
 export class CompareContainer extends Vue {

@@ -1,0 +1,36 @@
+.toggleStandard {
+  $root: &;
+  height: 60px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  background-color: $colors-white;
+  border: solid 3px $colors-text;
+  font-family: $font-family--main;
+
+  #{&}__item {
+    height: 100%;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: $colors-white;
+    color: $colors-label;
+    text-align: center;
+    padding-top: 17px;
+    cursor: pointer;
+
+    &:first-of-type {
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    &--active {
+      color: $colors-white;
+      background-color: $colors-text;
+    }
+  }
+}

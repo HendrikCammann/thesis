@@ -4,4 +4,6 @@ export enum compareEvents {
   set_Hovered_Run_Type = '[Compare Events] setHoveredRunType',
 
   start_Compare = '[Compare Events] startCompare',
+
+  changed_ClusterView = '[Compare Events] changed_ClusterView',
 }

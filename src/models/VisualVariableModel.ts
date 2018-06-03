@@ -21,10 +21,10 @@ export enum Colors {
 }
 
 export enum CategoryColors {
-  Run = '#7BC9ED',
+  Run = '#9013FE',
   Competition = '#faa628',
-  LongRun = '#273866',
-  ShortIntervals = '#ec407a',
+  LongRun = '#3C0071',
+  ShortIntervals = '#EC407A',
   Uncategorized = 'green',
   Default = '#4f5b64'
 }

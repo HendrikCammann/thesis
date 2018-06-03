@@ -43,27 +43,27 @@ export class CompareContainer extends Vue {
     top: [
       {
         name: 'Alle',
-        icon: 'running--gray',
+        icon: 'running--darkgray',
         action: RunType.All
       },
       {
         name: 'Dauerlauf',
-        icon: 'running--gray',
+        icon: 'running--dl',
         action: RunType.Run
       },
       {
         name: 'Langer Dauerlauf',
-        icon: 'running--gray',
+        icon: 'running--ldl',
         action: RunType.LongRun
       },
       {
         name: 'Intervalle',
-        icon: 'running--gray',
+        icon: 'running--interval',
         action: RunType.ShortIntervals
       },
       {
         name: 'Wettkämpfe',
-        icon: 'running--gray',
+        icon: 'running--comp',
         action: RunType.Competition
       },
       {
@@ -99,8 +99,10 @@ export class CompareContainer extends Vue {
     eventBus.$on(FloatingMenuEvents.set_Filter, (item) => {
       if (item.isTop) {
         this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, item.action);
+        this.selectedMenu.top = this.$store.getters.getSelectedRunType;
       } else {
         this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING, item.action);
+        this.selectedMenu.bottom = this.$store.getters.getShowEverything;
       }
     });
   }

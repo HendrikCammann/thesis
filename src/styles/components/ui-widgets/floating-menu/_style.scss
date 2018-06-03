@@ -13,15 +13,21 @@
     box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
     border-radius: 50%;
 
-    &--active {
-      background-color: $colors-text;
-    }
-
     #{$root}__icon {
       height: 24px;
       width: 24px;
       transform: translate(0, 16px);
     }
+
+    &--active {
+      border: 3px solid $colors-text;
+      #{$root}__icon {
+        height: 24px;
+        width: 24px;
+        transform: translate(0, 13px);
+      }
+    }
+
   }
 
   #{&}__wrapper {
@@ -35,7 +41,7 @@
       width: 72px;
       height: 72px;
       background-color: $colors-text;
-      box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+      box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.6);
       border-radius: 50%;
 
       #{$root}__icon {
@@ -48,10 +54,10 @@
     #{$root}__top {
       position: absolute;
       right: 10px;
-      bottom: 80px;
+      bottom: 86px;
 
       #{$root}__secondary {
-        margin-bottom: 6px;
+        margin-bottom: 12px;
 
         &:last-of-type {
           margin-bottom: 0;
@@ -61,13 +67,13 @@
 
     #{$root}__left {
       position: absolute;
-      right: 88px;
-      bottom: 3px;
+      right: 81px;
+      bottom: 6px;
       width: 100vh;
       direction: rtl;
 
       #{$root}__secondary {
-        margin-right: 10px;
+        margin-right: 12px;
 
         &:first-of-type {
           margin-right: 0;

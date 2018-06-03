@@ -14,10 +14,12 @@
     </div>
     <div class="floatingMenu__left" v-if="menuActive">
       <div class="floatingMenu__secondary"
-         v-for="item in menuItemsLeft"
+         v-for="(item, i) in menuItemsLeft"
+         :key="i"
          @click="handleMenuClick(item.action, false)"
-         :class="{'floatingMenu__secondary--active': setActive(item.action, selectedItems.bottom)}"
-      ><img class="floatingMenu__icon" :src="'../../../assets/icons/' + item.icon + '.svg'"></div>
+         :class="{'floatingMenu__secondary--active': setActive(item.action, selectedItems.bottom)}">
+        <img class="floatingMenu__icon" :src="'../../../assets/icons/' + item.icon + '.svg'">
+      </div>
     </div>
   </div>
 </div>

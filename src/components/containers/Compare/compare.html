@@ -1,5 +1,5 @@
 <div class="container-fluid compare">
-  <floating-menu
+  <floating-menu v-if="!isSelection"
     :menuItemsTop="menuItems.top"
     :menuItemsLeft="menuItems.bottom"
     :selectedItems="selectedMenu"

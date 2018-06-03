@@ -110,7 +110,6 @@ export class TrainChart extends Vue {
     let longestPreparation = 0;
     anchors.forEach(anchor => {
       let data = this.$store.state.sortedLists[anchor];
-      console.log(anchor);
       data = data[this.clustering];
       let keys = getKeys(data);
       longestPreparation = getLargerValue(keys.length, longestPreparation);

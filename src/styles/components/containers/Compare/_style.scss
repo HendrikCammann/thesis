@@ -4,6 +4,12 @@
   padding-left: 16px;
   padding-right: 16px;
 
+  .floatingMenu {
+    position: fixed;
+    right: 16px;
+    bottom: 32px;
+  }
+
   #{&}__content {
     padding: 0;
     padding-top: 32px;

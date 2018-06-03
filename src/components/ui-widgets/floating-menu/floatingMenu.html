@@ -1,0 +1,23 @@
+<div class="floatingMenu">
+  <div class="floatingMenu__wrapper">
+    <div class="floatingMenu__top" v-if="menuActive">
+      <div class="floatingMenu__secondary"
+         v-for="item in menuItemsTop"
+         :class="{'floatingMenu__secondary--active': setActive(item.action, selectedItems.top)}"
+         @click="handleMenuClick(item.action, true)"
+      ><img class="floatingMenu__icon" :src="'../../../assets/icons/' + item.icon + '.svg'"></div>
+    </div>
+    <div class="floatingMenu__main center-content"
+         @click="toggleMenu()"
+    >
+      <img class="floatingMenu__icon" src="../../../assets/icons/filter.svg">
+    </div>
+    <div class="floatingMenu__left" v-if="menuActive">
+      <div class="floatingMenu__secondary"
+         v-for="item in menuItemsLeft"
+         @click="handleMenuClick(item.action, false)"
+         :class="{'floatingMenu__secondary--active': setActive(item.action, selectedItems.bottom)}"
+      ><img class="floatingMenu__icon" :src="'../../../assets/icons/' + item.icon + '.svg'"></div>
+    </div>
+  </div>
+</div>

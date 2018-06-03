@@ -1,4 +1,10 @@
 <div class="container-fluid compare">
+  <floating-menu
+    :menuItemsTop="menuItems.top"
+    :menuItemsLeft="menuItems.bottom"
+    :selectedItems="selectedMenu"
+  ></floating-menu>
+
   <div v-if="isSelection" class="container compare__content">
     <compare-select
       :clusters="existingClusters"

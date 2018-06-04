@@ -6,6 +6,7 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {DetailMap} from '../../ui-widgets/detail-map';
 import {HeadlineBox} from '../../ui-elements/headline-box';
 import {ActivityBoxes} from '../../ui-widgets/activity-boxes';
+import {ActivityZones} from '../../ui-widgets/activity-zones';
 
 /* tslint:disable */
 @Component({
@@ -20,6 +21,7 @@ import {ActivityBoxes} from '../../ui-widgets/activity-boxes';
     'detailMap': DetailMap,
     'headlineBox': HeadlineBox,
     'activityBoxes': ActivityBoxes,
+    'activityZones': ActivityZones,
   }
 })
 export class ActivityContainer extends Vue {

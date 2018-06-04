@@ -4,7 +4,14 @@
       Leistungsverteilung
     </div>
     <div class="box-content">
-
+      <zone-chart
+        :root="'zones'"
+        :zones="zones"
+      ></zone-chart>
+      <div class="box-explaination">
+        Der transparente Teil der Kreise stellt den Optimalzustand dar, in welchem
+        Pace-und Herzfrequenzonen einander entsprechen.
+      </div>
     </div>
   </div>
 </div>

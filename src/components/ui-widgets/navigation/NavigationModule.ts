@@ -8,9 +8,8 @@ import { Link } from './Link';
 export class NavigationModule extends Vue {
   links: Link[] = [
     new Link('Dashboard', '/dashboard', 'stopwatch'),
-    new Link('Vergleich', '/comparison', 'compare'),
-    new Link('Leistung', '/performance', 'bottle'),
     new Link('Vergleich', '/compare', 'compare'),
+    new Link('Leistung', '/performance', 'bottle'),
     new Link('Einheiten', '/activities', 'run-shoe'),
   ];
 
@@ -19,10 +18,21 @@ export class NavigationModule extends Vue {
     console.info('Changed current path to: ' + this.$route.path);
   }
 
+  public menuOpen = false;
+
   private handleNavigation(link): void {
     this.$router.push({
       path: link
     });
+    this.closeMenu();
+  }
+
+  public closeMenu() {
+    this.menuOpen = false;
+  }
+
+  public openMenu() {
+    this.menuOpen = true;
   }
 
   mounted() {

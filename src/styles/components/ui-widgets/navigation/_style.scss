@@ -1,0 +1,112 @@
+.navigationModule {
+  $root: &;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  background-color: $color-white;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  font-family: $font-family--main;
+
+  #{&}__content {
+    padding: 0 1px;
+    justify-content: flex-end;
+    background-color: white;
+
+    #{$root}__burger {
+      cursor: pointer;
+      width: 35px;
+      height: 24px;
+    }
+  }
+
+  #{&}__slide {
+    width: 100%;
+    right: 0;
+    height: 100vh;
+    position: absolute;
+    // background-color: $color-black--blur;
+
+    #{$root}__wrapper {
+      position: relative;
+      height: 100%;
+      background-color: $colors-white;
+      box-shadow: -1px 0 10px 0 rgba(69, 69, 69, 0.4);
+      color: $colors-text;
+      width: 80%;
+      margin-left: 20%;
+
+      #{$root}__close {
+        height: 24px;
+        width: auto;
+        cursor: pointer;
+        position: absolute;
+        right: 16px;
+        top: 20px;
+      }
+
+      #{$root}__user {
+        text-align: center;
+        padding-top: 48px;
+        img {
+          height: 80px;
+          width: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-bottom: 16px;
+          box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+        }
+
+        #{$root}__name {
+          font-size: 22px;
+          font-weight: 700;
+        }
+
+        #{$root}__type {
+          font-size: 14px;
+          font-weight: 400;
+          color: $colors-label;
+        }
+      }
+
+      #{$root}__entries {
+        margin-top: 80px;
+        text-align: right;
+        font-size: 16px;
+        padding-right: 24px;
+
+        #{$root}__entry {
+          color: $colors-text;
+          margin-bottom: 32px;
+
+          img {
+            display: inline-block;
+            height: 24px;
+            width: 24px;
+            margin-left: 8px;
+          }
+
+          &--active {
+            font-weight: 700;
+          }
+        }
+      }
+
+      #{$root}__legal {
+        position: absolute;
+        width: 100%;
+        padding: 0 16px;
+        bottom: 24px;
+        font-size: 12px;
+        font-weight: 400;
+        color: $colors-label;
+
+        span {
+          color: $colors-text;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ import store from './store/index';
 import './styles/main.scss';
 import {formatDistance, formatPace} from './utils/format-data';
 import {FormatDistanceType, FormatPaceType} from './models/FormatModel';
-import {NavigationModule} from './components/modules/NavigationModule';
+import {NavigationModule} from './components/ui-widgets/navigation';
 
 sync(store, router);
 

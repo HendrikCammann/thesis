@@ -1,0 +1,34 @@
+<div class="navigationModule container-fluid">
+  <transition name="slide">
+    <div class="navigationModule__slide" v-show="menuOpen">
+      <div class="navigationModule__wrapper">
+        <img class="navigationModule__close" src="../../../assets/icons/close--gray.svg" @click="closeMenu()">
+        <div class="navigationModule__user">
+          <img class="navigationModule__img" src="https://images.pexels.com/photos/305241/pexels-photo-305241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+          <div class="navigationModule__name">
+            Hendrik Cammann
+          </div>
+          <div class="navigationModule__type">
+            Marathonläufer
+          </div>
+        </div>
+        <div class="navigationModule__entries">
+          <div class="navigationModule__entry" v-for="link in links"
+             :class="{'navigationModule__entry--active' : $route.name == link.name}"
+             @click="handleNavigation(link.path)"
+          >{{ link.name }} <img src="../../../assets/icons/distance--gray.svg"></div>
+        </div>
+        <div class="navigationModule__legal">
+          Mit der Nutzung von XXX erklären Sie unseren
+          <span>Datenschutzbestimmungen</span> zu zustimmen.
+        </div>
+      </div>
+    </div>
+  </transition>
+  <div class="navigationModule__content vcenter-content">
+    <div class="navigationModule__label">
+
+    </div>
+    <img class="navigationModule__burger" src="../../../assets/icons/menu--gray.svg" @click="openMenu()">
+  </div>
+</div>

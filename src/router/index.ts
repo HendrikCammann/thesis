@@ -25,7 +25,7 @@ const router = new VueRouter({
       path: '/dashboard',
     }, {
       component: ComparisonContainer,
-      name: 'Vergleich',
+      name: 'Old',
       path: '/comparison',
     }, {
       component: ActivityContainer,

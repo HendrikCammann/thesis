@@ -1,53 +1,16 @@
 <div class="container-fluid activities">
-  <div class="container activities__filter">
-    <detail-toggle
-      :isUnfolded="showEverything"
-    ></detail-toggle>
-    <display-toggle></display-toggle>
-    <smart-filter></smart-filter>
-  </div>
+  <floating-menu
+     :menuItemsTop="menuItems.top"
+     :menuItemsLeft="menuItems.bottom"
+     :selectedItems="selectedMenu"
+  ></floating-menu>
 
-  <div class="container card__wrapper">
-    <div class="row sectionLabel">
-      <div class="col-md-12">
-        Trainingstagebuch
+  <div class="container activities__content">
+    <div class="row">
+      <div class="col-sm-12">
+        <activities-graph
+        ></activities-graph>
       </div>
     </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <train-chart
-              :root="'train'"
-              :anchors="['All']"
-              :preparation="'All'"
-              :loadingStatus="loadingStatus"
-              :selectedRunType="selectedRunType"
-              :selectedDisplayType="selectedDisplayType"
-              :showEverything="showEverything"
-              :clustering="'byWeeks'"
-              :showDate="false"
-            ></train-chart>
-          </div>
-        </div>
-        <div class="col-md-1">
-          <date-module
-            :preparation="'All'"
-            :loadingStatus="loadingStatus"
-            :selectedRunType="selectedRunType"
-            :clustering="'byWeeks'"
-          ></date-module>
-        </div>
-        <div class="col-md-7">
-          <div class="card">
-            <activity-list
-              :preparation="'All'"
-              :loadingStatus="loadingStatus"
-              :selectedRunType="selectedRunType"
-              :showEverything="showEverything"
-              :clustering="'byWeeks'"
-            ></activity-list>
-          </div>
-        </div>
-      </div>
   </div>
 </div>

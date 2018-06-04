@@ -1,0 +1,34 @@
+<div class="activitiesGraph">
+  <div class="box-wrapper">
+    <div class="box-label">
+      Entwicklung deines Trainings
+    </div>
+    <div class="box-content">
+      <toggle-standard
+        :options="toggleData"
+        :selectedOption="selectedToggle"
+      ></toggle-standard>
+      <div class="activitiesGraph__chart card">
+        <train-chart v-if="selectedToggle == 0"
+          :root="'train'"
+          :anchors="['All']"
+          :preparation="'All'"
+          :loadingStatus="loadingStatus"
+          :selectedRunType="selectedRunType"
+          :selectedDisplayType="selectedDisplayType"
+          :showEverything="showEverything"
+          :clustering="'byWeeks'"
+          :showDate="true"
+        ></train-chart>
+        <activities-list v-if="selectedToggle == 1"
+           :preparation="'All'"
+           :loadingStatus="loadingStatus"
+           :selectedRunType="selectedRunType"
+           :showEverything="showEverything"
+           :clustering="'byWeeks'"
+        ></activities-list>
+      </div>
+    </div>
+  </div>
+</div>
+

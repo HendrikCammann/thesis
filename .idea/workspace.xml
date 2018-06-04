@@ -2,38 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/running--white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/headline-box/HeadlineBox.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/headline-box/headlineBox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/headline-box/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/text-box/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/text-box/textBox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/ActivityBoxes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/activityBoxes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/ActivityZones.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/activityZones.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/detail-map/DetailMap.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/detail-map/detailMap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/detail-map/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-elements/headline-box/_style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-elements/text-box/_style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-boxes/_style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/detail-map/_style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/toggle/Toggle.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-graph/_style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/pie-chart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/schedule.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui-elements/content-box/ContentBoxModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui-elements/content-box/ContentBoxModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activities/activities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Compare/compare.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-elements/toggle/Toggle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-elements/toggle/Toggle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/CompareGraph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/CompareGraph.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/compareGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/compareGraph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,41 +31,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ActivityContainer.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts">
+      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="165">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivitiesGraph.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivitiesGraph.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#21#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/activity.html">
+      <file leaf-file-name="activitiesList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="735">
+              <caret line="49" column="101" lean-forward="true" selection-start-line="49" selection-start-column="101" selection-end-line="49" selection-end-column="101" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activityZones.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-zones/activityZones.html">
+      <file leaf-file-name="ActivitiesList.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="104">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompareModel.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/models/Compare/CompareModel.ts">
+      <file leaf-file-name="ActivitiesContainer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+            <state relative-caret-position="210">
+              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#952#1855#0" />
+                <element signature="e#2389#2746#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompareContainer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#1545#2448#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -90,16 +134,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="SCSS File" />
-        <option value="HTML File" />
         <option value="TypeScript File" />
+        <option value="HTML File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Fulda</find>
-      <find>barLength</find>
       <find>name</find>
       <find>fake</find>
       <find>fakeSelect</find>
@@ -128,9 +170,10 @@
       <find>anchors</find>
       <find>clustering</find>
       <find>this.clustering</find>
+      <find>draw</find>
+      <find>activity</find>
     </findStrings>
     <replaceStrings>
-      <replace>addSwooshesAndBubbles</replace>
       <replace>arcs.outer.xPos</replace>
       <replace>arcVariables.general.startAngle</replace>
       <replace>stepVariables</replace>
@@ -160,6 +203,7 @@
       <replace>headlineBox</replace>
       <replace>activityStatsItem</replace>
       <replace>m</replace>
+      <replace>activitiesList</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -168,23 +212,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/floating-menu/index.ts" />
-        <option value="$PROJECT_DIR$/src/styles/components/containers/Compare/_style.scss" />
-        <option value="$PROJECT_DIR$/src/events/floating-menu/FloatingMenu.ts" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/floating-menu/FloatingMenu.ts" />
-        <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" />
-        <option value="$PROJECT_DIR$/src/components/containers/Compare/compare.html" />
-        <option value="$PROJECT_DIR$/src/styles/components/ui-elements/button/_style.scss" />
-        <option value="$PROJECT_DIR$/src/styles/common/_animations.scss" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/floating-menu/floatingMenu.html" />
-        <option value="$PROJECT_DIR$/src/assets/icons/running--comp.svg" />
-        <option value="$PROJECT_DIR$/src/assets/icons/running--interval.svg" />
-        <option value="$PROJECT_DIR$/src/assets/icons/running--dl.svg" />
-        <option value="$PROJECT_DIR$/src/models/VisualVariableModel.ts" />
-        <option value="$PROJECT_DIR$/src/styles/common/_colors.scss" />
-        <option value="$PROJECT_DIR$/src/assets/icons/running--ldl.svg" />
-        <option value="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" />
-        <option value="$PROJECT_DIR$/src/assets/icons/running--darkgray.svg" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/floating-menu/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/detail-map/detailMap.html" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/detail-map/DetailMap.ts" />
@@ -204,7 +231,6 @@
         <option value="$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-boxes/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-elements/text-box/_style.scss" />
-        <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/text-box/textBox.html" />
         <option value="$PROJECT_DIR$/src/styles/common/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/containers/Activity/activity.html" />
@@ -219,6 +245,24 @@
         <option value="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/ActivityZones.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/activityZones.html" />
         <option value="$PROJECT_DIR$/src/models/Compare/CompareModel.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/index.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/compareGraph.html" />
+        <option value="$PROJECT_DIR$/src/events/toggle/Toggle.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-elements/toggle/Toggle.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/compare-graph/CompareGraph.ts" />
+        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-graph/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" />
+        <option value="$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Compare/compare.html" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/activities.html" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.ts" />
+        <option value="$PROJECT_DIR$/src/styles/main.scss" />
+        <option value="$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html" />
+        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss" />
       </list>
     </option>
   </component>
@@ -285,6 +329,13 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-elements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,7 +351,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="activity-zones" type="462c0819:PsiDirectoryNode" />
+              <item name="activities-graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -308,40 +359,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="compare-graph" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="Activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="Compare" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="Filter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
+              <item name="activities-list" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -372,6 +390,14 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
               <item name="Activity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -396,8 +422,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/styles/components/ui-elements" />
       <recent name="$PROJECT_DIR$/src/styles/components/ui-widgets" />
+      <recent name="$PROJECT_DIR$/src/styles/components/ui-elements" />
       <recent name="$PROJECT_DIR$/src/assets/icons" />
       <recent name="$PROJECT_DIR$/src/components/visualizations" />
       <recent name="$PROJECT_DIR$/src/styles/components/ui-elements/toggle" />
@@ -558,19 +584,28 @@
       <workItem from="1527939611981" duration="101000" />
       <workItem from="1527942922458" duration="38000" />
       <workItem from="1528032623008" duration="28393000" />
-      <workItem from="1528093802736" duration="6347000" />
+      <workItem from="1528093802736" duration="11119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="742450000" />
+    <option name="totallyTimeSpent" value="747222000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962963" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -583,7 +618,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="bottom" id="TypeScript" order="7" sideWeight="0.4978701" weight="0.32994455" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21458998" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21458998" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962963" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24973376" />
@@ -815,6 +850,16 @@
         <option value="$PROJECT_DIR$/src/components/ui-elements/text-box/index.js" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.js" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.js.map" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/index.js" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/index.js.map" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.js" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.js.map" />
+        <option value="$PROJECT_DIR$/src/events/toggle/Toggle.js.map" />
+        <option value="$PROJECT_DIR$/src/events/toggle/Toggle.js" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.js" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.js.map" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.js" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.js.map" />
       </list>
     </option>
   </component>
@@ -857,148 +902,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/modules/MapModule/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/detail-map/detailMap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/MapModule/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/common/_colors.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/detail-map/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/MapModule/mapModule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/content-box/ContentBox.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="6" selection-end-line="34" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/detail-map/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/content-box/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/toggle/toggle.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/icons/running--white.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Activity/ActivityModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-elements/headline-box/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/toggle/Toggle.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/headline-box/headlineBox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" lean-forward="true" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/detail-map/DetailMap.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" selection-start-line="25" selection-end-line="30" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/time/time-formatter.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
@@ -1027,17 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-elements/headline-box/HeadlineBox.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1045,16 +937,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1073,20 +955,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/ui-elements/content-box/ContentBoxModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1111,20 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/ActivityBoxes.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1146,13 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/activity.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1204,15 +1055,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/compare-graph/compareGraph.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="10" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="24" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/Filter/FilterModel.ts">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Compare/CompareModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-zones/activityZones.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1221,10 +1072,222 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Compare/CompareModel.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/activity.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        <state relative-caret-position="135">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activity/ActivityContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/events/floating-menu/FloatingMenu.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/events/toggle/Toggle.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/toggle/Toggle.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/compare-graph/CompareGraph.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="50" column="31" selection-start-line="50" selection-end-line="51" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activities-graph/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/train-chart/_style.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2505">
+          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/compare-graph/compareGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Compare/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="10" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/text-box/TextBox.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-end-line="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Activities/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/modules/ActivityRunList/_style.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/partials/ActivityListItem/_style.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="45" column="55" lean-forward="true" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#1545#2448#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/ActivitiesContainer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#952#1855#0" />
+            <element signature="e#2389#2746#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/ActivitiesList.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="101" lean-forward="true" selection-start-line="49" selection-start-column="101" selection-end-line="49" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
         </state>
       </provider>
     </entry>

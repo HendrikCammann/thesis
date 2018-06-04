@@ -1,0 +1,8 @@
+.activitiesGraph {
+  $root: &;
+
+  #{&}__chart {
+    margin-top: 32px;
+    padding: 16px;
+  }
+}

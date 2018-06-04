@@ -7,6 +7,7 @@ import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {TrainChart} from '../../visualizations/train-chart';
 import {mapGetters} from 'vuex';
+import {ToggleEvents} from '../../../events/toggle/Toggle';
 
 @Component({
   template: require('./compareGraph.html'),
@@ -47,7 +48,7 @@ export class CompareGraph extends Vue {
   mounted() {
     this.initToggleData(this.clusters);
     this.initChartData(this.clusters, this.selectedToggle);
-    eventBus.$on(compareEvents.changed_ClusterView, (index) => {
+    eventBus.$on(ToggleEvents.set_Selection, (index) => {
       this.selectedToggle = index;
       this.initChartData(this.clusters, this.selectedToggle);
     })

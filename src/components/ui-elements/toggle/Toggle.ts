@@ -3,6 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
+import {ToggleEvents} from '../../../events/toggle/Toggle';
 
 @Component({
   template: require('./toggle.html'),
@@ -23,6 +24,6 @@ export class Toggle extends Vue {
   }
 
   public handleToggle(index: number) {
-    eventBus.$emit(compareEvents.changed_ClusterView, index);
+    eventBus.$emit(ToggleEvents.set_Selection, index);
   }
 }

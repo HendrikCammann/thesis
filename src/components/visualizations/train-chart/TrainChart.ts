@@ -158,7 +158,7 @@ export class TrainChart extends Vue {
       this.drawFoldedConnections(svg, barItems);
       this.drawFoldedWeekChanges(svg, barItems);
       this.drawFoldedBars(svg, barItems);
-      this.drawFoldedCheckboxes(svg, barItems);
+      // this.drawFoldedCheckboxes(svg, barItems);
     } else {
       let barItems = this.calculateUnfoldedChart(svg, data[this.clustering], this.weekHeight, this.padding, this.largestValue);
       this.drawUnfoldedConnections(svg, barItems);

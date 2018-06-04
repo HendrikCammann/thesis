@@ -1,0 +1,53 @@
+.activitiesList {
+  $root: &;
+  margin-top: 15px;
+  font-family: $font-family--main;
+
+  #{&}__week {
+    height: 200px;
+    padding-top: 12px;
+    border-bottom: 1px solid #F3F3F3;
+
+    &:first-of-type {
+      border-top: 1px solid #F3F3F3;
+    }
+
+    #{$root}__wrapper {
+      display: block;
+      margin-bottom: 4px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      #{$root}__day {
+        display: inline-block;
+        width: 25px;
+        font-weight: 400;
+        margin-right: 4px;
+        color: $colors-label;
+      }
+
+      #{$root}__ac {
+        display: inline-block;
+        font-weight: 700;
+      }
+
+      #{$root}__restday {
+        display: inline-block;
+        color: $colors-label;
+      }
+
+      #{$root}__more {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 12px;
+        padding-top: 3px;
+        padding-bottom: 1px;
+        border-radius: 30px;
+        background-color: $colors-label;
+        color: $colors-white;
+      }
+    }
+  }
+}

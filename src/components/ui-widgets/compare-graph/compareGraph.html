@@ -1,26 +1,26 @@
 <div class="compareGraph">
-    <div class="box-wrapper">
-      <div class="box-label">
-        Trainingsentwicklung
-      </div>
-      <div class="box-content">
-        <toggle-standard
-          :options="toggleData"
-          :selectedOption="selectedToggle"
-        ></toggle-standard>
-        <div class="compareGraph__chart card">
-          <train-chart v-if="toggleData.length !== 0"
-            :root="'train-chart'"
-            :anchors="selectedTrainingClusters"
-            :preparation="toggleData[selectedToggle]"
-            :loadingStatus="loadingStatus"
-            :selectedRunType="selectedRunType"
-            :selectedDisplayType="selectedDisplayType"
-            :showEverything="showEverything"
-            :clustering="'byWeeks'"
-            :showDate="true"
-          ></train-chart>
-        </div>
+  <div class="box-wrapper">
+    <div class="box-label">
+      Trainingsentwicklung
+    </div>
+    <div class="box-content">
+      <toggle-standard
+        :options="toggleData"
+        :selectedOption="selectedToggle"
+      ></toggle-standard>
+      <div class="compareGraph__chart card">
+        <train-chart v-if="toggleData.length !== 0"
+                     :root="'train-chart'"
+                     :anchors="selectedTrainingClusters"
+                     :preparation="toggleData[selectedToggle]"
+                     :loadingStatus="loadingStatus"
+                     :selectedRunType="selectedRunType"
+                     :selectedDisplayType="selectedDisplayType"
+                     :showEverything="showEverything"
+                     :clustering="'byWeeks'"
+                     :showDate="true"
+        ></train-chart>
       </div>
     </div>
+  </div>
 </div>

@@ -1,0 +1,9 @@
+<transition name="fade">
+  <div class="modal__backdrop" @click="closeModal">
+    <div class="modal" role="dialog">
+      <div class="modal__content">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</transition>

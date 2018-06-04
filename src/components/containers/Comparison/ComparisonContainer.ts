@@ -6,13 +6,11 @@ import {MutationTypes} from '../../../store/mutation-types';
 import {TrainCompareModule} from '../../modules/TrainCompareModule';
 import {SmartFilterModule} from '../../modules/SmartFilterModule';
 import {CompareModule} from '../../modules/CompareModule';
-import {ModalModule} from '../../modules/ModalModule';
 import {eventBus} from '../../../main';
 import {modalEvents} from '../../../events/Modal/modal';
 import {DoughnutChart} from '../../charts/DoughnutChart';
 import {RunType} from '../../../store/state';
 import {compareEvents} from '../../../events/Compare/compare';
-import {ModalButtonModule} from '../../modules/ModalButtonModule';
 import {DetailToggleModule} from '../../modules/DetailToggleModule';
 import {DisplayTypeToggleModule} from '../../modules/DisplayTypeToggleModule';
 import {CompareAddModule} from '../../modules/CompareAddModule';
@@ -34,11 +32,9 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
     'trainCompare': TrainCompareModule,
     'smartFilter': SmartFilterModule,
     'displayToggle': DisplayTypeToggleModule,
-    'modalButton': ModalButtonModule,
     'detailToggle': DetailToggleModule,
     'compareAdd': CompareAddModule,
     'compareModule': CompareModule,
-    'modalModule': ModalModule,
     'doughnutChart': DoughnutChart,
   },
 })
@@ -48,10 +44,6 @@ export class ComparisonContainer extends Vue {
   public hoveredRunType = RunType.All;
 
   private progressStep = 0;
-
-  public openModal() {
-    eventBus.$emit(modalEvents.open_Modal);
-  }
 
   private nextStep() {
     this.progressStep = 1;

@@ -5,49 +5,49 @@
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 0)}">So</div>
         <div class="activitiesList__ac" v-if="item[6].length !== 0" :style="{ color: getColor(item[6][0]) }" @click="openDetailView(item[6][0])">{{ item[6][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[6].length === 0">{{ isFuture(j, 0) }}</div>
-        <div class="activitiesList__more"  v-if="item[6].length > 1"> + {{item[6].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[6].length > 1" @click="openModal(item[6])"> + {{item[6].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 6)}">Sa</div>
         <div class="activitiesList__ac" v-if="item[5].length !== 0" :style="{ color: getColor(item[5][0]) }" @click="openDetailView(item[5][0])">{{ item[5][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[5].length === 0">{{ isFuture(j, 6) }}</div>
-        <div class="activitiesList__more"  v-if="item[5].length > 1"> + {{item[5].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[5].length > 1" @click="openModal(item[5])"> + {{item[5].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 5)}">Fr</div>
         <div class="activitiesList__ac" v-if="item[4].length !== 0" :style="{ color: getColor(item[4][0]) }" @click="openDetailView(item[4][0])">{{ item[4][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[4].length === 0">{{ isFuture(j, 5) }}</div>
-        <div class="activitiesList__more"  v-if="item[4].length > 1"> + {{item[4].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[4].length > 1" @click="openModal(item[4])"> + {{item[4].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 4)}">Do</div>
         <div class="activitiesList__ac" v-if="item[3].length !== 0" :style="{ color: getColor(item[3][0]) }" @click="openDetailView(item[3][0])">{{ item[3][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[3].length === 0">{{ isFuture(j, 4) }}</div>
-        <div class="activitiesList__more"  v-if="item[3].length > 1"> + {{item[3].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[3].length > 1" @click="openModal(item[3])"> + {{item[3].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 3)}">Mi</div>
         <div class="activitiesList__ac" v-if="item[2].length !== 0" :style="{ color: getColor(item[2][0]) }" @click="openDetailView(item[2][0])">{{ item[2][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[2].length === 0">{{ isFuture(j, 3) }}</div>
-        <div class="activitiesList__more"  v-if="item[2].length > 1"> + {{item[2].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[2].length > 1" @click="openModal(item[2])"> + {{item[2].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 2)}">Di</div>
         <div class="activitiesList__ac" v-if="item[1].length !== 0" :style="{ color: getColor(item[1][0]) }" @click="openDetailView(item[1][0])">{{ item[1][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[1].length === 0">{{ isFuture(j, 2) }}</div>
-        <div class="activitiesList__more"  v-if="item[1].length > 1"> + {{item[1].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[1].length > 1" @click="openModal(item[1])"> + {{item[1].length - 1 }}</div>
       </div>
 
       <div class="activitiesList__wrapper">
         <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 1)}">Mo</div>
         <div class="activitiesList__ac" v-if="item[0].length !== 0" :style="{ color: getColor(item[0][0]) }" @click="openDetailView(item[0][0])">{{ item[0][0].name }}</div>
         <div class="activitiesList__restday" v-if="item[0].length === 0">{{ isFuture(j, 1) }}</div>
-        <div class="activitiesList__more"  v-if="item[0].length > 1"> + {{item[0].length - 1 }}</div>
+        <div class="activitiesList__more"  v-if="item[0].length > 1" @click="openModal(item[0])"> + {{item[0].length - 1 }}</div>
       </div>
     </div>
   </div>

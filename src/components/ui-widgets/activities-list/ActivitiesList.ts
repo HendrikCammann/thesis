@@ -7,6 +7,8 @@ import {ClusterWrapper} from '../../../models/State/StateModel';
 import {getKeys} from '../../../utils/array-helper';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 import {MutationTypes} from '../../../store/mutation-types';
+import {eventBus} from '../../../main';
+import {modalEvents} from '../../../events/Modal/modal';
 
 @Component({
   template: require('./activitiesList.html'),
@@ -85,7 +87,7 @@ export class ActivitiesList extends Vue {
     if (activity.categorization.activity_type === this.selectedRunType || this.selectedRunType == RunType.All) {
       return getCategoryColor(activity.categorization.activity_type);
     } else {
-      return '#d9d9d9';
+      return '#adb7bf';
     }
   }
 
@@ -114,6 +116,10 @@ export class ActivitiesList extends Vue {
       }
     }
     return 'Ruhetag';
+  }
+
+  public openModal(item) {
+    eventBus.$emit(modalEvents.open_Modal, item);
   }
 
   mounted() {

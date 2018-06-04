@@ -21,35 +21,6 @@
   </div>
 
   <div v-if="progressStep === 1">
-    <modal-module v-if="showModal">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div v-for="(item, i) in selectedTrainingClusters"
-                 :class="['col-md-' + (12 / selectedTrainingClusters.length)]">
-              <doughnut-chart
-                :root="'doughnut'"
-                :index="i"
-                :data="selectedWeeks[item]"
-                :loadingStatus="loadingStatus"
-                :hoveredRunType="hoveredRunType"
-              ></doughnut-chart>
-            </div>
-          </div>
-        </div>
-      </div>
-    </modal-module>
-
-    <div class="container comparison__filter">
-      <modal-button
-        :counter="selectedWeeksLength"
-      ></modal-button>
-      <detail-toggle
-        :isUnfolded="showEverything"
-      ></detail-toggle>
-      <display-toggle></display-toggle>
-      <smart-filter></smart-filter>
-    </div>
 
     <div class="container">
       <div class="row">

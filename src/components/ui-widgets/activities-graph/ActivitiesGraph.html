@@ -1,4 +1,11 @@
 <div class="activitiesGraph">
+  <modal v-show="showModal">
+    <div class="card">
+      <modal-list
+        :items="modalItem"
+      ></modal-list>
+    </div>
+  </modal>
   <div class="box-wrapper">
     <div class="box-label">
       Entwicklung deines Trainings

@@ -5,9 +5,9 @@ import {eventBus} from '../../../main';
 import {modalEvents} from '../../../events/Modal/modal';
 
 @Component({
-  template: require('./modalModule.html'),
+  template: require('./modal.html'),
 })
-export class ModalModule extends Vue {
+export class Modal extends Vue {
 
   public closeModal () {
     eventBus.$emit(modalEvents.close_Modal)

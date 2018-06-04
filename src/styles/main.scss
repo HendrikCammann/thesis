@@ -33,6 +33,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-elements/text-box/_style";
 @import "components/ui-elements/button/_style";
 @import "components/ui-elements/toggle/_style";
+@import "components/ui-elements/modal-list/_style";
 
 @import "components/ui-widgets/compare-select/_style";
 @import "components/ui-widgets/compare-boxes/_style";
@@ -68,7 +69,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/modules/DetailToggleModule/_style";
 @import "components/modules/ZoneModule/_style";
 
-@import "components/modal/_style";
+@import "components/ui-widgets/modal/_style";
 
 @import "components/partials/Button/_style";
 @import "components/partials/Toggle/_style";

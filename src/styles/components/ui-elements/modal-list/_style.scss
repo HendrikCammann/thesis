@@ -1,0 +1,33 @@
+.modalList {
+  $root: &;
+  padding: 16px;
+  color: $colors-text;
+  font-family: $font-family--main;
+
+  #{&}__headline {
+    margin-bottom: 24px;
+    color: $colors-text;
+    font-weight: 400;
+  }
+
+  #{&}__item {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    #{$root}__label {
+      color: $colors-label;
+      margin-right: 8px;
+      font-weight: 400;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.detailMap {
+  $root: &;
+  position: relative;
+  height: 400px;
+
+  .vue2leaflet-map, .lastRunModule .leaflet-container, .lastRunModule .leaflet-retina, .lastRunModule .leaflet-safari {
+    border-radius: 0;
+    pointer-events: none;
+  }
+
+  .leaflet-control-attribution, .leaflet-control-container {
+    display: none;
+  }
+
+  #{&}__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    z-index: 1000;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(251, 250, 250, 0.25) 82%, #fbfafa);
+  }
+}

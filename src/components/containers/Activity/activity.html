@@ -1,16 +1,43 @@
-<div class="container-fluid activityDetail">
+<div class="container-fluid activity">
 
-  <div class="row activityDetail__map">
+  <div class="row activity__map">
     <div class="col-md-12 no-padding">
-      <map-module
+      <detail-map
         :loadingStatus="loadingStatus"
         :activity="getSelectedActivity"
-      ></map-module>
+      ></detail-map>
+    </div>
+  </div>
+
+  <div class="container activity__content">
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <headline-box
+          :headline="getSelectedActivity.name"
+          :subHeadline="new Date(getSelectedActivity.date).toLocaleDateString('de-DE', { hour12: false, hour: 'numeric', minute: 'numeric'})"
+          :type="getSelectedActivity.categorization.activity_type"
+        ></headline-box>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <activity-boxes
+          :loadingStatus="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-boxes>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+
+      </div>
     </div>
   </div>
 
 
-  <div class="container activityDetail__content">
+  <!--<div class="container activityDetail__content">
 
     <div class="row">
       <div class="col-md-12">
@@ -60,7 +87,7 @@
       </div>
     </div>
 
-  </div>
+  </div>-->
 
   <!--<div class="container activityDetail__headline">
     <div class="row">

@@ -17,8 +17,8 @@ export class ContentBoxModel {
 export enum ContentBoxIcons {
   Distance = 'distance',
   Duration = 'clock',
-  Heartrate = 'heartrate',
-  Pace = 'stopwatch',
+  Heartrate = 'heart',
+  Pace = 'pace',
   Run = 'running',
   Competition = 'trophy',
   Marathon = 'marathon',

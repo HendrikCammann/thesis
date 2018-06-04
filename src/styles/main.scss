@@ -29,6 +29,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/charts/BarChart/_style";
 
 @import "components/ui-elements/content-box/_style";
+@import "components/ui-elements/headline-box/_style";
+@import "components/ui-elements/text-box/_style";
 @import "components/ui-elements/button/_style";
 @import "components/ui-elements/toggle/_style";
 
@@ -36,6 +38,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-widgets/compare-boxes/_style";
 @import "components/ui-widgets/compare-graph/_style";
 @import "components/ui-widgets/floating-menu/_style";
+@import "components/ui-widgets/detail-map/_style";
+@import "components/ui-widgets/activity-boxes/_style";
 
 @import "components/visualizations/train-chart/_style";
 

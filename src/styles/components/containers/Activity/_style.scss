@@ -1,21 +1,16 @@
-.activityDetail {
+.activity {
   $root: &;
-  padding-top: 75px;
+  padding-top: 60px;
   font-family: $font-family--main;
+  padding-left: 16px;
+  padding-right: 16px;
 
   #{&}__map {
     padding: 0;
+    margin-bottom: 12px;
   }
 
-  #{&}__row {
-    margin-top: 160px;
-  }
-
-  #{&}__row-small {
-    margin-top: 56px;
-  }
-
-  #{&}__content {
-    margin-top: 56px;
+  .headlineBox, .textBox {
+    margin-bottom: 32px;
   }
 }

@@ -1,0 +1,20 @@
+<div class="activityBoxes"  v-if="data != null">
+  <div class="box-content">
+    <div class="column column--half" v-for="item in data.basics">
+      <content-box
+        :data="item"
+      ></content-box>
+    </div>
+    <div class="column" v-for="item in data.text">
+      <text-box
+        :text="item"
+      ></text-box>
+    </div>
+    <div class="column">
+      <button-standard
+        :label="'Informationen bearbeiten'"
+      ></button-standard>
+    </div>
+  </div>
+  <div class="dividerLine"></div>
+</div>

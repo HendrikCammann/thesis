@@ -1,0 +1,7 @@
+.textBox {
+  $root: &;
+  padding: 24px 16px;
+  font-family: $font-family--main;
+  color: $colors-text;
+  font-size: 16px;
+}

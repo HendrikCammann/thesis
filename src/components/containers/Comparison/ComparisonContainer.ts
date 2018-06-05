@@ -20,7 +20,6 @@ import {CompareAddModule} from '../../modules/CompareAddModule';
   computed: mapGetters({
     selectedTrainingClusters: 'getSelectedTrainingClusters',
     selectedWeeks: 'getSelectedWeeks',
-    selectedWeeksLength: 'getSelectedWeeksLength',
     existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     selectedRunType: 'getSelectedRunType',

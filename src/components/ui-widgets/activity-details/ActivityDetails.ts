@@ -4,18 +4,19 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import {Toggle} from '../../ui-elements/toggle';
 import {eventBus} from '../../../main';
 import {ToggleEvents} from '../../../events/toggle/Toggle';
-import {modalEvents} from '../../../events/Modal/modal';
 import {LoadingStatus, loadingStatus} from '../../../models/App/AppStatus';
 import {formatPace} from '../../../utils/format-data';
 import {FormatPaceType} from '../../../models/FormatModel';
 import {getLargerValue, getPercentageFromValue} from '../../../utils/numbers/numbers';
 import {ActivityDetailsList} from '../activity-details-list';
+import {LineChart} from '../../visualizations/line-chart';
 
 @Component({
   template: require('./activityDetails.html'),
   components: {
     'toggleStandard': Toggle,
     'detailList': ActivityDetailsList,
+    'detailGraph': LineChart,
   }
 })
 export class ActivityDetails extends Vue {
@@ -29,16 +30,17 @@ export class ActivityDetails extends Vue {
   public selectedToggle: number = 0;
 
   private listData = null;
+  private graphData = null;
 
   @Watch('loaded.activities')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loaded.activities === loadingStatus.Loaded) {
-      this.listData = this.initData(this.activity);
-      console.log(this.listData);
+      this.listData = this.initListData(this.activity);
+      this.graphData = this.initGraphData(this.activity);
     }
   }
 
-  private initData(activity) {
+  private initListData(activity) {
     let data;
     if (this.selectedToggle === 0) {
       data = activity.details.splits.metric;
@@ -90,15 +92,41 @@ export class ActivityDetails extends Vue {
     return listData;
   }
 
+  private initGraphData(activity) {
+    let distanceValues = activity.streams.distance.data;
+    let paceValues = activity.streams.speed.data;
+    let avgPace = activity.average_data.speed;
+    let maxPace = activity.max_Data.speed;
+    let hrValues = null;
+    let avgHr = null;
+    let maxHr = null;
+    if (activity.streams.heartrate) {
+      hrValues = activity.streams.heartrate.data;
+      avgHr = activity.average_data.heartrate;
+      maxHr = activity.max_Data.heartrate;
+    }
+
+    return {
+      distanceValues: distanceValues,
+      paceValues: paceValues,
+      avgPace: avgPace,
+      maxPace: maxPace,
+      hrValues: hrValues,
+      avgHr: avgHr,
+      maxHr: maxHr,
+    };
+  }
+
   mounted() {
     if (this.loaded.activities === loadingStatus.Loaded) {
-      this.listData = this.initData(this.activity);
-      console.log(this.listData);
+      this.listData = this.initListData(this.activity);
+      this.graphData = this.initGraphData(this.activity);
     }
 
     eventBus.$on(ToggleEvents.set_Selection, (index) => {
       this.selectedToggle = index;
-      this.listData = this.initData(this.activity);
+      this.listData = this.initListData(this.activity);
+      this.graphData = this.initGraphData(this.activity);
     });
   }
 }

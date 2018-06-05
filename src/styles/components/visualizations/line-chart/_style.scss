@@ -1,0 +1,29 @@
+.lineChart {
+  $root: &;
+
+  #{&}__pace {
+    fill: none;
+    stroke: $colors-pace;
+    stroke-width: 2px;
+
+    &--avg {
+      stroke: $colors-pace;
+      fill: none;
+      stroke-width: 1px;
+      stroke-dasharray: 5,5;
+    }
+  }
+
+  #{&}__heartrate {
+    fill: none;
+    stroke: $colors-hr;
+    stroke-width: 2px;
+
+    &--avg {
+      stroke: $colors-hr;
+      fill: none;
+      stroke-width: 1px;
+      stroke-dasharray: 5,5;
+    }
+  }
+}

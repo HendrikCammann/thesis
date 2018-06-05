@@ -8,8 +8,10 @@
         :options="toggleData"
         :selectedOption="selectedToggle"
       ></toggle-standard>
-      <div class="activityDetails__graph">
-
+      <div class="activityDetails__graph" v-if="graphData !== null">
+        <detail-graph
+          :data="graphData"
+        ></detail-graph>
       </div>
       <div class="activityDetails__list" v-if="listData !== null">
         <detail-list

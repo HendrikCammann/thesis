@@ -36,6 +36,15 @@
         ></activity-zones>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <activity-details
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-details>
+      </div>
+    </div>
   </div>
 
 

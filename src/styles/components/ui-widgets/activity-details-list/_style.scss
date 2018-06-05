@@ -1,0 +1,110 @@
+.activityDetailsList {
+  $root: &;
+  font-family: $font-family--main;
+  color: $colors-text;
+
+  #{&}__icons {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    margin-bottom: 8px;
+  }
+
+  #{&}__column {
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    text-align: center;
+    float: left;
+
+    &--small {
+      width: 20%;
+    }
+
+    &--half {
+      width: 50%;
+    }
+  }
+
+  #{&}__content {
+    padding: 16px;
+
+    #{$root}__item {
+      padding-bottom: 8px;
+      border-bottom: 1px solid $colors-label;
+      margin-bottom: 8px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      #{$root}__bar {
+        position: absolute;
+        top: -10px;
+        width: 100%;
+        height: 40px;
+        opacity: .3;
+        background-color: #E7E7E7;
+
+        &--left {
+          left: -16px;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+
+        &--right {
+          right: -16px;
+          border-bottom-left-radius: 20px;
+          border-top-left-radius: 20px;
+        }
+
+        &--pace {
+          left: -16px;
+          opacity: 1;
+          background-color: $colors-pace-bg;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+
+        &--hr {
+          right: -16px;
+          opacity: 1;
+          background-color: $colors-hr-bg;
+          border-bottom-left-radius: 20px;
+          border-top-left-radius: 20px;
+        }
+      }
+
+      #{$root}__value {
+        font-size: 16px;
+        font-weight: 700;
+        position: relative;
+
+        &--pace {
+          color: $colors-pace;
+        }
+
+        &--hr {
+          color: $colors-hr;
+        }
+      }
+
+      #{$root}__label {
+        font-size: 10px;
+        font-weight: 400;
+        color: $colors-text;
+      }
+    }
+  }
+
+  #{&}__explanation {
+    margin-top: 8px;
+    text-align: justify;
+    font-size: 10px;
+    color: $colors-label;
+    margin-bottom: 32px;
+  }
+}

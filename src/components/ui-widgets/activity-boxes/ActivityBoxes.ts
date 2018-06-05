@@ -40,8 +40,6 @@ export class ActivityBoxes extends Vue {
     let basics = [];
     let text = [];
 
-    console.log(activity);
-
     let distance = formatDistance(activity.base_data.distance, FormatDistanceType.Kilometers).toFixed(2) + 'km';
     basics.push(new ContentBoxModel(distance, 'Distanz', ContentBoxIcons.Distance, false));
 

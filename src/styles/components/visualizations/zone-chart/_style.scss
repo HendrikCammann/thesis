@@ -2,10 +2,10 @@
 
   &__zone-number {
     font-family: $font-family--main;
-    font-size: 20px;
-    font-weight: 400;
-    fill: $colors-white;
-    text-shadow: 0 0 10px #454545;
+    font-size: 16px;
+    font-weight: 700;
+    fill: $colors-text;
+    text-shadow: 0 0 10px $colors-white;
   }
 
   &__zone-perc {

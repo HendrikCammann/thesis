@@ -1,0 +1,21 @@
+<div class="activityDetails">
+  <div class="box-wrapper">
+    <div class="box-label">
+      Detailinformationen
+    </div>
+    <div class="box-content">
+      <toggle-standard
+        :options="toggleData"
+        :selectedOption="selectedToggle"
+      ></toggle-standard>
+      <div class="activityDetails__graph">
+
+      </div>
+      <div class="activityDetails__list" v-if="listData !== null">
+        <detail-list
+          :data="listData"
+        ></detail-list>
+      </div>
+    </div>
+  </div>
+</div>

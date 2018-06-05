@@ -7,6 +7,7 @@ import {DetailMap} from '../../ui-widgets/detail-map';
 import {HeadlineBox} from '../../ui-elements/headline-box';
 import {ActivityBoxes} from '../../ui-widgets/activity-boxes';
 import {ActivityZones} from '../../ui-widgets/activity-zones';
+import {ActivityDetails} from '../../ui-widgets/activity-details/ActivityDetails';
 
 /* tslint:disable */
 @Component({
@@ -22,15 +23,10 @@ import {ActivityZones} from '../../ui-widgets/activity-zones';
     'headlineBox': HeadlineBox,
     'activityBoxes': ActivityBoxes,
     'activityZones': ActivityZones,
+    'activityDetails': ActivityDetails,
   }
 })
 export class ActivityContainer extends Vue {
-
-  public headlineData = null;
-  private initData() {
-
-  }
-
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
@@ -41,5 +37,4 @@ export class ActivityContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
     }
   }
-
 }

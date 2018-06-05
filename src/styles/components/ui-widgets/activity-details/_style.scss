@@ -1,0 +1,7 @@
+.activityDetails {
+  $root: &;
+
+  #{&}__list {
+    margin-top: 32px;
+  }
+}

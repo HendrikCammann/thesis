@@ -28,7 +28,6 @@ export class ZoneChart extends Vue {
     let drawableWidth = this.itemArea;
 
     let maxValues = this.getMaxValues(zones, hasHeartrate);
-    console.log(maxValues);
     let circles = this.createCircles(zones, hasHeartrate, drawableWidth, maxValues);
     this.height = circles.height;
     let svg = setupSvg(root, width, circles.height);
@@ -151,7 +150,7 @@ export class ZoneChart extends Vue {
         this.addLabel(svg, this.width - 65, circles.offsetCircles[i].yPos, 'anstregend', 'right', '#d23d49', 0.5);
       }
       this.drawFullCircle(svg, circles.offsetCircles[i].xPos, circles.offsetCircles[i].yPos, circles.maxCircle.radius, '#E7E7E7', 0.3);
-      this.drawFullCircle(svg, circles.offsetCircles[i].xPos, circles.offsetCircles[i].yPos, circles.offsetCircles[i].radius, circles.offsetCircles[i].color, 0.2);
+      this.drawFullCircle(svg, circles.offsetCircles[i].xPos, circles.offsetCircles[i].yPos, circles.offsetCircles[i].radius, circles.offsetCircles[i].color, 0.1);
       if (circles.hrCircles[i]) {
         this.drawHalfCircle(svg, circles.hrCircles[i].xPos, circles.hrCircles[i].yPos, circles.hrCircles[i].radius, circles.hrCircles[i].color, true, 1);
         this.addPerc(svg, circles.offsetCircles[i].xPos + circles.maxCircle.radius + 5, circles.offsetCircles[i].yPos, circles.hrCircles[i].percentage + '%', 'left', '#d23d49', 1);
@@ -168,7 +167,7 @@ export class ZoneChart extends Vue {
       .attr('y', y)
       .attr('width', 1)
       .attr('height', height)
-      .attr('fill', '#adb7bf');
+      .attr('fill', '#ADB7BF');
   }
 
   private drawHalfCircle(svg, x: number, y: number, radius: number, color: string, bottomHalf: boolean, opacity: number): void {
@@ -221,7 +220,7 @@ export class ZoneChart extends Vue {
   private addText(svg, x: number, y: number, text: string | number) {
     svg.append('text')
       .attr('x', x)
-      .attr('y', y - 8)
+      .attr('y', y + 4)
       .attr('class', 'zoneChart__zone-number')
       .attr('text-anchor', 'middle')
       .text(text);

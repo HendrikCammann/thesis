@@ -3,6 +3,9 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as d3 from 'd3';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
+import {formatPace} from '../../../utils/format-data';
+import {FormatPaceType} from '../../../models/FormatModel';
+import {getLargerValue} from '../../../utils/numbers/numbers';
 
 @Component({
   template: require('./LineChart.html'),
@@ -15,6 +18,8 @@ export class LineChart extends Vue {
   private margin = {top: 16, right: 4, bottom: 16, left: 4};
   private width = 340 - this.margin.left - this.margin.right;
   private height = 300 - this.margin.top - this.margin.bottom;
+  private maxPace = 0;
+  private maxHr = 0;
 
   @Watch('data')
   onPropertyChanged(val: any, oldVal: any) {
@@ -37,8 +42,11 @@ export class LineChart extends Vue {
 
   private initData(data) {
     let displayedData = [];
-    for (let i = 0; i < data.distanceValues.length; i = i + 10) {
+    let factor = Math.round(data.distanceValues.length / 100 * 3);
+    for (let i = 0; i < data.distanceValues.length; i = i + factor) {
+      this.maxPace = getLargerValue(data.paceValues[i], this.maxPace);
       if(data.hrValues) {
+        this.maxHr = getLargerValue(data.hrValues[i], this.maxHr);
         displayedData.push({
           avgPace: data.avgPace,
           pace: data.paceValues[i],
@@ -80,10 +88,8 @@ export class LineChart extends Vue {
     let y2 = d3.scaleLinear().range([this.height, 0]);
 
     x.domain([data[0].scales, data[data.length -1].scales]);
-    y2.domain([0, 200 + 10]);
-    y.domain([0, 10]);
-
-    console.log(this.data.maxPace);
+    y2.domain([0, this.maxHr]);
+    y.domain([0, this.maxPace]);
 
     let paceLine = d3.line()
       .x((d: any, i) => {
@@ -149,20 +155,28 @@ export class LineChart extends Vue {
     svg.append('g')
       .attr('transform', 'translate(0,' + (this.height) + ')')
       // .call(d3.axisBottom(x).ticks(14).tickSize(-height));
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x).ticks(5).tickFormat((d :any) => {
+        return d + 'km';
+      }));
 
     // Add the Y Axis
     svg.append('g')
     // .call(d3.axisLeft(y).ticks(6).tickSize(-width))
       .attr('class', 'lineChart__scale--pace')
-      .call(d3.axisRight(y));
+      .call(d3.axisRight(y).ticks(5).tickFormat((d :any) => {
+        if (d !== 0) {
+          return formatPace(d, FormatPaceType.MinPerKm).formattedVal + '/km';
+        } else {
+          return d;
+        }
+      }));
 
     // Add the Y Axis
     if(hasHeartrate) {
       svg.append('g')
         .attr('transform', 'translate(' + (this.width) + ', 0)')
         .attr('class', 'lineChart__scale--heartrate')
-        .call(d3.axisLeft(y2));
+        .call(d3.axisLeft(y2).ticks(5));
     }
   }
 }

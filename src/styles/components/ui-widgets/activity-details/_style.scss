@@ -1,6 +1,10 @@
 .activityDetails {
   $root: &;
 
+  #{&}__graph {
+    margin-bottom: 32px;
+  }
+
   #{&}__list {
     margin-top: 32px;
   }

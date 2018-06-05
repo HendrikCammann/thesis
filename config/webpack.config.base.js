@@ -1,6 +1,8 @@
 const helpers = require('./helpers'),
   CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 let config = {
   entry: {
     // 'web' : 'webpack-dev-server/client?http://' + require("os").hostname() + ':9090/',
@@ -41,6 +43,13 @@ let config = {
       from: 'src/assets',
       to: './assets'
     }, ]),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      proxy: 'http://localhost:8080'
+    }, {
+      reload: false
+    })
   ],
   node: {
     fs: 'empty',

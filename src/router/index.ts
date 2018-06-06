@@ -24,24 +24,20 @@ const router = new VueRouter({
       name: 'Dashboard',
       path: '/dashboard',
     }, {
-      component: ComparisonContainer,
-      name: 'Old',
-      path: '/comparison',
-    }, {
       component: ActivityContainer,
       name: 'Activity',
       path: '/activity/:id',
     }, {
       component: ActivitiesContainer,
-      name: 'Leistung',
+      name: 'Leistungsentwicklung',
       path: '/performance',
     }, {
       component: CompareContainer,
-      name: 'Vergleich',
+      name: 'Vorbereitungen',
       path: '/compare',
     }, {
       component: ActivitiesContainer,
-      name: 'Einheiten',
+      name: 'Kalender',
       path: '/activities',
     }
   ],

@@ -16,7 +16,11 @@
           <div class="navigationModule__entry" v-for="link in links"
              :class="{'navigationModule__entry--active' : $route.name == link.name}"
              @click="handleNavigation(link.path)"
-          >{{ link.name }} <img src="../../../assets/icons/distance--gray.svg"></div>
+          >
+            <img class="navigationModule__icon" :src="'../../../assets/icons/solid/' + link.illustration + '.svg'">
+            {{ link.name }}
+            <img class="navigationModule__link" src="../../../assets/icons/solid/chrevron--gray.svg">
+          </div>
         </div>
         <div class="navigationModule__legal">
           Mit der Nutzung von XXX erklären Sie unseren

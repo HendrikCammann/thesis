@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/filter--lightgray</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons/filter--lightgray" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Filter" fill="#ADB7BF" fill-rule="nonzero">
+            <path d="M10.0044114,7.79703619 L15.1115779,0.647001905 C15.369059,0.286529524 15.220435,0 14.7846301,0 L0.450496,0 C0.0236495238,0 -0.131689143,0.28967619 0.123547429,0.647001905 L5.23071467,7.79703619 L5.23071467,15.111261 C5.23071467,15.554339 5.52789105,15.7142019 5.89447619,15.4698133 L9.34064914,13.1723657 C9.70579505,12.9289371 10.0044114,12.3752914 10.0044114,11.9379048 L10.0044114,7.79703619 Z"></path>
+        </g>
+    </g>
+</svg>

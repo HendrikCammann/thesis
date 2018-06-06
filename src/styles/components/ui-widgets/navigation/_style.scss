@@ -49,6 +49,7 @@
       #{$root}__user {
         text-align: center;
         padding-top: 48px;
+        // background-color: red;
         img {
           height: 80px;
           width: 80px;
@@ -61,6 +62,7 @@
         #{$root}__name {
           font-size: 22px;
           font-weight: 700;
+          font-family: $font-family--secondary;
         }
 
         #{$root}__type {
@@ -72,19 +74,30 @@
 
       #{$root}__entries {
         margin-top: 80px;
-        text-align: right;
+        text-align: left;
         font-size: 16px;
         padding-right: 24px;
+        padding-left: 24px;
+        font-family: $font-family--secondary;
 
         #{$root}__entry {
           color: $colors-text;
           margin-bottom: 32px;
 
-          img {
+          #{$root}__link {
+            transform: translate(0, 5px);
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            float: right;
+          }
+
+          #{$root}__icon {
+            transform: translate(0, -2px);
+            margin-right: 16px;
             display: inline-block;
             height: 24px;
             width: 24px;
-            margin-left: 8px;
           }
 
           &--active {

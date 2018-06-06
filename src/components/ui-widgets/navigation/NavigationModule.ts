@@ -7,10 +7,11 @@ import { Link } from './Link';
 })
 export class NavigationModule extends Vue {
   links: Link[] = [
-    new Link('Dashboard', '/dashboard', 'stopwatch'),
-    new Link('Vergleich', '/compare', 'compare'),
-    new Link('Leistung', '/performance', 'bottle'),
-    new Link('Einheiten', '/activities', 'run-shoe'),
+    new Link('Dashboard', '/dashboard', 'dashboard--lightgray'),
+    new Link('Vorbereitungen', '/compare', 'compare--lightgray'),
+    new Link('Leistungsentwicklung', '/performance', 'flash--lightgray'),
+    new Link('Kalender', '/activities', 'calendar--lightgray'),
+    new Link('Aktivitäten', '/activities', 'feed--lightgray'),
   ];
 
   @Watch('$route.path')

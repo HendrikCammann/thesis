@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 import { Link } from './Link';
+import {eventBus} from '../../../main';
+import {menuEvents} from '../../../events/Menu/menu';
 
 @Component({
   template: require('./navigationModule.html'),
@@ -36,6 +38,11 @@ export class NavigationModule extends Vue {
     this.menuOpen = true;
   }
 
+  public state: string;
+
   mounted() {
+    eventBus.$on(menuEvents.set_State, (name) => {
+      this.state = name;
+    });
   }
 }

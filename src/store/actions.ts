@@ -5,7 +5,7 @@ import {State} from './state';
 import * as stravaAPI from '../api/stravaAPI';
 import {reformatJSON} from '../utils/localData/formatJSON';
 const config = require('../_config/config.json');
-const stravaData = require('../stravadatabase/18_05_22_16_33.json');
+const stravaData = require('../stravadatabase/18_06_01_22_11.json');
 
 let token = '386bced857a83a6a4575b2308a3de25b95fa9116';
 let page = 1;

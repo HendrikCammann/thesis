@@ -5,6 +5,10 @@
        v-for="(option, i) in options"
        @click="handleToggle(i)"
   >
-    {{ option }}
+    <div>
+      <div class="toggleStandard__dot"
+         :class="{'toggleStandard__dot--active': isActive(i)}"
+      ></div>{{ option }}
+    </div>
   </div>
 </div>

@@ -52,7 +52,7 @@ export class ActivityZoneList extends Vue {
       } else if (max === -1) {
         paceRange = '> ' + min + '/bpm';
       } else {
-        paceRange = min + ' - ' + max + '/km';
+        paceRange = min + ' - ' + max + '/bpm';
       }
     }
     return paceRange;

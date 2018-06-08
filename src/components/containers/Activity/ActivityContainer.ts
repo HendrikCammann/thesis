@@ -8,6 +8,8 @@ import {HeadlineBox} from '../../ui-elements/headline-box';
 import {ActivityBoxes} from '../../ui-widgets/activity-boxes';
 import {ActivityZones} from '../../ui-widgets/activity-zones';
 import {ActivityDetails} from '../../ui-widgets/activity-details/ActivityDetails';
+import {menuEvents} from '../../../events/Menu/menu';
+import {eventBus} from '../../../main';
 
 /* tslint:disable */
 @Component({
@@ -35,6 +37,7 @@ export class ActivityContainer extends Vue {
     }
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.Loaded) {
       this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
+      eventBus.$emit(menuEvents.set_State, 'hallo');
     }
   }
 }

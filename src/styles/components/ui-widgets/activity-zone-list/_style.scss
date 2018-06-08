@@ -43,6 +43,7 @@
       #{$root}__value {
         font-size: 16px;
         font-weight: 700;
+        font-family: $font-family--secondary;
 
         &--pace {
           color: $colors-pace;

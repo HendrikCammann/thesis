@@ -24,6 +24,7 @@
     margin-left: 16px;
 
     #{$root}__name {
+      font-family: $font-family--secondary;
       max-width: 70vw;
       font-size: 24px;
       font-weight: 700;

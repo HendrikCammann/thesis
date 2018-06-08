@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="navigationModule__slide" v-show="menuOpen">
       <div class="navigationModule__wrapper">
-        <img class="navigationModule__close" src="../../../assets/icons/close--gray.svg" @click="closeMenu()">
+        <img class="navigationModule__close" src="../../../assets/icons/line/close--gray.svg" @click="closeMenu()">
         <div class="navigationModule__user">
           <img class="navigationModule__img" src="https://images.pexels.com/photos/305241/pexels-photo-305241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
           <div class="navigationModule__name">
@@ -29,10 +29,15 @@
       </div>
     </div>
   </transition>
-  <div class="navigationModule__content vcenter-content">
+  <div class="navigationModule__content">
     <div class="navigationModule__label">
-
+      <div class="navigationModule__page-name">
+        {{ this.$route.name }}
+      </div>
+      <div class="navigationModule__state">
+        {{ state }}
+      </div>
     </div>
-    <img class="navigationModule__burger" src="../../../assets/icons/menu--gray.svg" @click="openMenu()">
+    <img class="navigationModule__burger" src="../../../assets/icons/line/menu--gray.svg" @click="openMenu()">
   </div>
 </div>

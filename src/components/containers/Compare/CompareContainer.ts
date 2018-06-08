@@ -11,6 +11,7 @@ import {CompareGraph} from '../../ui-widgets/compare-graph';
 import {FloatingMenu} from '../../ui-widgets/floating-menu';
 import {DisplayType, RunType} from '../../../store/state';
 import {FloatingMenuEvents} from '../../../events/floating-menu/FloatingMenu';
+import {Divider} from '../../ui-elements/divider';
 
 
 @Component({

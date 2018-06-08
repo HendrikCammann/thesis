@@ -5,4 +5,43 @@
     margin-top: 32px;
     padding: 16px;
   }
+
+  #{&}__portrait {
+    display: none;
+    @media screen and (max-width: 666px) {
+      display: block;
+    }
+  }
+
+  #{&}__landscape {
+    display: none;
+    @media screen and (min-width: 667px) {
+      display: block;
+      #{$root}__label {
+        display: inline-block;
+        float: left;
+        width: calc(50% - 8px);
+        // margin-right: 16px;
+        text-align: center;
+        color: $colors-label;
+        font-size: 12px;
+
+        &:first-of-type {
+          margin-right: 16px;
+        }
+      }
+
+      #{$root}__chart {
+        margin-top: 4px;
+        display: inline-block;
+        float: left;
+        width: calc(50% - 8px);
+        margin-right: 16px;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
 }

@@ -12,12 +12,14 @@ import {FormatDistanceType, FormatDurationType} from '../../../models/FormatMode
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 import {ContentBox} from '../../ui-elements/content-box';
 import {MutationTypes} from '../../../store/mutation-types';
-import {getLargerValue} from '../../../utils/numbers/numbers';
+import {getLargerValue, getSmallerValue} from '../../../utils/numbers/numbers';
+import {Divider} from '../../ui-elements/divider';
 
 @Component({
   template: require('./compareBoxes.html'),
   components: {
     'content-box': ContentBox,
+    'divider': Divider,
   }
 })
 export class CompareBoxes extends Vue {
@@ -116,6 +118,7 @@ export class CompareBoxes extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      console.log(this.clusters);
       this.data = this.initData(this.clusters, this.clusterData);
     }
   }

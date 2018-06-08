@@ -19,13 +19,25 @@
 
     #{$root}__label {
       display: inline-block;
+      max-width: 100%;
+
       #{$root}__page-name {
         font-size: 10px;
         color: $colors-text;
       }
       #{$root}__state {
         font-size: 16px;
+        font-family: $font-family--secondary;
         color: $colors-text;
+        font-weight: 700;
+        text-align: center;
+
+        div {
+          max-width: 90%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
 

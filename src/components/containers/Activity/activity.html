@@ -29,6 +29,11 @@
       </div>
     </div>
 
+    <divider
+      :title="'Leistungsverteilung'"
+      :color="getColor(getSelectedActivity.categorization.activity_type)"
+    ></divider>
+
     <div class="row">
       <div class="col-md-12 no-padding">
         <activity-zones
@@ -36,6 +41,11 @@
         ></activity-zones>
       </div>
     </div>
+
+    <divider
+      :title="'Trainingsentwicklung'"
+      :color="getColor(getSelectedActivity.categorization.activity_type)"
+    ></divider>
 
     <div class="row">
       <div class="col-md-12 no-padding">

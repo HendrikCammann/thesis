@@ -47,6 +47,9 @@ export class TrainChart extends Vue {
   @Prop()
   selectedDisplayType: DisplayType;
 
+  @Prop()
+  isDual: boolean;
+
 
   private type = DisplayType.Duration;
 
@@ -61,6 +64,7 @@ export class TrainChart extends Vue {
 
   private largestValue: number;
 
+
   @Watch('loadingStatus.activities')
   @Watch('selectedRunType')
   @Watch('selectedDisplayType')
@@ -68,6 +72,9 @@ export class TrainChart extends Vue {
   @Watch('preparation')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      if (this.isDual) {
+        this.width = 275;
+      }
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);
@@ -947,6 +954,9 @@ export class TrainChart extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      if (this.isDual) {
+        this.width = 275;
+      }
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);

@@ -1,12 +1,15 @@
 <div class="compareBoxes" v-if="data != null">
   <div class="compareBoxes__content">
-    <div class="dividerLine"></div>
+    <divider
+      :title="'Wettkampfsergebnis'"
+      :color="'#FAA628'"
+    ></divider>
 
     <div class="box-wrapper">
-      <div class="box-label">
-        Wettkampf
-      </div>
       <div class="box-content">
+        <div class="column column--half box-label" v-for="cluster in clusters">
+          {{ cluster.name }}
+        </div>
         <div class="column column--half" v-for="item in data.competitions">
           <div @click="handleEventClick(item.id)">
             <content-box
@@ -17,13 +20,16 @@
       </div>
     </div>
 
-    <div class="dividerLine"></div>
+    <divider
+      :title="'Stammdaten'"
+      :color="'#4f5b64'"
+    ></divider>
 
     <div class="box-wrapper">
-      <div class="box-label">
-        Stammdaten
-      </div>
       <div class="box-content">
+        <div class="column column--half box-label" v-for="cluster in clusters">
+          {{ cluster.name }}
+        </div>
         <div class="column column--half" v-for="cluster in data.basics">
           <content-box v-for="item in cluster"
             :data="item"
@@ -32,13 +38,16 @@
       </div>
     </div>
 
-    <div class="dividerLine"></div>
+    <divider
+      :title="'Durchschnittswerte'"
+      :color="'#4f5b64'"
+    ></divider>
 
     <div class="box-wrapper">
-      <div class="box-label">
-        Durchschnittswerte
-      </div>
       <div class="box-content">
+        <div class="column column--half box-label" v-for="cluster in clusters">
+          {{ cluster.name }}
+        </div>
         <div class="column column--half" v-for="cluster in data.averages">
           <content-box v-for="item in cluster"
                        :data="item"
@@ -47,7 +56,10 @@
       </div>
     </div>
 
-    <div class="dividerLine"></div>
+    <divider
+      :title="'Trainingsentwicklung'"
+      :color="'#4f5b64'"
+    ></divider>
 
   </div>
 </div>

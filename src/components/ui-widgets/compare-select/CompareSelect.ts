@@ -9,6 +9,7 @@ import {eventBus} from '../../../main';
 import {compareEvents} from '../../../events/Compare/compare';
 import {Button} from '../../ui-elements/button';
 import {MutationTypes} from '../../../store/mutation-types';
+import {menuEvents} from '../../../events/Menu/menu';
 
 @Component({
   template: require('./compareSelect.html'),
@@ -35,6 +36,7 @@ export class CompareSelect extends Vue {
   @Watch('loaded.activities')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      eventBus.$emit(menuEvents.set_State, this.selectedClusters.length + '/2 ausgewählt');
       this.contentBoxData = this.initData(this.clusters, this.selectedClusters);
     }
   }
@@ -58,6 +60,7 @@ export class CompareSelect extends Vue {
   }
 
   public startCompare() {
+    eventBus.$emit(menuEvents.set_State, this.selectedClusters[0] + ' | ' + this.selectedClusters[1]);
     eventBus.$emit(compareEvents.start_Compare);
   }
 
@@ -69,6 +72,8 @@ export class CompareSelect extends Vue {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.contentBoxData = this.initData(this.clusters, this.selectedClusters);
     }
+
+    eventBus.$emit(menuEvents.set_State, this.selectedClusters.length + '/2 ausgewählt');
 
     eventBus.$on(compareEvents.add_Training_Cluster, (type) => {
       this.$store.dispatch(MutationTypes.ADD_SELECTED_TRAINING_CLUSTER, type);

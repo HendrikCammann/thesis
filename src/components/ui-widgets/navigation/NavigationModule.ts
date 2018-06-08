@@ -38,7 +38,7 @@ export class NavigationModule extends Vue {
     this.menuOpen = true;
   }
 
-  public state: string;
+  public state: string = '';
 
   mounted() {
     eventBus.$on(menuEvents.set_State, (name) => {

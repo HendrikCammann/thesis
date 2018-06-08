@@ -10,6 +10,8 @@ import {ActivityZones} from '../../ui-widgets/activity-zones';
 import {ActivityDetails} from '../../ui-widgets/activity-details/ActivityDetails';
 import {menuEvents} from '../../../events/Menu/menu';
 import {eventBus} from '../../../main';
+import {Divider} from '../../ui-elements/divider';
+import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 
 /* tslint:disable */
 @Component({
@@ -26,9 +28,14 @@ import {eventBus} from '../../../main';
     'activityBoxes': ActivityBoxes,
     'activityZones': ActivityZones,
     'activityDetails': ActivityDetails,
+    'divider': Divider,
   }
 })
 export class ActivityContainer extends Vue {
+  public getColor(type) {
+    return getCategoryColor(type);
+  }
+
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
@@ -37,7 +44,7 @@ export class ActivityContainer extends Vue {
     }
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.Loaded) {
       this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
-      eventBus.$emit(menuEvents.set_State, 'hallo');
+      eventBus.$emit(menuEvents.set_State, this.$store.getters.getSelectedActivity.name);
     }
   }
 }

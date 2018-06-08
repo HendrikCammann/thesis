@@ -1,6 +1,11 @@
 .compareBoxes {
   $root: &;
 
+  .divider {
+    width: calc(100% + 32px);
+    transform: translate(-16px, 0);
+  }
+
   .contentBox {
     margin-bottom: 16px;
 

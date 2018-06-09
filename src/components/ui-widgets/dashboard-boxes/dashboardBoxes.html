@@ -1,0 +1,15 @@
+<div class="dashboardBoxes">
+  <div class="dashboardBoxes__dots" v-if="showDots">
+    <div class="dashboardBoxes__dot"
+         v-for="day in days"
+         :class="{ 'dashboardBoxes__dot--active': day === actDay }"
+    ></div>
+  </div>
+  <div class="box-content">
+    <div class="column column--half" v-for="item in stats">
+      <content-box
+        :data="item"
+      ></content-box>
+    </div>
+  </div>
+</div>

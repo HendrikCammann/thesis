@@ -25,6 +25,13 @@ export enum DisplayType {
   Pace = 'Pace',
 }
 
+export enum DashboardViewType {
+  Day = 'Day',
+  Week = 'Week',
+  Month = 'Month',
+  Preparation = 'Preparation',
+}
+
 export enum ClusterType {
   All = 'All',
   ByYears = 'ByYears',
@@ -40,11 +47,13 @@ export class State {
   public selectedActivityId: number;
   public selectedTrainingClusters: string[];
 
+  public currentPreparation: string;
+
   public sortedLists: any;
   public existingClusters: ClusterItem[];
 
   public filter: FilterModel;
-  public dashboardFilter: FilterModel;
+  public dashboardViewType: DashboardViewType;
 
   public compare: CompareModel;
 
@@ -56,7 +65,11 @@ export class State {
 
     this.existingClusters = [];
 
+    this.currentPreparation = 'Frankfurt-2018';
+
     this.activityList = [];
+
+    this.dashboardViewType = DashboardViewType.Week;
 
     this.selectedActivityId = null;
 

@@ -1,6 +1,37 @@
 <div class="container-fluid dashboard">
   <div class="container dashboard__content">
-    <div class="row vcenter-content">
+    <divider
+      class="no-margin-top"
+      :title="'Aktuelle Woche'"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="row">
+      <div class="col-md-12 no-padding" v-if="actualWeek">
+        <dashboard-boxes
+          :data="activities"
+          :viewType="viewType"
+          :currentPreparation="currentPreparation"
+        ></dashboard-boxes>
+      </div>
+    </div>
+
+    <divider
+      :title="'Entwicklung zu letzter Woche'"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <history-chart
+          :loadingStatus="loadingStatus"
+          :data="activities"
+          :viewType="viewType"
+          :currentPreparation="currentPreparation"
+        ></history-chart>
+      </div>
+    </div>
+    <!--<div class="row vcenter-content">
       <div class="col-md-5 dashboard__personal">
         <user-module
           :headline="'Hendrik Cammann'"
@@ -48,54 +79,6 @@
           ></last-run-module>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
-  <!--<div class="row">
-    <div class="col-md-12" v-if="actualWeek">
-      <last-run-module
-        v-for="activity, i in actualWeek"
-        :activity="activity"
-        :loaded="loadingStatus"
-        :index="i"
-        class="last-run-module"
-      ></last-run-module>
-    </div>
-  </div>
-  <!--<div class="row">
-    <div class="col-md-12 dashboard__headline">
-      <headline-box
-        :headline="'Dashboard'"
-        :illustration="'stopwatch'"
-      ></headline-box>
-    </div>
-  </div>-->
-  <!--<div class="row">
-    <div class="col-md-12 dashboard__content" v-if="actualWeek">
-      <div class="dashboard__subheadline">Deine aktuelle Trainingswoche</div>
-
-      <last-run-module v-for="activity, i in actualWeek"
-        :activity="activity"
-        :loaded="loadingStatus"
-        :index="i"
-        class="last-run-module"
-      ></last-run-module>
-      <wave-Chart
-        :loadingStatus="loadingStatus"
-      ></wave-Chart>
-      <!--<map-module
-        :loaded="loadingStatus"
-      ></map-module>
-    </div>
-  </div>-->
-  <!--<div class="row">
-    <div class="col-md-3">
-      <div class="dashboard__subheadline">Vergleich mit letzter Woche</div>
-      <wave-Chart
-        :loadingStatus="loadingStatus"
-      ></wave-Chart>
-    </div>
-    <div class="col-md-3">
-      <div class="dashboard__subheadline">Deine aktuelle Trainingswoche</div>
-    </div>
-  </div>-->
 </div>

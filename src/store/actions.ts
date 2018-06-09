@@ -159,6 +159,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_DASHBOARD_VIEWTYPE]: ({commit}, {viewType}) => {
+    commit(MutationTypes.DESELECT_COMPARE_WEEK, {
+      viewType
+    });
+  },
+
 };
 
 export default actions;

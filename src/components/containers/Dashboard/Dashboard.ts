@@ -5,34 +5,29 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {mapGetters} from 'vuex';
 
 import {CanvasConstraints} from '../../../models/VisualVariableModel';
-import {WaveChart} from '../../charts/WaveChart';
-import {MapModule} from '../../modules/MapModule';
-import {HeadlineBox} from '../../partials/HeadlineBox';
-import {LastRunModule} from '../../modules/LastRunModule';
 import {navigationEvents} from '../../../events/Navigation/Navigation';
 import {eventBus} from '../../../main';
-import {UserModule} from '../../modules/User';
-import {PreparationTeaserModule} from '../../modules/PreparationTeaser';
-import {CurrentWeekModule} from '../../modules/CurrentWeek';
+import {DashboardBoxes} from '../../ui-widgets/dashboard-boxes';
+import {Divider} from '../../ui-elements/divider';
+import {HistoryChart} from '../../visualizations/history-chart';
 
 @Component({
   template: require('./dashboard.html'),
   computed: mapGetters({
     user: 'getAthlete',
+    activities: 'getSortedLists',
     latestActivity: 'getLatestActivity',
     actualWeek: 'getActualWeekActivities',
     monthStats: 'getActualMonthStats',
     loadingStatus: 'getAppLoadingStatus',
     filter: 'getDashboardFilter',
+    viewType: 'getDashboardViewType',
+    currentPreparation: 'getCurrentPreparation',
   }),
   components: {
-    'userModule': UserModule,
-    'preparationTeaserModule': PreparationTeaserModule,
-    'currentWeekModule': CurrentWeekModule,
-    'headlineBox': HeadlineBox,
-    'lastRunModule': LastRunModule,
-    'waveChart': WaveChart,
-    'mapModule': MapModule,
+    'dashboardBoxes': DashboardBoxes,
+    'divider': Divider,
+    'historyChart': HistoryChart,
   }
 })
 export class Dashboard extends Vue {

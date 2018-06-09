@@ -12,6 +12,10 @@ export class MutationTypes {
 
   public static GET_ACTIVITIES_FROM_JSON = '[Local] GET_ACTIVITIES_FROM_JSON';
 
+  public static SET_DASHBOARD_VIEWTYPE = '[Store] SET_DASHBOARD_VIEWTYPE';
+
+  public static GET_CURRENT_PREPARATION = '[Store] GET_CURRENT_PREPARATION';
+
   public static SET_SELECTED_ACTIVITY = '[Store] SET_SELECTED_ACTIVITY';
   public static SET_SELECTED_RUNTYPE = '[Store] SET_SELECTED_RUNTYPE';
   public static SET_SELECTED_DISPLAYTYPE = '[Store] SET_SELECTED_DISPLAYTYPE';

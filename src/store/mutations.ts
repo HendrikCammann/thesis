@@ -68,6 +68,14 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
 
   let temp = new Date(activity.date);
 
+  if (temp <= new Date(2018, 10, 28) && temp >= new Date(2018, 4, 7)) {
+    let range = {
+      start: new Date(2018, 10, 28),
+      end: new Date(2018, 4, 7),
+    };
+    activity.categorization.cluster_anchors.push(new ClusterItem('Frankfurt-2018', ('Frankfurt-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1187823373));
+  }
+
   if (temp <= new Date(2017, 8, 19) && temp >= new Date(2017, 4, 19)) {
     let range = {
       start: new Date(2017, 4, 19),
@@ -421,6 +429,14 @@ const mutations: MutationTree<State> = {
     state.activityList.map(activity => {
       let temp = new Date(activity.date);
 
+      if (temp <= new Date(2018, 10, 28) && temp >= new Date(2018, 4, 7)) {
+        let range = {
+          start: new Date(2018, 10, 28),
+          end: new Date(2018, 4, 7),
+        };
+        activity.categorization.cluster_anchors.push(new ClusterItem('Frankfurt-2018', ('Frankfurt-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1187823373));
+      }
+
       if (temp <= new Date(2016, 8, 10) && temp >= new Date(2016, 6, 17)) {
         let range = {
           start: new Date(2016, 6, 17),
@@ -561,14 +577,15 @@ const mutations: MutationTree<State> = {
     } else {
       state.compare.selectedTrainingClusters = state.compare.selectedTrainingClusters.filter(item => item !== cluster);
     }
-
-    console.log(state.compare.selectedTrainingClusters);
   },
 
   [MutationTypes.TOGGLE_HISTORY_CHART_DISPLAY_MODE]: (state: State) => {
     state.compare.showAbsolute = !state.compare.showAbsolute;
   },
 
+  [MutationTypes.SET_DASHBOARD_VIEWTYPE]: (state: State, {viewType}) => {
+    state.dashboardViewType = viewType;
+  }
 
 };
 

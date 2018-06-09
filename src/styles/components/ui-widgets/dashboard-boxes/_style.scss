@@ -1,0 +1,28 @@
+.dashboardBoxes {
+  $root: &;
+
+  .contentBox {
+    margin-bottom: 10px;
+  }
+
+  #{&}__dots {
+    text-align: center;
+    margin-bottom: 4px;
+    #{$root}__dot {
+      display: inline-block;
+      margin: 3px;
+      height: 4px;
+      width: 4px;
+      background-color: $colors-label;
+      border-radius: 50%;
+
+      &--active {
+        height: 8px;
+        width: 8px;
+        transform: translate(0, 2px);
+        background-color: $colors-text;
+      }
+    }
+
+  }
+}

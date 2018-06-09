@@ -39,7 +39,7 @@ const getters: GetterTree<State, State> = {
     let keys = getKeys(state.sortedLists['All'].byWeeks);
     if (keys.length !== 0) {
       let arr = [];
-      state.sortedLists['All'].byWeeks[keys[1]].activities.forEach(id => {
+      state.sortedLists['All'].byWeeks[keys[0]].activities.forEach(id => {
         arr.push(state.activityList.find(item => item.id === id));
       });
 
@@ -140,6 +140,10 @@ const getters: GetterTree<State, State> = {
     };
   },
 
+  getCurrentPreparation: (state) => {
+    return state.currentPreparation;
+  },
+
 
   // ACTIVITIES
   getActivity: (state, getters) =>  {
@@ -202,9 +206,11 @@ const getters: GetterTree<State, State> = {
     return state.filter;
   },
 
-  getDashboardFilter: (state) => {
-    return state.dashboardFilter;
-  },
+  // DASHBOARD
+  getDashboardViewType: (state) => {
+    return state.dashboardViewType;
+  }
+
 };
 
 export default getters;

@@ -1,0 +1,10 @@
+.historyChart {
+  $root: &;
+  margin-bottom: 32px;
+
+  #{&}__label {
+    font-size: 12px;
+    font-family: $font-family--main;
+    color: $colors-label;
+  }
+}

@@ -24,7 +24,6 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Activity/_style";
 
 @import "components/charts/WaveChart/_style";
-@import "components/charts/HistoryChart/_style";
 @import "components/charts/DonutChart/_style";
 @import "components/charts/ArcCompare/_style";
 @import "components/charts/BarChart/_style";
@@ -54,6 +53,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/visualizations/train-chart/_style";
 @import "components/visualizations/line-chart/style";
 @import "components/visualizations/zone-chart/style";
+@import "components/visualizations/history-chart/style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/ActivityStats/_style";

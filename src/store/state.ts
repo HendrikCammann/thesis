@@ -69,7 +69,7 @@ export class State {
 
     this.activityList = [];
 
-    this.dashboardViewType = DashboardViewType.Month;
+    this.dashboardViewType = DashboardViewType.Week;
 
     this.selectedActivityId = null;
 

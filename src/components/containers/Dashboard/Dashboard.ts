@@ -10,6 +10,9 @@ import {eventBus} from '../../../main';
 import {DashboardBoxes} from '../../ui-widgets/dashboard-boxes';
 import {Divider} from '../../ui-elements/divider';
 import {HistoryChart} from '../../visualizations/history-chart';
+import {BottomMenu} from '../../ui-widgets/bottom-menu';
+import {DashboardViewType, RunType} from '../../../store/state';
+import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
 
 @Component({
   template: require('./dashboard.html'),
@@ -28,11 +31,34 @@ import {HistoryChart} from '../../visualizations/history-chart';
     'dashboardBoxes': DashboardBoxes,
     'divider': Divider,
     'historyChart': HistoryChart,
+    'bottomMenu': BottomMenu,
   }
 })
 export class Dashboard extends Vue {
 
   public canvasConstraints = new CanvasConstraints(0, 420, 300, 50, 1, 5);
+  public menuItems = [
+    {
+      name: 'Tag',
+      icon: 'running--gray',
+      action: DashboardViewType.Day
+    },
+    {
+      name: 'Woche',
+      icon: 'running--gray',
+      action: DashboardViewType.Week
+    },
+    {
+      name: 'Monat',
+      icon: 'running--gray',
+      action: DashboardViewType.Month
+    },
+    {
+      name: 'Vorbereitung',
+      icon: 'running--gray',
+      action: DashboardViewType.Preparation
+    },
+  ];
 
   mounted() {
     /*if (this.$store.getters.getAppLoadingStatus.athlete === loadingStatus.NotLoaded) {
@@ -45,11 +71,41 @@ export class Dashboard extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
+    eventBus.$on(BottomMenuEvents.set_Dashboard_Viewtype, (payload) => {
+      this.$store.dispatch(MutationTypes.SET_DASHBOARD_VIEWTYPE, payload);
+    });
+
     eventBus.$on(navigationEvents.open_Activity_Detail, (activityId) => {
       this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, activityId);
       this.$router.push({
         path: '/activity/' + activityId
       });
     });
+  }
+
+  public get firstHeadline() {
+    switch (this.$store.state.dashboardViewType) {
+      case DashboardViewType.Day:
+        return 'Dein heutiger Tag';
+      case DashboardViewType.Week:
+        return 'Deine bisherigere Woche';
+      case DashboardViewType.Month:
+        return 'Dein bisheriger Monat';
+      case DashboardViewType.Preparation:
+        return 'Deinee bisherige Vorbereitung';
+    }
+  }
+
+  public get secondHeadline() {
+    switch (this.$store.state.dashboardViewType) {
+      case DashboardViewType.Day:
+        return 'Heutige Einheiten';
+      case DashboardViewType.Week:
+        return 'Wochenzusammenfassung';
+      case DashboardViewType.Month:
+        return 'Monatzusammenfassung';
+      case DashboardViewType.Preparation:
+        return 'Leistungsentwicklung';
+    }
   }
 }

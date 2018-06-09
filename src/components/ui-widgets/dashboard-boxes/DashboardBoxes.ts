@@ -11,6 +11,7 @@ import {DashboardViewType} from '../../../store/state';
 import {getKeys} from '../../../utils/array-helper';
 import {eventBus} from '../../../main';
 import {menuEvents} from '../../../events/Menu/menu';
+import {loadingStatus} from '../../../models/App/AppStatus';
 
 @Component({
   template: require('./dashboardBoxes.html'),
@@ -33,9 +34,11 @@ export class DashboardBoxes extends Vue {
   public actDay = 0;
   public showDots = false;
 
-  mounted() {
+  @Watch('viewType')
+  onPropertyChanged(val: any, oldVal: any) {
     switch(this.viewType) {
       case DashboardViewType.Day:
+        this.showDots = false;
         break;
       case DashboardViewType.Week:
         let keys = getKeys(this.data['All'].byWeeks);
@@ -49,6 +52,29 @@ export class DashboardBoxes extends Vue {
         break;
       case DashboardViewType.Preparation:
         this.stats = this.initData(this.data[this.currentPreparation].unsorted.all, this.viewType);
+        this.showDots = false;
+        break;
+    }
+  }
+
+  mounted() {
+    switch(this.viewType) {
+      case DashboardViewType.Day:
+        this.showDots = false;
+        break;
+      case DashboardViewType.Week:
+        let keys = getKeys(this.data['All'].byWeeks);
+        this.stats = this.initData(this.data['All'].byWeeks[keys[0]], this.viewType);
+        this.showDots = true;
+        break;
+      case DashboardViewType.Month:
+        let keysM = getKeys(this.data['All'].byMonths);
+        this.stats = this.initData(this.data['All'].byMonths[keysM[0]], this.viewType);
+        this.showDots = true;
+        break;
+      case DashboardViewType.Preparation:
+        this.stats = this.initData(this.data[this.currentPreparation].unsorted.all, this.viewType);
+        this.showDots = false;
         break;
     }
   }

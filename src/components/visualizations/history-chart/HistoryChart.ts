@@ -9,6 +9,9 @@ import {getLargerValue} from '../../../utils/numbers/numbers';
 import {ActivityClusterModel} from '../../../models/Activity/ActivityClusterModel';
 import {CategoryOpacity, ChartConstraints} from '../../../models/VisualVariableModel';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {formatDistance} from '../../../utils/format-data';
+import {FormatDistanceType, FormatDurationType} from '../../../models/FormatModel';
+import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 
 class HistoryChartValues {
   upper: number[];
@@ -52,7 +55,16 @@ export class HistoryChart extends Vue {
   private displayType = DisplayType.Distance;
   private width = 345;
   private height = 345;
-  private chartConstraints = new ChartConstraints(0, this.height, this.width);
+  private chartConstraints = new ChartConstraints(0, this.width, this.height);
+  public label = '';
+  public labelLast = '';
+  private maxValue: any = 0;
+
+  public maxUp: any = '';
+  public maxDown: any = '';
+
+  public listData = null;
+  public accessor: any = '';
 
   @Watch('data')
   @Watch('viewType')
@@ -75,12 +87,66 @@ export class HistoryChart extends Vue {
           // this.stats = this.initData(this.data[this.currentPreparation].unsorted.all, this.viewType);
           break;
       }
+      this.listData = data;
       this.historyChart(data, this.chartConstraints);
+      this.getLabel(this.viewType);
     }
   }
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      let data = null;
+      switch (this.viewType) {
+        case DashboardViewType.Day:
+          break;
+        case DashboardViewType.Week:
+          let keys = getKeys(this.data['All'].byWeeks);
+          data = this.initData([this.data['All'].byWeeks[keys[0]], this.data['All'].byWeeks[keys[1]]], this.viewType, this.displayType);
+          break;
+        case DashboardViewType.Month:
+          let keysM = getKeys(this.data['All'].byMonths);
+          data = this.initData([this.data['All'].byMonths[keysM[0]], this.data['All'].byMonths[keysM[1]]], this.viewType, this.displayType);
+          break;
+        case DashboardViewType.Preparation:
+          // this.stats = this.initData(this.data[this.currentPreparation].unsorted.all, this.viewType);
+          break;
+      }
+      this.listData = data;
+      this.historyChart(data, this.chartConstraints);
+      this.getLabel(this.viewType);
+    }
+  }
+
+  public outputValue(value) {
+    if (this.accessor ===  'distance') {
+      if (value === 0) {
+        return '-';
+      }
+      return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+    }
+    if (this.accessor === 'duration') {
+      return formatSecondsToDuration(value, FormatDurationType.Dynamic).all;
+    }
+  }
+
+  public getColor(type) {
+    return getCategoryColor(type);
+  }
+
+  public getHighlight(val, val2) {
+    return val > val2;
+  }
+
+  private getLabel(viewType) {
+    switch (viewType) {
+      case DashboardViewType.Month:
+        this.label = 'Dieser Monat';
+        this.labelLast = 'Letzter Monat';
+        break;
+      case DashboardViewType.Week:
+        this.label = 'Diese Woche';
+        this.labelLast = 'Letzte Woche';
+
     }
   }
 
@@ -90,12 +156,15 @@ export class HistoryChart extends Vue {
     switch (displayType) {
       case DisplayType.Distance:
         accessor = 'distance';
+        this.accessor = accessor;
         break;
       case DisplayType.Duration:
-        accessor = 'duration';
+        accessor = 'time';
+        this.accessor = accessor;
         break;
       case DisplayType.Intensity:
         accessor = 'intensity';
+        this.accessor = accessor;
         break;
     }
 
@@ -109,6 +178,8 @@ export class HistoryChart extends Vue {
     data.forEach((cluster: ActivityClusterModel) => {
       maxValue = getLargerValue(cluster.stats[accessor], maxValue);
     });
+    this.maxValue = maxValue;
+
 
     data.forEach((cluster: ActivityClusterModel, i: number) => {
       total.label = RunType.All;
@@ -126,6 +197,9 @@ export class HistoryChart extends Vue {
       total.values[key].push(cluster.stats[accessor]);
       total.values[key].push(this.getHiddenValues(maxValue, cluster.stats[accessor]));
 
+      if (accessor === 'time') {
+        accessor = 'duration';
+      }
 
       run.values[key].push(cluster.stats.typeCount.run[accessor]);
       run.values[key].push(this.getHiddenValues(maxValue, cluster.stats.typeCount.run[accessor]));
@@ -141,6 +215,10 @@ export class HistoryChart extends Vue {
 
       uncategorized.values[key].push(cluster.stats.typeCount.uncategorized[accessor]);
       uncategorized.values[key].push(this.getHiddenValues(maxValue, cluster.stats.typeCount.uncategorized[accessor]));
+
+      if (accessor === 'duration') {
+        accessor = 'time';
+      }
     });
 
     let returnArr = [];
@@ -189,6 +267,17 @@ export class HistoryChart extends Vue {
     // ADD DIVIDER
     this.drawDivider(vis, ((r * 2) + (constraints.padding * 2)), {x: 0, y: r + constraints.padding}, '#E6E6E6');
 
+    let val = '';
+    if (this.displayType === DisplayType.Distance) {
+      this.maxValue = formatDistance(this.maxValue, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+      val = 'km';
+      this.maxUp = this.maxValue;
+      this.maxDown = 0 + val;
+    } else {
+      this.maxValue = formatSecondsToDuration(this.maxValue, FormatDurationType.Dynamic).all;
+      this.maxUp = this.maxValue;
+      this.maxDown = 0;
+    }
 
     // DRAW SINGLE RUN TYPE ARCS
     for (let i = 0; i < data.length; i++) {
@@ -219,8 +308,8 @@ export class HistoryChart extends Vue {
 
 
       // SETUP PIE
-      let upperPie = this.setupPie(-0.5, 0.5);
-      let lowerPie = this.setupPie(1.5, 0.5);
+      let upperPie = this.setupPie(1, 2);
+      let lowerPie = this.setupPie(-1, -2);
 
 
       // DRAW ARCS
@@ -231,7 +320,6 @@ export class HistoryChart extends Vue {
       // COLOR ARCS
       let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Full, i, true);
       let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
-
 
       // ADD LABELS TO ARCS
     }
@@ -285,10 +373,10 @@ export class HistoryChart extends Vue {
 
   private drawDivider(anchor: any, width: number, position, color: string): void {
     anchor.append('rect')
-      .attr('x', position.x)
-      .attr('y', position.y)
-      .attr('height', 1)
-      .attr('width', width)
+      .attr('x', this.width / 2)
+      .attr('y', 0)
+      .attr('height', width)
+      .attr('width', 1)
       .attr('fill', color);
   }
 }

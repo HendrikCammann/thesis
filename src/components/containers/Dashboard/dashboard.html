@@ -1,8 +1,12 @@
 <div class="container-fluid dashboard">
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="viewType"
+  ></bottomMenu>
   <div class="container dashboard__content">
     <divider
       class="no-margin-top"
-      :title="'Aktuelle Woche'"
+      :title="firstHeadline"
       :color="'#4f5b64'"
     ></divider>
 
@@ -17,11 +21,11 @@
     </div>
 
     <divider
-      :title="'Entwicklung zu letzter Woche'"
+      :title="secondHeadline"
       :color="'#4f5b64'"
     ></divider>
 
-    <div class="row">
+    <div class="row" v-if="viewType === 'Week' || viewType === 'Month'">
       <div class="col-md-12 no-padding">
         <history-chart
           :loadingStatus="loadingStatus"

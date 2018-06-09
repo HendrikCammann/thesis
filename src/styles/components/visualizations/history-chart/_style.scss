@@ -4,7 +4,73 @@
 
   #{&}__label {
     font-size: 12px;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin-bottom: 8px;
     font-family: $font-family--main;
     color: $colors-label;
+  }
+
+  #{&}__explanation {
+    margin-top: 16px;
+    font-size: 10px;
+    font-family: $font-family--main;
+    color: $colors-label;
+    text-align: justify;
+  }
+
+  #{&}__value {
+    text-align: center;
+    font-size: 16px;
+    font-family: $font-family--secondary;
+    fill: $colors-text;
+    font-weight: 700;
+    margin-bottom: 4px;
+
+    &:last-of-type {
+      margin-top: 4px;
+      margin-bottom: 0px;
+    }
+  }
+
+  #{&}__list {
+    margin-top: 32px;
+    padding: 16px;
+
+    &-item {
+      margin-bottom: 8px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    #{$root}__valueList {
+      display: inline-block;
+      width: 45%;
+      float: left;
+      text-align: center;
+      font-family: $font-family--secondary;
+
+      &--fat {
+        font-weight: 700;
+      }
+    }
+
+    #{$root}__type {
+      display: inline-block;
+      width: 10%;
+      float: left;
+      text-align: center;
+
+      #{$root}__dot {
+        transform: translate(12px, 7px);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+    }
   }
 }

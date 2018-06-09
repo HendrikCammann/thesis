@@ -583,8 +583,9 @@ const mutations: MutationTree<State> = {
     state.compare.showAbsolute = !state.compare.showAbsolute;
   },
 
-  [MutationTypes.SET_DASHBOARD_VIEWTYPE]: (state: State, {viewType}) => {
-    state.dashboardViewType = viewType;
+  [MutationTypes.SET_DASHBOARD_VIEWTYPE]: (state: State, {payload}) => {
+    console.log('mutations', payload);
+    state.dashboardViewType = payload;
   }
 
 };

@@ -1,0 +1,12 @@
+<div class="bottomMenu">
+  <div class="bottomMenu__content vcenter-content clearfix">
+    <div class="bottomMenu__item" v-for="item in menuItems"
+         :style="{width: (100 / menuItems.length) + '%'}"
+         @click="emitEvent(item.action)"
+         :class="{'bottomMenu__item--active' : item.action === selected}"
+    >
+      <img :src="'../../../assets/icons/solid/' + item.icon + '.svg'">
+      <div class="bottomMenu__label">{{item.name}}</div>
+    </div>
+  </div>
+</div>

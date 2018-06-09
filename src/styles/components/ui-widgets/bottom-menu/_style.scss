@@ -1,0 +1,35 @@
+.bottomMenu {
+  $root: &;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  left: 0;
+  height: 50px;
+  text-align: center;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  font-family: $font-family--main;
+
+  #{&}__content {
+    #{$root}__item {
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+
+      &--active {
+        font-weight: 700;
+      }
+
+      img {
+        height: 20px;
+        width: 20px;
+      }
+
+      #{$root}__label {
+        font-size: 12px;
+        color: $colors-text
+      }
+    }
+  }
+}

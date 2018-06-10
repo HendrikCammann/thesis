@@ -11,7 +11,7 @@ import {CompareGraph} from '../../ui-widgets/compare-graph';
 import {FloatingMenu} from '../../ui-widgets/floating-menu';
 import {DisplayType, RunType} from '../../../store/state';
 import {FloatingMenuEvents} from '../../../events/floating-menu/FloatingMenu';
-import {Divider} from '../../ui-elements/divider';
+import {CompareCompare} from '../../ui-widgets/compare-compare';
 
 
 @Component({
@@ -20,6 +20,7 @@ import {Divider} from '../../ui-elements/divider';
     selectedTrainingClustersData: 'getSelectedTrainingClustersData',
     selectedTrainingClustersFull: 'getSelectedTrainingClustersFull',
     selectedTrainingClusters: 'getSelectedTrainingClusters',
+    selectedDisplayType: 'getSelectedDisplayType',
     existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     sortedLists: 'getSortedLists',
@@ -29,6 +30,7 @@ import {Divider} from '../../ui-elements/divider';
     'compare-select': CompareSelect,
     'compare-boxes': CompareBoxes,
     'compare-graph': CompareGraph,
+    'compare-compare': CompareCompare,
     'floating-menu': FloatingMenu,
   }
 })

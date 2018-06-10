@@ -960,7 +960,6 @@ export class TrainChart extends Vue {
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);
-      console.log(this.preparation);
       this.trainChart(this.root, data);
     }
   }

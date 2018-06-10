@@ -68,7 +68,7 @@ export class CompareBoxes extends Vue {
 
     clusters.forEach(cluster => {
       maxSessionAvg = getLargerValue((cluster.data.stats.count / durations[cluster.name]), maxSessionAvg);
-      maxKm = getLargerValue((formatDistance(cluster.data.stats.distance, FormatDistanceType.Kilometers) / durations[cluster.name]), maxSessionAvg);
+      maxKm = getLargerValue((formatDistance(cluster.data.stats.distance, FormatDistanceType.Kilometers) / durations[cluster.name]), maxKm);
     });
 
     clusters.forEach(cluster => {
@@ -118,7 +118,6 @@ export class CompareBoxes extends Vue {
 
   mounted() {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
-      console.log(this.clusters);
       this.data = this.initData(this.clusters, this.clusterData);
     }
   }

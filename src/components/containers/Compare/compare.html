@@ -14,6 +14,12 @@
   </div>
 
   <div v-if="!isSelection" class="container compare__content">
+    <compare-compare
+      :clusters="selectedTrainingClustersFull"
+      :clusterData="selectedTrainingClustersData"
+      :loadingStatus="loadingStatus"
+      :displayType="selectedDisplayType"
+    ></compare-compare>
     <compare-boxes
       :clusters="selectedTrainingClustersFull"
       :clusterData="selectedTrainingClustersData"

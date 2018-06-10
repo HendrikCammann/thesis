@@ -41,7 +41,7 @@ const router = new VueRouter({
       path: '/activities',
     }, {
       component: ActivityFeed,
-      name: 'Feed',
+      name: 'Aktivitäten',
       path: '/feed',
     }
   ],

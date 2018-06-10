@@ -25,6 +25,9 @@ export class FeedItem extends Vue {
   @Prop()
   activity: ActivityModel | any;
 
+  @Prop()
+  isDashboard: boolean;
+
   private data = null;
 
   mounted() {
@@ -44,9 +47,15 @@ export class FeedItem extends Vue {
     let mapData = this.initMap(activity);
     let color = getCategoryColor(activity.categorization.activity_type);
 
+    let format = 'HH:mm';
+
+    if (!this.isDashboard) {
+      format = 'DD. MMM YYYY HH:mm'
+    }
+
     topData.push({
       name: 'Time',
-      value: moment(activity.date).format('HH:mm'),
+      value: moment(activity.date).format(format),
     });
 
     topData.push({

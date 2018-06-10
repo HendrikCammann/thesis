@@ -10,6 +10,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
 
 // common
+// @import "common/_leaflet";
 @import "common/_colors";
 @import "common/_style";
 @import "common/_font-styles";
@@ -22,6 +23,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Compare/_style";
 @import "components/containers/Comparison/_style";
 @import "components/containers/Activity/_style";
+@import "components/containers/ActivityFeed/_style";
 
 @import "components/charts/WaveChart/_style";
 @import "components/charts/DonutChart/_style";
@@ -35,6 +37,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-elements/toggle/_style";
 @import "components/ui-elements/modal-list/_style";
 @import "components/ui-elements/divider/_style";
+@import "components/ui-elements/feed-item/_style";
 
 @import "components/ui-widgets/compare-select/_style";
 @import "components/ui-widgets/compare-boxes/_style";
@@ -50,6 +53,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-widgets/activities-list/_style";
 @import "components/ui-widgets/dashboard-boxes/_style";
 @import "components/ui-widgets/bottom-menu/_style";
+@import "components/ui-widgets/feed/_style";
 
 @import "components/visualizations/train-chart/_style";
 @import "components/visualizations/line-chart/style";

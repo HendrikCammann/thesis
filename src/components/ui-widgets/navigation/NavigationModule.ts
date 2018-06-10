@@ -14,6 +14,7 @@ export class NavigationModule extends Vue {
     new Link('Leistungsentwicklung', '/performance', 'flash--lightgray'),
     new Link('Kalender', '/activities', 'calendar--lightgray'),
     new Link('Aktivitäten', '/activities', 'feed--lightgray'),
+    new Link('Feed', '/feed', 'feed--lightgray'),
   ];
 
   @Watch('$route.path')

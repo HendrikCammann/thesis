@@ -14,6 +14,7 @@
       <div class="col-md-12 no-padding" v-if="actualWeek">
         <dashboard-boxes
           :data="activities"
+          :actualWeek="actualWeek"
           :viewType="viewType"
           :currentPreparation="currentPreparation"
         ></dashboard-boxes>
@@ -35,54 +36,14 @@
         ></history-chart>
       </div>
     </div>
-    <!--<div class="row vcenter-content">
-      <div class="col-md-5 dashboard__personal">
-        <user-module
-          :headline="'Hendrik Cammann'"
-          :label="'Marathonläufer'"
-          :image="'https://images.pexels.com/photos/28054/pexels-photo-28054.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'"
-        ></user-module>
-      </div>
-      <div class="col-md-7 dashboard__preparation">
-        <preparation-teaser-module></preparation-teaser-module>
+
+    <div class="row" v-if="viewType === 'Day'">
+      <div class="col-md-12 no-padding">
+        <feed
+          :listItems="actualWeek"
+          :isDashboard="true"
+        ></feed>
       </div>
     </div>
-
-    <div class="row dashboard__row">
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-7">
-            <div class="dashboard__label">
-              Deine bisherige Woche
-            </div>
-            <current-week-module
-              v-if="actualWeek"
-              :activities="actualWeek"
-              :loaded="loadingStatus"
-            ></current-week-module>
-          </div>
-
-          <div class="col-md-5">
-            <div class="dashboard__label">
-              Dein bisheriger Monat
-            </div>
-            <div class="dashboard__month">
-              {{ monthStats }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="dashboard__label">
-          Deine letzten Trainingseinheiten
-        </div>
-        <div v-if="actualWeek">
-          <last-run-module
-            :activities="actualWeek"
-            :loaded="loadingStatus"
-          ></last-run-module>
-        </div>
-      </div>
-    </div>-->
   </div>
 </div>

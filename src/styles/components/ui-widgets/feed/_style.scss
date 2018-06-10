@@ -1,0 +1,9 @@
+.feed {
+  $root: &;
+
+  #{&}__content {
+    .feedItem {
+      margin-bottom: 40px;
+    }
+  }
+}

@@ -24,6 +24,9 @@ export class DashboardBoxes extends Vue {
   data: any;
 
   @Prop()
+  actualWeek: any[];
+
+  @Prop()
   viewType: DashboardViewType;
 
   @Prop()
@@ -38,6 +41,7 @@ export class DashboardBoxes extends Vue {
   onPropertyChanged(val: any, oldVal: any) {
     switch(this.viewType) {
       case DashboardViewType.Day:
+        this.stats = this.initDayData(this.actualWeek);
         this.showDots = false;
         break;
       case DashboardViewType.Week:
@@ -60,6 +64,7 @@ export class DashboardBoxes extends Vue {
   mounted() {
     switch(this.viewType) {
       case DashboardViewType.Day:
+        this.stats = this.initDayData(this.actualWeek);
         this.showDots = false;
         break;
       case DashboardViewType.Week:
@@ -77,6 +82,39 @@ export class DashboardBoxes extends Vue {
         this.showDots = false;
         break;
     }
+  }
+
+  private initDayData(data) {
+    moment.locale('de');
+    this.actDay = moment().isoWeekday();
+    let totalSessions = 0;
+    let totalDuration = 0;
+    let totalDistance = 0;
+    let totalIntensity = 0;
+
+    let menuHeader = moment().format('DD. MMM YYYY');
+    eventBus.$emit(menuEvents.set_State, menuHeader);
+
+    data[/*this.actDay -*/ 1].forEach(item => {
+      totalSessions++;
+      totalDuration += item.base_data.duration;
+      totalDistance += item.base_data.distance;
+      totalIntensity += 0;
+    });
+
+    let stats = [];
+
+    stats.push(new ContentBoxModel(totalSessions, 'Einheiten', ContentBoxIcons.Run, false));
+
+    let distance = formatDistance(totalDistance, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+    stats.push(new ContentBoxModel(distance, 'Gesamtdistanz', ContentBoxIcons.Distance, false));
+
+    let duration = formatSecondsToDuration(totalDuration, FormatDurationType.Dynamic).all;
+    stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false));
+
+    stats.push(new ContentBoxModel(totalIntensity, 'Gesamtintensität', ContentBoxIcons.Intensity, false));
+
+    return stats;
   }
 
   private initData(data, viewType) {

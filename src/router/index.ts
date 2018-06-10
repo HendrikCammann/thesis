@@ -7,7 +7,7 @@ import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
 import {Dashboard} from '../components/containers/Dashboard';
 import {CompareContainer} from '../components/containers/Compare';
-import {ComparisonContainer} from '../components/containers/Comparison';
+import {ActivityFeed} from '../components/containers/Feed/ActivityFeed';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -39,6 +39,10 @@ const router = new VueRouter({
       component: ActivitiesContainer,
       name: 'Kalender',
       path: '/activities',
+    }, {
+      component: ActivityFeed,
+      name: 'Feed',
+      path: '/feed',
     }
   ],
 });

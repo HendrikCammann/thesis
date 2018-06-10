@@ -13,6 +13,7 @@ import {HistoryChart} from '../../visualizations/history-chart';
 import {BottomMenu} from '../../ui-widgets/bottom-menu';
 import {DashboardViewType, RunType} from '../../../store/state';
 import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
+import {Feed} from '../../ui-widgets/feed';
 
 @Component({
   template: require('./dashboard.html'),
@@ -32,6 +33,7 @@ import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
     'divider': Divider,
     'historyChart': HistoryChart,
     'bottomMenu': BottomMenu,
+    'feed': Feed,
   }
 })
 export class Dashboard extends Vue {
@@ -101,9 +103,9 @@ export class Dashboard extends Vue {
       case DashboardViewType.Day:
         return 'Heutige Einheiten';
       case DashboardViewType.Week:
-        return 'Wochenzusammenfassung';
+        return 'Im Vergleich zur letzten Woche';
       case DashboardViewType.Month:
-        return 'Monatzusammenfassung';
+        return 'Im Vergleich zum letzten Monat';
       case DashboardViewType.Preparation:
         return 'Leistungsentwicklung';
     }

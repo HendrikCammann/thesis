@@ -1,0 +1,24 @@
+<div class="feedItem" v-if="data != null">
+  <div class="feedItem__time">{{ data.top[0].value }}</div>
+  <div class="feedItem__content card"
+     @click="openDetailView()"
+  >
+    <div class="feedItem__head">
+      <span class="feedItem__name"
+        :style="{color: data.color}"
+      >{{ data.top[1].value }}</span>
+    </div>
+    <div class="feedItem__map">
+      <div class="feedItem__map-overlay"></div>
+      <leaflet-map :bounds="data.map.bounds" :options="{ scrollWheelZoom: false }">
+        <leaflet-tilelayer :url="data.map.url" :attribution="data.map.attribution"></leaflet-tilelayer>
+        <leaflet-polyline :lat-lngs="data.map.latLngs" :color="data.map.polylineColor"></leaflet-polyline>
+      </leaflet-map>
+    </div>
+    <div class="feedItem__stats">
+      <div class="feedItem__entry" v-for="data in data.base">
+        <img :src="'../../../assets/icons/line/' + data.icon + '--gray.svg'">{{ data.value }}
+      </div>
+    </div>
+  </div>
+</div>

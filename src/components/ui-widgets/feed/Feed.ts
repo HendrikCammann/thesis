@@ -31,7 +31,6 @@ export class Feed extends Vue {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
       this.list = this.initFeed(this.listItems[0]);
-      console.log(this.list);
     }
   }
 
@@ -40,7 +39,6 @@ export class Feed extends Vue {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
       this.list = this.initFeed(this.listItems[0]);
-      console.log(this.list);
     }
   }
 

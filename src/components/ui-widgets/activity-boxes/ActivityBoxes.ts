@@ -37,6 +37,7 @@ export class ActivityBoxes extends Vue {
   }
 
   private initData(activity) {
+    console.log(activity);
     let basics = [];
     let text = [];
 
@@ -58,7 +59,7 @@ export class ActivityBoxes extends Vue {
     let feeling = '8/10';
     basics.push(new ContentBoxModel(feeling, 'Anstrengung', ContentBoxIcons.Heartrate, false));
 
-    if (activity.details.description.length) {
+    if (activity.details.description) {
       text.push(activity.details.description);
     } else {
       text.push('Keine Beschreibung hinzugefügt');

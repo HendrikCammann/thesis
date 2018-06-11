@@ -99,7 +99,7 @@ export class DashboardBoxes extends Vue {
       totalSessions++;
       totalDuration += item.base_data.duration;
       totalDistance += item.base_data.distance;
-      totalIntensity += 0;
+      totalIntensity += item.base_data.intensity;
     });
 
     let stats = [];
@@ -112,7 +112,7 @@ export class DashboardBoxes extends Vue {
     let duration = formatSecondsToDuration(totalDuration, FormatDurationType.Dynamic).all;
     stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false));
 
-    stats.push(new ContentBoxModel(totalIntensity, 'Gesamtintensität', ContentBoxIcons.Intensity, false));
+    stats.push(new ContentBoxModel(Math.round(totalIntensity), 'Gesamtintensität', ContentBoxIcons.Intensity, false));
 
     return stats;
   }
@@ -124,7 +124,7 @@ export class DashboardBoxes extends Vue {
     let totalSessions = data.stats.count;
     let totalDuration = data.stats.time;
     let totalDistance = data.stats.distance;
-    let totalIntensity = 0;
+    let totalIntensity = Math.round(data.stats.intensity);
 
     let menuHeader = '';
 

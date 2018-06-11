@@ -10,7 +10,7 @@
         <div class="column column--half box-label" v-for="cluster in clusters">
           {{ cluster.name }}
         </div>
-        <div class="column column--half" v-for="item in data.competitions">
+        <div class="column column--half" v-for="item in data.competitions" :key="item.toString()">
           <div @click="handleEventClick(item.id)">
             <content-box
               :data="item.box"
@@ -32,6 +32,7 @@
         </div>
         <div class="column column--half" v-for="cluster in data.basics">
           <content-box v-for="item in cluster"
+            :key="item.toString()"
             :data="item"
           ></content-box>
         </div>
@@ -50,6 +51,7 @@
         </div>
         <div class="column column--half" v-for="cluster in data.averages">
           <content-box v-for="item in cluster"
+                       :key="item.toString()"
                        :data="item"
           ></content-box>
         </div>

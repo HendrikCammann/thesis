@@ -4,6 +4,6 @@ export class CompareModel {
 
   constructor() {
     this.showAbsolute = true;
-    this.selectedTrainingClusters = ['Barcelona-2018', 'Karlsruhe-2017'];
+    this.selectedTrainingClusters = ['Frankfurt-2018', 'Hannover-2018'];
   }
 }

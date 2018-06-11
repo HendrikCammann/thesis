@@ -130,7 +130,7 @@ export class TrainChart extends Vue {
             maxValue = getLargerValue(data[key].stats.time, maxValue);
             break;
           case DisplayType.Intensity:
-            maxValue = getLargerValue(data[key].stats.time, maxValue);
+            maxValue = getLargerValue(data[key].stats.intensity, maxValue);
             break;
         }
       }
@@ -225,8 +225,8 @@ export class TrainChart extends Vue {
             label = formatSecondsToDuration(data[key].stats.typeCount[anchor].duration, FormatDurationType.Dynamic).all;
             break;
           case DisplayType.Intensity:
-            barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].duration);
-            label = 'int';
+            barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].intensity);
+            label = Math.round(data[key].stats.typeCount[anchor].intensity);
             break;
         }
         let color = CategoryColors.Default;
@@ -372,9 +372,9 @@ export class TrainChart extends Vue {
           percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
           break;
         case DisplayType.Intensity:
-          barLength = this.barLength(weekHeight, largestValue, data[key].stats.time);
-          label = 'int';
-          percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
+          barLength = this.barLength(weekHeight, largestValue, data[key].stats.intensity);
+          label = Math.round(data[key].stats.intensity);
+          percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.intensity);
           break;
       }
 
@@ -664,8 +664,8 @@ export class TrainChart extends Vue {
           break;
         case DisplayType.Intensity:
           item = {
-            percentage: getPercentageFromValue(typeCount[key].duration, distance),
-            distance: typeCount[key].duration,
+            percentage: getPercentageFromValue(typeCount[key].intensity, distance),
+            distance: typeCount[key].intensity,
             type: typeCount[key].type,
           };
           break;

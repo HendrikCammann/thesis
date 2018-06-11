@@ -34,10 +34,12 @@ class ClusterStatsModel {
   distance: number;
   time: number;
   count: number;
+  intensity: number;
   typeCount: ActivityClusterTypeCountModel;
 
   constructor() {
     this.distance = null;
+    this.intensity = null;
     this.time = null;
     this.count = null;
     this.typeCount = new ActivityClusterTypeCountModel();

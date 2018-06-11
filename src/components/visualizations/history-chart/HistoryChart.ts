@@ -36,6 +36,7 @@ class HistoryChartStructure {
     return (this.values.lower[0] !== 0 || this.values.upper[0] !== 0);
   }
 }
+
 @Component({
   template: require('./historyChart.html'),
 })

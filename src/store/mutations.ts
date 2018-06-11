@@ -84,8 +84,8 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
 
   if (temp <= new Date(2018, 10, 28) && temp >= new Date(2018, 4, 7)) {
     let range = {
-      start: new Date(2018, 10, 28),
-      end: new Date(2018, 4, 7),
+      start: new Date(2018, 4, 7),
+      end: new Date(2018, 9, 28),
     };
     activity.categorization.cluster_anchors.push(new ClusterItem('Frankfurt-2018', ('Frankfurt-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1187823373));
   }
@@ -303,13 +303,14 @@ function sortCluster(activities, cluster) {
         allAct.push(activity);
         temp.stats.distance += activity.base_data.distance;
         temp.stats.time += activity.base_data.duration;
+        temp.stats.intensity += activity.base_data.intensity;
         temp.stats.count++;
         switch (activity.categorization.activity_type) {
           case RunType.Run:
-            // console.log(activity.base_data.duration);
             temp.stats.typeCount.run.amount += 1;
             temp.stats.typeCount.run.distance += activity.base_data.distance;
             temp.stats.typeCount.run.duration += activity.base_data.duration;
+            temp.stats.typeCount.run.intensity += activity.base_data.intensity;
             temp.stats.typeCount.run.type = RunType.Run;
             temp.stats.typeCount.run.activities.push(activity.id);
             break;
@@ -317,6 +318,7 @@ function sortCluster(activities, cluster) {
             temp.stats.typeCount.competition.amount += 1;
             temp.stats.typeCount.competition.distance += activity.base_data.distance;
             temp.stats.typeCount.competition.duration += activity.base_data.duration;
+            temp.stats.typeCount.competition.intensity += activity.base_data.intensity;
             temp.stats.typeCount.competition.type = RunType.Competition;
             temp.stats.typeCount.competition.activities.push(activity.id);
             break;
@@ -324,6 +326,7 @@ function sortCluster(activities, cluster) {
             temp.stats.typeCount.longRun.amount += 1;
             temp.stats.typeCount.longRun.distance += activity.base_data.distance;
             temp.stats.typeCount.longRun.duration += activity.base_data.duration;
+            temp.stats.typeCount.longRun.intensity += activity.base_data.intensity;
             temp.stats.typeCount.longRun.type = RunType.LongRun;
             temp.stats.typeCount.longRun.activities.push(activity.id);
             break;
@@ -331,6 +334,7 @@ function sortCluster(activities, cluster) {
             temp.stats.typeCount.interval.amount += 1;
             temp.stats.typeCount.interval.distance += activity.base_data.distance;
             temp.stats.typeCount.interval.duration += activity.base_data.duration;
+            temp.stats.typeCount.interval.intensity += activity.base_data.intensity;
             temp.stats.typeCount.interval.type = RunType.ShortIntervals;
             temp.stats.typeCount.interval.activities.push(activity.id);
             break;
@@ -338,6 +342,7 @@ function sortCluster(activities, cluster) {
             temp.stats.typeCount.uncategorized.amount += 1;
             temp.stats.typeCount.uncategorized.distance += activity.base_data.distance;
             temp.stats.typeCount.uncategorized.duration += activity.base_data.duration;
+            temp.stats.typeCount.uncategorized.intensity += activity.base_data.intensity;
             temp.stats.typeCount.uncategorized.type = RunType.Uncategorized;
             temp.stats.typeCount.uncategorized.activities.push(activity.id);
         }
@@ -363,12 +368,14 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
   array.stats.count++;
   array.stats.distance += activity.base_data.distance;
   array.stats.time += activity.base_data.duration;
+  array.stats.intensity += activity.base_data.intensity;
 
   switch (activity.categorization.activity_type) {
     case RunType.Run:
       array.stats.typeCount.run.amount += 1;
       array.stats.typeCount.run.distance += activity.base_data.distance;
       array.stats.typeCount.run.duration += activity.base_data.duration;
+      array.stats.typeCount.run.intensity += activity.base_data.intensity;
       array.stats.typeCount.run.type = RunType.Run;
       array.stats.typeCount.run.activities.push(activity.id);
       break;
@@ -376,6 +383,7 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
       array.stats.typeCount.competition.amount += 1;
       array.stats.typeCount.competition.distance += activity.base_data.distance;
       array.stats.typeCount.competition.duration += activity.base_data.duration;
+      array.stats.typeCount.competition.intensity += activity.base_data.intensity;
       array.stats.typeCount.competition.type = RunType.Competition;
       array.stats.typeCount.competition.activities.push(activity.id);
       break;
@@ -383,6 +391,7 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
       array.stats.typeCount.longRun.amount += 1;
       array.stats.typeCount.longRun.distance += activity.base_data.distance;
       array.stats.typeCount.longRun.duration += activity.base_data.duration;
+      array.stats.typeCount.longRun.intensity += activity.base_data.intensity;
       array.stats.typeCount.longRun.type = RunType.LongRun;
       array.stats.typeCount.longRun.activities.push(activity.id);
       break;
@@ -390,6 +399,7 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
       array.stats.typeCount.interval.amount += 1;
       array.stats.typeCount.interval.distance += activity.base_data.distance;
       array.stats.typeCount.interval.duration += activity.base_data.duration;
+      array.stats.typeCount.interval.intensity += activity.base_data.intensity;
       array.stats.typeCount.interval.type = RunType.ShortIntervals;
       array.stats.typeCount.interval.activities.push(activity.id);
       break;
@@ -397,6 +407,7 @@ function summarizeRunTypes(activity: ActivityModel, array: ActivityClusterModel)
       array.stats.typeCount.uncategorized.amount += 1;
       array.stats.typeCount.uncategorized.distance += activity.base_data.distance;
       array.stats.typeCount.uncategorized.duration += activity.base_data.duration;
+      array.stats.typeCount.uncategorized.intensity += activity.base_data.intensity;
       array.stats.typeCount.uncategorized.type = RunType.Uncategorized;
       array.stats.typeCount.uncategorized.activities.push(activity.id);
   }
@@ -445,8 +456,8 @@ const mutations: MutationTree<State> = {
 
       if (temp <= new Date(2018, 10, 28) && temp >= new Date(2018, 4, 7)) {
         let range = {
-          start: new Date(2018, 10, 28),
-          end: new Date(2018, 4, 7),
+          start: new Date(2018, 4, 7),
+          end: new Date(2018, 9, 28),
         };
         activity.categorization.cluster_anchors.push(new ClusterItem('Frankfurt-2018', ('Frankfurt-2018-' + range.start + '-' + range.end).replace(/\s+/g, ''), true, range, ClusterTypes.Marathon, 1187823373));
       }

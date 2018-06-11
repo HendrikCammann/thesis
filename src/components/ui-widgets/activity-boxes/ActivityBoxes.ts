@@ -52,7 +52,7 @@ export class ActivityBoxes extends Vue {
     let heartrate = activity.average_data.heartrate + 'bpm';
     basics.push(new ContentBoxModel(heartrate, 'ø Herzfrequenz', ContentBoxIcons.Heartrate, false));
 
-    let intensity = 223;
+    let intensity = Math.round(activity.base_data.intensity);
     basics.push(new ContentBoxModel(intensity, 'Intensität', ContentBoxIcons.Intensity, false));
 
     let feeling = '8/10';

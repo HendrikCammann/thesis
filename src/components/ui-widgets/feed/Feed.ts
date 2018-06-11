@@ -3,6 +3,7 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as moment from 'moment';
 import {FeedItem} from '../../ui-elements/feed-item';
+import {RunType} from '../../../store/state';
 
 @Component({
   template: require('./feed.html'),
@@ -17,15 +18,20 @@ export class Feed extends Vue {
   @Prop()
   isDashboard: boolean;
 
-  private list: any[] = null;
+  @Prop()
+  selectedRunType: RunType;
+
+  public list: any[] = null;
 
   @Watch('listItems')
   @Watch('listItems.All')
+  // @Watch('selectedRunType')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.isDashboard && this.listItems !== undefined) {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
       this.list = this.initFeed(this.listItems[0]);
+      console.log(this.list);
     }
   }
 
@@ -34,17 +40,27 @@ export class Feed extends Vue {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
       this.list = this.initFeed(this.listItems[0]);
+      console.log(this.list);
     }
   }
 
   private initFeed(data): any[] {
     let list = [];
     if (data['All'].unsorted.all !== undefined) {
-      data['All'].unsorted.all.activities.forEach((item, i) => {
-        if (i < 10) {
-          list.push(this.$store.getters.getActivity(item));
-        }
-      });
+      if (this.selectedRunType === RunType.All) {
+        data['All'].unsorted.all.activities.forEach((item, i) => {
+          if (list.length < 20) {
+            list.push(this.$store.getters.getActivity(item));
+          }
+        });
+      } else {
+        let filtered = data['All'].unsorted.all.activities.filter(item => this.$store.getters.getActivity(item).categorization.activity_type === this.selectedRunType);
+        filtered.forEach(item => {
+          if (list.length < 20) {
+            list.push(this.$store.getters.getActivity(item));
+          }
+        })
+      }
     }
     return list;
   }

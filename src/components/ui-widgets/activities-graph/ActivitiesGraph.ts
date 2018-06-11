@@ -35,7 +35,7 @@ export class ActivitiesGraph extends Vue {
   public showModal = false;
   public modalItem = null;
   public toggleData: string[] = ['Entwicklung', 'Liste'];
-  public selectedToggle: number = 1;
+  public selectedToggle: number = 0;
 
   mounted() {
     eventBus.$on(ToggleEvents.set_Selection, (index) => {

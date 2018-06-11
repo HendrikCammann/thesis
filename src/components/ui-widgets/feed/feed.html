@@ -1,6 +1,8 @@
 <div class="feed">
   <div class="feed__content" v-if="list != null">
-    <feed-item v-for="item in list"
+    {{ list.length }}
+    <feed-item v-for="(item, i) in list"
+      :key="item.toString()"
       :activity="item"
       :isDashboard="isDashboard"
     ></feed-item>

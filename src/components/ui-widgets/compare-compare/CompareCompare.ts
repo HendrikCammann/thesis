@@ -80,7 +80,7 @@ export class CompareCompare extends Vue {
       case DisplayType.Duration:
         return formatSecondsToDuration(value, FormatDurationType.Dynamic).all;
       case DisplayType.Intensity:
-        return value
+        return Math.round(value);
     }
   }
 

@@ -8,6 +8,7 @@ import { ActivityContainer } from '../components/containers/Activity';
 import {Dashboard} from '../components/containers/Dashboard';
 import {CompareContainer} from '../components/containers/Compare';
 import {ActivityFeed} from '../components/containers/Feed/ActivityFeed';
+import {Profile} from '../components/containers/Profile';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -43,6 +44,10 @@ const router = new VueRouter({
       component: ActivityFeed,
       name: 'Aktivitäten',
       path: '/feed',
+    }, {
+      component: Profile,
+      name: 'Profil',
+      path: '/user',
     }
   ],
 });

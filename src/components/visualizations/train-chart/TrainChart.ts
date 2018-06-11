@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import * as d3 from 'd3';
+import * as moment from 'moment';
 
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
@@ -52,14 +53,10 @@ export class TrainChart extends Vue {
   isDual: boolean;
 
 
-  private type = DisplayType.Duration;
-
-  // private selectedRunType: RunType = RunType.All;
-
   private width = 309;
   private height: number;
   private padding = 8;
-  private itemHeight = 200;
+  private itemHeight = 220;
   private weekHeight = this.itemHeight - (2 * this.padding);
   private barWidth = 16;
 
@@ -206,7 +203,13 @@ export class TrainChart extends Vue {
     duration = duration.length;
 
     for (let key in data) {
-      this.drawDivider(svg, this.width, (duration - index), positionDivider, '#F3F3F3');
+      moment.locale('de');
+      let start = moment(data[key].rangeDate).startOf('week').format('DD.MM');
+      let end = moment(data[key].rangeDate).endOf('week').format('DD.MM.YYYY');
+
+      // moment(data[key].rangeDate).startOf('week');
+
+      this.drawDivider(svg, this.width, (start + ' - ' + end), positionDivider, '#F3F3F3');
       position.y += padding;
       positionDivider.y += padding;
 
@@ -238,6 +241,7 @@ export class TrainChart extends Vue {
         weekBars.push(barItem);
         position.x += (this.width / 6);
       }
+
       barItems.push(weekBars);
 
       position.x = this.width / 6;
@@ -352,7 +356,13 @@ export class TrainChart extends Vue {
     duration = duration.length;
 
     for (let key in data) {
-      this.drawDivider(svg, this.width, (duration - index), positionDivider, '#F3F3F3');
+      moment.locale('de');
+      let start = moment(data[key].rangeDate).startOf('week').format('DD.MM');
+      let end = moment(data[key].rangeDate).endOf('week').format('DD.MM.YYYY');
+
+      // moment(data[key].rangeDate).startOf('week');
+
+      this.drawDivider(svg, this.width, (start + ' - ' + end), positionDivider, '#F3F3F3');
       position.y += padding;
       positionDivider.y += padding;
 
@@ -501,7 +511,7 @@ export class TrainChart extends Vue {
                   overlayLengthBarTwo = overlayLengthBarTwo / 1000;
                 }
                 let midBarOne = ((barItems[i].yStart + (barItems[i].yStart + overlayLengthBarOne)) / 2);
-                let midBarTwo = ((barItems[i + 1].yStart + (barItems[i + 1].yStart + overlayLengthBarTwo)) / 2);
+                let midBarTwo = ((barItems[i + 1].yStart + (barItems[i + 1].yStart + overlayLengthBarTwo / 2)) / 2);
 
                 let radius = Math.abs(midBarOne - midBarTwo) / 2;
 
@@ -705,21 +715,21 @@ export class TrainChart extends Vue {
    * @param {PositionModel} position
    * @param {string} color
    */
-  private drawDivider(svg: any, width: number, weekIndex: number, position: PositionModel, color: string) {
+  private drawDivider(svg: any, width: number, weekIndex: string, position: PositionModel, color: string) {
     if (this.showDate) {
       svg.append('text')
         .attr('class', 'trainChart__divider-label')
         .attr('x', position.x)
-        .attr('y', position.y + 6)
+        .attr('y', position.y + 5)
         .attr('fill', '#D9D9D9')
         .attr('text-anchor', 'left')
         .text(weekIndex);
 
       svg.append('rect')
-        .attr('x', position.x + this.barWidth)
+        .attr('x', position.x + 105)
         .attr('y', position.y)
         .attr('height', 1)
-        .attr('width', width - this.barWidth)
+        .attr('width', width - 105)
         .attr('fill', color);
     } else {
       svg.append('rect')

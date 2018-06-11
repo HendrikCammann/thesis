@@ -1,0 +1,32 @@
+.profile {
+  $root: &;
+  #{&}__content {
+    padding-top: 60px;
+
+    #{$root}__user {
+      text-align: center;
+      padding-top: 48px;
+      // background-color: red;
+      img {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 16px;
+        box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+      }
+
+      #{$root}__name {
+        font-size: 22px;
+        font-weight: 700;
+        font-family: $font-family--secondary;
+      }
+
+      #{$root}__type {
+        font-size: 14px;
+        font-weight: 400;
+        color: $colors-label;
+      }
+    }
+  }
+}

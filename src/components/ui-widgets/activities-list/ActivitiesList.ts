@@ -1,5 +1,6 @@
 /* tslint:disable */
 import Vue from 'vue';
+import * as moment from 'moment';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 import {loadingStatus, LoadingStatus} from '../../../models/App/AppStatus';
 import {RunType} from '../../../store/state';
@@ -55,6 +56,9 @@ export class ActivitiesList extends Vue {
 
     let itemsGroupedByClustering = [];
     keys.forEach(key => {
+      let start = moment(data[clustering][key].rangeDate).startOf('week').format('DD.MM');
+      let end = moment(data[clustering][key].rangeDate).endOf('week').format('DD.MM.YYYY');
+
       let week = [];
       data[clustering][key].activities.forEach(id => {
         let activity = this.$store.getters.getActivity(id);
@@ -63,21 +67,27 @@ export class ActivitiesList extends Vue {
       week = week.sort( (a: any, b: any) => {
         return +new Date(b.date) - +new Date(a.date);
       });
-      itemsGroupedByClustering.push(week);
+      itemsGroupedByClustering.push({
+        data: week,
+        date: start + ' - ' + end,
+      });
     });
 
     let temp = [];
 
     itemsGroupedByClustering.forEach(item => {
       let week = [[], [], [], [], [], [], []];
-      item.forEach(ac => {
+      item.data.forEach(ac => {
         if (new Date(ac.date).getDay() === 0) {
           week[6].push(ac);
         } else {
           week[new Date(ac.date).getDay() - 1].push(ac);
         }
       });
-      temp.push(week);
+      temp.push({
+        data: week,
+        date: item.date,
+      });
     });
 
     return temp;

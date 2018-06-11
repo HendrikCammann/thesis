@@ -42,8 +42,6 @@ export class CompareContainer extends Vue {
   public isSelection = true;
   public selectedMenu = null;
 
-  public selectedItems = [this.$store.getters.getShowEverything, this.$store.getters.getSelectedDisplayType, this.$store.getters.getSelectedRunType];
-
   public menuItems = [
     {
       name: 'Darstellung',
@@ -126,7 +124,6 @@ export class CompareContainer extends Vue {
     });
 
     eventBus.$on(BottomMenuEvents.dispatch_Overlay_Click, (payload) => {
-      console.log(payload);
       switch (payload.menu) {
         case 0:
           this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING, payload.payload);

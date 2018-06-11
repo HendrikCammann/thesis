@@ -21,6 +21,18 @@ enum timeRanges {
   Individual = 'individual',
 }
 
+function calculateActivityIntensity(duration, avgHr) {
+  let maxHr = 200;
+  let restHr = 45;
+
+  let durationInMin = duration / 60;
+
+  let intensity = durationInMin * (avgHr - restHr) / (maxHr - restHr);
+
+  return intensity;
+
+}
+
 function applyUserModel(item): UserModel {
   let user = new UserModel();
 
@@ -52,6 +64,8 @@ function applyActivityModelStructure(item, oldestDate): ActivityModel {
   activity.base_data.elevation_down = item.elev_low;
   activity.base_data.elevation_gain = item.total_elevation_gain;
   activity.base_data.suffer_score = item.suffer_score;
+  activity.base_data.intensity = calculateActivityIntensity(item.moving_time, item.average_heartrate);
+
 
   activity.max_data.heartrate = item.max_heartrate;
   activity.max_data.speed = item.max_speed;

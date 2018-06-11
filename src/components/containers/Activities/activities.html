@@ -1,9 +1,11 @@
 <div class="container-fluid activities">
-  <floating-menu
-     :menuItemsTop="menuItems.top"
-     :menuItemsLeft="menuItems.bottom"
-     :selectedItems="selectedMenu"
-  ></floating-menu>
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="null"
+    :hasPopups="true"
+    :selectedMenu="selectedMenu"
+    :selectedItems="[showEverything, selectedDisplayType, selectedRunTyp]"
+  ></bottomMenu>
 
   <div class="container activities__content">
     <div class="row">

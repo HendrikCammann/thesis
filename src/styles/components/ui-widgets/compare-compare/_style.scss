@@ -12,6 +12,7 @@
       font-weight: 600;
       margin-bottom: 4px;
     }
+
     #{$root}__graph {
       width: 50%;
       float: left;
@@ -20,6 +21,14 @@
         border-right: 1px solid $colors-label;
       }
     }
-  }
 
+    #{$root}__explanation {
+      margin-top: 16px;
+      text-align: justify;
+      padding: 0 16px;
+      font-size: 10px;
+      color: #adb7bf;
+      margin-bottom: 32px;
+    }
+  }
 }

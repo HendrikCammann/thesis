@@ -31,6 +31,7 @@ class ActivityBaseData {
   public elevation_down: number;
   public elevation_gain: number;
   public suffer_score: number;
+  public intensity: number;
 
   constructor() {
     this.distance = null;
@@ -39,6 +40,7 @@ class ActivityBaseData {
     this.elevation_down = null;
     this.elevation_gain = null;
     this.suffer_score = null;
+    this.intensity = null;
   }
 }
 

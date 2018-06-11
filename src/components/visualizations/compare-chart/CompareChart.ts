@@ -10,6 +10,7 @@ import {CategoryOpacity} from '../../../models/VisualVariableModel';
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {getPercentageFromValue} from '../../../utils/numbers/numbers';
 import {setupSvg} from '../../../utils/svgInit/svgInit';
+import {DisplayType} from '../../../store/state';
 
 @Component({
   template: require('./compareChart.html'),
@@ -28,17 +29,21 @@ export class CompareChart extends Vue {
   @Prop()
   loadingStatus: LoadingStatus;
 
+  @Prop()
+  displayType: DisplayType;
+
   private maxRadius: number = 60;
   private offset: number = 8;
   private width: number = 171;
   private height: number = 0;
+
   @Watch('data')
   @Watch('loadingStatus.activities')
-  @Watch('trainingCluster')
-  @Watch('longestDistance')
-  @Watch('longestDistanceTotal')
+  @Watch('displayType')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
+      this.height = this.calculateHeight(this.maxRadius, this.offset, this.data.length);
+      this.drawChart(this.data, this.index, this.root);
     }
   }
 

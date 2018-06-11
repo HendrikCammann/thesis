@@ -14,17 +14,17 @@
     <div class="bottomMenu__overlay" v-if="popupOpen">
       <div v-if="popupItems !== null">
         <div class="bottomMenu__overlayItem" v-for="(item, i) in popupItems"
-             :class="{'bottomMenu__overlayItem--active' : selectedPopup === i}"
-        >
+             :class="{'bottomMenu__overlayItem--active' : item.action === selectedItems[selectedMenu]}"
+             @click="emitEvent(item.action)">
           <img :src="'../../../assets/icons/line/' + item.icon + '.svg'">
           <div class="bottomMenu__label">{{item.name}}</div>
-          <img v-if="selectedPopup === i" class="bottomMenu__check" :src="'../../../assets/icons/solid/' + 'check--dark' + '.svg'">
+          <img v-if="item.action === selectedItems[selectedMenu]" class="bottomMenu__check" :src="'../../../assets/icons/solid/' + 'check--dark' + '.svg'">
         </div>
       </div>
     </div>
-    <div class="bottomMenu__item" v-for="item in menuItems"
+    <div class="bottomMenu__item" v-for="(item, i) in menuItems"
          :style="{width: (100 / menuItems.length) + '%'}"
-         @click="togglePopup(item)"
+         @click="togglePopup(item, i)"
          :class="{'bottomMenu__item--active' : item.action === selected}"
     >
       <img :src="'../../../assets/icons/solid/' + item.icon + '.svg'">

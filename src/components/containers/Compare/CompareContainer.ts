@@ -13,6 +13,7 @@ import {DashboardViewType, DisplayType, RunType} from '../../../store/state';
 import {FloatingMenuEvents} from '../../../events/floating-menu/FloatingMenu';
 import {CompareCompare} from '../../ui-widgets/compare-compare';
 import {BottomMenu} from '../../ui-widgets/bottom-menu';
+import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
 
 
 @Component({
@@ -21,7 +22,9 @@ import {BottomMenu} from '../../ui-widgets/bottom-menu';
     selectedTrainingClustersData: 'getSelectedTrainingClustersData',
     selectedTrainingClustersFull: 'getSelectedTrainingClustersFull',
     selectedTrainingClusters: 'getSelectedTrainingClusters',
+    showEverything: 'getShowEverything',
     selectedDisplayType: 'getSelectedDisplayType',
+    selectedRunTyp: 'getSelectedRunType',
     existingClusters: 'getExistingClusters',
     loadingStatus: 'getAppLoadingStatus',
     sortedLists: 'getSortedLists',
@@ -37,24 +40,23 @@ import {BottomMenu} from '../../ui-widgets/bottom-menu';
 })
 export class CompareContainer extends Vue {
   public isSelection = true;
+  public selectedMenu = null;
 
-  public selectedMenu = {
-    top: this.$store.getters.getSelectedRunType,
-    bottom: this.$store.getters.getShowEverything,
-  };
+  public selectedItems = [this.$store.getters.getShowEverything, this.$store.getters.getSelectedDisplayType, this.$store.getters.getSelectedRunType];
 
   public menuItems = [
     {
       name: 'Darstellung',
       icon: 'running--gray',
       action: 'chartToggle',
-      selected: 1,
+      index: 0,
+      selected: this.$store.getters.getShowEverything,
       items: [{
-          name: 'Entwicklung',
+          name: 'Detail',
           icon: 'running--gray',
           action: false,
         }, {
-          name: 'Detail',
+          name: 'Gesamt',
           icon: 'running--gray',
           action: true,
         }]
@@ -63,7 +65,8 @@ export class CompareContainer extends Vue {
       name: 'Stellschraube',
       icon: 'running--gray',
       action: 'screwToggle',
-      selected: 1,
+      selected: this.$store.getters.getSelectedDisplayType,
+      index: 1,
       items: [{
           name: 'Distanz',
           icon: 'distance--gray',
@@ -82,7 +85,8 @@ export class CompareContainer extends Vue {
       name: 'Filter',
       icon: 'filter--gray',
       action: 'toggleRunType',
-      selected: 1,
+      index: 2,
+      selected: this.$store.getters.getSelectedRunType,
       items: [{
           name: 'Alle',
           icon: 'running--darkgray',
@@ -117,18 +121,28 @@ export class CompareContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
-    eventBus.$on(compareEvents.start_Compare, () => {
-      this.$router.push({ path: `/compare?step=${'compare'}` });
+    eventBus.$on(BottomMenuEvents.set_Selected_Menu, (i) => {
+      this.selectedMenu = i;
     });
 
-    eventBus.$on(FloatingMenuEvents.set_Filter, (item) => {
-      if (item.isTop) {
-        this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, item.action);
-        this.selectedMenu.top = this.$store.getters.getSelectedRunType;
-      } else {
-        this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING, item.action);
-        this.selectedMenu.bottom = this.$store.getters.getShowEverything;
+    eventBus.$on(BottomMenuEvents.dispatch_Overlay_Click, (payload) => {
+      console.log(payload);
+      switch (payload.menu) {
+        case 0:
+          this.$store.dispatch(MutationTypes.SET_SHOW_EVERYTHING, payload.payload);
+          break;
+        case 1:
+          this.$store.dispatch(MutationTypes.SET_SELECTED_DISPLAYTYPE, payload.payload);
+          break;
+        case 2:
+          this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, payload.payload);
+          break;
       }
+    });
+
+
+    eventBus.$on(compareEvents.start_Compare, () => {
+      this.$router.push({ path: `/compare?step=${'compare'}` });
     });
   }
 

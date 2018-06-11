@@ -103,7 +103,6 @@ export class CompareChart extends Vue {
   }
 
   private drawCircle(svg, circle, isLeft) {
-    console.log(circle);
     let arc = d3.arc();
     let startAngle = Math.PI * 2;
     let endAngle = Math.PI;
@@ -139,14 +138,14 @@ export class CompareChart extends Vue {
 
     svg.append('text')
       .attr('x',  circle.position.x + textoffset)
-      .attr('y',  circle.position.y)
+      .attr('y',  circle.position.y - 2)
       .attr('class', 'compareChart__value')
       .attr('text-anchor', 'middle')
       .text(circle.label);
 
     svg.append('text')
       .attr('x',  circle.position.x + textoffset)
-      .attr('y',  circle.position.y + 12)
+      .attr('y',  circle.position.y + 14)
       .attr('class', 'compareChart__label')
       .attr('text-anchor', 'middle')
       .text(circle.percentage);

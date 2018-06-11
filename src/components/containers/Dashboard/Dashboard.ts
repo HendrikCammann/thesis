@@ -88,7 +88,7 @@ export class Dashboard extends Vue {
   public get firstHeadline() {
     switch (this.$store.state.dashboardViewType) {
       case DashboardViewType.Day:
-        return 'Dein heutiger Tag';
+        return 'Dein bisheriger Tag';
       case DashboardViewType.Week:
         return 'Deine bisherigere Woche';
       case DashboardViewType.Month:

@@ -2,6 +2,16 @@
   $root: &;
 
   #{&}__content {
+    #{$root}__label {
+      width: 50%;
+      float: left;
+      text-align: center;
+      font-family: $font-family--main;
+      color: $colors-label;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
     #{$root}__graph {
       width: 50%;
       float: left;

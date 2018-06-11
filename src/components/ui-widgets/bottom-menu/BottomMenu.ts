@@ -15,8 +15,28 @@ export class BottomMenu extends Vue {
   @Prop()
   selected: string;
 
+  @Prop()
+  hasPopups: boolean;
+
+  private popupOpen = false;
+  public popupItems = null;
+  public selectedPopup = null;
+  public currentPopup = null;
 
   public emitEvent(payload) {
     eventBus.$emit(BottomMenuEvents.set_Dashboard_Viewtype, payload);
+  }
+
+  public togglePopup(item) {
+    console.log('click');
+    if (item.name === this.currentPopup) {
+      this.popupOpen = false;
+      this.currentPopup = null;
+    } else {
+      this.popupOpen = true;
+      this.currentPopup = item.name;
+      this.popupItems = item.items;
+      this.selectedPopup = item.selected;
+    }
   }
 }

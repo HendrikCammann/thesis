@@ -12,6 +12,54 @@
   font-family: $font-family--main;
 
   #{&}__content {
+    position: relative;
+
+    #{$root}__overlay {
+      text-align: left;
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      background-color: $colors-white;
+      height: fit-content;
+      border-bottom: 2px solid $colors-text;
+
+      #{$root}__overlayItem {
+        padding: 16px;
+        border-bottom: 1px solid #E7E7E7;
+
+        &--active {
+          background-color: $colors-white--dirty;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        img {
+          height: 24px;
+          width: 24px;
+          display: inline-block;
+          margin-right: 8px;
+        }
+
+        #{$root}__check {
+          transform: translate(0, 5px);
+          height: 12px;
+          width: 12px;
+          display: inline-block;
+          float: right;
+        }
+
+        #{$root}__label {
+          transform: translate(0, 2px);
+          display: inline-block;
+          font-size: 16px;
+          color: $colors-text
+        }
+      }
+    }
+
     #{$root}__item {
       display: inline-block;
       text-align: center;

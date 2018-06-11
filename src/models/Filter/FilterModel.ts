@@ -26,7 +26,7 @@ export class FilterModel {
     this.selectedCluster = ClusterType.ByMonths;
     this.timeRange = new TimeRangeModel();
     this.selectedTrainingCluster = 'All';
-    this.selectedDisplayType = DisplayType.Duration;
+    this.selectedDisplayType = DisplayType.Distance;
     this.selectedRunTypTrainingCluster = RunType.All;
     this.showEverything = true;
   }

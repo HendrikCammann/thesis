@@ -1,9 +1,9 @@
 <div class="container-fluid compare">
-  <floating-menu v-if="!isSelection"
-    :menuItemsTop="menuItems.top"
-    :menuItemsLeft="menuItems.bottom"
-    :selectedItems="selectedMenu"
-  ></floating-menu>
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="null"
+    :hasPopups="true"
+  ></bottomMenu>
 
   <div v-if="isSelection" class="container compare__content">
     <compare-select

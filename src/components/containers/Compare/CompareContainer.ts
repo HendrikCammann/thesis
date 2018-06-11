@@ -9,9 +9,10 @@ import {CompareSelect} from '../../ui-widgets/compare-select';
 import {CompareBoxes} from '../../ui-widgets/compare-boxes';
 import {CompareGraph} from '../../ui-widgets/compare-graph';
 import {FloatingMenu} from '../../ui-widgets/floating-menu';
-import {DisplayType, RunType} from '../../../store/state';
+import {DashboardViewType, DisplayType, RunType} from '../../../store/state';
 import {FloatingMenuEvents} from '../../../events/floating-menu/FloatingMenu';
 import {CompareCompare} from '../../ui-widgets/compare-compare';
+import {BottomMenu} from '../../ui-widgets/bottom-menu';
 
 
 @Component({
@@ -31,7 +32,7 @@ import {CompareCompare} from '../../ui-widgets/compare-compare';
     'compare-boxes': CompareBoxes,
     'compare-graph': CompareGraph,
     'compare-compare': CompareCompare,
-    'floating-menu': FloatingMenu,
+    'bottomMenu': BottomMenu,
   }
 })
 export class CompareContainer extends Vue {
@@ -42,52 +43,73 @@ export class CompareContainer extends Vue {
     bottom: this.$store.getters.getShowEverything,
   };
 
-  public menuItems = {
-    top: [
-      {
-        name: 'Alle',
-        icon: 'running--darkgray',
-        action: RunType.All
-      },
-      {
-        name: 'Dauerlauf',
-        icon: 'running--dl',
-        action: RunType.Run
-      },
-      {
-        name: 'Langer Dauerlauf',
-        icon: 'running--ldl',
-        action: RunType.LongRun
-      },
-      {
-        name: 'Intervalle',
-        icon: 'running--interval',
-        action: RunType.ShortIntervals
-      },
-      {
-        name: 'Wettkämpfe',
-        icon: 'running--comp',
-        action: RunType.Competition
-      },
-      {
-        name: 'Unkategorisiert',
-        icon: 'running--gray',
-        action: RunType.Uncategorized
-      },
-    ],
-    bottom: [
-      {
-        name: 'Entwicklung',
-        icon: 'running--gray',
-        action: false,
-      },
-      {
-        name: 'Detail',
-        icon: 'running--gray',
-        action: true,
-      },
-    ]
-  };
+  public menuItems = [
+    {
+      name: 'Darstellung',
+      icon: 'running--gray',
+      action: 'chartToggle',
+      selected: 1,
+      items: [{
+          name: 'Entwicklung',
+          icon: 'running--gray',
+          action: false,
+        }, {
+          name: 'Detail',
+          icon: 'running--gray',
+          action: true,
+        }]
+    },
+    {
+      name: 'Stellschraube',
+      icon: 'running--gray',
+      action: 'screwToggle',
+      selected: 1,
+      items: [{
+          name: 'Distanz',
+          icon: 'distance--gray',
+          action: DisplayType.Distance,
+        }, {
+          name: 'Dauer',
+          icon: 'clock--gray',
+          action: DisplayType.Duration,
+        }, {
+          name: 'Intensität',
+          icon: 'flash--gray',
+          action: DisplayType.Intensity,
+        }]
+    },
+    {
+      name: 'Filter',
+      icon: 'filter--gray',
+      action: 'toggleRunType',
+      selected: 1,
+      items: [{
+          name: 'Alle',
+          icon: 'running--darkgray',
+          action: RunType.All
+        }, {
+          name: 'Dauerlauf',
+          icon: 'running--dl',
+          action: RunType.Run
+        }, {
+          name: 'Langer Dauerlauf',
+          icon: 'running--ldl',
+          action: RunType.LongRun
+        }, {
+          name: 'Intervalle',
+          icon: 'running--interval',
+          action: RunType.ShortIntervals
+        }, {
+          name: 'Wettkämpfe',
+          icon: 'running--comp',
+          action: RunType.Competition
+        }, {
+          name: 'Unkategorisiert',
+          icon: 'running--gray',
+          action: RunType.Uncategorized
+        }]
+    },
+  ];
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {

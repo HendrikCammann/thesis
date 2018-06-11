@@ -15,6 +15,7 @@ import {calculateCategoryOpacity, getCategoryColor} from '../../../utils/calcula
 import {DisplayType, RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 import {MutationTypes} from '../../../store/mutation-types';
+import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 
 @Component({
   template: require('./trainChart.html'),
@@ -221,7 +222,7 @@ export class TrainChart extends Vue {
             break;
           case DisplayType.Duration:
             barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].duration);
-            label = data[key].stats.typeCount[anchor].duration;
+            label = formatSecondsToDuration(data[key].stats.typeCount[anchor].duration, FormatDurationType.Dynamic).all;
             break;
           case DisplayType.Intensity:
             barLength = this.barLength(weekHeight, largestValue, data[key].stats.typeCount[anchor].duration);
@@ -367,7 +368,7 @@ export class TrainChart extends Vue {
           break;
         case DisplayType.Duration:
           barLength = this.barLength(weekHeight, largestValue, data[key].stats.time);
-          label = data[key].stats.time;
+          label = formatSecondsToDuration(data[key].stats.time, FormatDurationType.Dynamic).all;
           percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
           break;
         case DisplayType.Intensity:

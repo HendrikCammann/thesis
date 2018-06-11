@@ -1,0 +1,15 @@
+.compareCompare {
+  $root: &;
+
+  #{&}__content {
+    #{$root}__graph {
+      width: 50%;
+      float: left;
+
+      &:first-of-type {
+        border-right: 1px solid $colors-label;
+      }
+    }
+  }
+
+}

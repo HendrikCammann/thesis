@@ -90,34 +90,44 @@ export class CompareCompare extends Vue {
     let returnArr = [];
     clusters.forEach(cluster => {
       let arr = [];
+      let accessor2 = accessor;
+      if (accessor2 === 'duration') {
+        accessor2 = 'time';
+      }
+
       let competition = {
         value: cluster.data.stats.typeCount.competition[accessor],
         formatted: this.formatValue(displayType, cluster.data.stats.typeCount.competition[accessor]),
         percentage: getPercentageFromValue(cluster.data.stats.typeCount.competition[accessor], maxValue) / 100,
+        percentageIntern: getPercentageFromValue(cluster.data.stats.typeCount.competition[accessor], cluster.data.stats[accessor2]) + '%',
         type: cluster.data.stats.typeCount.competition.type,
       };
       let interval = {
         value: cluster.data.stats.typeCount.interval[accessor],
         formatted: this.formatValue(displayType, cluster.data.stats.typeCount.interval[accessor]),
         percentage: getPercentageFromValue(cluster.data.stats.typeCount.interval[accessor], maxValue) / 100,
+        percentageIntern: getPercentageFromValue(cluster.data.stats.typeCount.interval[accessor], cluster.data.stats[accessor2]) + '%',
         type: cluster.data.stats.typeCount.interval.type,
       };
       let longRun = {
         value: cluster.data.stats.typeCount.longRun[accessor],
         formatted: this.formatValue(displayType, cluster.data.stats.typeCount.longRun[accessor]),
         percentage: getPercentageFromValue(cluster.data.stats.typeCount.longRun[accessor], maxValue) / 100,
+        percentageIntern: getPercentageFromValue(cluster.data.stats.typeCount.longRun[accessor], cluster.data.stats[accessor2]) + '%',
         type: cluster.data.stats.typeCount.longRun.type,
       };
       let run = {
         value: cluster.data.stats.typeCount.run[accessor],
         formatted: this.formatValue(displayType, cluster.data.stats.typeCount.run[accessor]),
         percentage: getPercentageFromValue(cluster.data.stats.typeCount.run[accessor], maxValue) / 100,
+        percentageIntern: getPercentageFromValue(cluster.data.stats.typeCount.run[accessor], cluster.data.stats[accessor2]) + '%',
         type: cluster.data.stats.typeCount.run.type,
       };
       let uncategorized = {
         value: cluster.data.stats.typeCount.uncategorized[accessor],
         formatted: this.formatValue(displayType, cluster.data.stats.typeCount.uncategorized[accessor]),
         percentage: getPercentageFromValue(cluster.data.stats.typeCount.uncategorized[accessor], maxValue) / 100,
+        percentageIntern: getPercentageFromValue(cluster.data.stats.typeCount.uncategorized[accessor], cluster.data.stats[accessor2]) + '%',
         type: cluster.data.stats.typeCount.uncategorized.type,
       };
 

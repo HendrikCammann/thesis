@@ -42,6 +42,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-widgets/compare-select/_style";
 @import "components/ui-widgets/compare-boxes/_style";
 @import "components/ui-widgets/compare-graph/_style";
+@import "components/ui-widgets/compare-compare/_style";
 @import "components/ui-widgets/floating-menu/_style";
 @import "components/ui-widgets/detail-map/_style";
 @import "components/ui-widgets/activity-boxes/_style";
@@ -59,6 +60,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/visualizations/line-chart/style";
 @import "components/visualizations/zone-chart/style";
 @import "components/visualizations/history-chart/style";
+@import "components/visualizations/compare-chart/style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/ActivityStats/_style";

@@ -12,7 +12,7 @@ import {FeedItem} from '../../ui-elements/feed-item';
 })
 export class Feed extends Vue {
   @Prop()
-  listItems: any[] | any;
+  listItems: any[];
 
   @Prop()
   isDashboard: boolean;
@@ -25,7 +25,7 @@ export class Feed extends Vue {
     if (this.isDashboard && this.listItems !== undefined) {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
-      this.list = this.initFeed(this.listItems);
+      this.list = this.initFeed(this.listItems[0]);
     }
   }
 
@@ -33,7 +33,7 @@ export class Feed extends Vue {
     if (this.isDashboard && this.listItems !== undefined) {
       this.list = this.initDashboardFeed(this.listItems);
     } else if (this.listItems !== undefined) {
-      this.list = this.initFeed(this.listItems);
+      this.list = this.initFeed(this.listItems[0]);
     }
   }
 

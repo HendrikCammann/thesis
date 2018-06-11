@@ -1,9 +1,10 @@
 <div class="compareCompare">
   works
-  <div class="compareCompare__content" v-if="data !== null">
-    <div v-for="(item, i) in data.data">
+  <div class="compareCompare__content clearfix" v-if="data !== null">
+    <div class="compareCompare__graph" v-for="(item, i) in data.data">
       <compare-chart
         :root="'compareCompare' + i"
+        :index="i"
         :data="item"
         :loadingStatus="loadingStatus"
       ></compare-chart>

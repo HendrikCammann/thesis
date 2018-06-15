@@ -3,7 +3,8 @@
 
   #{&}__pace {
     fill: none;
-    stroke: $colors-pace;
+    //stroke: $colors-pace;
+    stroke: url(#pace-gradient);
     stroke-width: 2px;
 
     &--avg {
@@ -16,7 +17,7 @@
 
   #{&}__heartrate {
     fill: none;
-    stroke: $colors-hr;
+    stroke: url(#hr-gradient);
     stroke-width: 2px;
 
     &--avg {

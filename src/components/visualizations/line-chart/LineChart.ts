@@ -6,6 +6,7 @@ import {setupSvg} from '../../../utils/svgInit/svgInit';
 import {formatPace} from '../../../utils/format-data';
 import {FormatPaceType} from '../../../models/FormatModel';
 import {getLargerValue} from '../../../utils/numbers/numbers';
+import {CategoryColors, ZoneColors} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./LineChart.html'),
@@ -71,11 +72,17 @@ export class LineChart extends Vue {
   private drawData(svg, data) {
     let hasHeartrate = true;
 
+    let avgPage = 0;
+    let avgHr = 0;
+
     data.map((d) => {
       d.avgPace = +d.avgPace;
+      avgPage = +d.avgPace;
       d.pace = +d.pace;
+      console.log(d.pace);
       if (d.heartrate !== null) {
         d.avgHr = +d.avgHr;
+        avgHr = +d.avgHr;
         d.heartrate = +d.heartrate;
       } else {
         hasHeartrate = false;
@@ -127,6 +134,39 @@ export class LineChart extends Vue {
         });
     }
 
+    // console.log(avgPage);
+
+    svg.append("linearGradient")
+      .attr("id", "pace-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0).attr("y1", y(avgPage))
+      .attr("x2", 0).attr("y2", y(avgPage) + 0.1)
+      .selectAll("stop")
+      .data([
+        {offset: "0%", color: ZoneColors.Pace},
+        {offset: "50%", color: ZoneColors.Pace},
+        {offset: "50%", color: ZoneColors.PaceLight},
+        {offset: "100%", color: ZoneColors.PaceLight}
+      ])
+      .enter().append("stop")
+      .attr("offset", function(d) { return d.offset; })
+      .attr("stop-color", function(d) { return d.color; });
+
+    svg.append("linearGradient")
+      .attr("id", "hr-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0).attr("y1", y2(avgHr))
+      .attr("x2", 0).attr("y2", y2(avgHr) + 0.1)
+      .selectAll("stop")
+      .data([
+        {offset: "0%", color: ZoneColors.Heartrate},
+        {offset: "50%", color: ZoneColors.Heartrate},
+        {offset: "50%", color: ZoneColors.HeartrateLight},
+        {offset: "100%", color: ZoneColors.HeartrateLight}
+      ])
+      .enter().append("stop")
+      .attr("offset", function(d) { return d.offset; })
+      .attr("stop-color", function(d) { return d.color; });
 
     svg.append('path')
       .data([data])

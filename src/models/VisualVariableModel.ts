@@ -30,8 +30,10 @@ export enum CategoryColors {
 }
 
 export enum ZoneColors {
-  Pace = '#43b3e6',
-  Heartrate = '#ec407a',
+  Pace = '#0D47A1',
+  PaceLight = '#64B5F6',
+  Heartrate = '#B71C1C',
+  HeartrateLight = '#E57373',
 }
 
 export enum BarChartSizes {

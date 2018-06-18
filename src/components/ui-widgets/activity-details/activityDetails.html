@@ -1,6 +1,10 @@
 <div class="activityDetails">
   <div class="box-wrapper">
     <div class="box-content">
+      <div class="box-scale clearfix">
+        <div>Pace</div>
+        <div>Herzfrequenz</div>
+      </div>
       <div class="activityDetails__graph" v-if="graphData !== null">
         <detail-graph
           :data="graphData"

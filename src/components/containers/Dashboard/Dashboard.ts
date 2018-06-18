@@ -14,6 +14,9 @@ import {BottomMenu} from '../../ui-widgets/bottom-menu';
 import {DashboardViewType, RunType} from '../../../store/state';
 import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
 import {Feed} from '../../ui-widgets/feed';
+import {Modal} from '../../ui-widgets/modal';
+import {modalEvents} from '../../../events/Modal/modal';
+import {ModalBox} from '../../ui-elements/modal-box';
 
 @Component({
   template: require('./dashboard.html'),
@@ -33,10 +36,14 @@ import {Feed} from '../../ui-widgets/feed';
     'divider': Divider,
     'historyChart': HistoryChart,
     'bottomMenu': BottomMenu,
+    'modal': Modal,
+    'modal-box': ModalBox,
     'feed': Feed,
   }
 })
 export class Dashboard extends Vue {
+  public showModal = false;
+  public modalItem = null;
 
   public canvasConstraints = new CanvasConstraints(0, 420, 300, 50, 1, 5);
   public menuItems = [
@@ -72,6 +79,16 @@ export class Dashboard extends Vue {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
+
+    eventBus.$on(modalEvents.open_Modal, (payload) => {
+      this.modalItem = payload;
+      this.showModal = true;
+    });
+
+    eventBus.$on(modalEvents.close_Modal, () => {
+      this.showModal = false;
+      this.modalItem = null;
+    });
 
     eventBus.$on(BottomMenuEvents.set_Dashboard_Viewtype, (payload) => {
       this.$store.dispatch(MutationTypes.SET_DASHBOARD_VIEWTYPE, payload);

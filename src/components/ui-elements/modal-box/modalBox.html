@@ -1,0 +1,16 @@
+<div class="modalBox" v-if="items">
+  <div class="modalBox__headline card">
+    <img class="modalBox__image" src="../../../assets/icons/solid/info--dark.svg">
+    <div class="modalBox__text">
+      <div class="modalBox__main">{{ items.label }}</div>
+      <div class="modalBox__sub">Erklärung</div>
+    </div>
+  </div>
+  <div class="modalBox__box card">
+    <div class="modalBox__item" >
+      <div>{{ items.text }}</div>
+      <div>{{ items.how }}</div>
+    </div>
+  </div>
+</div>
+

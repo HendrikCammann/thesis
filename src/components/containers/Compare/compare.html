@@ -1,4 +1,13 @@
 <div class="container-fluid compare">
+  <modal v-show="showModal">
+    <modal-box v-if="useModalBox"
+      :items="modalItem"
+    ></modal-box>
+    <modal-list v-if="!useModalBox"
+       :items="modalItem"
+       :range="modalRange"
+    ></modal-list>
+  </modal>
   <bottomMenu v-if="!isSelection"
     :menuItems="menuItems"
     :selected="null"

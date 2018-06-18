@@ -12,6 +12,10 @@ import {DashboardViewType, DisplayType, RunType} from '../../../store/state';
 import {CompareCompare} from '../../ui-widgets/compare-compare';
 import {BottomMenu} from '../../ui-widgets/bottom-menu';
 import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
+import {ModalBox} from '../../ui-elements/modal-box';
+import {Modal} from '../../ui-widgets/modal';
+import {modalEvents} from '../../../events/Modal/modal';
+import {ModalList} from '../../ui-elements/modal-list';
 
 
 @Component({
@@ -34,11 +38,18 @@ import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
     'compare-graph': CompareGraph,
     'compare-compare': CompareCompare,
     'bottomMenu': BottomMenu,
+    'modal': Modal,
+    'modal-box': ModalBox,
+    'modal-list': ModalList,
   }
 })
 export class CompareContainer extends Vue {
   public isSelection = true;
   public selectedMenu = null;
+  public showModal = false;
+  public modalItem = null;
+  public modalRange = null;
+  public useModalBox = true;
 
   public menuItems = [
     {
@@ -133,6 +144,27 @@ export class CompareContainer extends Vue {
           this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, payload.payload);
           break;
       }
+    });
+
+    eventBus.$on(modalEvents.open_Modal, (payload) => {
+      if (typeof payload[0] === 'number') {
+        let temp = [];
+        payload.forEach(id => {
+          temp.push(this.$store.getters.getActivity(id));
+        });
+        this.modalItem = temp;
+        this.modalRange = 'long';
+        this.useModalBox = false;
+      } else {
+        this.modalItem = payload;
+        this.useModalBox = true;
+      }
+      this.showModal = true;
+    });
+
+    eventBus.$on(modalEvents.close_Modal, () => {
+      this.showModal = false;
+      this.modalItem = null;
     });
 
 

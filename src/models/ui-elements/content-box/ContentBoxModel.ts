@@ -5,12 +5,14 @@ export class ContentBoxModel {
   label: string | number;
   icon: ContentBoxIcons;
   isActive: boolean;
+  information?: string;
 
-  constructor(value, label, icon, isActive) {
+  constructor(value, label, icon, isActive, information) {
     this.value = value;
     this.label = label;
     this.icon = icon;
     this.isActive = isActive;
+    this.information = information;
   }
 }
 

@@ -1,4 +1,5 @@
 <div class="compareBoxes" v-if="data != null">
+
   <div class="compareBoxes__content">
     <divider
       :title="'Wettkampfsergebnis'"
@@ -34,6 +35,7 @@
           <content-box v-for="item in cluster"
             :key="item.toString()"
             :data="item"
+            :hasInformation="true"
           ></content-box>
         </div>
       </div>
@@ -53,6 +55,7 @@
           <content-box v-for="item in cluster"
                        :key="item.toString()"
                        :data="item"
+                       :hasInformation="true"
           ></content-box>
         </div>
       </div>

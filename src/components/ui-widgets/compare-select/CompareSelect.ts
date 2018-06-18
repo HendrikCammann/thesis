@@ -50,7 +50,7 @@ export class CompareSelect extends Vue {
         let icon = getContentBoxIcon(cluster.type);
         let selected = selectedClusters.indexOf(name) > -1;
 
-        let item = new ContentBoxModel(name, type, icon, selected);
+        let item = new ContentBoxModel(name, type, icon, selected, null);
 
         formattedClusters.push(item);
       }

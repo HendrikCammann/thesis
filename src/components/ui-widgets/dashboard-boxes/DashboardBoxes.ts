@@ -12,6 +12,7 @@ import {getKeys} from '../../../utils/array-helper';
 import {eventBus} from '../../../main';
 import {menuEvents} from '../../../events/Menu/menu';
 import {loadingStatus} from '../../../models/App/AppStatus';
+import {StatExplanations} from '../../../content/Explanations';
 
 @Component({
   template: require('./dashboardBoxes.html'),
@@ -104,15 +105,15 @@ export class DashboardBoxes extends Vue {
 
     let stats = [];
 
-    stats.push(new ContentBoxModel(totalSessions, 'Einheiten', ContentBoxIcons.Run, false));
+    stats.push(new ContentBoxModel(totalSessions, 'Einheiten', ContentBoxIcons.Run, false, StatExplanations.ActivitiesTotal));
 
     let distance = formatDistance(totalDistance, FormatDistanceType.Kilometers).toFixed(2) + 'km';
-    stats.push(new ContentBoxModel(distance, 'Gesamtdistanz', ContentBoxIcons.Distance, false));
+    stats.push(new ContentBoxModel(distance, 'Gesamtdistanz', ContentBoxIcons.Distance, false, StatExplanations.DistanceTotal));
 
     let duration = formatSecondsToDuration(totalDuration, FormatDurationType.Dynamic).all;
-    stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false));
+    stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false, StatExplanations.DurationTotal));
 
-    stats.push(new ContentBoxModel(Math.round(totalIntensity), 'Gesamtintensität', ContentBoxIcons.Intensity, false));
+    stats.push(new ContentBoxModel(Math.round(totalIntensity), 'Gesamtintensität', ContentBoxIcons.Intensity, false, StatExplanations.IntensityTotal));
 
     return stats;
   }
@@ -155,17 +156,17 @@ export class DashboardBoxes extends Vue {
 
     let stats = [];
 
-    stats.push(new ContentBoxModel(totalSessions, 'Einheiten', ContentBoxIcons.Run, false));
+    stats.push(new ContentBoxModel(totalSessions, 'Einheiten', ContentBoxIcons.Run, false, StatExplanations.ActivitiesTotal));
 
-    stats.push(new ContentBoxModel(restdays, 'Ruhetage', ContentBoxIcons.Restday, false));
+    stats.push(new ContentBoxModel(restdays, 'Ruhetage', ContentBoxIcons.Restday, false, StatExplanations.RestdayTotal));
 
     let distance = formatDistance(totalDistance, FormatDistanceType.Kilometers).toFixed(2) + 'km';
-    stats.push(new ContentBoxModel(distance, 'Gesamtdistanz', ContentBoxIcons.Distance, false));
+    stats.push(new ContentBoxModel(distance, 'Gesamtdistanz', ContentBoxIcons.Distance, false, StatExplanations.DistanceTotal));
 
     let duration = formatSecondsToDuration(totalDuration, FormatDurationType.Dynamic).all;
-    stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false));
+    stats.push(new ContentBoxModel(duration, 'Gesamtdauer', ContentBoxIcons.Duration, false, StatExplanations.DurationTotal));
 
-    stats.push(new ContentBoxModel(totalIntensity, 'Gesamtintensität', ContentBoxIcons.Intensity, false));
+    stats.push(new ContentBoxModel(totalIntensity, 'Gesamtintensität', ContentBoxIcons.Intensity, false, StatExplanations.IntensityTotal));
 
     return stats;
   }

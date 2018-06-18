@@ -1,4 +1,9 @@
 <div class="container-fluid activity">
+  <modal v-show="showModal">
+    <modal-box
+      :items="modalItem"
+    ></modal-box>
+  </modal>
 
   <div class="row activity__map">
     <div class="col-md-12 no-padding">

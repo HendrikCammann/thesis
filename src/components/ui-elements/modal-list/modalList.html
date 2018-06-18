@@ -8,7 +8,10 @@
   </div>
   <div class="modalList__box card">
     <div class="modalList__item" :style="{ color: getColor(ac) }" v-for="(ac, i) in items" @click="openDetail(ac.id)">
-        <div class="modalList__label">{{ getTime(ac.date, 0) }}</div><span>{{ ac.name }}</span>
+        <div class="modalList__label">{{ getTime(ac.date, 0) }}</div>
+        <div class="modalList__name">{{ ac.name }}</div>
+        <img class="modalList__link" src="../../../assets/icons/solid/chrevron--gray.svg">
+
     </div>
   </div>
 </div>

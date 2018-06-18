@@ -43,6 +43,24 @@ body {
     font-weight: 600;
   }
 
+  .box-scale {
+    font-family: 'Nunito', sans-serif;
+    color: #adb7bf;
+    font-size: 12px;
+    font-weight: 600;
+
+    div {
+      display: inline-block;
+      float: left;
+      color: $colors-pace;
+
+      &:last-of-type {
+        float: right;
+        color: $colors-hr;
+      }
+    }
+  }
+
   .box-content {
     margin-top: 16px;
   }

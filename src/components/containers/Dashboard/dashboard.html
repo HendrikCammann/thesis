@@ -1,4 +1,9 @@
 <div class="container-fluid dashboard">
+  <modal v-show="showModal">
+    <modal-box
+      :items="modalItem"
+    ></modal-box>
+  </modal>
   <bottomMenu
     :menuItems="menuItems"
     :selected="viewType"

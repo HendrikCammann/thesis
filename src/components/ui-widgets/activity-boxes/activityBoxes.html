@@ -3,6 +3,7 @@
     <div class="column column--half" v-for="item in data.basics">
       <content-box
         :data="item"
+        :hasInformation="true"
       ></content-box>
     </div>
     <div class="column" v-for="item in data.text">

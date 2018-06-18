@@ -12,6 +12,9 @@ import {menuEvents} from '../../../events/Menu/menu';
 import {eventBus} from '../../../main';
 import {Divider} from '../../ui-elements/divider';
 import {getCategoryColor} from '../../../utils/calculateVisualVariables';
+import {modalEvents} from '../../../events/Modal/modal';
+import {ModalBox} from '../../ui-elements/modal-box';
+import {Modal} from '../../ui-widgets/modal';
 
 /* tslint:disable */
 @Component({
@@ -28,10 +31,15 @@ import {getCategoryColor} from '../../../utils/calculateVisualVariables';
     'activityBoxes': ActivityBoxes,
     'activityZones': ActivityZones,
     'activityDetails': ActivityDetails,
+    'modal': Modal,
+    'modal-box': ModalBox,
     'divider': Divider,
   }
 })
 export class ActivityContainer extends Vue {
+  public showModal = false;
+  public modalItem = null;
+
   public getColor(type) {
     return getCategoryColor(type);
   }
@@ -46,5 +54,15 @@ export class ActivityContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
       eventBus.$emit(menuEvents.set_State, this.$store.getters.getSelectedActivity.name);
     }
+
+    eventBus.$on(modalEvents.open_Modal, (payload) => {
+      this.modalItem = payload;
+      this.showModal = true;
+    });
+
+    eventBus.$on(modalEvents.close_Modal, () => {
+      this.showModal = false;
+      this.modalItem = null;
+    });
   }
 }

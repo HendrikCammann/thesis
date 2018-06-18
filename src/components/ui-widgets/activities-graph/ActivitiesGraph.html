@@ -1,10 +1,9 @@
 <div class="activitiesGraph">
   <modal v-show="showModal">
-    <div class="card">
-      <modal-list
-        :items="modalItem"
-      ></modal-list>
-    </div>
+    <modal-list
+      :items="modalItem"
+      :range="modalRange"
+    ></modal-list>
   </modal>
   <div class="box-wrapper">
     <div class="box-label">

@@ -34,6 +34,7 @@ export class ActivitiesGraph extends Vue {
 
   public showModal = false;
   public modalItem = null;
+  public modalRange = null;
   public toggleData: string[] = ['Entwicklung', 'Liste'];
   public selectedToggle: number = 0;
 
@@ -43,8 +44,18 @@ export class ActivitiesGraph extends Vue {
     });
 
     eventBus.$on(modalEvents.open_Modal, (item) => {
+      if (typeof item[0] === 'number') {
+        let temp = [];
+        item.forEach(id => {
+          temp.push(this.$store.getters.getActivity(id));
+        });
+        this.modalItem = temp;
+        this.modalRange = 'long';
+      } else {
+        this.modalItem = item;
+        this.modalRange = 'short';
+      }
       this.showModal = true;
-      this.modalItem = item;
     });
 
     eventBus.$on(modalEvents.close_Modal, () => {

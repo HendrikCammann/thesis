@@ -1,26 +1,52 @@
 .modalList {
   $root: &;
-  padding: 16px;
+  // padding: 16px;
   color: $colors-text;
   font-family: $font-family--main;
 
   #{&}__headline {
-    margin-bottom: 24px;
-    color: $colors-text;
+    margin-bottom: 8px;
     font-weight: 400;
+    padding: 16px;
+
+    #{$root}__image {
+      display: inline-block;
+      height: 32px;
+      width: 32px;
+      margin-right: 8px;
+      margin-top: -20px;
+    }
+
+    #{$root}__text {
+      display: inline-block;
+
+      #{$root}__main {
+        color: $colors-text;
+        font-weight: 700;
+        font-family: $font-family--secondary;
+      }
+
+      #{$root}__sub {
+        color: $colors-label;
+        font-size: 12px;
+      }
+    }
   }
 
   #{&}__item {
+    padding: 16px;
     cursor: pointer;
     font-weight: 700;
     font-size: 16px;
-    margin-bottom: 8px;
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-bottom: 1px solid $colors-label;
 
     #{$root}__label {
+      display: inline-block;
+      min-width: 20px;
       color: $colors-label;
       margin-right: 8px;
       font-weight: 400;
@@ -28,6 +54,7 @@
 
     &:last-of-type {
       margin-bottom: 0;
+      border-bottom: none;
     }
   }
 }

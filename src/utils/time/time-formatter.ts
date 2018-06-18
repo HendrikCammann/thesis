@@ -1,4 +1,5 @@
-import {FormatDurationType} from '../../models/FormatModel';
+import {FormatDate, FormatDurationType} from '../../models/FormatModel';
+import * as moment from 'moment';
 
 export class DateMinutesReturnModel {
   absValue: number;
@@ -129,4 +130,74 @@ export function getDayName(day: number, long: boolean) {
         return 'Sa';
     }
   }
+}
+
+export function getDayNameFromDate(date: number, long: boolean) {
+  if (long === undefined) {
+    long = false;
+  }
+  if (long) {
+    switch (moment(date).weekday()) {
+      case 0:
+        return 'Sonntag';
+      case 1:
+        return 'Montag';
+      case 2:
+        return 'Dienstag';
+      case 3:
+        return 'Mittwoch';
+      case 4:
+        return 'Donnerstag';
+      case 5:
+        return 'Freitag';
+      case 6:
+        return 'Samstag';
+    }
+  } else {
+    switch (moment(date).weekday()) {
+      case 0:
+        return 'So';
+      case 1:
+        return 'Mo';
+      case 2:
+        return 'Di';
+      case 3:
+        return 'Mi';
+      case 4:
+        return 'Do';
+      case 5:
+        return 'Fr';
+      case 6:
+        return 'Sa';
+    }
+  }
+}
+
+
+export function formatDate(data: any, type: FormatDate) {
+  moment.locale('de');
+  switch (type) {
+    case FormatDate.Hour:
+      return moment(data).format('HH:mm');
+    case FormatDate.Day:
+      return moment(data).format('DD.MM.YYYY');
+  }
+}
+
+export function getTimeRange(data: any, type: FormatDate) {
+  moment.locale('de');
+  let start;
+  let end;
+  switch (type) {
+    case FormatDate.Week:
+      start = moment(data).startOf('week').format('DD.MM');
+      end = moment(data).endOf('week').format('DD.MM.YYYY');
+      break;
+    case FormatDate.Month:
+      start = moment(data).startOf('month').format('DD.MM');
+      end = moment(data).endOf('month').format('DD.MM.YYYY');
+      break;
+  }
+
+  return start + ' - ' + end;
 }

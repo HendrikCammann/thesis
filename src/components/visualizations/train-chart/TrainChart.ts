@@ -17,6 +17,8 @@ import {DisplayType, RunType} from '../../../store/state';
 import {ActivityClusterTypeCountModel} from '../../../models/Activity/ActivityClusterModel';
 import {MutationTypes} from '../../../store/mutation-types';
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
+import {eventBus} from '../../../main';
+import {modalEvents} from '../../../events/Modal/modal';
 
 @Component({
   template: require('./trainChart.html'),
@@ -237,7 +239,7 @@ export class TrainChart extends Vue {
           color = getCategoryColor(data[key].stats.typeCount[anchor].type);
         }
 
-        let barItem = this.calculateBar(barLength, position, label, color, data[key].stats.typeCount[anchor].type, null);
+        let barItem = this.calculateBar(barLength, position, label, color, data[key].stats.typeCount[anchor].type, null, null, null);
         weekBars.push(barItem);
         position.x += (this.width / 6);
       }
@@ -318,7 +320,7 @@ export class TrainChart extends Vue {
           let color = barItems[i][j].color;
           let opacity = calculateCategoryOpacity(this.selectedRunType, barItems[i][j].type);
 
-          this.drawBar(svg, position, width, height, color, distance, opacity, false);
+          this.drawBar(svg, position, width, height, color, distance, opacity, false, null, null);
         }
       }
     }
@@ -369,26 +371,34 @@ export class TrainChart extends Vue {
       let barLength;
       let label;
       let percentages;
+      let activities;
+      let range;
 
       switch (this.selectedDisplayType) {
         case DisplayType.Distance:
           barLength = this.barLength(weekHeight, largestValue, data[key].stats.distance);
           label = formatDistance(data[key].stats.distance, FormatDistanceType.Kilometers).toFixed(0);
           percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.distance);
+          activities = data[key].activities;
+          range = data[key].range;
           break;
         case DisplayType.Duration:
           barLength = this.barLength(weekHeight, largestValue, data[key].stats.time);
           label = formatSecondsToDuration(data[key].stats.time, FormatDurationType.Dynamic).all;
           percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.time);
+          activities = data[key].activities;
+          range = data[key].range;
           break;
         case DisplayType.Intensity:
           barLength = this.barLength(weekHeight, largestValue, data[key].stats.intensity);
           label = Math.round(data[key].stats.intensity);
           percentages = this.calculatePercentageOfTotal(data[key].stats.typeCount, data[key].stats.intensity);
+          activities = data[key].activities;
+          range = data[key].range;
           break;
       }
 
-      let barItem = this.calculateBar(barLength, position, label, CategoryColors.Default, RunType.All, percentages);
+      let barItem = this.calculateBar(barLength, position, label, CategoryColors.Default, RunType.All, percentages, activities, range);
       barItems.push(barItem);
 
       position.y += weekHeight;
@@ -568,7 +578,7 @@ export class TrainChart extends Vue {
         let distance = barItems[i].distance;
 
         if (this.selectedRunType !== RunType.All && this.showEverything) {
-          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Inactive, true);
+          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Inactive, true, barItems[i].activities, barItems[i].range);
           let bar = barItems[i].percentages.find(item => {
             return item.type === this.selectedRunType;
           });
@@ -587,10 +597,10 @@ export class TrainChart extends Vue {
                 break;
             }
             let color = getCategoryColor(bar.type);
-            this.drawBar(svg, position, width, overlayHeight, color, overlayDistance, CategoryOpacity.Full, false);
+            this.drawBar(svg, position, width, overlayHeight, color, overlayDistance, CategoryOpacity.Full, false, barItems[i].activities, barItems[i].range);
           }
         } else {
-          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full, false);
+          this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full, false, barItems[i].activities, barItems[i].range);
         }
       }
     }
@@ -628,7 +638,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @returns {{xStart: number; yStart: number; xEnd: number; yEnd: number; width: number; length: number}}
    */
-  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType, percentages: any) {
+  private calculateBar(barLength: number, position: PositionModel, distance: number | string, color: CategoryColors, type: RunType, percentages: any, activities, range) {
     let width = this.barWidth;
     if (barLength < width && barLength !== 0) {
       barLength = width;
@@ -644,6 +654,8 @@ export class TrainChart extends Vue {
       type: type,
       color: color,
       percentages: percentages,
+      activities: activities,
+      range: range,
     };
   }
 
@@ -892,7 +904,7 @@ export class TrainChart extends Vue {
    * @param {CategoryColors} color
    * @param {string | number} distance
    */
-  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number, opacity: number, hideLabel: boolean) {
+  private drawBar(svg: any, position: PositionModel, width: number, height: number, color: CategoryColors, distance: string | number, opacity: number, hideLabel: boolean, activities, range) {
     svg.append('rect')
       .attr('x', position.x)
       .attr('y', position.y)
@@ -901,7 +913,12 @@ export class TrainChart extends Vue {
       .attr('height', height)
       .attr('width', width)
       .attr('fill', color)
-      .attr('opacity', opacity);
+      .attr('opacity', opacity)
+      .on('click', () => {
+        if (activities !== null) {
+          eventBus.$emit(modalEvents.open_Modal, activities);
+        }
+      });
 
     if (!hideLabel) {
       if (this.selectedDisplayType === DisplayType.Distance) {

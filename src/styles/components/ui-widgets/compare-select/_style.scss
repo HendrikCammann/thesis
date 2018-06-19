@@ -3,15 +3,21 @@
 
   .contentBox {
     margin-bottom: 16px;
+  }
 
+  #{&}--active {
     &:last-of-type {
-      margin-bottom: 0;
+      margin-bottom: 100px;
     }
   }
 
   #{&}__cta {
     position: fixed;
-    width: calc(100% - 32px);
-    bottom: 24px;
+    width: 100%;
+    left: 0;
+    padding: 16px;
+    bottom: 0;
+    box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+    background-color: $colors-white;
   }
 }

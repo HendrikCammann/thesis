@@ -33,3 +33,15 @@
 .slide-leave-to {
   transform: translate(100%, 0);
 }
+
+
+.slideUp-leave-active,
+.slideUp-enter-active {
+  transition: 0.3s ease;
+}
+.slideUp-enter {
+  transform: translate(0, 100%);
+}
+.slideUp-leave-to {
+  transform: translate(0, 100%);
+}

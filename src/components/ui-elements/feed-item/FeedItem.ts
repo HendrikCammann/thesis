@@ -12,6 +12,7 @@ import {LMap, LTileLayer, LPolyline} from 'vue2-leaflet';
 import L from 'leaflet'
 import * as moment from 'moment';
 import {MutationTypes} from '../../../store/mutation-types';
+import {loadingStatus} from '../../../models/App/AppStatus';
 
 @Component({
   template: require('./feedItem.html'),
@@ -29,6 +30,11 @@ export class FeedItem extends Vue {
   isDashboard: boolean;
 
   private data = null;
+
+  @Watch('activity')
+  onPropertyChanged(val: any, oldVal: any) {
+    this.data = this.setupData(this.activity);
+  }
 
   mounted() {
     this.data = this.setupData(this.activity);

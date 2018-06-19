@@ -54,6 +54,9 @@ export class TrainChart extends Vue {
   @Prop()
   isDual: boolean;
 
+  @Prop()
+  index: number;
+
 
   private width = 309;
   private height: number;
@@ -804,7 +807,7 @@ export class TrainChart extends Vue {
     let textOffset = radius - 35;
     let textAnchor = 'middle';
     let rotate = -90;
-    let gradient = 'url(#win-gradient)';
+    let gradient = 'url(#win-gradient' + this.index + ')';
 
     let trianglePos = position.x + this.barWidth;
     let triangle = d3.symbol()
@@ -826,7 +829,7 @@ export class TrainChart extends Vue {
       x -= arcOffsetX;
       trianglePos = position.x - this.barWidth;
       rotate = 90;
-      gradient = 'url(#lose-gradient)';
+      gradient = 'url(#lose-gradient' + this.index + ')';
     } else {
       x += arcOffsetX;
       textOffset += arcOffsetX;
@@ -834,7 +837,7 @@ export class TrainChart extends Vue {
     }
 
     let linearGradient = svg.append('linearGradient')
-      .attr('id', 'win-gradient')
+      .attr('id', 'win-gradient' + this.index)
       .attr('gradientTransform', 'rotate(90)');
 
     linearGradient.append('stop')
@@ -848,7 +851,7 @@ export class TrainChart extends Vue {
       .attr('stop-color', '#7ED321');
 
     let linearGradient2 = svg.append('linearGradient')
-      .attr('id', 'lose-gradient')
+      .attr('id', 'lose-gradient' + this.index)
       .attr('gradientTransform', 'rotate(90)');
 
     linearGradient2.append('stop')

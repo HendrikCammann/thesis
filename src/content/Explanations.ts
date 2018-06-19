@@ -19,7 +19,7 @@ export const StatExplanations = {
 
   IntensityTotal: {
     text: 'Dieser Wert gibt die aufsummierte Intensität aller Einheiten im momentan gewählten Zeitfenster an.',
-    how: 'Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
+    how: 'Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz, deinen Ruhepuls und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
     label: 'Gesamtintensität'
   },
 
@@ -57,7 +57,7 @@ export const DetailExplanations = {
 
   Intensity: {
     text: 'Dieser Wert sagt Dir wie intensiv diese Trainingseinheit war.',
-    how: 'Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
+    how: 'Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz, deinen Ruhepuls und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
     label: 'Intensität'
   },
 
@@ -107,7 +107,7 @@ export const PreparationExplanations = {
 
   AvgIntensity: {
     text: 'Dieser Wert sagt Dir wie hoch die Wochenintensität in der Vorbereitung durchschnittlich war.',
-    how: 'Wir berechnen dieser Wert indem für jede Woche alle Intensitäten der Einheiten zusammenaddieren und dann das Ergebnis durch die Dauer der Vorbereitung teilen. Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
+    how: 'Wir berechnen dieser Wert indem für jede Woche alle Intensitäten der Einheiten zusammenaddieren und dann das Ergebnis durch die Dauer der Vorbereitung teilen. Für die Berechnung der Intensität brauchen wir deine maximale Herzfrequenz, deinen Ruhepuls und Trainingseinheiten bei denen die Herzfrequenz aufgezeichnet wurde. Mit Hilfe dieser Werte können wir die Intensität einer einzelnen Einheit mithilfe des TRIMP-Konzept (TRaining IMpulse) von Dr. Eric Bannister brechnen.',
     label: 'ø Wochenintensität'
   },
 };

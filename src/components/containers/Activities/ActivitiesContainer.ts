@@ -10,6 +10,7 @@ import {eventBus} from '../../../main';
 import {FloatingMenuEvents} from '../../../events/floating-menu/FloatingMenu';
 import {BottomMenu} from '../../ui-widgets/bottom-menu';
 import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
+import {menuEvents} from '../../../events/Menu/menu';
 
 @Component({
   template: require('./activities.html'),
@@ -105,6 +106,8 @@ export class ActivitiesContainer extends Vue {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
+
+    eventBus.$emit(menuEvents.set_State, ' ');
 
     eventBus.$on(BottomMenuEvents.set_Selected_Menu, (i) => {
       this.selectedMenu = i;

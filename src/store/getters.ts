@@ -1,5 +1,5 @@
 import {GetterTree} from 'vuex';
-import {State} from './state';
+import {RunType, State} from './state';
 import {getKeys} from '../utils/array-helper';
 import {ActivityModel} from '../models/Activity/ActivityModel';
 
@@ -186,6 +186,10 @@ const getters: GetterTree<State, State> = {
     return state.filter.timeRange;
   },
 
+  getTimeRangeType: (state) => {
+    return state.filter.timeRange.rangeType;
+  },
+
   getSelectedRunType: (state) => {
     return state.filter.selectedRunType;
   },
@@ -209,6 +213,23 @@ const getters: GetterTree<State, State> = {
   // DASHBOARD
   getDashboardViewType: (state) => {
     return state.dashboardViewType;
+  },
+
+
+  // PROFILE
+  getNumberOfActivities: (state) => {
+    return state.activityList.length;
+  },
+
+  getNumberOfCompetitions: (state) => {
+    let ctn = 0;
+    state.activityList.forEach(item => {
+      if (item.categorization.activity_type === RunType.Competition) {
+        ctn++;
+      }
+    });
+
+    return ctn;
   }
 
 };

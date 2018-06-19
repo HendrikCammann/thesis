@@ -1,5 +1,6 @@
 import {FormatDate, FormatDurationType} from '../../models/FormatModel';
 import * as moment from 'moment';
+import {TimeRangeModel} from '../../models/Filter/FilterModel';
 
 export class DateMinutesReturnModel {
   absValue: number;
@@ -200,4 +201,12 @@ export function getTimeRange(data: any, type: FormatDate) {
   }
 
   return start + ' - ' + end;
+}
+
+export function checkIfDateIsInRange(range: TimeRangeModel, date: any) {
+  let d = moment(date);
+  let start = moment(range.start);
+  let end = moment(range.end);
+
+  return d.isBetween(start, end);
 }

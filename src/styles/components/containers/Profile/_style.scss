@@ -2,6 +2,18 @@
   $root: &;
   #{&}__content {
     padding-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 16px;
+
+    .box-label {
+      margin-bottom: 8px;
+    }
+
+    .buttonStandard {
+      width: 50%;
+      float: right;
+    }
 
     #{$root}__user {
       text-align: center;
@@ -26,6 +38,46 @@
         font-size: 14px;
         font-weight: 400;
         color: $colors-label;
+      }
+    }
+
+    #{$root}__userStats, #{$root}__activityStats {
+      margin-top: 40px;
+    }
+
+    .boxes {
+      :nth-child(odd) {
+        margin-right: 16px;
+      }
+      .contentBox {
+        margin-bottom: 16px;
+        width: calc(50% - 8px);
+        float: left
+      }
+    }
+
+    #{$root}__activityStats {
+      margin-top: 48px;
+    }
+
+    #{$root}__records {
+      margin-top: 48px;
+
+      #{$root}__record {
+        padding: 16px;
+        margin-bottom: 16px;
+
+        #{$root}__type {
+          display: inline-block;
+          color: $colors-subline;
+        }
+
+        #{$root}__value {
+          display: inline-block;
+          font-family: $font-family--secondary;
+          font-weight: 700;
+          float: right;
+        }
       }
     }
   }

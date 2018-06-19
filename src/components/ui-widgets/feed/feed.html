@@ -1,7 +1,7 @@
 <div class="feed">
   <div class="feed__content" v-if="list != null">
     <feed-item v-for="(item, i) in list"
-      :key="item.toString()"
+      :key="i"
       :activity="item"
       :isDashboard="isDashboard"
     ></feed-item>

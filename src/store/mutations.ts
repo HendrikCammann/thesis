@@ -585,8 +585,14 @@ const mutations: MutationTree<State> = {
   },
 
   [MutationTypes.SET_TIME_RANGE]: (state: State, {timeRange}) => {
-    state.filter.showEverything = false;
-    state.filter.timeRange = timeRange;
+    // state.filter.showEverything = false;
+    let range = new TimeRangeModel();
+    range.rangeType = timeRange.rangeType;
+    if (timeRange.range) {
+      range.start = timeRange.range.start;
+      range.end = timeRange.range.end;
+    }
+    state.filter.timeRange = range;
   },
 
   [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {

@@ -4,6 +4,8 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 import * as moment from 'moment';
 import {FeedItem} from '../../ui-elements/feed-item';
 import {RunType} from '../../../store/state';
+import {TimeRangeModel, TimeRangeType} from '../../../models/Filter/FilterModel';
+import {checkIfDateIsInRange} from '../../../utils/time/time-formatter';
 
 @Component({
   template: require('./feed.html'),
@@ -21,11 +23,14 @@ export class Feed extends Vue {
   @Prop()
   selectedRunType: RunType;
 
+  @Prop()
+  timeRange: TimeRangeModel;
+
   public list: any[] = null;
 
   @Watch('listItems')
   @Watch('listItems.All')
-  // @Watch('selectedRunType')
+  @Watch('selectedRunType')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.isDashboard && this.listItems !== undefined) {
       this.list = this.initDashboardFeed(this.listItems);
@@ -59,6 +64,10 @@ export class Feed extends Vue {
           }
         })
       }
+    }
+
+    if (this.timeRange.rangeType !== TimeRangeType.None) {
+      list = list.filter(item => checkIfDateIsInRange(this.timeRange, item.date) === true);
     }
     return list;
   }

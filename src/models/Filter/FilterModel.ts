@@ -1,14 +1,23 @@
 import {ClusterType, DisplayType, RunType} from '../../store/state';
 
+export enum TimeRangeType {
+  Week = 'Week',
+  Month = 'Month',
+  Individual = 'Individual',
+  None = 'None',
+}
+
 export class TimeRangeModel {
   start: Date;
   end: Date;
   isRange: boolean;
+  rangeType: TimeRangeType;
 
   constructor() {
     this.start = new Date(1970);
     this.end = new Date();
     this.isRange = false;
+    this.rangeType = TimeRangeType.None;
   }
 }
 

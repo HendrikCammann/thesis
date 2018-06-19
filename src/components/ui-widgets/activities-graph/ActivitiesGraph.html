@@ -6,14 +6,14 @@
     ></modal-list>
   </modal>
   <div class="box-wrapper">
-    <div class="box-label">
-      Entwicklung deines Trainings
-    </div>
     <div class="box-content">
       <toggle-standard
         :options="toggleData"
         :selectedOption="selectedToggle"
       ></toggle-standard>
+      <div class="box-label">
+        Trainingsentwicklung im wöchentlichen Überblick
+      </div>
       <div class="activitiesGraph__chart card">
         <train-chart v-if="selectedToggle == 0"
           :root="'train'"

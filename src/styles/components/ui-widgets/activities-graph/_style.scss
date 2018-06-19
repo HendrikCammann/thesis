@@ -1,8 +1,15 @@
 .activitiesGraph {
   $root: &;
 
+  .box-content {
+    margin-top: 0;
+  }
+  .toggleStandard {
+    margin-bottom: 16px;
+  }
+
   #{&}__chart {
-    margin-top: 32px;
+    margin-top: 8px;
     padding: 16px;
   }
 }

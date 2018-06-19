@@ -1,6 +1,6 @@
 .historyChart {
   $root: &;
-  margin-bottom: 32px;
+  // margin-bottom: 32px;
 
   #{&}__label {
     font-size: 12px;
@@ -57,6 +57,12 @@
       &--fat {
         font-weight: 700;
       }
+    }
+
+    #{$root}__typeName {
+      font-family: $font-family--main;
+      font-size: 10px;
+      font-weight: 400;
     }
 
     #{$root}__type {

@@ -514,14 +514,16 @@ export class TrainChart extends Vue {
               });
 
               if (nextBar !== undefined && nextBar.percentage > 0) {
+                console.log(bar);
                 let overlayLengthBarOne = bar.distance;
                 let overlayLengthBarTwo = nextBar.distance;
                 if (this.selectedDisplayType === DisplayType.Duration) {
                   overlayLengthBarOne = overlayLengthBarOne / 1000;
                   overlayLengthBarTwo = overlayLengthBarTwo / 1000;
                 }
-                let midBarOne = ((barItems[i].yStart + (barItems[i].yStart + overlayLengthBarOne)) / 2);
-                let midBarTwo = ((barItems[i + 1].yStart + (barItems[i + 1].yStart + overlayLengthBarTwo / 2)) / 2);
+
+                let midBarOne = (barItems[i].yStart + 10);
+                let midBarTwo = (barItems[i + 1].yStart + 10);
 
                 let radius = Math.abs(midBarOne - midBarTwo) / 2;
 
@@ -602,22 +604,6 @@ export class TrainChart extends Vue {
         } else {
           this.drawBar(svg, position, width, height, barItems[i].color, distance, CategoryOpacity.Full, false, barItems[i].activities, barItems[i].range);
         }
-      }
-    }
-  }
-
-
-  private drawFoldedCheckboxes(svg: any, barItems: any) {
-    for (let i = 0; i < barItems.length; i++) {
-      if (this.checkIfBarExists(barItems[i])) {
-        let position: PositionModel = {
-          x: this.width - 16,
-          y: barItems[i].yStart,
-        };
-
-        let id = 'checkbox_' + i + '_' + this.preparation;
-
-        this.drawCheckbox(svg, position, 8, id, barItems[i], this.preparation);
       }
     }
   }
@@ -815,13 +801,18 @@ export class TrainChart extends Vue {
     let startAngle = -Math.PI * 2;
     let endAngle = -Math.PI;
     let color = '#7ED321';
-    let textOffset = radius;
+    let textOffset = radius - 35;
     let textAnchor = 'middle';
+    let rotate = -90;
+    let gradient = 'url(#win-gradient)';
 
     let trianglePos = position.x + this.barWidth;
+    let triangle = d3.symbol()
+      .type(d3.symbolTriangle)
+      .size(80);
 
     // let arcOffsetX = Math.round(percentualDifference / 8);
-    let arcOffsetX = 15;
+    let arcOffsetX = 20;
 
     let x = position.x;
     let y = position.y + (height / 2);
@@ -833,12 +824,42 @@ export class TrainChart extends Vue {
       textOffset *= -1;
       textOffset -= arcOffsetX;
       x -= arcOffsetX;
-      trianglePos = position.x;
+      trianglePos = position.x - this.barWidth;
+      rotate = 90;
+      gradient = 'url(#lose-gradient)';
     } else {
       x += arcOffsetX;
       textOffset += arcOffsetX;
       totalDifference = '+' + totalDifference;
     }
+
+    let linearGradient = svg.append('linearGradient')
+      .attr('id', 'win-gradient')
+      .attr('gradientTransform', 'rotate(90)');
+
+    linearGradient.append('stop')
+      .attr('offset', '0%')
+      .attr('stop-opacity', 0.4)
+      .attr('stop-color', '#7ED321');
+
+    linearGradient.append('stop')
+      .attr('offset', '100%')
+      .attr('stop-opacity', 0.1)
+      .attr('stop-color', '#7ED321');
+
+    let linearGradient2 = svg.append('linearGradient')
+      .attr('id', 'lose-gradient')
+      .attr('gradientTransform', 'rotate(90)');
+
+    linearGradient2.append('stop')
+      .attr('offset', '0%')
+      .attr('stop-opacity', 0.4)
+      .attr('stop-color', '#D0021B');
+
+    linearGradient2.append('stop')
+      .attr('offset', '100%')
+      .attr('stop-opacity', 0.1)
+      .attr('stop-color', '#D0021B');
 
     svg.append('path')
       .attr('transform', 'translate(' + [x, y] + ')')
@@ -848,32 +869,43 @@ export class TrainChart extends Vue {
         startAngle: startAngle,
         endAngle: endAngle,
       }))
-      .attr('fill', color)
-      .attr('opacity', 0.1);
+      .attr('fill', gradient)
+      .attr('opacity', 1);
 
     if (left) {
-      legPositions.forEach(item => {
-        svg.append('rect')
-          .attr('x', item.x + (this.barWidth / 2) - arcOffsetX)
-          .attr('y', item.y)
-          .attr('fill', color)
-          .attr('width', arcOffsetX)
-          .attr('opacity', 0.1)
-          .attr('height', height);
+      legPositions.forEach((item, i) => {
+        if (i !== 0) {
+          svg.append('rect')
+            .attr('x', item.x + (this.barWidth / 2) - arcOffsetX)
+            .attr('y', item.y)
+            .attr('fill', color)
+            .attr('width', arcOffsetX)
+            .attr('opacity', 0.1)
+            .attr('height', height);
+        }
       });
       x += arcOffsetX;
     } else {
-      legPositions.forEach(item => {
-        svg.append('rect')
-          .attr('x', item.x + (this.barWidth / 2))
-          .attr('y', item.y)
-          .attr('fill', color)
-          .attr('width', arcOffsetX)
-          .attr('opacity', 0.1)
-          .attr('height', height);
+      legPositions.forEach((item, i) => {
+        if (i !== 0) {
+          svg.append('rect')
+            .attr('x', item.x + (this.barWidth / 2))
+            .attr('y', item.y)
+            .attr('fill', color)
+            .attr('width', arcOffsetX)
+            .attr('opacity', 0.1)
+            .attr('height', height);
+        }
       });
       x -= arcOffsetX;
     }
+
+    svg.append('path')
+      .attr('d', triangle)
+      .attr('stroke', '')
+      .attr('fill', color)
+      .attr('opacity', 0.5)
+      .attr('transform', 'translate(' + trianglePos + ',' + (y - radius) + ') rotate(' + rotate + ')');
 
     if (this.selectedDisplayType === DisplayType.Distance) {
       svg.append('text')

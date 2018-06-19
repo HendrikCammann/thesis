@@ -25,11 +25,17 @@
     <div class="historyChart__list-item clearfix" v-for="item in listData" v-if="item[0].label !== 'All'">
       <div class="historyChart__valueList"
            :class="{ 'historyChart__valueList--fat' : getHighlight(item[0].values.upper[0], item[0].values.lower[0]) }"
-      >{{ outputValue(item[0].values.upper[0]) }}</div>
+      >
+        <div>{{ outputValue(item[0].values.upper[0]) }}</div>
+        <div class="historyChart__typeName">{{ item[0].label }}</div>
+      </div>
       <div class="historyChart__type"><div class="historyChart__dot" :style="{backgroundColor: getColor(item[0].label)}"></div></div>
       <div class="historyChart__valueList"
            :class="{ 'historyChart__valueList--fat' : getHighlight(item[0].values.lower[0], item[0].values.upper[0]) }"
-      >{{ outputValue(item[0].values.lower[0]) }}</div>
+      >
+        <div>{{ outputValue(item[0].values.lower[0]) }}</div>
+        <div class="historyChart__typeName">{{ item[0].label }}</div>
+      </div>
     </div>
   </div>
 </div>

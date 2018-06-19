@@ -35,10 +35,26 @@ export class CompareGraph extends Vue {
 
   public chartData = null;
 
+  public scrolling;
+  public fadeToggle = false;
+
   private initToggleData(clusters) {
     this.clusters.forEach(cluster => {
       this.toggleData.push(cluster.name);
     });
+  }
+
+  public handleScroll() {
+    window.clearTimeout( this.scrolling );
+    this.fadeToggle = true;
+    let that = this;
+    // Set a timeout to run after scrolling ends
+    this.scrolling = setTimeout(function() {
+
+      // Run the callback
+      that.fadeToggle = false;
+
+    }, 66);
   }
 
   private initChartData(clusters, selectedToggle) {
@@ -46,11 +62,16 @@ export class CompareGraph extends Vue {
   }
 
   mounted() {
+    window.addEventListener('scroll', this.handleScroll);
     this.initToggleData(this.clusters);
     this.initChartData(this.clusters, this.selectedToggle);
     eventBus.$on(ToggleEvents.set_Selection, (index) => {
       this.selectedToggle = index;
       this.initChartData(this.clusters, this.selectedToggle);
     })
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }

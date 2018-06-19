@@ -32,6 +32,9 @@ export class ActivityDetails extends Vue {
   private listData = null;
   private graphData = null;
 
+  public scrolling;
+  public fadeToggle = false;
+
   @Watch('loaded.activities')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loaded.activities === loadingStatus.Loaded) {
@@ -117,7 +120,23 @@ export class ActivityDetails extends Vue {
     };
   }
 
+  public handleScroll() {
+    window.clearTimeout( this.scrolling );
+    this.fadeToggle = true;
+    let that = this;
+    // Set a timeout to run after scrolling ends
+    this.scrolling = setTimeout(function() {
+
+      // Run the callback
+      console.log( 'Scrolling has stopped.' );
+      that.fadeToggle = false;
+
+    }, 66);
+  }
+
   mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+
     if (this.loaded.activities === loadingStatus.Loaded) {
       this.listData = this.initListData(this.activity);
       this.graphData = this.initGraphData(this.activity);
@@ -128,5 +147,9 @@ export class ActivityDetails extends Vue {
       this.listData = this.initListData(this.activity);
       this.graphData = this.initGraphData(this.activity);
     });
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }

@@ -136,37 +136,37 @@ export class LineChart extends Vue {
 
     // console.log(avgPage);
 
-    svg.append("linearGradient")
-      .attr("id", "pace-gradient")
-      .attr("gradientUnits", "userSpaceOnUse")
-      .attr("x1", 0).attr("y1", y(avgPage))
-      .attr("x2", 0).attr("y2", y(avgPage) + 0.1)
-      .selectAll("stop")
+    svg.append('linearGradient')
+      .attr('id', 'pace-gradient')
+      .attr('gradientUnits', 'userSpaceOnUse')
+      .attr('x1', 0).attr('y1', y(avgPage))
+      .attr('x2', 0).attr('y2', y(avgPage) + 0.1)
+      .selectAll('stop')
       .data([
-        {offset: "0%", color: ZoneColors.Pace},
-        {offset: "50%", color: ZoneColors.Pace},
-        {offset: "50%", color: ZoneColors.PaceLight},
-        {offset: "100%", color: ZoneColors.PaceLight}
+        {offset: '0%', color: ZoneColors.Pace},
+        {offset: '50%', color: ZoneColors.Pace},
+        {offset: '50%', color: ZoneColors.PaceLight},
+        {offset: '100%', color: ZoneColors.PaceLight}
       ])
-      .enter().append("stop")
-      .attr("offset", function(d) { return d.offset; })
-      .attr("stop-color", function(d) { return d.color; });
+      .enter().append('stop')
+      .attr('offset', function(d) { return d.offset; })
+      .attr('stop-color', function(d) { return d.color; });
 
-    svg.append("linearGradient")
-      .attr("id", "hr-gradient")
-      .attr("gradientUnits", "userSpaceOnUse")
-      .attr("x1", 0).attr("y1", y2(avgHr))
-      .attr("x2", 0).attr("y2", y2(avgHr) + 0.1)
-      .selectAll("stop")
+    svg.append('linearGradient')
+      .attr('id', 'hr-gradient')
+      .attr('gradientUnits', 'userSpaceOnUse')
+      .attr('x1', 0).attr('y1', y2(avgHr))
+      .attr('x2', 0).attr('y2', y2(avgHr) + 0.1)
+      .selectAll('stop')
       .data([
-        {offset: "0%", color: ZoneColors.Heartrate},
-        {offset: "50%", color: ZoneColors.Heartrate},
-        {offset: "50%", color: ZoneColors.HeartrateLight},
-        {offset: "100%", color: ZoneColors.HeartrateLight}
+        {offset: '0%', color: ZoneColors.Heartrate},
+        {offset: '50%', color: ZoneColors.Heartrate},
+        {offset: '50%', color: ZoneColors.HeartrateLight},
+        {offset: '100%', color: ZoneColors.HeartrateLight}
       ])
-      .enter().append("stop")
-      .attr("offset", function(d) { return d.offset; })
-      .attr("stop-color", function(d) { return d.color; });
+      .enter().append('stop')
+      .attr('offset', function(d) { return d.offset; })
+      .attr('stop-color', function(d) { return d.color; });
 
     svg.append('path')
       .data([data])
@@ -211,12 +211,26 @@ export class LineChart extends Vue {
         }
       }));
 
+    svg.append('text')
+      .attr('transform', 'translate(' + -16 + ',' + (this.height / 2) +') rotate(-90)')
+      .attr('class', 'lineChart__label--pace')
+      .attr('dy', '1em')
+      .style('text-anchor', 'middle')
+      .text('Pace');
+
     // Add the Y Axis
     if(hasHeartrate) {
       svg.append('g')
         .attr('transform', 'translate(' + (this.width) + ', 0)')
         .attr('class', 'lineChart__scale--heartrate')
         .call(d3.axisLeft(y2).ticks(5));
+
+      svg.append('text')
+        .attr('transform', 'translate(' + (this.width + 16) + ',' + (this.height / 2) +') rotate(90)')
+        .attr('class', 'lineChart__label--heartrate')
+        .attr('dy', '1em')
+        .style('text-anchor', 'middle')
+        .text('Herzfrequenz');
     }
   }
 }

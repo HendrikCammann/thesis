@@ -3,9 +3,13 @@
     <div class="box-content">
       <div class="compareGraph__portrait">
         <toggle-standard
+          :class="{faded : fadeToggle}"
           :options="toggleData"
           :selectedOption="selectedToggle"
         ></toggle-standard>
+        <div class="box-label">
+          Trainingsentwicklung im wöchentlichen Überblick
+        </div>
         <div class="compareGraph__chart card">
           <train-chart v-if="toggleData.length !== 0"
                        :root="'train-chart'"

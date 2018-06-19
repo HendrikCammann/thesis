@@ -6,6 +6,18 @@
   }
 
   #{&}__list {
-    margin-top: 32px;
+    margin-top: 24px;
+  }
+
+  .toggleStandard {
+    transition: opacity 0.3s ease;
+    position: sticky;
+    top: 70px;
+    z-index: 80;
+  }
+
+  .faded {
+    transition: opacity 0.3s ease;
+    opacity: 0.1;
   }
 }

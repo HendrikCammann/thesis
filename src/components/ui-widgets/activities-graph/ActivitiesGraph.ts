@@ -38,7 +38,26 @@ export class ActivitiesGraph extends Vue {
   public toggleData: string[] = ['Entwicklung', 'Liste'];
   public selectedToggle: number = 0;
 
+  public scrolling;
+  public fadeToggle = false;
+
+  public handleScroll() {
+    window.clearTimeout( this.scrolling );
+    this.fadeToggle = true;
+    let that = this;
+    // Set a timeout to run after scrolling ends
+    this.scrolling = setTimeout(function() {
+
+      // Run the callback
+      console.log( 'Scrolling has stopped.' );
+      that.fadeToggle = false;
+
+    }, 66);
+  }
+
   mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+
     eventBus.$on(ToggleEvents.set_Selection, (index) => {
       this.selectedToggle = index;
     });
@@ -62,5 +81,9 @@ export class ActivitiesGraph extends Vue {
       this.showModal = false;
       this.modalItem = null;
     });
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }

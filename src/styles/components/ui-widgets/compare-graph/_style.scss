@@ -2,7 +2,8 @@
   $root: &;
 
   #{&}__chart {
-    margin-top: 32px;
+    margin-top: 8px;
+    margin-bottom: 64px;
     padding: 16px;
   }
 
@@ -10,6 +11,18 @@
     display: none;
     @media screen and (max-width: 666px) {
       display: block;
+    }
+    .toggleStandard {
+      transition: opacity 0.3s ease;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 70px;
+      z-index: 80;
+    }
+
+    .faded {
+      transition: opacity 0.3s ease;
+      opacity: 0.1;
     }
   }
 

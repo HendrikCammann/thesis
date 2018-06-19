@@ -1,5 +1,8 @@
 .lineChart {
   $root: &;
+  svg {
+    overflow: visible !important;
+  }
 
   #{&}__pace {
     fill: none;
@@ -40,6 +43,20 @@
       text {
         fill: $colors-hr
       }
+    }
+  }
+
+  #{&}__label {
+    &--pace {
+      font-size: 12px;
+      font-family: $font-family--main;
+      fill: $colors-pace
+    }
+
+    &--heartrate {
+      font-size: 12px;
+      font-family: $font-family--main;
+        fill: $colors-hr
     }
   }
 }

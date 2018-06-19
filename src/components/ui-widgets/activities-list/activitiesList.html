@@ -1,6 +1,6 @@
 <div class="activitiesList" v-if="formatedData !== null">
   <div class="activitiesList__week" v-for="(item, j) in formatedData">
-      <div class="activitiesList__date">{{item.date}}</div>
+      <div class="activitiesList__date" v-if="!hideDate">{{item.date}}</div>
       <div class="activitiesList__days">
         <div class="activitiesList__wrapper">
           <div class="activitiesList__day" :class="{'activitiesList__day--active' : isToday(j, 0)}">So</div>

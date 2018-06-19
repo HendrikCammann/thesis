@@ -5,36 +5,80 @@
       :range="modalRange"
     ></modal-list>
   </modal>
-  <div class="box-wrapper">
-    <div class="box-content">
-      <toggle-standard
-        :class="{faded : fadeToggle}"
-        :options="toggleData"
-        :selectedOption="selectedToggle"
-      ></toggle-standard>
-      <div class="box-label">
-        Trainingsentwicklung im wöchentlichen Überblick
+  <div class="activitiesGraph__portrait">
+    <div class="box-wrapper">
+      <div class="box-content">
+        <toggle-standard
+          :class="{faded : fadeToggle}"
+          :options="toggleData"
+          :selectedOption="selectedToggle"
+        ></toggle-standard>
+        <div class="box-label">
+          Trainingsentwicklung im wöchentlichen Überblick
+        </div>
+        <div class="activitiesGraph__chart card">
+          <train-chart v-if="selectedToggle == 0"
+            :root="'train'"
+            :anchors="['All']"
+            :preparation="'All'"
+            :loadingStatus="loadingStatus"
+            :selectedRunType="selectedRunType"
+            :selectedDisplayType="selectedDisplayType"
+            :showEverything="showEverything"
+            :clustering="'byWeeks'"
+            :showDate="true"
+            :index="0"
+          ></train-chart>
+          <activities-list v-if="selectedToggle == 1"
+             :preparation="'All'"
+             :loadingStatus="loadingStatus"
+             :selectedRunType="selectedRunType"
+             :showEverything="showEverything"
+             :clustering="'byWeeks'"
+          ></activities-list>
+        </div>
       </div>
-      <div class="activitiesGraph__chart card">
-        <train-chart v-if="selectedToggle == 0"
-          :root="'train'"
-          :anchors="['All']"
-          :preparation="'All'"
-          :loadingStatus="loadingStatus"
-          :selectedRunType="selectedRunType"
-          :selectedDisplayType="selectedDisplayType"
-          :showEverything="showEverything"
-          :clustering="'byWeeks'"
-          :showDate="true"
-          :index="0"
-        ></train-chart>
-        <activities-list v-if="selectedToggle == 1"
-           :preparation="'All'"
-           :loadingStatus="loadingStatus"
-           :selectedRunType="selectedRunType"
-           :showEverything="showEverything"
-           :clustering="'byWeeks'"
-        ></activities-list>
+    </div>
+  </div>
+  <div class="activitiesGraph__landscape">
+    <div class="box-wrapper">
+      <div class="box-content">
+        <div class="box-label">
+          Trainingsentwicklung im wöchentlichen Überblick
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="activitiesGraph__chart card">
+              <train-chart
+                :root="'trainLa'"
+                :anchors="['All']"
+                :preparation="'All'"
+                :loadingStatus="loadingStatus"
+                :selectedRunType="selectedRunType"
+                :selectedDisplayType="selectedDisplayType"
+                :showEverything="showEverything"
+                :clustering="'byWeeks'"
+                :showDate="false"
+                :index="1"
+              ></train-chart>
+            </div>
+          </div>
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-6">
+            <div class="activitiesGraph__chart card">
+              <activities-list
+                :preparation="'All'"
+                :loadingStatus="loadingStatus"
+                :selectedRunType="selectedRunType"
+                :showEverything="showEverything"
+                :clustering="'byWeeks'"
+                :hideDate="true"
+              ></activities-list>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -30,6 +30,9 @@ export class ActivitiesList extends Vue {
   @Prop()
   clustering: string;
 
+  @Prop()
+  hideDate: boolean;
+
   private formatedData = null;
 
   @Watch('loadingStatus.activities')

@@ -4,7 +4,7 @@
       Wähle zwei Vorbereitungen
     </div>
     <div class="box-content">
-      <div class="compareSelect__content" v-if="contentBoxData != null">
+      <div class="compareSelect__content clearfix" v-if="contentBoxData != null">
         <content-box
           v-for="item in contentBoxData"
           :class="{'compareSelect--active' : showCta()}"

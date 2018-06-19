@@ -2,6 +2,10 @@
   $root: &;
   // margin-bottom: 32px;
 
+  #history {
+    text-align: center;
+  }
+
   #{&}__label {
     font-size: 12px;
     display: inline-block;

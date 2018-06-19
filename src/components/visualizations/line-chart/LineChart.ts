@@ -15,6 +15,9 @@ export class LineChart extends Vue {
   @Prop()
   data: any;
 
+  @Prop()
+  viewPortWidth: number;
+
 
   private margin = {top: 16, right: 4, bottom: 16, left: 4};
   private width = 340 - this.margin.left - this.margin.right;
@@ -23,11 +26,15 @@ export class LineChart extends Vue {
   private maxHr = 0;
 
   @Watch('data')
+  @Watch('viewPortWidth')
   onPropertyChanged(val: any, oldVal: any) {
-    console.log('changed');
+    d3.select('#line' + ' > svg').remove();
+    this.width = this.viewPortWidth - this.margin.left - this.margin.right;
+    this.lineChart(this.data);
   }
 
   mounted() {
+    this.width = this.viewPortWidth - this.margin.left - this.margin.right;
     this.lineChart(this.data);
   }
 
@@ -79,7 +86,6 @@ export class LineChart extends Vue {
       d.avgPace = +d.avgPace;
       avgPage = +d.avgPace;
       d.pace = +d.pace;
-      console.log(d.pace);
       if (d.heartrate !== null) {
         d.avgHr = +d.avgHr;
         avgHr = +d.avgHr;

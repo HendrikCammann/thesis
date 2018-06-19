@@ -35,6 +35,8 @@ export class ActivityDetails extends Vue {
   public scrolling;
   public fadeToggle = false;
 
+  public viewPortWidth = 1200;
+
   @Watch('loaded.activities')
   onPropertyChanged(val: any, oldVal: any) {
     if (this.loaded.activities === loadingStatus.Loaded) {
@@ -134,8 +136,15 @@ export class ActivityDetails extends Vue {
     }, 66);
   }
 
+  public getViewportWidth() {
+    this.viewPortWidth = document.getElementsByClassName('activity__content')[0].clientWidth;
+  }
+
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.getViewportWidth, true);
+    this.viewPortWidth = document.getElementsByClassName('activity__content')[0].clientWidth;
+    // this.viewPortWidth = document.getElementById('activityDetails__graph').offsetWidth;
 
     if (this.loaded.activities === loadingStatus.Loaded) {
       this.listData = this.initListData(this.activity);

@@ -1,21 +1,36 @@
 .activitiesGraph {
   $root: &;
 
-  .faded {
-    transition: opacity 0.3s ease;
-    opacity: 0.1;
-  }
-
   .box-content {
     margin-top: 0;
   }
 
-  .toggleStandard {
-    transition: opacity 0.3s ease;
-    margin-bottom: 16px;
-    position: sticky;
-    top: 70px;
-    z-index: 80;
+  #{&}__portrait {
+    display: none;
+    @media screen and (max-width: 900px) {
+      display: block;
+    }
+
+    .toggleStandard {
+      transition: opacity 0.3s ease;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 70px;
+      z-index: 80;
+    }
+
+
+    .faded {
+      transition: opacity 0.3s ease;
+      opacity: 0.1;
+    }
+  }
+
+  #{&}__landscape {
+    display: none;
+    @media screen and (min-width: 901px) {
+      display: block;
+    }
   }
 
   #{&}__chart {

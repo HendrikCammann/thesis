@@ -18,6 +18,7 @@
       float: left;
 
       &:first-of-type {
+        text-align: right;
         border-right: 1px solid $colors-label;
       }
     }

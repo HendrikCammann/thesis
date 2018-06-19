@@ -2,6 +2,10 @@
   $root: &;
   position: relative;
 
+  &__root {
+    text-align: center;
+  }
+
   &__checkbox {
     cursor: pointer;
   }

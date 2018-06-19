@@ -4,9 +4,10 @@
       <div class="box-label">
         Verlauf der Geschwindigkeit und Herzfrequenz
       </div>
-      <div class="activityDetails__graph" v-if="graphData !== null">
+      <div class="activityDetails__graph" id="activityDetails__graph" v-if="graphData !== null">
         <detail-graph
           :data="graphData"
+          :viewPortWidth="viewPortWidth"
         ></detail-graph>
       </div>
       <toggle-standard

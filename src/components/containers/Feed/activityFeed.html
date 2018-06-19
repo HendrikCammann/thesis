@@ -1,4 +1,7 @@
 <div class="container-fluid activityFeed">
+  <modal v-show="showModal">
+    <modal-time></modal-time>
+  </modal>
   <bottomMenu
     :menuItems="menuItems"
     :selected="null"

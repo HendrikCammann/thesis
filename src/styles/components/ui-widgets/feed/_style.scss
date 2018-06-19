@@ -1,5 +1,6 @@
 .feed {
   $root: &;
+  margin-bottom: 70px;
 
   #{&}__content {
     .feedItem {

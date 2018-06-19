@@ -9,6 +9,9 @@ import {DisplayType, RunType} from '../../../store/state';
 import {eventBus} from '../../../main';
 import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
 import {TimeRangeType} from '../../../models/Filter/FilterModel';
+import {Modal} from '../../ui-widgets/modal';
+import {modalEvents} from '../../../events/Modal/modal';
+import {ModalTime} from '../../ui-elements/modal-time';
 
 @Component({
   template: require('./activityFeed.html'),
@@ -22,11 +25,14 @@ import {TimeRangeType} from '../../../models/Filter/FilterModel';
   }),
   components: {
     'feed': Feed,
+    'modal': Modal,
+    'modalTime': ModalTime,
     'bottomMenu': BottomMenu,
   }
 })
 export class ActivityFeed extends Vue {
   public selectedMenu = null;
+  public showModal = false;
 
   public menuItems = [
     {
@@ -85,6 +91,26 @@ export class ActivityFeed extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
+    eventBus.$on(modalEvents.open_Modal, () => {
+      this.showModal = true;
+    });
+
+    eventBus.$on(modalEvents.close_Modal, () => {
+      this.showModal = false;
+    });
+
+    eventBus.$on(modalEvents.close_Modal_With_Callback, (item) => {
+      this.showModal = false;
+      let range = {
+        end: new Date(item.end),
+        start: new Date(item.start),
+      };
+      this.$store.dispatch(MutationTypes.SET_TIME_RANGE, {
+        rangeType: TimeRangeType.Individual,
+        range: range,
+      });
+    });
+
     eventBus.$on(BottomMenuEvents.set_Selected_Menu, (i) => {
       this.selectedMenu = i;
     });
@@ -94,15 +120,17 @@ export class ActivityFeed extends Vue {
         case 0:
           let range = null;
           if (payload.payload === TimeRangeType.Individual) {
-            range = {
+            /*range = {
               end: new Date(),
               start: new Date('2018-06-09'),
-            };
+            };*/
+            this.showModal = true;
+          } else {
+            this.$store.dispatch(MutationTypes.SET_TIME_RANGE, {
+              rangeType: payload.payload,
+              range: range,
+            });
           }
-          this.$store.dispatch(MutationTypes.SET_TIME_RANGE, {
-            rangeType: payload.payload,
-            range: range,
-          });
           break;
         case 1:
           this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, payload.payload);

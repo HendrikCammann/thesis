@@ -38,6 +38,12 @@ export class NavigationModule extends Vue {
     this.menuOpen = true;
   }
 
+  public navigateBack() {
+    this.$router.push({
+      path: this.$store.state.route.from.fullPath
+    });
+  }
+
   public state: string = '';
 
   mounted() {

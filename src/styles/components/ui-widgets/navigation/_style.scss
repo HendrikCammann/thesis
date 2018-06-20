@@ -41,6 +41,17 @@
       }
     }
 
+    #{$root}__back {
+      display: inline-block;
+      cursor: pointer;
+      width: 35px;
+      transform: rotate(180deg);
+      height: 24px;
+      left: -6px;
+      top: 6px;
+      position: absolute;
+    }
+
     #{$root}__burger {
       display: inline-block;
       cursor: pointer;

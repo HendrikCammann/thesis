@@ -1,8 +1,12 @@
 <div class="container-fluid performance">
   <modal v-show="showModal">
     <modal-activity
+      v-if="!useRange"
       :item="modalItem"
     ></modal-activity>
+    <modal-distance
+      v-if="useRange"
+    ></modal-distance>
   </modal>
   <div class="container performance__content">
     <router-view>

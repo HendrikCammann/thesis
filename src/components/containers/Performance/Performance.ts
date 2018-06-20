@@ -6,18 +6,22 @@ import {eventBus} from '../../../main';
 import {modalEvents} from '../../../events/Modal/modal';
 import {Modal} from '../../ui-widgets/modal';
 import {ModalActivity} from '../../ui-elements/modal-activity';
+import {ModalDistance} from '../../ui-elements/modal-distance';
+import {TimeRangeType} from '../../../models/Filter/FilterModel';
 
 
 @Component({
   template: require('./performance.html'),
   components: {
     'modal': Modal,
-    'modal-activity': ModalActivity
+    'modal-activity': ModalActivity,
+    'modal-distance': ModalDistance,
   }
 })
 export class Performance extends Vue {
   public showModal = false;
   public modalItem = null;
+  public useRange = false;
 
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
@@ -26,7 +30,13 @@ export class Performance extends Vue {
     }
 
     eventBus.$on(modalEvents.open_Modal, (payload) => {
-      this.modalItem = payload;
+      if (payload === true) {
+        console.log('open range');
+        this.useRange = true;
+      } else {
+        this.modalItem = payload;
+        this.useRange = false;
+      }
       this.showModal = true;
     });
 

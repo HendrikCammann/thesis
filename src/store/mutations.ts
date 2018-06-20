@@ -612,8 +612,9 @@ const mutations: MutationTree<State> = {
         range.end = 1000000000000;
         break;
       case DistanceRangeType.Individual:
-        range.start = distanceRange.range.start;
-        range.end = distanceRange.range.start.end;
+        console.log(distanceRange);
+        range.start = distanceRange.range.start * 1000;
+        range.end = distanceRange.range.end * 1000;
         break;
     }
 

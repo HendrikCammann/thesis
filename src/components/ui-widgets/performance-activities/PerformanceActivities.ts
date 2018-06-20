@@ -166,12 +166,25 @@ export class PerformanceActivities extends Vue {
       this.selectedMenu = i;
     });
 
+    eventBus.$on(modalEvents.close_Modal_With_Callback, (item) => {
+      eventBus.$emit(modalEvents.close_Modal);
+      let range = {
+        end: item.end,
+        start: item.start,
+      };
+      this.$store.dispatch(MutationTypes.SET_DISTANCE_RANGE, {
+        rangeType: TimeRangeType.Individual,
+        range: range,
+      });
+      this.performanceData = this.initData();
+    });
+
     eventBus.$on(BottomMenuEvents.dispatch_Overlay_Click, (payload) => {
       switch (payload.menu) {
         case 0:
           let range = null;
           if (payload.payload === TimeRangeType.Individual) {
-            eventBus.$emit(modalEvents.open_Modal);
+            eventBus.$emit(modalEvents.open_Modal, true);
           } else {
             this.$store.dispatch(MutationTypes.SET_DISTANCE_RANGE, {
               rangeType: payload.payload,

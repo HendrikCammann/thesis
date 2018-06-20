@@ -1,0 +1,22 @@
+<div class="performanceCompetition">
+  <div class="performanceCompetition__content">
+    <div class="performanceCompetition__chart card" v-if="performanceData !== null">
+      <performance-chart
+        :data="performanceData"
+        :width="viewPortWidth"
+      ></performance-chart>
+    </div>
+    <div v-if="performanceData !== null">
+      <div v-for="(item, i) in competitionBoxes">
+        <content-box
+          :data="item"
+          :isClickable="true"
+        ></content-box>
+      </div>
+    </div>
+  </div>
+  <bottom-menu
+    :menuItems="menuItems"
+    :selected="selected"
+  ></bottom-menu>
+</div>

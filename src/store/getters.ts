@@ -91,6 +91,15 @@ const getters: GetterTree<State, State> = {
     };
   },
 
+  getCompetitions: (state) => {
+    let arr = [];
+    state.activityList.filter(item => {
+      if (item.categorization.activity_type === RunType.Competition) {
+        arr.push(item);
+      }
+    });
+    return arr;
+  },
 
   // CLUSTERS
   getClusters: (state) => {

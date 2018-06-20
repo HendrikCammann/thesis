@@ -1,5 +1,9 @@
 .zoneChart {
 
+  &__root {
+    text-align: center;
+  }
+
   &__zone-number {
     font-family: $font-family--secondary;
     font-size: 16px;

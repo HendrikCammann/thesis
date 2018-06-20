@@ -23,6 +23,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Compare/_style";
 @import "components/containers/Profile/_style";
 @import "components/containers/Activity/_style";
+@import "components/containers/Performance/_style";
 @import "components/containers/ActivityFeed/_style";
 
 @import "components/charts/WaveChart/_style";
@@ -57,12 +58,15 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/ui-widgets/dashboard-boxes/_style";
 @import "components/ui-widgets/bottom-menu/_style";
 @import "components/ui-widgets/feed/_style";
+@import "components/ui-widgets/performance-select/_style";
+@import "components/ui-widgets/performance-competition/_style";
 
 @import "components/visualizations/train-chart/_style";
 @import "components/visualizations/line-chart/style";
 @import "components/visualizations/zone-chart/style";
 @import "components/visualizations/history-chart/style";
 @import "components/visualizations/compare-chart/style";
+@import "components/visualizations/performance-chart/style";
 
 @import "components/modules/ActivityList/_style";
 @import "components/modules/ActivityStats/_style";

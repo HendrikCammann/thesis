@@ -1,0 +1,25 @@
+.performanceChart {
+
+  &__root {
+    text-align: center;
+  }
+
+  &__date {
+    font-weight: 400;
+    font-size: 12px;
+    font-family: $font-family--secondary;
+    fill: $colors-label;
+  }
+
+  &__label {
+    font-weight: 700;
+    pointer-events: none;
+    font-family: $font-family--main;
+    &--hr {
+      fill: $colors-hr;
+    }
+    &--pace {
+      fill: $colors-pace;
+    }
+  }
+}

@@ -9,6 +9,11 @@ import {Dashboard} from '../components/containers/Dashboard';
 import {CompareContainer} from '../components/containers/Compare';
 import {ActivityFeed} from '../components/containers/Feed/ActivityFeed';
 import {Profile} from '../components/containers/Profile';
+import {Performance} from '../components/containers/Performance';
+import {PerformanceSelect} from '../components/ui-widgets/performance-select/PerformanceSelect';
+import {PerformanceActivities} from '../components/ui-widgets/performance-activities/PerformanceActivities';
+import {PerformanceCompetition} from '../components/ui-widgets/performance-competition';
+import {PerformanceDiagnostic} from '../components/ui-widgets/performance-diagnostic';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -29,9 +34,17 @@ const router = new VueRouter({
       name: 'Activity',
       path: '/activity/:id',
     }, {
-      component: ActivitiesContainer,
-      name: 'Leistungsentwicklung',
-      path: '/performance',
+      component: Performance,
+      // name: 'Leistungsentwicklung',
+      path: '/performance/',
+      children: [
+        // UserHome will be rendered inside User's <router-view>
+        // when /user/:id is matched
+        { path: '', name: 'Leistungsentwicklung', component: PerformanceSelect },
+        { path: 'activities', name: 'Leistungsentwicklung', component: PerformanceActivities },
+        { path: 'competitions', name: 'Leistungsentwicklung', component: PerformanceCompetition },
+        { path: 'diagnostic', name: 'Leistungsentwicklung', component: PerformanceDiagnostic },
+      ]
     }, {
       component: CompareContainer,
       name: 'Vorbereitungen',

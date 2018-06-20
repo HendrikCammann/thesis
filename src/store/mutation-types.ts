@@ -23,6 +23,8 @@ export class MutationTypes {
   public static SET_SHOW_EVERYTHING = '[Store] SET_SHOW_EVERYTHING';
   public static SET_FILTERBY_TYPE = '[Store] SET_FILTERBY_TYPE';
   public static SET_TIME_RANGE = '[Store] SET_TIME_RANGE';
+  public static SET_DISTANCE_RANGE = '[Store] SET_DISTANCE_RANGE';
+
 
   public static REMOVE_SELECTED_TRAINING_CLUSTER = '[Store] REMOVE_SELECTED_TRAINING_CLUSTER';
   public static ADD_SELECTED_TRAINING_CLUSTER = '[Store] ADD_SELECTED_TRAINING_CLUSTER';

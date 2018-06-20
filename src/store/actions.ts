@@ -119,6 +119,12 @@ const actions: ActionTree<State, State> = {
     });
   },
 
+  [MutationTypes.SET_DISTANCE_RANGE]: ({commit}, distanceRange) => {
+    commit(MutationTypes.SET_DISTANCE_RANGE, {
+      distanceRange
+    });
+  },
+
   [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: ({commit}, cluster) => {
     commit(MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER, {
       cluster

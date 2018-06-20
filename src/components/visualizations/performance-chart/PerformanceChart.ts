@@ -23,6 +23,9 @@ export class PerformanceChart extends Vue {
   @Prop()
   width: number;
 
+  @Prop()
+  usePace: boolean;
+
   public offsetTop = 40;
   public offsetBottom = 16;
   public barHeight = 40;
@@ -30,6 +33,7 @@ export class PerformanceChart extends Vue {
   public barOffset = 4;
 
   @Watch('width')
+  @Watch('data')
   onPropertyChanged(val: any, oldVal: any) {
     this.performanceChart(this.data, this.width)
   }
@@ -136,6 +140,9 @@ export class PerformanceChart extends Vue {
     if(!hideName) {
       let className = 'performanceChart__label--pace';
       let text = formatSecondsToDuration(bar.item.base_data.duration, FormatDurationType.Dynamic).all;
+      if (this.usePace) {
+        text = formatPace(bar.item.average_data.speed, FormatPaceType.MinPerKm).formattedVal + '/km'
+      }
       let opacity = 1;
       if (bar.color === '#F7E7E8') {
         className = 'performanceChart__label--hr';
@@ -163,7 +170,7 @@ export class PerformanceChart extends Vue {
         .attr('class', className)
         .attr('dy', '1em')
         .style('text-anchor', 'right')
-        .text(formatDate(bar.item.date, FormatDate.Day));
+        .text(formatDate(bar.item.date, FormatDate.Day) + ' | ' +  bar.item.name);
     }
   }
 }

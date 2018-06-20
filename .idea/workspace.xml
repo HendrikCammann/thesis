@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-elements/modal-activity/_style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-activities/_style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Performance/Performance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Performance/Performance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Performance/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Performance/performance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Filter/FilterModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Filter/FilterModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutation-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutation-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +40,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PerformanceSelect.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/PerformanceSelect.ts">
+      <file leaf-file-name="PerformanceActivities.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="20" column="12" selection-start-line="20" selection-end-line="21" />
+            <state relative-caret-position="778">
+              <caret line="177" column="27" lean-forward="true" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#1413#2624#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PerformanceChart.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="142" selection-start-line="142" selection-end-line="142" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -48,75 +65,95 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zoneChart.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/zoneChart.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="activityDetailsList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-details-list/activityDetailsList.html">
+      <file leaf-file-name="performanceActivities.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" selection-start-line="43" selection-end-line="48" selection-end-column="8" />
+            <state relative-caret-position="255">
+              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="performanceSelect.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/performanceSelect.html">
+      <file leaf-file-name="state.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/state.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="10" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="4" selection-end-column="10" />
+            <state relative-caret-position="535">
+              <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modalList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-list/modalList.html">
+      <file leaf-file-name="FilterModel.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/Filter/FilterModel.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="117" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="117" />
+            <state relative-caret-position="930">
+              <caret line="63" column="50" lean-forward="true" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#68#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modalActivity.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html">
+      <file leaf-file-name="Feed.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/feed/Feed.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="40" lean-forward="true" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+            <state relative-caret-position="-257">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss">
+      <file leaf-file-name="mutation-types.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+            <state relative-caret-position="375">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activity-zone-list/_style.scss">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="performanceCompetition.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html">
+      <file leaf-file-name="mutations.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            <state relative-caret-position="711">
+              <caret line="618" lean-forward="true" selection-start-line="618" selection-end-line="618" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activity-details-list/_style.scss">
+      <file leaf-file-name="actions.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/actions.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="913">
-              <caret line="110" column="3" lean-forward="true" selection-start-line="103" selection-start-column="2" selection-end-line="110" selection-end-column="3" />
+            <state relative-caret-position="671">
+              <caret line="123" column="19" lean-forward="true" selection-start-line="123" selection-start-column="19" selection-end-line="123" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getters.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="562">
+              <caret line="203" column="4" lean-forward="true" selection-start-line="203" selection-start-column="4" selection-end-line="203" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#709#871#0" />
+                <element signature="e#906#945#0" />
+                <element signature="e#986#1727#0" />
+                <element signature="e#1764#2396#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,7 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>activity</find>
       <find>activityZoneList</find>
       <find>hannover-2018</find>
       <find>maxDistance</find>
@@ -165,9 +201,9 @@
       <find>select</find>
       <find>SET_TIME</find>
       <find>modalList</find>
+      <find>performanceCompetition</find>
     </findStrings>
     <replaceStrings>
-      <replace>labelText</replace>
       <replace>value</replace>
       <replace>waveChart__lowerSlice</replace>
       <replace>let</replace>
@@ -197,6 +233,7 @@
       <replace>'</replace>
       <replace>modalTime</replace>
       <replace>modalActivity</replace>
+      <replace>performanceActivities</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -205,12 +242,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/activity-details/activityDetails.html" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/activity-details/ActivityDetails.ts" />
-        <option value="$PROJECT_DIR$/src/components/visualizations/line-chart/LineChart.ts" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/activity-zones/activityZones.html" />
-        <option value="$PROJECT_DIR$/src/components/visualizations/history-chart/historyChart.html" />
-        <option value="$PROJECT_DIR$/src/styles/components/visualizations/history-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/trainChart.html" />
         <option value="$PROJECT_DIR$/src/styles/components/visualizations/train-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-graph/_style.scss" />
@@ -234,28 +265,34 @@
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-select/performanceSelect.html" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-select/index.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/performanceDiagnostic.html" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/PerformanceDiagnostic.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/index.ts" />
         <option value="$PROJECT_DIR$/src/router/index.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-select/PerformanceSelect.ts" />
-        <option value="$PROJECT_DIR$/src/store/getters.ts" />
         <option value="$PROJECT_DIR$/src/components/visualizations/performance-chart/performanceChart.html" />
         <option value="$PROJECT_DIR$/src/components/visualizations/performance-chart/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts" />
-        <option value="$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/visualizations/performance-chart/_style.scss" />
-        <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/modal-activity/index.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Performance/Performance.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/Performance/performance.html" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-elements/modal-activity/_style.scss" />
+        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html" />
+        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-activities/_style.scss" />
+        <option value="$PROJECT_DIR$/src/styles/main.scss" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" />
-        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html" />
-        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss" />
+        <option value="$PROJECT_DIR$/src/models/Filter/FilterModel.ts" />
+        <option value="$PROJECT_DIR$/src/store/getters.ts" />
+        <option value="$PROJECT_DIR$/src/store/mutation-types.ts" />
+        <option value="$PROJECT_DIR$/src/components/containers/Feed/ActivityFeed.ts" />
+        <option value="$PROJECT_DIR$/src/store/actions.ts" />
+        <option value="$PROJECT_DIR$/src/store/mutations.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html" />
+        <option value="$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts" />
       </list>
     </option>
   </component>
@@ -361,6 +398,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Feed" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
               <item name="Performance" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -407,7 +452,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="activity-details-list" type="462c0819:PsiDirectoryNode" />
+              <item name="feed" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -415,23 +460,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="performance-competition" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="performance-diagnostic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="performance-select" type="462c0819:PsiDirectoryNode" />
+              <item name="performance-activities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -439,30 +468,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="visualizations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
-              <item name="compare-chart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
-              <item name="history-chart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
-              <item name="line-chart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -471,14 +476,6 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="visualizations" type="462c0819:PsiDirectoryNode" />
               <item name="performance-chart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
-              <item name="zone-chart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -511,87 +508,6 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-elements" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-elements" type="462c0819:PsiDirectoryNode" />
-              <item name="modal-activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-elements" type="462c0819:PsiDirectoryNode" />
-              <item name="modal-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="activity-details-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="activity-zone-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="performance-competition" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -636,9 +552,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/styles/components/ui-widgets" />
       <recent name="$PROJECT_DIR$/src/styles/components/ui-elements" />
       <recent name="$PROJECT_DIR$/src/styles/components/visualizations" />
-      <recent name="$PROJECT_DIR$/src/styles/components/ui-widgets" />
       <recent name="$PROJECT_DIR$/src/components/ui-widgets/performance-competition" />
       <recent name="$PROJECT_DIR$/src/assets/icons/line" />
     </key>
@@ -814,12 +730,12 @@
       <workItem from="1529307574683" duration="34000" />
       <workItem from="1529348338287" duration="11387000" />
       <workItem from="1529390792321" duration="19024000" />
-      <workItem from="1529515555409" duration="14165000" />
+      <workItem from="1529515555409" duration="18353000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="917045000" />
+    <option name="totallyTimeSpent" value="921233000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1210,109 +1126,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/feed-item/FeedItem.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="44" selection-start-line="44" selection-end-line="46" selection-end-column="7" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#0#6#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/compare-select/CompareSelect.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="68" column="3" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" lean-forward="true" selection-start-column="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/PerformanceDiagnostic.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/performanceDiagnostic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="48" column="34" lean-forward="true" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="93" column="17" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#709#871#0" />
-            <element signature="e#906#945#0" />
-            <element signature="e#986#1727#0" />
-            <element signature="e#1764#2396#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Dashboard/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1331,16 +1144,6 @@
         <state>
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/State/StateModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1380,13 +1183,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/visualizations/performance-chart/performanceChart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/visualizations/history-chart/HistoryChart.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -1432,16 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Dashboard/Dashboard.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -1456,13 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1497,16 +1276,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="105" column="19" selection-start-line="105" selection-start-column="19" selection-end-line="105" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-722">
@@ -1517,82 +1286,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-list/ModalList.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="40" selection-start-line="40" selection-end-line="47" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-list/modalList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="117" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/ui-elements/modal-activity/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="40" lean-forward="true" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activity-zone-list/_style.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/zoneChart.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-details-list/activityDetailsList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" selection-start-line="43" selection-end-line="48" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/performanceSelect.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/PerformanceSelect.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="20" column="12" selection-start-line="20" selection-end-line="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1603,10 +1300,238 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activity-zone-list/_style.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/performance-competition/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/performanceSelect.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activity-details-list/activityDetailsList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" selection-start-line="43" selection-end-line="48" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/zoneChart.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="55" lean-forward="true" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/performance-activities/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/PerformanceSelect.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Feed/activityFeed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="2" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/performanceCompetition.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="53" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-competition/PerformanceCompetition.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="27" column="19" selection-start-line="27" selection-end-line="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-list/modalList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="65" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-list/ModalList.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" selection-start-line="19" selection-end-line="21" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-activity/ModalActivity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/performance-chart/performanceChart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Filter/FilterModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="63" column="50" lean-forward="true" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/getters.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="203" column="4" lean-forward="true" selection-start-line="203" selection-start-column="4" selection-end-line="203" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#709#871#0" />
+            <element signature="e#906#945#0" />
+            <element signature="e#986#1727#0" />
+            <element signature="e#1764#2396#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/State/StateModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Feed/ActivityFeed.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="127" column="18" lean-forward="true" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/feed/Feed.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-257">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="123" column="19" lean-forward="true" selection-start-line="123" selection-start-column="19" selection-end-line="123" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutation-types.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/mutations.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="618" lean-forward="true" selection-start-line="618" selection-end-line="618" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/performance-chart/PerformanceChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/PerformanceActivities.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="177" column="27" lean-forward="true" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#1413#2624#0" />
+          </folding>
         </state>
       </provider>
     </entry>

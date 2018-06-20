@@ -8,7 +8,7 @@ import {ActivityDetailModel} from '../models/Activity/ActivityDetailModel';
 import {ActivityStreamModel} from '../models/Activity/ActivityStreamModel';
 import {ActivityZoneModel} from '../models/Activity/ActivityZoneModel';
 import {ActivityClusterModel} from '../models/Activity/ActivityClusterModel';
-import {TimeRangeModel} from '../models/Filter/FilterModel';
+import {DistanceRangeModel, DistanceRangeType, TimeRangeModel} from '../models/Filter/FilterModel';
 import {loadingStatus} from '../models/App/AppStatus';
 import {UserModel} from '../models/User/UserModel';
 import {ClusterItem, ClusterTypes, ClusterWrapper} from '../models/State/StateModel';
@@ -593,6 +593,31 @@ const mutations: MutationTree<State> = {
       range.end = timeRange.range.end;
     }
     state.filter.timeRange = range;
+  },
+
+  [MutationTypes.SET_DISTANCE_RANGE]: (state: State, {distanceRange}) => {
+    let range = new DistanceRangeModel();
+    range.rangeType = distanceRange.rangeType;
+    switch (range.rangeType) {
+      case DistanceRangeType.g10:
+        range.start = 10000;
+        range.end = 1000000000000;
+        break;
+      case DistanceRangeType.g25:
+        range.start = 25000;
+        range.end = 1000000000000;
+        break;
+      case DistanceRangeType.None:
+        range.start = 0;
+        range.end = 1000000000000;
+        break;
+      case DistanceRangeType.Individual:
+        range.start = distanceRange.range.start;
+        range.end = distanceRange.range.start.end;
+        break;
+    }
+
+    state.filter.distanceRange = range;
   },
 
   [MutationTypes.REMOVE_SELECTED_TRAINING_CLUSTER]: (state: State, {cluster}) => {

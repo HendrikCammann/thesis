@@ -199,6 +199,14 @@ const getters: GetterTree<State, State> = {
     return state.filter.timeRange.rangeType;
   },
 
+  getDistanceRange: (state) => {
+    return state.filter.distanceRange;
+  },
+
+  getDistanceRangeType: (state) => {
+    return state.filter.distanceRange.rangeType;
+  },
+
   getSelectedRunType: (state) => {
     return state.filter.selectedRunType;
   },

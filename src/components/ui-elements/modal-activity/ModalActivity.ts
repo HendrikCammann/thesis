@@ -6,9 +6,10 @@ import {
   formatDate,
   formatSecondsToDuration,
 } from '../../../utils/time/time-formatter';
-import {FormatDate, FormatDurationType, FormatPaceType} from '../../../models/FormatModel';
-import {formatPace} from '../../../utils/format-data';
+import {FormatDate, FormatDistanceType, FormatDurationType, FormatPaceType} from '../../../models/FormatModel';
+import {formatDistance, formatPace} from '../../../utils/format-data';
 import {MutationTypes} from '../../../store/mutation-types';
+import {getCategoryColor} from '../../../utils/calculateVisualVariables';
 
 @Component({
   template: require('./modalActivity.html'),
@@ -17,8 +18,16 @@ export class ModalActivity extends Vue {
   @Prop()
   item: any;
 
+  private getColor(activity) {
+    return getCategoryColor(activity.categorization.activity_type);
+  }
+
   public formatDate(date) {
     return formatDate(date, FormatDate.Day);
+  }
+
+  public formatDist(distance) {
+    return formatDistance(distance, FormatDistanceType.Kilometers) + 'km';
   }
 
   public formatDuration(time) {

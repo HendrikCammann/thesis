@@ -126,7 +126,6 @@ export class PerformanceCompetition extends Vue {
 
     this.performanceData = this.initData(this.selected);
 
-    console.log(this.$store.getters.getCompetitions);
     eventBus.$emit(menuEvents.set_State, 'Wettkämpfe');
   }
 }

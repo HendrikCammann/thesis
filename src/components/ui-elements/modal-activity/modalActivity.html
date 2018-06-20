@@ -2,7 +2,7 @@
   <div class="modalActivity__headline card">
     <img class="modalActivity__image" src="../../../assets/icons/line/running--darkgray.svg">
     <div class="modalActivity__text">
-      <div class="modalActivity__main">{{ item.name }}</div>
+      <div class="modalActivity__main" :style="{ color: getColor(item) }">{{ item.name }}</div>
       <div class="modalActivity__sub">{{ formatDate(item.date) }}</div>
     </div>
   </div>
@@ -10,6 +10,10 @@
     <div class="modalActivity__item">
       <img class="modalActivity__img" src="../../../assets/icons/line/clock--gray.svg">
       <div class="modalActivity__name">{{ formatDuration(item.base_data.duration) }}</div>
+    </div>
+    <div class="modalActivity__item">
+      <img class="modalActivity__img" src="../../../assets/icons/line/map--gray.svg">
+      <div class="modalActivity__name">{{ formatDist(item.base_data.distance) }}</div>
     </div>
     <div class="modalActivity__item">
       <img class="modalActivity__img" src="../../../assets/icons/line/timer--gray.svg">

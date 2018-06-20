@@ -1,0 +1,30 @@
+<div class="modalActivity" v-if="item">
+  <div class="modalActivity__headline card">
+    <img class="modalActivity__image" src="../../../assets/icons/line/running--darkgray.svg">
+    <div class="modalActivity__text">
+      <div class="modalActivity__main">{{ item.name }}</div>
+      <div class="modalActivity__sub">{{ formatDate(item.date) }}</div>
+    </div>
+  </div>
+  <div class="modalActivity__box card">
+    <div class="modalActivity__item">
+      <img class="modalActivity__img" src="../../../assets/icons/line/clock--gray.svg">
+      <div class="modalActivity__name">{{ formatDuration(item.base_data.duration) }}</div>
+    </div>
+    <div class="modalActivity__item">
+      <img class="modalActivity__img" src="../../../assets/icons/line/timer--gray.svg">
+      <div class="modalActivity__name">{{ formatPaces(item.average_data.speed) }}</div>
+    </div>
+    <div class="modalActivity__item" v-if="item.average_data.heartrate">
+      <img class="modalActivity__img" src="../../../assets/icons/line/hr--gray.svg">
+      <div class="modalActivity__name">{{ item.average_data.heartrate }}</div>
+    </div>
+  </div>
+
+  <div class="modalActivity__box card">
+    <div class="modalActivity__item" @click="openDetail(item.id)">
+      <div class="modalActivity__name">Zur Aktivität</div>
+      <img class="modalActivity__link" src="../../../assets/icons/solid/chrevron--gray.svg">
+    </div>
+  </div>
+</div>

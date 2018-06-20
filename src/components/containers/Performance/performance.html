@@ -1,6 +1,8 @@
 <div class="container-fluid performance">
   <modal v-show="showModal">
-
+    <modal-activity
+      :item="modalItem"
+    ></modal-activity>
   </modal>
   <div class="container performance__content">
     <router-view>

@@ -1,6 +1,18 @@
 .performanceCompetition {
   $root: &;
 
+  #{&}__chart {
+  }
+
+  #{&}__explanation {
+    margin-top: 8px;
+    text-align: justify;
+    padding: 0 16px;
+    font-size: 10px;
+    color: $colors-label;
+    margin-bottom: 70px;
+  }
+
   .contentBox {
     margin-bottom: 16px;
 

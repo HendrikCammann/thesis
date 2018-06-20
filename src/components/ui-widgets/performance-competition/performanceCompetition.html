@@ -1,18 +1,29 @@
 <div class="performanceCompetition">
-  <div class="performanceCompetition__content">
-    <div class="performanceCompetition__chart card" v-if="performanceData !== null">
-      <performance-chart
-        :data="performanceData"
-        :width="viewPortWidth"
-      ></performance-chart>
+  <div class="box-wrapper">
+    <div class="box-label">
+      Die Entwicklung deiner Bestzeit im Halbmarathon
     </div>
-    <div v-if="performanceData !== null">
-      <div v-for="(item, i) in competitionBoxes">
-        <content-box
-          :data="item"
-          :isClickable="true"
-        ></content-box>
+    <div class="performanceCompetition__content">
+      <div class="performanceCompetition__chart card" v-if="performanceData !== null">
+        <performance-chart
+          :data="performanceData"
+          :width="viewPortWidth"
+        ></performance-chart>
       </div>
+      <div class="performanceCompetition__explanation">
+        Die Länge eines Balkens spiegelt die Zeit bzw. deine Durchschnitts-Herzfrequenz eines Wettkampfen im Vergleich zur besten Zeit auf dieser Strecke bzw. deiner maximalen Herzfrequenz wieder..
+        Der graue Balken entspricht diesem Maximalwert. Die Länge der Farbigen Balken wird anhand dieser Länge definiert.
+        Die flachen Enden ensprechen bei der Geschwindigkeit 80% der langsamsten Zeit. Bei der Herzfrequenz startet der Balken bei 80 (= HF während normalen Gehen). Sie können
+        diese Werte in den Einstellungen anpassen.
+      </div>
+      <!--<div v-if="performanceData !== null">
+        <div v-for="(item, i) in competitionBoxes">
+          <content-box
+            :data="item"
+            :isClickable="true"
+          ></content-box>
+        </div>
+      </div>-->
     </div>
   </div>
   <bottom-menu

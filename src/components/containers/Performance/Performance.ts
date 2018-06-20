@@ -5,12 +5,14 @@ import {loadingStatus} from '../../../models/App/AppStatus';
 import {eventBus} from '../../../main';
 import {modalEvents} from '../../../events/Modal/modal';
 import {Modal} from '../../ui-widgets/modal';
+import {ModalActivity} from '../../ui-elements/modal-activity';
 
 
 @Component({
   template: require('./performance.html'),
   components: {
     'modal': Modal,
+    'modal-activity': ModalActivity
   }
 })
 export class Performance extends Vue {

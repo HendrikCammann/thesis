@@ -1,8 +1,10 @@
 <div class="compareCompare">
   <div class="compareCompare__content clearfix" v-if="data !== null">
-    <div class="box-label">
-      Verteilung der Trainingskategorien im Vergleich
-    </div>
+    <divider
+      :title="'Trainingsverteilung'"
+      :color="'#4f5b64'"
+    ></divider>
+
     <div class="compareCompare__label" v-for="item in clusterData">
       {{ item.clusterName }}
     </div>

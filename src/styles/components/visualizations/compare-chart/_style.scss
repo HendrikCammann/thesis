@@ -8,13 +8,19 @@
   #{&}__value {
     font-family: $font-family--secondary;
     font-size: 16px;
-    color: $colors-text;
+    fill: $colors-text;
     font-weight: 700;
   }
 
-  #{&}__label {
-    font-size: 10px;
+  #{&}__type {
+    font-size: 12px;
     font-weight: 400;
-    color: $colors-text;
+    fill: $colors-label;
+  }
+
+  #{&}__label {
+    font-size: 12px;
+    font-weight: 400;
+    fill: $colors-label;
   }
 }

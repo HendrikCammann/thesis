@@ -10,11 +10,13 @@ import {formatDistance} from '../../../utils/format-data';
 import {FormatDistanceType, FormatDurationType} from '../../../models/FormatModel';
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 import {CompareChart} from '../../visualizations/compare-chart';
+import {Divider} from '../../ui-elements/divider';
 
 @Component({
   template: require('./compareCompare.html'),
   components: {
     'compareChart': CompareChart,
+    'divider': Divider,
   }
 })
 export class CompareCompare extends Vue {

@@ -727,10 +727,10 @@ export class TrainChart extends Vue {
         .text(weekIndex);
 
       svg.append('rect')
-        .attr('x', position.x + 105)
+        .attr('x', position.x + 110)
         .attr('y', position.y)
         .attr('height', 1)
-        .attr('width', width - 105)
+        .attr('width', width - 110)
         .attr('fill', color);
     } else {
       svg.append('rect')

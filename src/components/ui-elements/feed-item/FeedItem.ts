@@ -81,11 +81,19 @@ export class FeedItem extends Vue {
       icon: ContentBoxIcons.Pace,
     });
 
-    baseData.push({
-      name: 'ø Herzfrequenz',
-      value: activity.average_data.heartrate.toFixed(0) + 'bpm',
-      icon: ContentBoxIcons.Heartrate,
-    });
+    if (activity.average_data.heartrate) {
+      baseData.push({
+        name: 'ø Herzfrequenz',
+        value: activity.average_data.heartrate.toFixed(0) + 'bpm',
+        icon: ContentBoxIcons.Heartrate,
+      });
+    } else {
+      baseData.push({
+        name: 'ø Herzfrequenz',
+        value: '- ',
+        icon: ContentBoxIcons.Heartrate,
+      });
+    }
 
     return {
       top: topData,

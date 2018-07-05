@@ -3,16 +3,17 @@
   height: 50px;
   border-radius: 30px;
   box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
-  background-color: $colors-white;
+  background-color: #F1F1F1;
   font-family: $font-family--main;
 
   #{&}__item {
+    overflow: visible;
     height: 100%;
     display: inline-block;
     font-size: 16px;
     font-weight: 600;
-    background-color: $colors-white;
-    color: $colors-label;
+    background-color: rgba(0,0,0,0);
+    color: $colors-text;
     text-align: center;
     padding-top: 15px;
     cursor: pointer;
@@ -29,23 +30,12 @@
       border-bottom-right-radius: 30px;
     }
 
-    #{$root}__dot {
-      display: inline-block;
-      height: 8px;
-      width: 8px;
-      margin-right: 8px;
-      transform: translate(0, -2px);
-      background-color: $colors-text;
-      border-radius: 50%;
-      visibility: hidden;
-
-      &--active {
-        visibility: visible;
-      }
-    }
-
     &--active {
       color: $colors-text;
+      background-color: $color-white;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
     }
   }
 }

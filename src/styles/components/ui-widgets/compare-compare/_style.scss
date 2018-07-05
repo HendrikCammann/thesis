@@ -2,14 +2,24 @@
   $root: &;
 
   #{&}__content {
+
+    .divider {
+      //width: calc(100% + 32px);
+      // transform: translate(-16px, 0);
+      margin-top: 0;
+      img {
+        left: -15px;
+      }
+    }
+
     #{$root}__label {
       width: 50%;
       float: left;
       text-align: center;
       font-family: $font-family--main;
       color: $colors-label;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 400;
       margin-bottom: 4px;
     }
 

@@ -23,12 +23,12 @@ export enum ContentBoxIcons {
   Pace = 'pace',
   Run = 'run',
   Intensity = 'intensity',
-  Competition = 'trophy',
-  Marathon = 'marathon',
-  Halfmarathon = 'halfMarathon',
+  Competition = 'competition',
+  Marathon = 'mara',
+  Halfmarathon = 'hm',
   VO2 = 'air',
   Restday = 'restday',
-  Tenk = 'tenK',
+  Tenk = 'tenk',
 }
 
 export function getContentBoxIcon(type: ClusterTypes) {

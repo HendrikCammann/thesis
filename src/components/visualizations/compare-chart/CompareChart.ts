@@ -33,7 +33,7 @@ export class CompareChart extends Vue {
   displayType: DisplayType;
 
   private maxRadius: number = 60;
-  private offset: number = 8;
+  private offset: number = 44;
   private width: number = 171;
   private height: number = 0;
 
@@ -55,7 +55,7 @@ export class CompareChart extends Vue {
   }
 
   private calculateHeight(maxRadius, offset, items) {
-    return ((maxRadius * 2) * items) + (offset * (items - 1));
+    return 16 + ((maxRadius * 2) * items) + (offset * (items - 1));
   }
 
   private drawChart(data, index, root) {
@@ -69,15 +69,15 @@ export class CompareChart extends Vue {
     let circles = [];
     let position: PositionModel = {
       x: 0,
-      y: 0
+      y: 16
     };
 
     if (index % 2 === 0) {
       position.x = width;
-      position.y = 0;
+      position.y = 16;
     } else {
       position.x = 0;
-      position.y = 0;
+      position.y = 16;
     }
 
     data.forEach(item => {
@@ -88,6 +88,7 @@ export class CompareChart extends Vue {
       };
       circles.push({
         color: getCategoryColor(item.type),
+        type: item.type,
         position: tempPos,
         radius: maxRadius * item.percentage,
         label: item.formatted,
@@ -111,16 +112,16 @@ export class CompareChart extends Vue {
     let arc = d3.arc();
     let startAngle = Math.PI * 2;
     let endAngle = Math.PI;
-    let textoffset = -this.maxRadius;
+    let textoffset = -this.maxRadius * 2;
 
     if (isLeft) {
       startAngle = -Math.PI * 2;
       endAngle = -Math.PI;
-      textoffset = this.maxRadius;
+      textoffset = this.maxRadius * 2;
     }
 
     svg.append('path')
-      .attr('transform', 'translate(' + [ circle.position.x, circle.position.y ] + ')')
+      .attr('transform', 'translate(' + [ circle.position.x - 2, circle.position.y ] + ')')
       .attr('opacity', 0.3)
       .attr('fill', '#E7E7E7')
       .attr('d', arc({
@@ -131,7 +132,7 @@ export class CompareChart extends Vue {
       }));
 
     svg.append('path')
-      .attr('transform', 'translate(' + [ circle.position.x, circle.position.y ] + ')')
+      .attr('transform', 'translate(' + [ circle.position.x + 2, circle.position.y ] + ')')
       .attr('opacity', 1)
       .attr('fill', circle.color)
       .attr('d', arc({
@@ -142,8 +143,16 @@ export class CompareChart extends Vue {
       }));
 
     svg.append('text')
+      .attr('x',  circle.position.x)
+      .attr('y',  circle.position.y - this.maxRadius - 6)
+      .attr('class', 'compareChart__type')
+      .attr('text-anchor', 'middle')
+      .text(circle.type);
+
+    svg.append('text')
       .attr('x',  circle.position.x + textoffset)
       .attr('y',  circle.position.y - 2)
+      .attr('id', circle.label + (circle.position.x + textoffset + circle.position.y - 2).toString())
       .attr('class', 'compareChart__value')
       .attr('text-anchor', 'middle')
       .text(circle.label);

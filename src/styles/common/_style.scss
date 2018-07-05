@@ -38,16 +38,16 @@ body {
 .box-wrapper {
   .box-label {
     font-family: 'Nunito', sans-serif;
-    color: #adb7bf;
-    font-size: 14px;
-    font-weight: 600;
+    color: $colors-label;
+    font-size: 12px;
+    font-weight: 400;
   }
 
   .box-scale {
     font-family: 'Nunito', sans-serif;
-    color: #adb7bf;
+    color: $colors-label;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
 
     div {
       display: inline-block;
@@ -62,7 +62,7 @@ body {
   }
 
   .box-content {
-    margin-top: 16px;
+    // margin-top: 16px;
   }
 
   .box-explaination {

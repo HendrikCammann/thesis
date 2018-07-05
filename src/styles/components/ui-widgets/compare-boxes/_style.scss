@@ -2,8 +2,11 @@
   $root: &;
 
   .divider {
-    width: calc(100% + 32px);
-    transform: translate(-16px, 0);
+    //width: calc(100% + 32px);
+    // transform: translate(-16px, 0);
+    img {
+      left: -15px;
+    }
   }
 
   .contentBox {

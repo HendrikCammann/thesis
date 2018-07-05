@@ -61,7 +61,7 @@ export class FeedItem extends Vue {
 
     topData.push({
       name: 'Time',
-      value: moment(activity.date).format(format),
+      value: moment(activity.date).format(format) + ' Uhr',
     });
 
     topData.push({
@@ -76,18 +76,6 @@ export class FeedItem extends Vue {
     });
 
     baseData.push({
-      name: 'Dauer',
-      value: formatSecondsToDuration(activity.base_data.duration, FormatDurationType.Dynamic).multilple,
-      icon: ContentBoxIcons.Duration,
-    });
-
-    baseData.push({
-      name: 'Höhenmeter',
-      value: activity.base_data.elevation_gain + 'm',
-      icon: ContentBoxIcons.Duration,
-    });
-
-    baseData.push({
       name: 'ø Pace',
       value: formatPace(activity.average_data.speed, FormatPaceType.MinPerKm).formattedVal + '/km',
       icon: ContentBoxIcons.Pace,
@@ -95,7 +83,7 @@ export class FeedItem extends Vue {
 
     baseData.push({
       name: 'ø Herzfrequenz',
-      value: activity.average_data.heartrate + 'bpm',
+      value: activity.average_data.heartrate.toFixed(0) + 'bpm',
       icon: ContentBoxIcons.Heartrate,
     });
 

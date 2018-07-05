@@ -20,7 +20,7 @@ export enum ContentBoxIcons {
   Distance = 'distance',
   Duration = 'time',
   Heartrate = 'hr',
-  Pace = 'timer',
+  Pace = 'pace',
   Run = 'run',
   Intensity = 'intensity',
   Competition = 'trophy',

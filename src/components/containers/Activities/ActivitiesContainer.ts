@@ -33,70 +33,71 @@ export class ActivitiesContainer extends Vue {
   public menuItems = [
     {
       name: 'Darstellung',
-      icon: 'running--gray',
+      icon: 'type--dark',
       action: 'chartToggle',
       index: 0,
       selected: this.$store.getters.getShowEverything,
       items: [{
         name: 'Detail',
-        icon: 'running--gray',
+        icon: 'detail--dark',
         action: false,
       }, {
         name: 'Gesamt',
-        icon: 'running--gray',
+        icon: 'total--dark',
         action: true,
       }]
     },
     {
       name: 'Stellschraube',
-      icon: 'running--gray',
+      icon: 'screw--dark',
       action: 'screwToggle',
       selected: this.$store.getters.getSelectedDisplayType,
       index: 1,
       items: [{
         name: 'Distanz',
-        icon: 'distance--gray',
+        icon: 'distance--dark',
         action: DisplayType.Distance,
       }, {
         name: 'Dauer',
-        icon: 'clock--gray',
+        icon: 'time--dark',
         action: DisplayType.Duration,
       }, {
         name: 'Intensität',
-        icon: 'flash--gray',
+        icon: 'intensity--dark',
         action: DisplayType.Intensity,
       }]
     },
     {
       name: 'Filter',
-      icon: 'filter--gray',
+      icon: 'filter--dark',
       action: 'toggleRunType',
       index: 2,
       selected: this.$store.getters.getSelectedRunType,
       items: [{
         name: 'Alle',
-        icon: 'running--darkgray',
+        icon: 'run--dark',
         action: RunType.All
       }, {
+        name: 'Langer Dauerlauf',
+        icon: 'run--ldl',
+        action: RunType.LongRun
+
+      }, {
         name: 'Dauerlauf',
-        icon: 'running--dl',
+        icon: 'run--dl',
         action: RunType.Run
       }, {
-        name: 'Langer Dauerlauf',
-        icon: 'running--ldl',
-        action: RunType.LongRun
+        name: 'Unkategorisiert',
+        icon: 'run--tdl',
+        action: RunType.Uncategorized
       }, {
         name: 'Intervalle',
-        icon: 'running--interval',
+        icon: 'run--iv',
         action: RunType.ShortIntervals
       }, {
         name: 'Wettkämpfe',
-        icon: 'running--comp',
+        icon: 'run--comp',
         action: RunType.Competition
-      }, {
-        name: 'Unkategorisiert',
-        icon: 'running--gray',
-        action: RunType.Uncategorized
       }]
     },
   ];

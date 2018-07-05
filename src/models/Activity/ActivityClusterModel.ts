@@ -19,18 +19,18 @@ class TypeCountModel {
 }
 
 export class ActivityClusterTypeCountModel {
-  run: TypeCountModel;
   longRun: TypeCountModel;
+  run: TypeCountModel;
+  uncategorized: TypeCountModel;
   interval: TypeCountModel;
   competition: TypeCountModel;
-  uncategorized: TypeCountModel;
 
   constructor() {
-    this.run = new TypeCountModel();
     this.longRun = new TypeCountModel();
+    this.run = new TypeCountModel();
+    this.uncategorized = new TypeCountModel();
     this.interval = new TypeCountModel();
     this.competition = new TypeCountModel();
-    this.uncategorized = new TypeCountModel();
   }
 }
 

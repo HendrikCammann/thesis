@@ -90,7 +90,7 @@ export class HistoryChart extends Vue {
       }
       this.listData = data;
       this.historyChart(data, this.chartConstraints);
-      this.getLabel(this.viewType);
+      this.getLabel(this.viewType, this.listData);
     }
   }
 
@@ -114,7 +114,7 @@ export class HistoryChart extends Vue {
       }
       this.listData = data;
       this.historyChart(data, this.chartConstraints);
-      this.getLabel(this.viewType);
+      this.getLabel(this.viewType, this.listData);
     }
   }
 
@@ -123,7 +123,7 @@ export class HistoryChart extends Vue {
       if (value === 0) {
         return '-';
       }
-      return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+      return Math.round(formatDistance(value, FormatDistanceType.Kilometers)) + 'km';
     }
     if (this.accessor === 'duration') {
       return formatSecondsToDuration(value, FormatDurationType.Dynamic).all;
@@ -138,17 +138,9 @@ export class HistoryChart extends Vue {
     return val > val2;
   }
 
-  private getLabel(viewType) {
-    switch (viewType) {
-      case DashboardViewType.Month:
-        this.label = 'Dieser Monat';
-        this.labelLast = 'Letzter Monat';
-        break;
-      case DashboardViewType.Week:
-        this.label = 'Diese Woche';
-        this.labelLast = 'Letzte Woche';
-
-    }
+  private getLabel(viewType, data) {
+    this.label = Math.round(formatDistance(data[0][0].values.upper[0], FormatDistanceType.Kilometers)) + 'km';
+    this.labelLast = Math.round(formatDistance(data[0][0].values.lower[0], FormatDistanceType.Kilometers)) + 'km';
   }
 
   private initData(data, viewType, displayType) {
@@ -252,7 +244,7 @@ export class HistoryChart extends Vue {
 
   private historyChart(data, constraints: ChartConstraints): void {
     let r = this.width / 2;
-    let width = 28;
+    let width = 24;
     let outlineWidth = 2;
     let margin = 4;
 
@@ -314,13 +306,17 @@ export class HistoryChart extends Vue {
 
 
       // DRAW ARCS
+      let upperArcsBG = this.drawArc(vis, upperPie(data[i][0].values.lower), 'upperSliceBG');
+      let lowerArcsBG = this.drawArc(vis, lowerPie(data[i][0].values.upper), 'lowerSliceBG');
       let upperArcs = this.drawArc(vis, upperPie(data[i][0].values.upper), 'upperSlice');
       let lowerArcs = this.drawArc(vis, lowerPie(data[i][0].values.lower), 'lowerSlice');
 
 
       // COLOR ARCS
-      let upperArcID = this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Full, i, true);
-      let lowerArcID = this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
+      this.colorArc(upperArcsBG, arc, '#D8D8D8', 0.27, i, true);
+      this.colorArc(lowerArcsBG, arc, '#D8D8D8', 0.27, i, false);
+      this.colorArc(upperArcs, arc, getCategoryColor(data[i][0].label), CategoryOpacity.Full, i, true);
+      this.colorArc(lowerArcs, arc, getCategoryColor(data[i][0].label), 0.5, i, false);
 
       // ADD LABELS TO ARCS
     }
@@ -374,10 +370,11 @@ export class HistoryChart extends Vue {
 
   private drawDivider(anchor: any, width: number, position, color: string): void {
     anchor.append('rect')
-      .attr('x', this.width / 2)
+      .attr('x', (this.width / 2) - 2)
       .attr('y', 0)
       .attr('height', width)
-      .attr('width', 1)
-      .attr('fill', color);
+      .attr('width', 4)
+      .attr('opacity', 0.27)
+      .attr('fill', '#D8D8D8');
   }
 }

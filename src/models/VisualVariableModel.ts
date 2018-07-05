@@ -25,7 +25,7 @@ export enum CategoryColors {
   Competition = '#9E9001',
   LongRun = '#00549E',
   ShortIntervals = '#880E4F',
-  Uncategorized = '4C2075',
+  Uncategorized = '#4C2075',
   Default = '#4f5b64'
 }
 

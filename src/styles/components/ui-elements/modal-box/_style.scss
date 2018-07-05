@@ -11,18 +11,21 @@
 
     #{$root}__image {
       display: inline-block;
-      height: 32px;
-      width: 32px;
-      margin-right: 8px;
-      margin-top: -22px;
+      height: 48px;
+      width: 48px;
+      position: absolute;
+      top: 17px;
+      left: 8px;
     }
 
     #{$root}__text {
       display: inline-block;
+      margin-left: 40px;
 
       #{$root}__main {
         color: $colors-text;
         font-weight: 700;
+        font-size: 20px;
         font-family: $font-family--secondary;
       }
 

@@ -4,6 +4,7 @@
          v-for="day in days"
          :class="{ 'dashboardBoxes__dot--active': day === actDay }"
     ></div>
+    <div class="dashboardBoxes__label">{{ label }}</div>
   </div>
   <div class="box-content">
     <div class="column column--half" v-for="item in stats">

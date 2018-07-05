@@ -49,22 +49,22 @@ export class Dashboard extends Vue {
   public menuItems = [
     {
       name: 'Tag',
-      icon: 'running--gray',
+      icon: 'day',
       action: DashboardViewType.Day
     },
     {
       name: 'Woche',
-      icon: 'running--gray',
+      icon: 'week',
       action: DashboardViewType.Week
     },
     {
       name: 'Monat',
-      icon: 'running--gray',
+      icon: 'month',
       action: DashboardViewType.Month
     },
     {
       name: 'Vorbereitung',
-      icon: 'running--gray',
+      icon: 'event',
       action: DashboardViewType.Preparation
     },
   ];

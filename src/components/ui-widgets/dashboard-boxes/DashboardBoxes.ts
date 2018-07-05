@@ -37,27 +37,32 @@ export class DashboardBoxes extends Vue {
   public days = 0;
   public actDay = 0;
   public showDots = false;
+  public label = 'hallo';
 
   @Watch('viewType')
   onPropertyChanged(val: any, oldVal: any) {
     switch(this.viewType) {
       case DashboardViewType.Day:
         this.stats = this.initDayData(this.actualWeek);
-        this.showDots = false;
+        this.showDots = true;
+        this.label = 'Stunden';
         break;
       case DashboardViewType.Week:
         let keys = getKeys(this.data['All'].byWeeks);
         this.stats = this.initData(this.data['All'].byWeeks[keys[0]], this.viewType);
         this.showDots = true;
+        this.label = 'Wochentage';
         break;
       case DashboardViewType.Month:
         let keysM = getKeys(this.data['All'].byMonths);
         this.stats = this.initData(this.data['All'].byMonths[keysM[0]], this.viewType);
         this.showDots = true;
+        this.label = 'Monatstage';
         break;
       case DashboardViewType.Preparation:
         this.stats = this.initData(this.data[this.currentPreparation].unsorted.all, this.viewType);
         this.showDots = false;
+        this.label = '';
         break;
     }
   }
@@ -66,12 +71,14 @@ export class DashboardBoxes extends Vue {
     switch(this.viewType) {
       case DashboardViewType.Day:
         this.stats = this.initDayData(this.actualWeek);
-        this.showDots = false;
+        this.showDots = true;
+        this.label = 'Stunden';
         break;
       case DashboardViewType.Week:
         let keys = getKeys(this.data['All'].byWeeks);
         this.stats = this.initData(this.data['All'].byWeeks[keys[0]], this.viewType);
         this.showDots = true;
+        this.label = 'Wochentage';
         break;
       case DashboardViewType.Month:
         let keysM = getKeys(this.data['All'].byMonths);
@@ -88,6 +95,8 @@ export class DashboardBoxes extends Vue {
   private initDayData(data) {
     moment.locale('de');
     this.actDay = moment().isoWeekday();
+    this.days = 24;
+    this.actDay = moment().hour();
     let totalSessions = 0;
     let totalDuration = 0;
     let totalDistance = 0;

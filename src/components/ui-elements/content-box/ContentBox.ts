@@ -33,7 +33,7 @@ export class ContentBox extends Vue {
     if (this.data.isActive) {
       return '--active';
     } else {
-      return '--gray'
+      return '--light'
     }
   }
 

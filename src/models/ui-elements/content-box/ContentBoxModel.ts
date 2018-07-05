@@ -17,12 +17,12 @@ export class ContentBoxModel {
 }
 
 export enum ContentBoxIcons {
-  Distance = 'map',
-  Duration = 'clock',
+  Distance = 'distance',
+  Duration = 'time',
   Heartrate = 'hr',
   Pace = 'timer',
-  Run = 'running',
-  Intensity = 'flash',
+  Run = 'run',
+  Intensity = 'intensity',
   Competition = 'trophy',
   Marathon = 'marathon',
   Halfmarathon = 'halfMarathon',

@@ -5,7 +5,8 @@
          @click="emitEvent(item.action)"
          :class="{'bottomMenu__item--active' : item.action === selected}"
     >
-      <img :src="'../../../assets/icons/solid/' + item.icon + '.svg'">
+      <img v-if="item.action === selected" :src="'../../../assets/icons/' + item.icon + '--dark.svg'">
+      <img v-if="item.action !== selected" :src="'../../../assets/icons/' + item.icon + '--light.svg'">
       <div class="bottomMenu__label">{{item.name}}</div>
     </div>
   </div>

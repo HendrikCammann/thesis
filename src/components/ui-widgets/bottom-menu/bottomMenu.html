@@ -17,9 +17,9 @@
         <div class="bottomMenu__overlayItem" v-for="(item, i) in popupItems"
              :class="{'bottomMenu__overlayItem--active' : item.action === selectedItems[selectedMenu]}"
              @click="emitEvent(item.action)">
-          <img :src="'../../../assets/icons/line/' + item.icon + '.svg'">
+          <img v-if="item.icon !== 'hide'" :src="'../../../assets/icons/' + item.icon + '.svg'">
           <div class="bottomMenu__label">{{item.name}}</div>
-          <img v-if="item.action === selectedItems[selectedMenu]" class="bottomMenu__check" :src="'../../../assets/icons/solid/' + 'check--dark' + '.svg'">
+          <img v-if="item.action === selectedItems[selectedMenu]" class="bottomMenu__check" :src="'../../../assets/icons/' + 'check--dark' + '.svg'">
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
          @click="togglePopup(item, i)"
          :class="{'bottomMenu__item--active' : item.action === selected}"
     >
-      <img :src="'../../../assets/icons/solid/' + item.icon + '.svg'">
+      <img :src="'../../../assets/icons/' + item.icon + '.svg'">
       <div class="bottomMenu__label">{{item.name}}</div>
     </div>
   </div>

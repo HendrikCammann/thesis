@@ -2,6 +2,8 @@ import {GetterTree} from 'vuex';
 import {RunType, State} from './state';
 import {getKeys} from '../utils/array-helper';
 import {ActivityModel} from '../models/Activity/ActivityModel';
+import {FormatDistanceType} from '../models/FormatModel';
+import {formatDistance} from '../utils/format-data';
 
 // State , RootState
 const getters: GetterTree<State, State> = {
@@ -247,6 +249,15 @@ const getters: GetterTree<State, State> = {
     });
 
     return ctn;
+  },
+
+  getTotalDistance: (state) => {
+    let ctn = 0;
+    state.activityList.forEach(item => {
+      ctn += item.base_data.distance;
+    });
+
+    return Math.round(formatDistance(ctn, FormatDistanceType.Kilometers)) + 'km';
   }
 
 };

@@ -11,8 +11,15 @@
     }
 
     .buttonStandard {
-      width: 50%;
-      float: right;
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    .divider {
+      margin-top: 56px;
+      img {
+        left: -15px;
+      }
     }
 
     #{$root}__user {
@@ -20,8 +27,8 @@
       padding-top: 48px;
       // background-color: red;
       img {
-        height: 80px;
-        width: 80px;
+        height: 144px;
+        width: 144px;
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 16px;
@@ -29,20 +36,20 @@
       }
 
       #{$root}__name {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 700;
         font-family: $font-family--secondary;
       }
 
       #{$root}__type {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
         color: $colors-label;
       }
     }
 
     #{$root}__userStats, #{$root}__activityStats {
-      margin-top: 40px;
+      margin-top: 24px;
     }
 
     .boxes {
@@ -52,7 +59,7 @@
       .contentBox {
         margin-bottom: 16px;
         width: calc(50% - 8px);
-        float: left
+        float: left;
       }
     }
 
@@ -62,6 +69,10 @@
 
     #{$root}__records {
       margin-top: 48px;
+
+      .buttonStandard {
+        margin-top: 32px;
+      }
 
       #{$root}__record {
         padding: 16px;

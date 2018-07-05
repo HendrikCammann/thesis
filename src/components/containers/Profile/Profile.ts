@@ -7,13 +7,15 @@ import {ContentBoxIcons, ContentBoxModel} from '../../../models/ui-elements/cont
 import {MutationTypes} from '../../../store/mutation-types';
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {Button} from '../../ui-elements/button';
+import {Divider} from '../../ui-elements/divider';
 
 
 @Component({
   template: require('./profile.html'),
   components : {
     'content-box': ContentBox,
-    'button-standard': Button
+    'button-standard': Button,
+    'divider': Divider,
   }
 })
 export class Profile extends Vue {
@@ -24,6 +26,7 @@ export class Profile extends Vue {
   public restHF: ContentBoxModel;
 
   public totalActivities: ContentBoxModel;
+  public totalDistance: ContentBoxModel;
   public totalCompetitions: ContentBoxModel;
 
   public HalfMarathon = {
@@ -47,11 +50,12 @@ export class Profile extends Vue {
 
   private createBoxes() {
     this.weight = new ContentBoxModel('79kg', 'Gewicht', ContentBoxIcons.Restday, false, null);
-    this.Vo2max = new ContentBoxModel('59 ml/kg', 'VO2 max.', ContentBoxIcons.Restday, false, null);
+    this.Vo2max = new ContentBoxModel('59 ml/kg', 'VO2 max.', ContentBoxIcons.VO2, false, null);
     this.maxHF = new ContentBoxModel('199', 'max. HF', ContentBoxIcons.Heartrate, false, null);
     this.restHF = new ContentBoxModel('44', 'Ruhepuls', ContentBoxIcons.Heartrate, false, null);
 
     this.totalActivities = new ContentBoxModel(this.$store.getters.getNumberOfActivities, 'Einheiten', ContentBoxIcons.Run, false, null);
+    this.totalDistance = new ContentBoxModel(this.$store.getters.getTotalDistance, 'Gesamtdistanz', ContentBoxIcons.Run, false, null);
     this.totalCompetitions = new ContentBoxModel(this.$store.getters.getNumberOfCompetitions, 'Wettkämpfe', ContentBoxIcons.Run, false, null);
   }
 

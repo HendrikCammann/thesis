@@ -38,14 +38,14 @@
         }
 
         img {
-          height: 24px;
-          width: 24px;
+          height: 32px;
+          width: 32px;
           display: inline-block;
           margin-right: 8px;
         }
 
         #{$root}__check {
-          transform: translate(0, 5px);
+          transform: translate(0, 11px);
           height: 12px;
           width: 12px;
           display: inline-block;

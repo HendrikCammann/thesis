@@ -12,6 +12,9 @@ import {TimeRangeType} from '../../../models/Filter/FilterModel';
 import {Modal} from '../../ui-widgets/modal';
 import {modalEvents} from '../../../events/Modal/modal';
 import {ModalTime} from '../../ui-elements/modal-time';
+import {menuEvents} from '../../../events/Menu/menu';
+import {formatDate} from '../../../utils/time/time-formatter';
+import {FormatDate} from '../../../models/FormatModel';
 
 @Component({
   template: require('./activityFeed.html'),
@@ -37,55 +40,57 @@ export class ActivityFeed extends Vue {
   public menuItems = [
     {
       name: 'Zeitraum',
-      icon: 'clock--gray',
+      icon: 'range--dark',
       action: 'setTimeTange',
       selected: this.$store.getters.getSelectedDisplayType,
       index: 0,
       items: [{
-        name: 'Total',
-        icon: 'distance--gray',
+        name: 'Alle anzeigen',
+        icon: 'hide',
         action: TimeRangeType.None,
       }, {
-        name: 'Zeitspanne',
-        icon: 'clock--gray',
+        name: 'Zeitspanne auswählen',
+        icon: 'range--dark',
         action: TimeRangeType.Individual,
       }]
     },
     {
       name: 'Filter',
-      icon: 'filter--gray',
+      icon: 'filter--dark',
       action: 'toggleRunType',
       index: 1,
       selected: this.$store.getters.getSelectedRunType,
       items: [{
         name: 'Alle',
-        icon: 'running--darkgray',
+        icon: 'run--dark',
         action: RunType.All
       }, {
-        name: 'Dauerlauf',
-        icon: 'running--dl',
-        action: RunType.Run
-      }, {
         name: 'Langer Dauerlauf',
-        icon: 'running--ldl',
+        icon: 'run--ldl',
         action: RunType.LongRun
       }, {
+        name: 'Dauerlauf',
+        icon: 'run--dl',
+        action: RunType.Run
+      }, {
+        name: 'Unkategorisiert',
+        icon: 'run--tdl',
+        action: RunType.Uncategorized
+      }, {
         name: 'Intervalle',
-        icon: 'running--interval',
+        icon: 'run--iv',
         action: RunType.ShortIntervals
       }, {
         name: 'Wettkämpfe',
-        icon: 'running--comp',
+        icon: 'run--comp',
         action: RunType.Competition
-      }, {
-        name: 'Unkategorisiert',
-        icon: 'running--gray',
-        action: RunType.Uncategorized
       }]
     },
   ];
 
   mounted() {
+    eventBus.$emit(menuEvents.set_State, 'Alle Aktivitäten');
+
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
@@ -105,6 +110,10 @@ export class ActivityFeed extends Vue {
         end: new Date(item.end),
         start: new Date(item.start),
       };
+
+      console.log(range);
+
+      eventBus.$emit(menuEvents.set_State, formatDate(range.start, FormatDate.Day) + ' - ' + formatDate(range.end, FormatDate.Day));
       this.$store.dispatch(MutationTypes.SET_TIME_RANGE, {
         rangeType: TimeRangeType.Individual,
         range: range,
@@ -126,6 +135,7 @@ export class ActivityFeed extends Vue {
             };*/
             this.showModal = true;
           } else {
+            eventBus.$emit(menuEvents.set_State, 'Alle Aktivitäten');
             this.$store.dispatch(MutationTypes.SET_TIME_RANGE, {
               rangeType: payload.payload,
               range: range,

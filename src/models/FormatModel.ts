@@ -16,6 +16,7 @@ export enum FormatDifferenceType {
 export enum FormatDate {
   Hour = 'hour',
   Day = 'day',
+  DayShort = 'dayShort',
   Week = 'week',
   Month = 'month',
   Year = 'year',

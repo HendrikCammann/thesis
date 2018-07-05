@@ -26,6 +26,7 @@ export enum ContentBoxIcons {
   Competition = 'trophy',
   Marathon = 'marathon',
   Halfmarathon = 'halfMarathon',
+  VO2 = 'air',
   Restday = 'restday',
   Tenk = 'tenK',
 }

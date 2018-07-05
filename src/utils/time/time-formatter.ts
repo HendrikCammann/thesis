@@ -182,6 +182,8 @@ export function formatDate(data: any, type: FormatDate) {
       return moment(data).format('HH:mm');
     case FormatDate.Day:
       return moment(data).format('DD.MM.YYYY');
+    case FormatDate.DayShort:
+      return moment(data).format('DD.MM');
   }
 }
 

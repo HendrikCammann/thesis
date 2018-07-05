@@ -10,9 +10,6 @@
       </div>
     </div>
     <div class="profile__userStats clearfix">
-      <div class="box-label">
-        Körperwerte
-      </div>
       <div class="boxes clearfix">
         <content-box
           :data="weight"
@@ -33,24 +30,33 @@
       ></button-standard>
     </div>
 
+    <divider
+      :title="'Statistiken'"
+      :color="'#4f5b64'"
+    ></divider>
+
     <div class="profile__activityStats clearfix">
-      <div class="box-label">
-        Statistiken
-      </div>
       <div class="boxes clearfix">
         <content-box
           :data="totalActivities"
         ></content-box>
+
+        <content-box
+          :data="totalDistance"
+        ></content-box>
+
         <content-box
           :data="totalCompetitions"
         ></content-box>
       </div>
     </div>
 
+    <divider
+      :title="'Bestzeiten'"
+      :color="'#4f5b64'"
+    ></divider>
+
     <div class="profile__records clearfix">
-      <div class="box-label">
-        Bestzeiten
-      </div>
       <div class="profile__record card" @click="handleClick(Marathon.activityId)">
         <div class="profile__type">{{ Marathon.type }}</div>
         <div class="profile__value">{{ Marathon.time }}</div>

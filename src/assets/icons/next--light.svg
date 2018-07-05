@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>next--light</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M12.78878,11.945701 L8.16078086,7.31770193 C7.94758193,7.10450301 7.94548176,6.76093943 8.16004221,6.54637897 L8.54654172,6.15987947 C8.7593327,5.94708848 9.1033256,5.94607903 9.31786468,6.16061811 L14.7169168,11.5596702 C14.8236394,11.6663928 14.8774653,11.8057819 14.8776969,11.945304 C14.8776911,12.0845089 14.8243094,12.2243393 14.7169168,12.3317318 L9.31786468,17.730784 C9.10466575,17.9439829 8.76110217,17.9460831 8.54654172,17.7315226 L8.16004221,17.3450231 C7.94725123,17.1322321 7.94624178,16.7882392 8.16078086,16.5737001 L12.78878,11.945701 L12.78878,11.945701 Z" id="path-1"></path>
+    </defs>
+    <g id="next--light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#C2C8CD" xlink:href="#path-1"></use>
+    </g>
+</svg>

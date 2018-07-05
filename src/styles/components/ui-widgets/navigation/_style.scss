@@ -95,11 +95,11 @@
 
       #{$root}__user {
         text-align: center;
-        padding-top: 48px;
-        // background-color: red;
+        padding-top: 56px;
+
         img {
-          height: 80px;
-          width: 80px;
+          height: 96px;
+          width: 96px;
           border-radius: 50%;
           object-fit: cover;
           margin-bottom: 16px;
@@ -107,20 +107,20 @@
         }
 
         #{$root}__name {
-          font-size: 22px;
+          font-size: 20px;
           font-weight: 700;
           font-family: $font-family--secondary;
         }
 
         #{$root}__type {
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 400;
           color: $colors-label;
         }
       }
 
       #{$root}__entries {
-        margin-top: 80px;
+        margin-top: 72px;
         text-align: left;
         font-size: 16px;
         padding-right: 24px;
@@ -129,22 +129,22 @@
 
         #{$root}__entry {
           color: $colors-text;
-          margin-bottom: 32px;
+          margin-bottom: 24px;
 
           #{$root}__link {
-            transform: translate(0, 5px);
+            transform: translate(0, 6px);
             display: inline-block;
-            height: 12px;
-            width: 12px;
+            height: 16px;
+            width: 16px;
             float: right;
           }
 
           #{$root}__icon {
             transform: translate(0, -2px);
-            margin-right: 16px;
+            margin-right: 8px;
             display: inline-block;
-            height: 24px;
-            width: 24px;
+            height: 32px;
+            width: 32px;
           }
 
           &--active {

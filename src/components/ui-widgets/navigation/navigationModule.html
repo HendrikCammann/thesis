@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="navigationModule__slide" v-show="menuOpen">
       <div class="navigationModule__wrapper">
-        <img class="navigationModule__close" src="../../../assets/icons/line/close--gray.svg" @click="closeMenu()">
+        <img class="navigationModule__close" src="../../../assets/icons/close--dark.svg" @click="closeMenu()">
         <div class="navigationModule__user"
              @click="handleNavigation('/user')"
         >
@@ -19,9 +19,9 @@
              :class="{'navigationModule__entry--active' : $route.name == link.name}"
              @click="handleNavigation(link.path)"
           >
-            <img class="navigationModule__icon" :src="'../../../assets/icons/solid/' + link.illustration + '.svg'">
+            <img class="navigationModule__icon" :src="'../../../assets/icons/' + link.illustration + '--dark.svg'">
             {{ link.name }}
-            <img class="navigationModule__link" src="../../../assets/icons/solid/chrevron--gray.svg">
+            <img class="navigationModule__link" src="../../../assets/icons/next--dark.svg">
           </div>
         </div>
         <div class="navigationModule__legal">

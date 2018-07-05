@@ -9,16 +9,16 @@ import {menuEvents} from '../../../events/Menu/menu';
 })
 export class NavigationModule extends Vue {
   links: Link[] = [
-    new Link('Dashboard', '/dashboard', 'dashboard--lightgray'),
-    new Link('Vorbereitungen', '/compare', 'compare--lightgray'),
-    new Link('Leistungsentwicklung', '/performance', 'flash--lightgray'),
-    new Link('Kalender', '/activities', 'calendar--lightgray'),
-    new Link('Aktivitäten', '/feed', 'running--lightgray'),
+    new Link('Dashboard', '/dashboard', 'dashboard'),
+    new Link('Vorbereitungen', '/compare', 'compare'),
+    new Link('Leistungsentwicklung', '/performance', 'intensity'),
+    new Link('Trainingsentwicklung', '/activities', 'calendar'),
+    new Link('Aktivitäten', '/feed', 'run'),
   ];
 
   @Watch('$route.path')
   pathChanged() {
-    console.info('Changed current path to: ' + this.$route.path);
+    // console.info('Changed current path to: ' + this.$route.path);
   }
 
   public menuOpen = false;

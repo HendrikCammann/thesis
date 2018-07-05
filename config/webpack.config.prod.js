@@ -40,6 +40,7 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
         {
           loader: 'postcss-loader',
           options: {
+            ident: 'postcss',
             plugins: () => [autoprefixer]
           }
         },

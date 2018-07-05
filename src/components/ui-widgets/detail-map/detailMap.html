@@ -1,7 +1,7 @@
 <div class="detailMap">
   <div class="detailMap__overlay"></div>
   <leaflet-map :bounds="mapOptions.bounds" :options="{ scrollWheelZoom: false }">
-    <leaflet-tilelayer :url="mapOptions.url" :attribution="mapOptions.attribution"></leaflet-tilelayer>
+    <leaflet-tilelayer :url="mapOptions.live" :attribution="mapOptions.attribution"></leaflet-tilelayer>
     <leaflet-polyline :lat-lngs="mapOptions.latLngs" :color="mapOptions.polylineColor"></leaflet-polyline>
   </leaflet-map>
 </div>

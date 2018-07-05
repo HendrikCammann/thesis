@@ -112,16 +112,18 @@ export class CompareChart extends Vue {
     let arc = d3.arc();
     let startAngle = Math.PI * 2;
     let endAngle = Math.PI;
+    let smallOff = -1;
     let textoffset = -this.maxRadius * 2;
 
     if (isLeft) {
       startAngle = -Math.PI * 2;
       endAngle = -Math.PI;
+      smallOff = 1;
       textoffset = this.maxRadius * 2;
     }
 
     svg.append('path')
-      .attr('transform', 'translate(' + [ circle.position.x - 2, circle.position.y ] + ')')
+      .attr('transform', 'translate(' + [ circle.position.x, circle.position.y ] + ')')
       .attr('opacity', 0.3)
       .attr('fill', '#E7E7E7')
       .attr('d', arc({
@@ -132,7 +134,7 @@ export class CompareChart extends Vue {
       }));
 
     svg.append('path')
-      .attr('transform', 'translate(' + [ circle.position.x + 2, circle.position.y ] + ')')
+      .attr('transform', 'translate(' + [ circle.position.x + smallOff, circle.position.y ] + ')')
       .attr('opacity', 1)
       .attr('fill', circle.color)
       .attr('d', arc({

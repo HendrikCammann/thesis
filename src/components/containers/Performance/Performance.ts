@@ -31,7 +31,6 @@ export class Performance extends Vue {
 
     eventBus.$on(modalEvents.open_Modal, (payload) => {
       if (payload === true) {
-        console.log('open range');
         this.useRange = true;
       } else {
         this.modalItem = payload;

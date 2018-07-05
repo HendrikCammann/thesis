@@ -6,7 +6,7 @@ import { AppContainer } from '../components/containers/App/';
 import { ActivitiesContainer } from '../components/containers/Activities';
 import { ActivityContainer } from '../components/containers/Activity';
 import {Dashboard} from '../components/containers/Dashboard';
-import {CompareContainer} from '../components/containers/Compare';
+import {Compare} from '../components/containers/Compare';
 import {ActivityFeed} from '../components/containers/Feed/ActivityFeed';
 import {Profile} from '../components/containers/Profile';
 import {Performance} from '../components/containers/Performance';
@@ -14,6 +14,7 @@ import {PerformanceSelect} from '../components/ui-widgets/performance-select/Per
 import {PerformanceActivities} from '../components/ui-widgets/performance-activities/PerformanceActivities';
 import {PerformanceCompetition} from '../components/ui-widgets/performance-competition';
 import {PerformanceDiagnostic} from '../components/ui-widgets/performance-diagnostic';
+import {CompareContainer} from '../components/containers/CompareContainer';
 
 // register the plugin
 Vue.use(VueRouter);
@@ -46,9 +47,13 @@ const router = new VueRouter({
         { path: 'diagnostic', name: 'Leistungsentwicklung', component: PerformanceDiagnostic },
       ]
     }, {
-      component: CompareContainer,
+      component: Compare,
       name: 'Vorbereitungen',
       path: '/compare',
+      children: [
+        { path: '', name: 'Compareselect', component: CompareContainer},
+        { path: 'result', name: 'Compareresult', component: CompareContainer},
+      ]
     }, {
       component: ActivitiesContainer,
       name: 'Kalender',

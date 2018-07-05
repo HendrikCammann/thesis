@@ -43,7 +43,7 @@ import {ModalList} from '../../ui-elements/modal-list';
     'modal-list': ModalList,
   }
 })
-export class CompareContainer extends Vue {
+export class Compare extends Vue {
   public isSelection = true;
   public selectedMenu = null;
   public showModal = false;
@@ -122,6 +122,10 @@ export class CompareContainer extends Vue {
     },
   ];
 
+  public showResult() {
+    return this.$store.getters.getSelectedTrainingClusters.length === 2 && this.$route.fullPath.indexOf('result') > -1;
+  }
+
   mounted() {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
@@ -169,7 +173,9 @@ export class CompareContainer extends Vue {
 
 
     eventBus.$on(compareEvents.start_Compare, () => {
-      this.$router.push({ path: `/compare?step=${'compare'}` });
+      this.$router.push({
+        path: 'compare/result/'
+      });
     });
   }
 

@@ -8,7 +8,7 @@
        :range="modalRange"
     ></modal-list>
   </modal>
-  <bottomMenu v-if="!isSelection"
+  <bottomMenu v-if="showResult()"
     :menuItems="menuItems"
     :selected="null"
     :hasPopups="true"
@@ -16,7 +16,7 @@
     :selectedItems="[showEverything, selectedDisplayType, selectedRunTyp]"
   ></bottomMenu>
 
-  <div v-if="isSelection" class="container compare__content">
+  <div v-if="!showResult()" class="container compare__content">
     <compare-select
       :clusters="existingClusters"
       :selectedClusters="selectedTrainingClusters"
@@ -24,7 +24,7 @@
     ></compare-select>
   </div>
 
-  <div v-if="!isSelection" class="container compare__content">
+  <div v-if="showResult()" class="container compare__content">
     <compare-compare
       :clusters="selectedTrainingClustersFull"
       :clusterData="selectedTrainingClustersData"

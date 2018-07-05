@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>tenkIcon--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2,14 C2,8.4771525 6.4771525,4 12,4 C17.5228475,4 22,8.4771525 22,14 L22,19 C22,19.5522847 21.5522847,20 21,20 C20.4477153,20 20,19.5522847 20,19 L20,14 C20,9.581722 16.418278,6 12,6 C7.581722,6 4,9.581722 4,14 L4,19 C4,19.5522847 3.55228475,20 3,20 C2.44771525,20 2,19.5522847 2,19 L2,14 Z" id="path-1"></path>
+    </defs>
+    <g id="tenkIcon--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#4F5B64" xlink:href="#path-1"></use>
+    </g>
+</svg>

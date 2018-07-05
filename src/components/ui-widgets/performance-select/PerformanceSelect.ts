@@ -23,9 +23,9 @@ import {menuEvents} from '../../../events/Menu/menu';
 })
 export class PerformanceSelect extends Vue {
   public contentBoxData = [
-    new ContentBoxModel('Trainingseinheiten', 'Dummytext', ContentBoxIcons.Run, false, null),
-    new ContentBoxModel('Wettkämpfe', 'Dummytext', ContentBoxIcons.Competition, false, null),
-    new ContentBoxModel('Leistungsdiagnostik', 'Dummytext', ContentBoxIcons.Run, false, null),
+    new ContentBoxModel('Trainingseinheiten', 'Anhand von Trainingszeiten', ContentBoxIcons.Run, false, null),
+    new ContentBoxModel('Wettkämpfe', 'Anhand der Bestenzeiten', ContentBoxIcons.Competition, false, null),
+    new ContentBoxModel('Leistungsdiagnostik', 'Anhand gemessener Vitalparameter', ContentBoxIcons.Ldu, false, null),
   ];
 
   public handleSelect(i) {

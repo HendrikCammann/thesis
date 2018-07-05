@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>maraIcon--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M20,8 C20,6.8954305 19.1045695,6 18,6 C16.8954305,6 16,6.8954305 16,8 L16,16 C16,18.209139 14.209139,20 12,20 C9.790861,20 8,18.209139 8,16 L8,8 C8,6.8954305 7.1045695,6 6,6 C4.8954305,6 4,6.8954305 4,8 L4,19 C4,19.5522847 3.55228475,20 3,20 C2.44771525,20 2,19.5522847 2,19 L2,8 C2,5.790861 3.790861,4 6,4 C8.209139,4 10,5.790861 10,8 L10,16 C10,17.1045695 10.8954305,18 12,18 C13.1045695,18 14,17.1045695 14,16 L14,8 C14,5.790861 15.790861,4 18,4 C20.209139,4 22,5.790861 22,8 L22,19 C22,19.5522847 21.5522847,20 21,20 C20.4477153,20 20,19.5522847 20,19 L20,8 Z" id="path-1"></path>
+    </defs>
+    <g id="maraIcon--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#4F5B64" xlink:href="#path-1"></use>
+    </g>
+</svg>

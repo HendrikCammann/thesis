@@ -7,14 +7,14 @@
   &__date {
     font-weight: 400;
     font-size: 12px;
-    font-family: $font-family--secondary;
+    font-family: $font-family--main;
     fill: $colors-label;
   }
 
   &__label {
     font-weight: 700;
     pointer-events: none;
-    font-family: $font-family--main;
+    font-family: $font-family--secondary;
     &--hr {
       fill: $colors-hr;
     }

@@ -21,6 +21,7 @@ import {formatPace} from '../../../utils/format-data';
 import {FormatDurationType, FormatPaceType} from '../../../models/FormatModel';
 import {getLargerValue, getPercentageFromValue, getSmallerValue} from '../../../utils/numbers/numbers';
 import {PerformanceChart} from '../../visualizations/performance-chart';
+import {BottomMenuEvents} from '../../../events/bottom-menu/bottomMenu';
 
 @Component({
   template: require('./performanceCompetition.html'),
@@ -36,17 +37,17 @@ export class PerformanceCompetition extends Vue {
   public menuItems = [
     {
       name: '10km',
-      icon: 'running--gray',
+      icon: 'tenkIcon',
       action: ClusterTypes.TenK
     },
     {
       name: 'Halbmarathon',
-      icon: 'running--gray',
+      icon: 'hmIcon',
       action: ClusterTypes.Halfmarathon
     },
     {
       name: 'Marathon',
-      icon: 'running--gray',
+      icon: 'maraIcon',
       action: ClusterTypes.Marathon
     },
   ];
@@ -63,7 +64,7 @@ export class PerformanceCompetition extends Vue {
     switch(type) {
       case ClusterTypes.TenK:
         filterTreshhold.max *= 11;
-        filterTreshhold.max *= 9;
+        filterTreshhold.min *= 9;
         break;
       case ClusterTypes.Halfmarathon:
         filterTreshhold.max *= 23;
@@ -125,6 +126,11 @@ export class PerformanceCompetition extends Vue {
     this.viewPortWidth = document.getElementsByClassName('performanceCompetition__content')[0].clientWidth;
 
     this.performanceData = this.initData(this.selected);
+
+    eventBus.$on(BottomMenuEvents.set_Dashboard_Viewtype, (payload) => {
+      this.selected = payload;
+      this.performanceData = this.initData(payload);
+    });
 
     eventBus.$emit(menuEvents.set_State, 'Wettkämpfe');
   }

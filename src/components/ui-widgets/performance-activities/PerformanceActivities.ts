@@ -48,58 +48,58 @@ export class PerformanceActivities extends Vue {
   public menuItems = [
     {
       name: 'Distance',
-      icon: 'map--gray',
+      icon: 'distance--dark',
       action: 'setDistanceRange',
       selected: 1,
       index: 0,
       items: [{
         name: 'Alle',
-        icon: 'map--gray',
+        icon: 'hide',
         action: DistanceRangeType.None,
       }, {
         name: '> 25km',
-        icon: 'map--gray',
+        icon: 'distance--light',
         action: DistanceRangeType.g25,
       }, {
         name: '> 10km',
-        icon: 'map--gray',
+        icon: 'distance--light',
         action: DistanceRangeType.g10,
       },{
         name: 'Eigene Distanz wählen',
-        icon: 'map--gray',
+        icon: 'distance--light',
         action: DistanceRangeType.Individual,
       }]
     },
     {
       name: 'Filter',
-      icon: 'filter--gray',
+      icon: 'filter--dark',
       action: 'toggleRunType',
       index: 1,
       selected: this.$store.getters.getSelectedRunType,
       items: [{
         name: 'Alle',
-        icon: 'running--darkgray',
+        icon: 'run--dark',
         action: RunType.All
       }, {
-        name: 'Dauerlauf',
-        icon: 'running--dl',
-        action: RunType.Run
-      }, {
         name: 'Langer Dauerlauf',
-        icon: 'running--ldl',
+        icon: 'run--ldl',
         action: RunType.LongRun
       }, {
+        name: 'Dauerlauf',
+        icon: 'run--dl',
+        action: RunType.Run
+      }, {
+        name: 'Unkategorisiert',
+        icon: 'run--ldl',
+        action: RunType.Uncategorized
+      }, {
         name: 'Intervalle',
-        icon: 'running--interval',
+        icon: 'run--iv',
         action: RunType.ShortIntervals
       }, {
         name: 'Wettkämpfe',
-        icon: 'running--comp',
+        icon: 'run--comp',
         action: RunType.Competition
-      }, {
-        name: 'Unkategorisiert',
-        icon: 'running--gray',
-        action: RunType.Uncategorized
       }]
     },
   ];

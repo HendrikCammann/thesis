@@ -29,6 +29,7 @@ export enum ContentBoxIcons {
   VO2 = 'air',
   Restday = 'restday',
   Tenk = 'tenk',
+  Ldu = 'ldu'
 }
 
 export function getContentBoxIcon(type: ClusterTypes) {

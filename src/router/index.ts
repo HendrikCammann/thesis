@@ -51,8 +51,8 @@ const router = new VueRouter({
       name: 'Vorbereitungen',
       path: '/compare',
       children: [
-        { path: '', name: 'Compareselect', component: CompareContainer},
-        { path: 'result', name: 'Compareresult', component: CompareContainer},
+        { path: '', name: 'Vorbereitungen', component: CompareContainer},
+        { path: 'result', name: 'Vorbereitungen', component: CompareContainer},
       ]
     }, {
       component: ActivitiesContainer,

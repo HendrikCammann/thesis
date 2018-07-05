@@ -30,9 +30,9 @@ export enum CategoryColors {
 }
 
 export enum ZoneColors {
-  Pace = '#0D47A1',
+  Pace = '#007DEA',
   PaceLight = '#64B5F6',
-  Heartrate = '#B71C1C',
+  Heartrate = '#DD4B49',
   HeartrateLight = '#E57373',
 }
 

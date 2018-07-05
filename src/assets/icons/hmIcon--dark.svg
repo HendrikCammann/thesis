@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>hmIcon--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11,14.5 L11,9.5 C11,7.56700338 9.43299662,6 7.5,6 C5.56700338,6 4,7.56700338 4,9.5 L4,19 C4,19.5522847 3.55228475,20 3,20 C2.44771525,20 2,19.5522847 2,19 L2,9.5 C2,6.46243388 4.46243388,4 7.5,4 C10.5375661,4 13,6.46243388 13,9.5 L13,14.5 C13,16.4329966 14.5670034,18 16.5,18 C18.4329966,18 20,16.4329966 20,14.5 L20,5 C20,4.44771525 20.4477153,4 21,4 C21.5522847,4 22,4.44771525 22,5 L22,14.5 C22,17.5375661 19.5375661,20 16.5,20 C13.4624339,20 11,17.5375661 11,14.5 Z" id="path-1"></path>
+    </defs>
+    <g id="hmIcon--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#4F5B64" xlink:href="#path-1"></use>
+    </g>
+</svg>

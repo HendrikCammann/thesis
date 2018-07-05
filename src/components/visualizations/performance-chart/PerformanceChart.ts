@@ -12,6 +12,7 @@ import {formatDate, formatSecondsToDuration} from '../../../utils/time/time-form
 import {loadingStatus} from '../../../models/App/AppStatus';
 import {eventBus} from '../../../main';
 import {modalEvents} from '../../../events/Modal/modal';
+import {ClusterTypes} from '../../../models/State/StateModel';
 
 @Component({
   template: require('./performanceChart.html'),
@@ -43,6 +44,9 @@ export class PerformanceChart extends Vue {
   }
 
   private performanceChart(data, width) {
+    if (this.$route.fullPath.indexOf('competition') > -1) {
+      this.barMargin = 100;
+    }
     let height = this.calculateHeight(data);
     let svg = setupSvg('#performance' , width, height);
     let bars = this.calculateBars(data, width);
@@ -65,9 +69,9 @@ export class PerformanceChart extends Vue {
         pace: {
           height: this.barHeight,
           width: width * item.paceBar,
-          color: '#D9E4EB',
+          color: ZoneColors.Pace,
           item: item.item,
-          opacity: 1,
+          opacity: 0.2,
           position: {
             x: position.x,
             y: position.y,
@@ -76,9 +80,9 @@ export class PerformanceChart extends Vue {
         heartrate: {
           height: this.barHeight,
           width: width * item.hrBar,
-          color: '#F7E7E8',
+          color: ZoneColors.Heartrate,
           item: item.item,
-          opacity: 1,
+          opacity: 0.2,
           position: {
             x: position.x,
             y: position.y + this.barHeight + this.barOffset,
@@ -115,11 +119,89 @@ export class PerformanceChart extends Vue {
   }
 
   private drawBars(svg, bars) {
-    bars.forEach(item => {
+    bars.forEach((item, i) => {
       this.drawBar(svg, item.paceMax, true, true);
       this.drawBar(svg, item.heartrateMax, true, true);
       this.drawBar(svg, item.pace, false, false);
       this.drawBar(svg, item.heartrate, false, true);
+
+      if (this.$route.fullPath.indexOf('competition') > -1) {
+        let isFaster = false;
+        let change = null;
+        let text = null;
+        let fill = '#7ED321';
+        if (bars[i + 1]) {
+          isFaster = bars[i].pace.item.base_data.duration < bars[i + 1].pace.item.base_data.duration;
+          change = formatSecondsToDuration(Math.abs(bars[i].pace.item.base_data.duration - bars[i + 1].pace.item.base_data.duration), FormatDurationType.Dynamic).all;
+        }
+        let gradient = 'url(#win-gradient' + i + item.pace.item.name.replace(/\s/g, '') + ')';
+        if (!isFaster) {
+          gradient = 'url(#lose-gradient' + i + item.pace.item.name.replace(/\s/g, '') + ')';
+          text = change + ' langsamer';
+          fill = '#D0021B';
+        } else {
+          text = change + ' schneller';
+        }
+
+        let rotate = 0;
+
+        if (i < bars.length - 1) {
+          let linearGradient = svg.append('linearGradient')
+            .attr('id', 'win-gradient' + i + item.pace.item.name.replace(/\s/g, ''))
+            .attr('gradientTransform', 'rotate(90)');
+
+          linearGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-opacity', 0.4)
+            .attr('stop-color', '#7ED321');
+
+          linearGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-opacity', 0.1)
+            .attr('stop-color', '#7ED321');
+
+          let linearGradient2 = svg.append('linearGradient')
+            .attr('id', 'lose-gradient' + i + item.pace.item.name.replace(/\s/g, ''))
+            .attr('gradientTransform', 'rotate(90)');
+
+          linearGradient2.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-opacity', 0.4)
+            .attr('stop-color', '#D0021B');
+
+          linearGradient2.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-opacity', 0.1)
+            .attr('stop-color', '#D0021B');
+
+          let trianglePos = item.heartrateMax.position.y + item.heartrateMax.height + 12;
+          let triangle = d3.symbol()
+            .type(d3.symbolTriangle)
+            .size(80);
+
+          svg.append('path')
+            .attr('d', triangle)
+            .attr('stroke', '')
+            .attr('fill', '#7ED321')
+            .attr('opacity', 0.5)
+            .attr('transform', 'translate(' + 19 + ',' + trianglePos + ') rotate(' + rotate + ')');
+
+          svg.append('rect')
+            .attr('x', 16)
+            .attr('y', item.heartrateMax.position.y + item.heartrateMax.height + 16)
+            .attr('width', 6)
+            .attr('height', this.barMargin - 36)
+            .attr('fill', gradient)
+
+          svg.append('text')
+            .attr('transform', 'translate(' + (40) + ',' + (item.heartrateMax.position.y + item.heartrateMax.height + 36) + ')')
+            .attr('class', 'performanceChart__label ')
+            .attr('dy', '1em')
+            .attr('fill', fill)
+            .style('text-anchor', 'right')
+            .text(text);
+        }
+      }
     });
   }
 
@@ -144,7 +226,7 @@ export class PerformanceChart extends Vue {
         text = formatPace(bar.item.average_data.speed, FormatPaceType.MinPerKm).formattedVal + '/km'
       }
       let opacity = 1;
-      if (bar.color === '#F7E7E8') {
+      if (bar.color === ZoneColors.Heartrate) {
         className = 'performanceChart__label--hr';
         if (bar.item.average_data.heartrate) {
           text = bar.item.average_data.heartrate + 'bpm'
@@ -166,7 +248,7 @@ export class PerformanceChart extends Vue {
       let className = 'performanceChart__date';
 
       svg.append('text')
-        .attr('transform', 'translate(' + (bar.position.x + (this.barHeight / 2) + 8) + ',' + (bar.position.y - 16) + ')')
+        .attr('transform', 'translate(' + (bar.position.x + (this.barHeight / 2) + 8) + ',' + (bar.position.y - 18) + ')')
         .attr('class', className)
         .attr('dy', '1em')
         .style('text-anchor', 'right')

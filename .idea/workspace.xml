@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/containers/Activity/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-elements/headline-box/headlineBox.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-elements/headline-box/headlineBox.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/ActivityBoxes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-boxes/ActivityBoxes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/activity-details-list/activityDetailsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-details-list/activityDetailsList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/activity-zone-list/activityZoneList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/activity-zone-list/activityZoneList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/visualizations/history-chart/historyChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/history-chart/historyChart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/VisualVariableModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-elements/headline-box/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-elements/headline-box/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-boxes/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-boxes/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-details-list/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-details-list/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-zone-list/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-zone-list/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,44 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ZoneChart.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="98" column="25" lean-forward="true" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name="compareChart.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/visualizations/compare-chart/compareChart.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="format-data.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/format-data.ts">
+      <file leaf-file-name="CompareChart.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="20" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1794">
-              <caret line="809" selection-start-line="808" selection-end-line="809" />
+            <state relative-caret-position="753">
+              <caret line="183" column="41" lean-forward="true" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="41" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="_style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+            <state relative-caret-position="150">
+              <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -171,14 +142,12 @@
         <option value="$PROJECT_DIR$/src/components/ui-widgets/compare-boxes/compareBoxes.html" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/compare-compare/compareCompare.html" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/compare-compare/CompareCompare.ts" />
-        <option value="$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/visualizations/train-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/compare-graph/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/toggle/toggle.html" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-elements/toggle/_style.scss" />
-        <option value="$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/CompareContainer/compareContainer.html" />
         <option value="$PROJECT_DIR$/src/components/containers/CompareContainer/index.ts" />
         <option value="$PROJECT_DIR$/src/components/containers/CompareContainer/CompareContainer.ts" />
@@ -218,6 +187,8 @@
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-details-list/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts" />
+        <option value="$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts" />
       </list>
     </option>
   </component>
@@ -319,6 +290,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="visualizations" type="462c0819:PsiDirectoryNode" />
+              <item name="compare-chart" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
               <item name="train-chart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -376,6 +355,15 @@
               <item name="styles" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="visualizations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="visualizations" type="462c0819:PsiDirectoryNode" />
+              <item name="compare-chart" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -603,12 +591,12 @@
       <workItem from="1529558353250" duration="485000" />
       <workItem from="1530631082610" duration="341000" />
       <workItem from="1530688208699" duration="518000" />
-      <workItem from="1530771845247" duration="34690000" />
+      <workItem from="1530771845247" duration="34954000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="958866000" />
+    <option name="totallyTimeSpent" value="959130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1007,27 +995,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/containers/Performance/performance.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/compare-compare/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -1336,10 +1303,13 @@
     <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/train-chart/_style.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        <state relative-caret-position="422">
+          <caret line="271" selection-start-line="271" selection-end-line="290" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1360,12 +1330,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/visualizations/zone-chart/ZoneChart.ts">
+    <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/zone-chart/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="98" column="25" lean-forward="true" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
+        <state relative-caret-position="285">
+          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/visualizations/compare-chart/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/compare-chart/compareChart.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/visualizations/compare-chart/CompareChart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="183" column="41" lean-forward="true" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="41" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

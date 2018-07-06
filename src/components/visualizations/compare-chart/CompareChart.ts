@@ -151,17 +151,37 @@ export class CompareChart extends Vue {
       .attr('text-anchor', 'middle')
       .text(circle.type);
 
-    svg.append('text')
+    let test = svg.append('text')
       .attr('x',  circle.position.x + textoffset)
-      .attr('y',  circle.position.y - 2)
+      .attr('y',  circle.position.y - 5)
       .attr('id', circle.label + (circle.position.x + textoffset + circle.position.y - 2).toString())
       .attr('class', 'compareChart__value')
       .attr('text-anchor', 'middle')
       .text(circle.label);
 
+    let dimensions = test.node().getBBox();
+
+    svg.append('rect')
+      .attr('x', dimensions.x - 16)
+      .attr('y', dimensions.y - 4)
+      .attr('rx', (dimensions.height + 8) / 2)
+      .attr('ry', (dimensions.height + 8) / 2)
+      .attr('height', dimensions.height + 8)
+      .attr('width', dimensions.width + 32)
+      .attr('fill', circle.color);
+
     svg.append('text')
       .attr('x',  circle.position.x + textoffset)
-      .attr('y',  circle.position.y + 14)
+      .attr('y',  circle.position.y - 5)
+      .attr('id', circle.label + (circle.position.x + textoffset + circle.position.y - 2).toString())
+      .attr('class', 'compareChart__value')
+      .attr('text-anchor', 'middle')
+      .text(circle.label);
+
+
+    svg.append('text')
+      .attr('x',  circle.position.x + textoffset)
+      .attr('y',  circle.position.y + 17)
       .attr('class', 'compareChart__label')
       .attr('text-anchor', 'middle')
       .text(circle.percentage);

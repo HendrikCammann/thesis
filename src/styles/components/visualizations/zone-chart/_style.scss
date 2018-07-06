@@ -5,22 +5,21 @@
   }
 
   &__zone-number {
-    font-family: $font-family--secondary;
-    font-size: 16px;
-    font-weight: 700;
-    fill: $colors-text;
-    text-shadow: 0 0 10px $colors-white;
-  }
-
-  &__zone-perc {
     font-family: $font-family--main;
     font-size: 12px;
     font-weight: 400;
+    fill: $colors-label;
+  }
+
+  &__zone-perc {
+    font-family: $font-family--secondary;
+    font-size: 16px;
+    font-weight: 700;
   }
 
   &__zone-label {
     font-family: $font-family--main;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
   }
 }

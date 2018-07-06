@@ -51,7 +51,7 @@ export class ActivityBoxes extends Vue {
     let pace = formatPace(activity.average_data.speed, FormatPaceType.MinPerKm).formattedVal + '/km';
     basics.push(new ContentBoxModel(pace, 'ø Pace', ContentBoxIcons.Pace, false, DetailExplanations.AvgPace));
 
-    let heartrate = activity.average_data.heartrate + 'bpm';
+    let heartrate = Math.round(activity.average_data.heartrate) + 'bpm';
     basics.push(new ContentBoxModel(heartrate, 'ø Herzfrequenz', ContentBoxIcons.Heartrate, false, DetailExplanations.AvgHR));
 
     let intensity = Math.round(activity.base_data.intensity);

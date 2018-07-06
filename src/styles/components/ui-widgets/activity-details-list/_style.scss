@@ -5,10 +5,10 @@
 
   #{&}__icons {
     img {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
     }
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   #{&}__column {
@@ -103,7 +103,7 @@
 
   #{&}__explanation {
     margin-top: 8px;
-    text-align: justify;
+    text-align: center;
     padding: 0 16px;
     font-size: 10px;
     color: $colors-label;

@@ -6,6 +6,9 @@ import * as d3 from 'd3';
 import {PositionModel} from '../../../models/Chart/ChartModels';
 import {ActivityZoneModel} from '../../../models/Activity/ActivityZoneModel';
 import {sumArray} from '../../../utils/array-helper';
+import {formatPace} from '../../../utils/format-data';
+import {FormatPaceType} from '../../../models/FormatModel';
+import {ZoneColors} from '../../../models/VisualVariableModel';
 
 @Component({
   template: require('./zoneChart.html'),
@@ -20,7 +23,7 @@ export class ZoneChart extends Vue {
 
   private width = 340;
   private height = 600;
-  private offset = 8;
+  private offset = 44;
   private itemArea = 115;
 
   private zoneChart(root: string, width: number, height: number, offset: number, zones: ActivityZoneModel) {
@@ -65,7 +68,7 @@ export class ZoneChart extends Vue {
   private createCircles(zones: ActivityZoneModel, hasHeartrate: boolean, width: number, maxValues) {
     let position: PositionModel = {
       x: this.width / 2,
-      y: 0,
+      y: 16,
     };
 
     let offsetCircles = [];
@@ -92,9 +95,11 @@ export class ZoneChart extends Vue {
       let paceRadius = (width * pacePercentage) / 2;
       let paceItem = {
         radius: paceRadius,
-        color: '#216e9a',
+        color: ZoneColors.Pace,
         xPos: position.x,
         yPos: position.y,
+        max: zones.pace.distribution_buckets[i].max,
+        min: zones.pace.distribution_buckets[i].min,
         percentage: getPercentageFromValue(zones.pace.distribution_buckets[i].time, maxValues.full)
       };
 
@@ -106,9 +111,11 @@ export class ZoneChart extends Vue {
         let hrRadius = (width * hrPercentage) / 2;
         let hrItem = {
           radius: hrRadius,
-          color: '#d23d49',
+          color: ZoneColors.Heartrate,
           xPos: position.x,
           yPos: position.y,
+          max: zones.heartrate.distribution_buckets[i].max,
+          min: zones.heartrate.distribution_buckets[i].min,
           percentage: getPercentageFromValue(zones.heartrate.distribution_buckets[i].time, maxValues.full),
         };
 
@@ -134,40 +141,35 @@ export class ZoneChart extends Vue {
       paceCircles: paceCircles,
       hrCircles: hrCircles,
       maxCircle: maxCircle,
-      height: position.y,
+      height: position.y + 16 - this.offset,
     };
   }
 
   private drawCircles(circles, svg) {
-    this.drawDivider(svg, this.width / 2, 0, this.height - this.offset);
     for (let i = 0; i < circles.offsetCircles.length; i++) {
-      if (i === 0) {
-        this.addLabel(svg, 0, circles.offsetCircles[i].yPos, 'langsam', 'left', '#216e9a', 0.5);
-        this.addLabel(svg, this.width - 35, circles.offsetCircles[i].yPos, 'locker', 'right', '#d23d49', 0.5);
-      }
-      if (i === circles.offsetCircles.length - 1) {
-        this.addLabel(svg, 0, circles.offsetCircles[i].yPos, 'schnell', 'left', '#216e9a', 0.5);
-        this.addLabel(svg, this.width - 65, circles.offsetCircles[i].yPos, 'anstregend', 'right', '#d23d49', 0.5);
-      }
       this.drawFullCircle(svg, circles.offsetCircles[i].xPos, circles.offsetCircles[i].yPos, circles.maxCircle.radius, '#E7E7E7', 0.3);
       this.drawFullCircle(svg, circles.offsetCircles[i].xPos, circles.offsetCircles[i].yPos, circles.offsetCircles[i].radius, circles.offsetCircles[i].color, 0.1);
       if (circles.hrCircles[i]) {
         this.drawHalfCircle(svg, circles.hrCircles[i].xPos, circles.hrCircles[i].yPos, circles.hrCircles[i].radius, circles.hrCircles[i].color, true, 1);
-        this.addPerc(svg, circles.offsetCircles[i].xPos + circles.maxCircle.radius + 5, circles.offsetCircles[i].yPos, circles.hrCircles[i].percentage + '%', 'left', '#d23d49', 1);
+        this.addPerc(svg, circles.offsetCircles[i].xPos + circles.maxCircle.radius + 42, circles.offsetCircles[i].yPos, circles.hrCircles[i].percentage + '%', 'left', ZoneColors.Heartrate, 1);
+        this.addLabel(svg, circles.offsetCircles[i].xPos + circles.maxCircle.radius + 56, circles.offsetCircles[i].yPos, null, 'middle', '#80909D', 1, circles.hrCircles[i]);
       }
       this.drawHalfCircle(svg, circles.paceCircles[i].xPos, circles.paceCircles[i].yPos, circles.paceCircles[i].radius, circles.paceCircles[i].color, false, 1);
-      this.addPerc(svg, circles.offsetCircles[i].xPos - circles.maxCircle.radius - 29, circles.offsetCircles[i].yPos, circles.paceCircles[i].percentage + '%', 'right', '#216e9a', 1);
-      this.addText(svg, circles.paceCircles[i].xPos, circles.paceCircles[i].yPos, (i + 1));
+      this.addPerc(svg, circles.offsetCircles[i].xPos - circles.maxCircle.radius - 66, circles.offsetCircles[i].yPos, circles.paceCircles[i].percentage + '%', 'right', ZoneColors.Pace, 1);
+      this.addLabel(svg, circles.offsetCircles[i].xPos - circles.maxCircle.radius - 56, circles.offsetCircles[i].yPos, null, 'middle', '#80909D', 1, circles.paceCircles[i]);
+
+      this.drawDivider(svg, circles.offsetCircles[i].xPos, circles.paceCircles[i].yPos - circles.maxCircle.radius, this.height - this.offset);
+      this.addText(svg, circles.paceCircles[i].xPos, circles.paceCircles[i].yPos - circles.maxCircle.radius - 18, 'Zone ' + (i + 1));
     }
   }
 
   private drawDivider(svg, x: number, y: number, height: number) {
     svg.append('rect')
-      .attr('x', x)
+      .attr('x', x - 1)
       .attr('y', y)
-      .attr('width', 1)
+      .attr('width', 2)
       .attr('height', height)
-      .attr('fill', '#ADB7BF');
+      .attr('fill', '#FBFAFA');
   }
 
   private drawHalfCircle(svg, x: number, y: number, radius: number, color: string, bottomHalf: boolean, opacity: number): void {
@@ -220,31 +222,72 @@ export class ZoneChart extends Vue {
   private addText(svg, x: number, y: number, text: string | number) {
     svg.append('text')
       .attr('x', x)
-      .attr('y', y + 4)
+      .attr('y', y + 14)
       .attr('class', 'zoneChart__zone-number')
       .attr('text-anchor', 'middle')
       .text(text);
   }
 
-  private addLabel(svg, x: number, y: number, text: string | number , anchor: string, color: string, opacity: number) {
+  private addLabel(svg, x: number, y: number, text: any, anchor: string, color: string, opacity: number, circle: any) {
+    let range = '';
+    if (circle.max < 30) {
+      if (circle.min === 0) {
+        range = '<' + formatPace(circle.max, FormatPaceType.MinPerKm).formattedVal + '/km';
+      } else if (circle.max === -1) {
+        range = '>' + formatPace(circle.min, FormatPaceType.MinPerKm).formattedVal + '/km';
+      } else {
+        range = formatPace(circle.min, FormatPaceType.MinPerKm).formattedVal + ' - ' + formatPace(circle.max, FormatPaceType.MinPerKm).formattedVal + '/km';
+      }
+    } else {
+      if (circle.min === 0) {
+        range = '<' + circle.max + 'bpm';
+      } else if (circle.max === -1) {
+        range = '>' + circle.min + 'bpm';
+      } else {
+        range = circle.min + ' - ' + circle.max + 'bpm';
+      }
+    }
+
     svg.append('text')
       .attr('x', x)
-      .attr('y', y + 2)
+      .attr('y', y + 18)
       .attr('class', 'zoneChart__zone-label')
       .attr('text-anchor', anchor)
       .attr('opacity', opacity)
       .attr('fill', color)
-      .text(text);
+      .text(range);
   }
 
-  private addPerc(svg, x: number, y: number, text: string | number , anchor: string, color: string, opacity: number) {
-    svg.append('text')
+  private addPerc(svg, x: number, y: number, text: any, anchor: string, color: string, opacity: number) {
+    let test = svg.append('text')
       .attr('x', x)
-      .attr('y', y + 3)
+      .attr('y', y - 6)
       .attr('class', 'zoneChart__zone-perc')
+      .attr('id', (x + y).toFixed(0))
       .attr('text-anchor', anchor)
       .attr('opacity', opacity)
-      .attr('fill', color)
+      .attr('fill', 'white')
+      .text(text);
+
+    let dimensions = test.node().getBBox();
+
+    svg.append('rect')
+      .attr('x', dimensions.x - 16)
+      .attr('y', dimensions.y - 4)
+      .attr('rx', (dimensions.height + 8) / 2)
+      .attr('ry', (dimensions.height + 8) / 2)
+      .attr('height', dimensions.height + 8)
+      .attr('width', dimensions.width + 32)
+      .attr('fill', color);
+
+    svg.append('text')
+      .attr('x', x)
+      .attr('y', y - 6)
+      .attr('class', 'zoneChart__zone-perc')
+      .attr('id', (x + y).toFixed(0))
+      .attr('text-anchor', anchor)
+      .attr('opacity', opacity)
+      .attr('fill', 'white')
       .text(text);
   }
 

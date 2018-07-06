@@ -13,9 +13,9 @@
     text-align: center;
 
     #{$root}__icon {
-      height: 24px;
-      width: 24px;
-      transform: translate(0, 12px);
+      height: 40px;
+      width: 40px;
+      transform: translate(0, 5px);
     }
   }
 
@@ -26,7 +26,7 @@
     #{$root}__name {
       font-family: $font-family--secondary;
       max-width: 70vw;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
       color: $colors-text;
       white-space: nowrap;

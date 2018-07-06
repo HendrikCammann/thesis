@@ -2,193 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcChart/ArcChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcCompare/ArcCompare.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcCompare/arcCompare.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ArcCompare/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BarChart/BarChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BarChart/barChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BarChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BubbleChart/BubbleChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BubbleChart/BubbleChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/BubbleChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DonutChart/DonutChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DonutChart/donutChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DonutChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DoughnutChart/DoughnutChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DoughnutChart/doughnutChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/DoughnutChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/HistoryChart/HistoryChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/HistoryChart/historyChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/HistoryChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SessionChart/SessionChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SessionChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SessionChart/sessionChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SwooshChart/SwooshChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SwooshChart/SwooshChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/SwooshChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/TrainChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/TrainChart/trainChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/WaveChart/WaveChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/WaveChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/WaveChart/waveChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/ZoneChart.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/ZoneChart/zoneChart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityGraphs/ActivityGraphs.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityGraphs/activityGraphs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityGraphs/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityList/ActivityList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityList/ActivityList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityList/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityRunList/ActivityRunList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityRunList/activityRunList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityRunList/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityStats/ActivityStatsModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityStats/activityStats.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ActivityStats/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CardModule/CardModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CardModule/cardModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CardModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareAddModule/CompareAddModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareAddModule/compareAddModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareAddModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareChartModule/CompareChartModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareChartModule/compareChartModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareChartModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareModule/CompareModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareModule/compareModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompareModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompetitionModule/CompetitionModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompetitionModule/competitionModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CompetitionModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CurrentWeek/CurrentWeekModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CurrentWeek/currentWeek.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/CurrentWeek/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/DateModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/dateModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DateModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DetailToggleModule/DetailToggleModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DetailToggleModule/detailToggleModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DetailToggleModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DisplayTypeToggleModule/DisplayTypeToggleModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DisplayTypeToggleModule/displayTypeToggleModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/DisplayTypeToggleModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/FilterModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/filterModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/FilterModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/LastRunModule/LastRunModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/LastRunModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/LastRunModule/lastRunModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/MapModule/MapModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/MapModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/MapModule/mapModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ModalButtonModule/ModalButtonModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ModalButtonModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ModalButtonModule/modalButtonModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/PreparationTeaser/PreparationTeaserModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/PreparationTeaser/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/PreparationTeaser/preparationTeaser.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SliderModule/SliderModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SliderModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SliderModule/sliderModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SmartFilterModule/SmartFilterModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SmartFilterModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/SmartFilterModule/smartFilterModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/TrainCompareModule/TrainCompareModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/TrainCompareModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/TrainCompareModule/trainCompareModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/User/UserModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/User/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/User/user.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ZoneModule/ZoneModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ZoneModule/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modules/ZoneModule/zoneModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityListItem/ActivityListItem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityListItem/activityListItem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityListItem/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/ActivityRunListItem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/activityRunListItem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityRunListItem/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityStatsItem/ActivityStatsItem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityStatsItem/activityStatsItem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/ActivityStatsItem/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Button/Button.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Button/button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Button/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareAddButton/CompareAddButton.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareAddButton/compareAddButton.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareAddButton/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareBox/CompareBox.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareBox/compareBox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareBox/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareListItem/CompareListItem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareListItem/compareListItem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/CompareListItem/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/FilterButton/FilterButton.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/FilterButton/filterButton.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/FilterButton/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/HeadlineBox/HeadlineBox.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/HeadlineBox/headlineBox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/HeadlineBox/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/RangeSlider/RangeSlider.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/RangeSlider/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/RangeSlider/rangeSlider.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TagItem/TagItem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TagItem/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TagItem/tagItem.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/TimeGroupingButton.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TimeGroupingButton/timeGroupingButton.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TitleBox/TitleBox.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TitleBox/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/TitleBox/titleBox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Toggle/Toggle.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Toggle/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/Toggle/toggle.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/navigation/navigationModule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/navigation/navigationModule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/ArcCompare/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/BarChart/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/DonutChart/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/charts/WaveChart/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityGraphs/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityList/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityRunList/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ActivityStats/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/BubbleChart/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/CardModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/CompareAddModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/CompareModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/CompetitionModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/CurrentWeek/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/DateModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/DetailToggleModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/DisplayTypeToggleModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/LastRunModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/MapModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ModalButtonModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/PreparationTeaser/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/SmartFilterModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/TrainCompare/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/User/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/modules/ZoneModule/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/ActivityListItem/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/ActivityRunListItem/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/ActivityStatsItem/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/Button/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/CompareAddButton/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/CompareBox/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/HeadlineBox/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/MapOverlayItem/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/RangeSlider/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/TagItem/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/TitleBox/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/partials/Toggle/_style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -213,29 +28,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
+      <file leaf-file-name="activitiesList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navigationModule.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/navigation/navigationModule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="47" lean-forward="true" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+            <state relative-caret-position="795">
+              <caret line="53" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="_style.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss">
+        <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+            <state relative-caret-position="748">
+              <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -324,8 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/containers/Compare/CompareContainer.ts" />
-        <option value="$PROJECT_DIR$/src/styles/components/visualizations/train-chart/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/compare-graph/_style.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/toggle/toggle.html" />
@@ -375,6 +179,8 @@
         <option value="$PROJECT_DIR$/src/styles/main.scss" />
         <option value="$PROJECT_DIR$/src/components/ui-widgets/navigation/navigationModule.html" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html" />
+        <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss" />
       </list>
     </option>
   </component>
@@ -432,12 +238,6 @@
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -453,7 +253,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="navigation" type="462c0819:PsiDirectoryNode" />
+              <item name="activities-list" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -483,7 +283,7 @@
               <item name="styles" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="navigation" type="462c0819:PsiDirectoryNode" />
+              <item name="activities-list" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -693,12 +493,12 @@
       <workItem from="1529558353250" duration="485000" />
       <workItem from="1530631082610" duration="341000" />
       <workItem from="1530688208699" duration="518000" />
-      <workItem from="1530771845247" duration="35726000" />
+      <workItem from="1530771845247" duration="36154000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="959902000" />
+    <option name="totallyTimeSpent" value="960330000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -981,32 +781,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-select/PerformanceSelect.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-activities/performanceActivities.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/performance-diagnostic/performanceDiagnostic.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/bottom-menu/BottomMenu.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="36" column="60" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="60" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Dashboard/Dashboard.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1323,12 +1097,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        <state relative-caret-position="453">
+          <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/stravaAPI.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/navigation/navigationModule.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1337,10 +1117,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/navigation/_style.scss">
+    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        <state relative-caret-position="195">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-list/activitiesList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/components/ui-widgets/activities-list/_style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
         </state>
       </provider>
     </entry>

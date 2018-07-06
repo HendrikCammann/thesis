@@ -5,7 +5,6 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // externals
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~leaflet/dist/leaflet.css";
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
 
@@ -25,11 +24,6 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/containers/Activity/_style";
 @import "components/containers/Performance/_style";
 @import "components/containers/ActivityFeed/_style";
-
-@import "components/charts/WaveChart/_style";
-@import "components/charts/DonutChart/_style";
-@import "components/charts/ArcCompare/_style";
-@import "components/charts/BarChart/_style";
 
 @import "components/ui-elements/content-box/_style";
 @import "components/ui-elements/headline-box/_style";
@@ -71,39 +65,6 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "components/visualizations/compare-chart/style";
 @import "components/visualizations/performance-chart/style";
 
-@import "components/modules/ActivityList/_style";
-@import "components/modules/ActivityStats/_style";
-@import "components/modules/ActivityGraphs/_style";
-@import "components/modules/ActivityRunList/_style";
-@import "components/modules/CurrentWeek/_style";
-@import "components/modules/User/_style";
-@import "components/modules/PreparationTeaser/_style";
-@import "components/modules/CardModule/_style";
-@import "components/modules/DateModule/_style";
-@import "components/modules/CompetitionModule/_style";
 @import "components/ui-widgets/navigation/_style";
-@import "components/modules/LastRunModule/_style";
-@import "components/modules/CompareModule/_style";
-@import "components/modules/CompareAddModule/_style";
-@import "components/modules/MapModule/_style";
-@import "components/modules/TrainCompare/_style";
-@import "components/modules/SmartFilterModule/_style";
-@import "components/modules/DisplayTypeToggleModule/_style";
-@import "components/modules/ModalButtonModule/_style";
-@import "components/modules/DetailToggleModule/_style";
-@import "components/modules/ZoneModule/_style";
-
 @import "components/ui-widgets/modal/_style";
 
-@import "components/partials/Button/_style";
-@import "components/partials/Toggle/_style";
-@import "components/partials/ActivityListItem/_style";
-@import "components/partials/ActivityStatsItem/_style";
-@import "components/partials/ActivityRunListItem/_style";
-@import "components/partials/TagItem/_style";
-@import "components/partials/TitleBox/_style";
-@import "components/partials/MapOverlayItem/_style";
-@import "components/partials/CompareBox/_style";
-@import "components/partials/CompareAddButton/_style";
-@import "components/partials/HeadlineBox/_style";
-@import "components/partials/RangeSlider/_style";

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="25px" viewBox="0 0 16 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>back--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="back--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Back" fill="#4F5B64">
+            <rect id="Rectangle-2" transform="translate(8.000000, 17.000000) rotate(45.000000) translate(-8.000000, -17.000000) " x="0" y="15" width="16" height="4" rx="2"></rect>
+            <rect id="Rectangle-2" transform="translate(8.000000, 8.000000) rotate(-45.000000) translate(-8.000000, -8.000000) " x="0" y="6" width="16" height="4" rx="2"></rect>
+        </g>
+    </g>
+</svg>

@@ -1,6 +1,0 @@
-<div class="activityListItem">
-  <div class="activityListItem__wrapper" v-for="(item, i) in activity" @click="openDetailView(item)">
-    <span v-if="i == 0" class="activityListItem__day">{{ getDayName(item) }}</span>
-    <span :style="{ color: getColor(item) }">{{ item.name }}</span>
-  </div>
-</div>

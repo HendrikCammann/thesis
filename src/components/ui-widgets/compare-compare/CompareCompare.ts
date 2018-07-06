@@ -78,7 +78,7 @@ export class CompareCompare extends Vue {
   private formatValue(displayType, value) {
     switch(displayType) {
       case DisplayType.Distance:
-        return formatDistance(value, FormatDistanceType.Kilometers).toFixed(2) + 'km';
+        return formatDistance(value, FormatDistanceType.Kilometers).toFixed(0) + 'km';
       case DisplayType.Duration:
         return formatSecondsToDuration(value, FormatDurationType.Dynamic).all;
       case DisplayType.Intensity:

@@ -1,0 +1,38 @@
+.errorPage {
+  $root: &;
+  padding-top: 60px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 100vh;
+
+  #{&}__image {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  #{&}__content {
+    padding: 0;
+    padding-top: 80px;
+    text-align: center;
+    position: relative;
+    height: 100%;
+
+    #{$root}__message {
+      font-family: $font-family--secondary;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    #{$root}__text {
+      position: absolute;
+      font-size: 16px;
+      text-decoration: underline;
+      bottom: 40px;
+      width: 100%;
+    }
+  }
+}

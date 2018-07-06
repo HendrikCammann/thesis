@@ -15,12 +15,13 @@ import {PerformanceActivities} from '../components/ui-widgets/performance-activi
 import {PerformanceCompetition} from '../components/ui-widgets/performance-competition';
 import {PerformanceDiagnostic} from '../components/ui-widgets/performance-diagnostic';
 import {CompareContainer} from '../components/containers/CompareContainer';
+import {ErrorPage} from '../components/containers/ErrorPage';
 
 // register the plugin
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       component: AppContainer,
@@ -32,11 +33,11 @@ const router = new VueRouter({
       path: '/dashboard',
     }, {
       component: ActivityContainer,
-      name: 'Activity',
+      name: 'Trainingseinheit',
       path: '/activity/:id',
     }, {
       component: Performance,
-      // name: 'Leistungsentwicklung',
+      name: 'Leistungsentwicklung',
       path: '/performance/',
       children: [
         // UserHome will be rendered inside User's <router-view>
@@ -56,7 +57,7 @@ const router = new VueRouter({
       ]
     }, {
       component: ActivitiesContainer,
-      name: 'Kalender',
+      name: 'Trainingsentwicklung',
       path: '/activities',
     }, {
       component: ActivityFeed,
@@ -66,7 +67,12 @@ const router = new VueRouter({
       component: Profile,
       name: 'Profil',
       path: '/user',
+    }, {
+      path: '*',
+      component: ErrorPage,
+      name: 'Fehler'
     }
+
   ],
 });
 

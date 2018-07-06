@@ -132,6 +132,11 @@ export class Compare extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
+    if (this.$store.getters.getSelectedTrainingClusters.length !== 2) {
+      this.$router.push({ path: `/compare` });
+      this.isSelection = true;
+    }
+
     eventBus.$on(BottomMenuEvents.set_Selected_Menu, (i) => {
       this.selectedMenu = i;
     });

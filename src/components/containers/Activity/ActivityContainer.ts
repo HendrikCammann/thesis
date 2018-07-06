@@ -39,6 +39,7 @@ import {Modal} from '../../ui-widgets/modal';
 export class ActivityContainer extends Vue {
   public showModal = false;
   public modalItem = null;
+  public blockRender = true;
 
   public getColor(type) {
     return getCategoryColor(type);
@@ -48,11 +49,14 @@ export class ActivityContainer extends Vue {
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.NotLoaded) {
       this.$store.dispatch(MutationTypes.SET_LOADING_STATUS, loadingStatus.Loading);
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
-      this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, this.$route.params.id);
+      this.$store.dispatch(MutationTypes.SET_SELECTED_ACTIVITY, parseInt(this.$route.params.id));
+      this.blockRender = false;
     }
+
     if (this.$store.getters.getAppLoadingStatus.activities === loadingStatus.Loaded) {
       this.$store.dispatch(MutationTypes.GET_ACTIVITY, this.$store.getters.getSelectedActivityId);
       eventBus.$emit(menuEvents.set_State, this.$store.getters.getSelectedActivity.name);
+      this.blockRender = false;
     }
 
     eventBus.$on(modalEvents.open_Modal, (payload) => {

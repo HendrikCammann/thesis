@@ -168,6 +168,7 @@ const getters: GetterTree<State, State> = {
   },
 
   getSelectedActivity: (state) => {
+    console.log('in', state.selectedActivityId);
     for (let i = 0; i < state.activityList.length; i++) {
       if (state.selectedActivityId === state.activityList[i].id) {
         return state.activityList[i];

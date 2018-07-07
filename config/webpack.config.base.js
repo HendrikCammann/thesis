@@ -1,4 +1,6 @@
 const helpers = require('./helpers'),
+  WebpackPwaManifest = require('webpack-pwa-manifest'),
+  ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -43,6 +45,67 @@ let config = {
       from: 'src/assets',
       to: './assets'
     }, ]),
+    new ServiceWorkerWebpackPlugin({
+      entry: helpers.root('src/sw.js'),
+      excludes: ['**/.*', '**/*.map', '*.html'],
+    }),
+    new WebpackPwaManifest({
+      name: 'Bidh',
+      short_name: 'Bidh',
+      description: 'Marathon Training Analysis',
+      display: "standalone",
+      orientation: "portrait",
+      background_color: "#FBFAFA",
+      theme_color: "#4F5B64",
+      inject: true,
+      ios: {
+        'apple-mobile-web-app-title': 'Bidh',
+        'apple-mobile-web-app-status-bar-style': 'white'
+      },
+      start_url: '.',
+      icons: [
+        {
+          src: helpers.root('src/assets/appIcon/icon-512x512.png'),
+          size: '512x512', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-384x384.png'),
+          size: '384x384', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-192x192.png'),
+          size: '192x192', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-152x152.png'),
+          size: '152x152', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-144x144.png'),
+          size: '144x144', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-128x128.png'),
+          size: '128x128', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-96x96.png'),
+          size: '96x96', // you can also use the specifications pattern
+          ios: true
+        },
+        {
+          src: helpers.root('src/assets/appIcon/icon-72x72.png'),
+          size: '72x72', // you can also use the specifications pattern
+          ios: true
+        },
+      ]
+    }),
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,

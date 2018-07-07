@@ -1,0 +1,16 @@
+{
+  "name": "Bidh",
+  "short_name": "Bidh",
+  "icons": [
+    {
+      "src": "../src/assets/appIcon/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "../src/index.html",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#FBFAFA",
+  "theme_color": "#4F5B64"
+}

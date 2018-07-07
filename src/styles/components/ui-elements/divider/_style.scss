@@ -1,17 +1,30 @@
 .divider {
   $root: &;
   margin: 32px 0;
+  margin-top: 0;
   font-family: $font-family--secondary;
   overflow: visible;
 
   height: 180px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  width: 100vw;
 
-  img {
-    position: absolute;
-    left: -30px;
+  &::after {
+    content:' ';
+    height: 180px;
     width: 100vw;
-    object-fit: cover;
+  }
+
+  #{&}__wrapper {
+    background-image: url('/../../../../assets/images/divider/divider_background--large.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 180px;
+    @media screen and (max-width: 768px) {
+      background-image: url('/../../../../assets/images/divider/divider_background.png');
+    }
   }
 
   #{&}__text {
@@ -27,4 +40,8 @@
     box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
     font-weight: 700;
   }
+}
+
+.faker {
+  height: 212px;
 }

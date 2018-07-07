@@ -78,6 +78,10 @@ export class TrainChart extends Vue {
       if (this.isDual) {
         this.width = 275;
       }
+      this.width = document.getElementsByClassName('trainChart')[0].clientWidth;
+      if (this.width === 0) {
+        this.width = 309;
+      }
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);
       let data = this.getData(this.preparation);
@@ -1016,9 +1020,32 @@ export class TrainChart extends Vue {
   ////////////////////////////////////////////////////////////////////////
 
   mounted() {
+    let that = this;
+    window.addEventListener('orientationchange', function()  {
+      setTimeout(function() {
+        if (that.isDual) {
+          that.width = 275;
+        }
+        that.width = document.getElementsByClassName('trainChart')[0].clientWidth;
+        if (that.width === 0) {
+          that.width = 309;
+        }
+        console.log(that.width);
+        that.height = that.calculateSvgHeight(that.anchors);
+        that.largestValue = that.getMaxValue(that.anchors);
+        let data = that.getData(that.preparation);
+        that.trainChart(that.root, data);
+      }, 150);
+
+    });
+
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       if (this.isDual) {
         this.width = 275;
+      }
+      this.width = document.getElementsByClassName('trainChart')[0].clientWidth;
+      if (this.width === 0) {
+        this.width = 309;
       }
       this.height = this.calculateSvgHeight(this.anchors);
       this.largestValue = this.getMaxValue(this.anchors);

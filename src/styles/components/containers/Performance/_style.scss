@@ -7,5 +7,9 @@
   #{&}__content {
     padding: 0;
     padding-top: 32px;
+
+    @media screen and (min-width: 767px) and (max-width: 780px) {
+      padding-right: 16px;
+    }
   }
 }

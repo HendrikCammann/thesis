@@ -2,6 +2,7 @@
   $root: &;
   padding-top: 120px;
   height: 100vh;
+  position: relative;
 
   a {
     color: $colors-text;
@@ -57,7 +58,7 @@
     #{$root}__data {
       position: absolute;
       bottom: 24px;
-      width: calc(100vw - 32px);
+      width: calc(100% - 32px);
       font-size: 12px;
 
       .buttonStandard {

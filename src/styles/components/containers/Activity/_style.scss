@@ -8,6 +8,10 @@
   #{&}__map {
     padding: 0;
     margin-bottom: 12px;
+    @media screen and (min-width: 766px) and (max-width: 770px) {
+      width: calc(100% + 30px);
+      overflow: hidden;
+    }
   }
 
   .headlineBox {

@@ -137,13 +137,13 @@ export class ActivityDetails extends Vue {
   }
 
   public getViewportWidth() {
-    this.viewPortWidth = document.getElementsByClassName('activity__content')[0].clientWidth;
+    this.viewPortWidth = document.getElementsByClassName('box-content')[0].clientWidth;
   }
 
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.getViewportWidth, true);
-    this.viewPortWidth = document.getElementsByClassName('activity__content')[0].clientWidth;
+    this.viewPortWidth = document.getElementsByClassName('box-content')[0].clientWidth;
     // this.viewPortWidth = document.getElementById('activityDetails__graph').offsetWidth;
 
     if (this.loaded.activities === loadingStatus.Loaded) {

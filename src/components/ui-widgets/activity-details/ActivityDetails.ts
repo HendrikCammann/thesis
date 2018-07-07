@@ -10,6 +10,8 @@ import {FormatPaceType} from '../../../models/FormatModel';
 import {getLargerValue, getPercentageFromValue} from '../../../utils/numbers/numbers';
 import {ActivityDetailsList} from '../activity-details-list';
 import {LineChart} from '../../visualizations/line-chart';
+import {DetailChartExplanations, DetailExplanations, ZoneChartExplanations} from '../../../content/Explanations';
+import {modalEvents} from '../../../events/Modal/modal';
 
 @Component({
   template: require('./activityDetails.html'),
@@ -138,6 +140,17 @@ export class ActivityDetails extends Vue {
 
   public getViewportWidth() {
     this.viewPortWidth = document.getElementsByClassName('box-content')[0].clientWidth;
+  }
+
+  public showExplanation(i) {
+    switch(i) {
+      case 1:
+        eventBus.$emit(modalEvents.open_Modal, DetailChartExplanations.Graph);
+        break;
+      case 2:
+        eventBus.$emit(modalEvents.open_Modal, DetailChartExplanations.List);
+        break;
+    }
   }
 
   mounted() {

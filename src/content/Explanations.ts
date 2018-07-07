@@ -112,3 +112,40 @@ export const PreparationExplanations = {
   },
 };
 
+export const ZoneChartExplanations = {
+  Main: {
+    text: 'Die Visualisierung stellt dar, inwiefern die\n' +
+    'Tempo (blau)- und Herzfrequenzzonen (rot) einer\n' +
+    'Einheit übereinstimmen.',
+    how: 'Die einzelnen Zonen steigen immer weiter an. So ist Zone 1 eine langsamene Geschwindigkeit/niedrige Herzfrequenz bis zu Zone 5 in welcher beide Werte am Maximum sind.',
+    label: 'ZoneChart'
+  },
+};
+
+export const CompareChartExplanations = {
+  Main: {
+    text: 'Die Visualisierung stellt dar, inwiefern sich die Anteile der einzelnen Laufkategorien in zwei verschiedenen Vorbereitungsphasen unterscheiden.',
+    how: 'Der graue Hintergrund steht für den Maximalwert eines aller Kategorien. Die Größe der Kreise berechnet sich anhand des Flächeninhaltes',
+    label: 'CompareChart'
+  },
+};
+
+export const DetailChartExplanations = {
+  Graph: {
+    text: 'Die Visualisierung zeigt,\n' +
+    'darzustellen, inwiefern sich die\n' +
+    'Geschwindigkeit und die Herzfrequenz im\n' +
+    'Laufe einer Einheit entwickelt haben',
+    how: 'Die gestrichelten Linien stehen dabei für den Durchschnittswert eines Graphen. Die heller eingefärben Teile eines Graphen waren unterhalb des Durchschnitts, die dunkleren oberhalb.',
+    label: 'Detailgraph'
+  },
+  List: {
+    text: 'Die Visualisierung zeigt,\n' +
+    'darzustellen, inwiefern sich die\n' +
+    'Geschwindigkeit und die Herzfrequenz im\n' +
+    'Laufe einer Einheit entwickelt haben',
+    how: 'Der graue Hintergrund steht für den jeweiligen Maximalwert eines Wertes. Je länger der Balken, desto höher der Wert',
+    label: 'DetailList'
+  }
+};
+

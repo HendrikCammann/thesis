@@ -38,7 +38,6 @@ export class ActivityBoxes extends Vue {
   }
 
   private initData(activity) {
-    console.log(activity);
     let basics = [];
     let text = [];
 

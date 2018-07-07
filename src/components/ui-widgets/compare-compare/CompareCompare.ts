@@ -11,6 +11,9 @@ import {FormatDistanceType, FormatDurationType} from '../../../models/FormatMode
 import {formatSecondsToDuration} from '../../../utils/time/time-formatter';
 import {CompareChart} from '../../visualizations/compare-chart';
 import {Divider} from '../../ui-elements/divider';
+import {CompareChartExplanations, ZoneChartExplanations} from '../../../content/Explanations';
+import {modalEvents} from '../../../events/Modal/modal';
+import {eventBus} from '../../../main';
 
 @Component({
   template: require('./compareCompare.html'),
@@ -42,6 +45,10 @@ export class CompareCompare extends Vue {
     if (this.loadingStatus.activities === loadingStatus.Loaded) {
       this.data = this.initData(this.clusters, this.displayType);
     }
+  }
+
+  public showExplanation() {
+    eventBus.$emit(modalEvents.open_Modal, CompareChartExplanations.Main);
   }
 
   mounted() {

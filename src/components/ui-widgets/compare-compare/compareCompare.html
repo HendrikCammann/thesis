@@ -8,7 +8,7 @@
     <div class="compareCompare__label" v-for="item in clusterData">
       {{ item.clusterName }}
     </div>
-    <div class="compareCompare__graph" v-for="(item, i) in data.data">
+    <div class="compareCompare__graph" v-for="(item, i) in data.data" @click="showExplanation()">
       <compare-chart
         :root="'compareCompare' + i"
         :index="i"

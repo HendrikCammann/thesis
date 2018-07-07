@@ -5,10 +5,12 @@
         Verlauf der Geschwindigkeit und Herzfrequenz
       </div>
       <div class="activityDetails__graph" id="activityDetails__graph" v-if="graphData !== null">
-        <detail-graph
-          :data="graphData"
-          :viewPortWidth="viewPortWidth"
-        ></detail-graph>
+        <div @click="showExplanation(1)">
+          <detail-graph
+            :data="graphData"
+            :viewPortWidth="viewPortWidth"
+          ></detail-graph>
+        </div>
       </div>
       <toggle-standard
         :class="{faded : fadeToggle}"
@@ -16,9 +18,11 @@
         :selectedOption="selectedToggle"
       ></toggle-standard>
       <div class="activityDetails__list" v-if="listData !== null">
-        <detail-list
-          :data="listData"
-        ></detail-list>
+        <div @click="showExplanation(2)">
+          <detail-list
+            :data="listData"
+          ></detail-list>
+        </div>
       </div>
     </div>
   </div>

@@ -4,17 +4,22 @@
       Vergleich Geschwindigkeits- und Herzfrequenzzonen
     </div>
     <div class="box-content">
-          <zone-chart
-            :root="'zones'"
-            :zones="zones"
-          ></zone-chart>
+          <div @click="showExplanation()">
+            <zone-chart
+              @click="showExplanation()"
+              :root="'zones'"
+              :zones="zones"
+            ></zone-chart>
+          </div>
           <div class="box-explaination">
             Der transparente Teil der Kreise stellt den Optimalzustand dar, in welchem
             Pace-und Herzfrequenzonen einander entsprechen.
           </div>
-          <zone-list
-            :zones="zones"
-          ></zone-list>
+           <div @click="showExplanation()">
+            <zone-list
+              :zones="zones"
+            ></zone-list>
+          </div>
           <text-box
             :text="'Dieser Lauf war für deinen Körper sehr intensiv, somit konntest Du deine VO2max verbessern. Deine Herzfrequenz- und Pacezonen weichen stark voneinander ab. In diesem Fall war die Herzfrequenz zu hoch für das gelaufene Tempo. Wenn dies häufiger passiert überlege Dir etwas langsamer zu trainieren, oder passe die Zonen an.'"
           ></text-box>

@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd566055-702f-473b-b895-1aaeee27196d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/containers/Performance/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/containers/Performance/_style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-select/_style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-select/_style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,11 +31,25 @@
       <file leaf-file-name="TrainChart.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="734">
-              <caret line="1037" column="14" selection-start-line="1037" selection-start-column="14" selection-end-line="1037" selection-end-column="14" />
+            <state relative-caret-position="433">
+              <caret line="1031" column="27" lean-forward="true" selection-start-line="1031" selection-start-column="27" selection-end-line="1031" selection-end-column="27" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activities.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="ActivitiesGraph.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="64" column="16" lean-forward="true" selection-start-line="64" selection-end-line="65" />
             </state>
           </provider>
         </entry>
@@ -189,7 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/ui-elements/modal-activity/modalActivity.html" />
         <option value="$PROJECT_DIR$/src/components/ui-elements/headline-box/headlineBox.html" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/activity-boxes/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-elements/headline-box/_style.scss" />
@@ -239,6 +251,7 @@
         <option value="$PROJECT_DIR$/src/styles/components/containers/Activity/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/ui-widgets/performance-select/_style.scss" />
         <option value="$PROJECT_DIR$/src/styles/components/containers/Performance/_style.scss" />
+        <option value="$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html" />
         <option value="$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts" />
       </list>
     </option>
@@ -312,6 +325,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
               <item name="Activity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -327,6 +348,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="ui-widgets" type="462c0819:PsiDirectoryNode" />
+              <item name="activities-graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
@@ -646,12 +675,12 @@
       <workItem from="1529558353250" duration="485000" />
       <workItem from="1530631082610" duration="341000" />
       <workItem from="1530688208699" duration="518000" />
-      <workItem from="1530771845247" duration="55337000" />
+      <workItem from="1530771845247" duration="55767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="979513000" />
+    <option name="totallyTimeSpent" value="979943000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -939,13 +968,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/styles/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/containers/Performance/Performance.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1186,9 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-362">
@@ -1291,10 +1310,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/containers/Activities/activities.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ui-widgets/activities-graph/ActivitiesGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="64" column="16" lean-forward="true" selection-start-line="64" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/visualizations/train-chart/TrainChart.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="1037" column="14" selection-start-line="1037" selection-start-column="14" selection-end-line="1037" selection-end-column="14" />
+        <state relative-caret-position="433">
+          <caret line="1031" column="27" lean-forward="true" selection-start-line="1031" selection-start-column="27" selection-end-line="1031" selection-end-column="27" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>

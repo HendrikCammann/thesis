@@ -1027,6 +1027,7 @@ export class TrainChart extends Vue {
           that.width = 275;
         }
         that.width = document.getElementsByClassName('trainChart')[0].clientWidth;
+
         if (that.width === 0) {
           that.width = 309;
         }

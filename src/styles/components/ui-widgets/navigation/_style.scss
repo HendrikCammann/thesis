@@ -9,6 +9,17 @@
   box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
   font-family: $font-family--main;
 
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 1000px)
+  and (orientation: landscape) {
+    opacity: 0.1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   #{&}__content {
     padding: 0 1px;
     background-color: white;

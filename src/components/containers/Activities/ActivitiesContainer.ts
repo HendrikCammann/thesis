@@ -87,7 +87,7 @@ export class ActivitiesContainer extends Vue {
         icon: 'run--dl',
         action: RunType.Run
       }, {
-        name: 'Unkategorisiert',
+        name: 'Tempo Dauerlauf',
         icon: 'run--tdl',
         action: RunType.Uncategorized
       }, {
@@ -108,7 +108,7 @@ export class ActivitiesContainer extends Vue {
       this.$store.dispatch(MutationTypes.GET_ACTIVITIES);
     }
 
-    eventBus.$emit(menuEvents.set_State, ' ');
+    eventBus.$emit(menuEvents.set_State, this.$store.getters.getSelectedRunType);
 
     eventBus.$on(BottomMenuEvents.set_Selected_Menu, (i) => {
       this.selectedMenu = i;
@@ -124,6 +124,7 @@ export class ActivitiesContainer extends Vue {
           break;
         case 2:
           this.$store.dispatch(MutationTypes.SET_SELECTED_RUNTYPE, payload.payload);
+          eventBus.$emit(menuEvents.set_State, payload.payload);
           break;
       }
     });

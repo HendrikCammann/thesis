@@ -32,7 +32,7 @@
     </div>
   </transition>
   <div class="navigationModule__content">
-    <img class="navigationModule__back" src="../../../assets/icons/back--dark.svg" @click="navigateBack()">
+    <img class="navigationModule__back" src="../../../assets/icons/back--dark.svg" @click="$router.go(-1)">
     <div class="navigationModule__label">
       <div class="navigationModule__page-name">
         {{ this.$route.name }}

@@ -107,7 +107,7 @@ export class Compare extends Vue {
           icon: 'run--dl',
           action: RunType.Run
         }, {
-          name: 'Unkategorisiert',
+          name: 'Tempo Dauerlauf',
           icon: 'run--tdl',
           action: RunType.Uncategorized
         }, {

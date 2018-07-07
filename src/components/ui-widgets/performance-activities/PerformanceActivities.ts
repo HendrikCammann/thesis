@@ -89,7 +89,7 @@ export class PerformanceActivities extends Vue {
         icon: 'run--dl',
         action: RunType.Run
       }, {
-        name: 'Unkategorisiert',
+        name: 'Tempo Dauerlauf',
         icon: 'run--ldl',
         action: RunType.Uncategorized
       }, {

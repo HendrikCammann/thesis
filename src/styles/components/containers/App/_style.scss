@@ -1,3 +1,68 @@
-#filter__time {
-  display: inline-block;
+.thesis {
+  $root: &;
+  padding-top: 120px;
+  height: 100vh;
+
+  a {
+    color: $colors-text;
+
+    &:visited {
+      text-decoration: none;
+      color: $colors-text;
+    }
+  }
+
+  #{&}__name {
+    text-align: center;
+    font-family: $font-family--secondary;
+    font-size: 56px;
+    font-weight: 700;
+    color: $colors-text;
+  }
+
+  #{&}__subtitle {
+    text-align: center;
+    font-family: $font-family--main;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  #{&}__text {
+    margin-top: 56px;
+    text-align: center;
+    font-size: 14px;
+
+    strong {
+      font-size: 16px;
+    }
+
+    #{$root}__thesis {
+      font-family: $font-family--secondary;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    #{$root}__author {
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+
+    #{$root}__prof {
+      strong {
+        font-size: 14px;
+      }
+    }
+
+    #{$root}__data {
+      position: absolute;
+      bottom: 24px;
+      width: calc(100vw - 32px);
+      font-size: 12px;
+
+      .buttonStandard {
+        margin-top: 16px;
+      }
+    }
+  }
 }

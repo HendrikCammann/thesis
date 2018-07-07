@@ -1,17 +1,17 @@
-.activity {
-  margin-bottom: 10px;
+.activities {
+  $root: &;
+  padding-top: 60px;
+  padding-left: 16px;
+  padding-right: 16px;
 
-  &__line {
-    margin-top: 40px;
+  .floatingMenu {
+    position: fixed;
+    right: 16px;
+    bottom: 32px;
   }
 
-  &:first-of-type {
-    margin-top: 0;
-  }
-
-  .circle {
-    background-color: red;
-    // height: 40px;
-    // width: 40px;
+  #{&}__content {
+    padding: 0;
+    padding-top: 32px;
   }
 }

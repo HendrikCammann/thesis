@@ -1,0 +1,26 @@
+.compareChart {
+  $root: &;
+
+  #compareCompare0 {
+    text-align: right;
+  }
+
+  #{&}__value {
+    font-family: $font-family--secondary;
+    font-size: 16px;
+    fill: $colors-white;
+    font-weight: 700;
+  }
+
+  #{&}__type {
+    font-size: 12px;
+    font-weight: 400;
+    fill: $colors-label;
+  }
+
+  #{&}__label {
+    font-size: 12px;
+    font-weight: 400;
+    fill: $colors-label;
+  }
+}

@@ -1,0 +1,50 @@
+<div class="activityDetailsList">
+  <div class="activityDetailsList__icons clearfix">
+    <div class="activityDetailsList__column">
+      <img src="../../../assets/icons/pace--light.svg">
+    </div>
+    <div class="activityDetailsList__column activityDetailsList__column--small">
+      <img src="../../../assets/icons/distance--light.svg">
+    </div>
+    <div class="activityDetailsList__column">
+      <img src="../../../assets/icons/hr--light.svg">
+    </div>
+  </div>
+  <div class="activityDetailsList__content card">
+    <div class="activityDetailsList__item clearfix vcenter-content"
+         v-for="item in data">
+      <div class="activityDetailsList__column">
+        <div class="activityDetailsList__bar activityDetailsList__bar--left"></div>
+        <div class="activityDetailsList__bar activityDetailsList__bar--pace"
+             :style="{ width: item.paceLength + '%' }"
+        ></div>
+        <div class="activityDetailsList__value activityDetailsList__value--pace">
+          {{ item.paceFormatted }}
+        </div>
+      </div>
+      <div class="activityDetailsList__column activityDetailsList__column--small">
+        <div class="activityDetailsList__value">
+          {{ item.distanceFormatted }}
+        </div>
+        <div class="activityDetailsList__label">
+          {{ item.distanceTotalFormatted }}
+        </div>
+      </div>
+      <div class="activityDetailsList__column">
+        <div class="activityDetailsList__bar activityDetailsList__bar--right"></div>
+        <div class="activityDetailsList__bar activityDetailsList__bar--hr"
+             :style="{ width: item.hrLength + '%' }"
+        ></div>
+        <div class="activityDetailsList__value activityDetailsList__value--hr">
+          {{ item.hrFormatted }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="activityDetailsList__explanation">
+    Die Länge eines Balkens spiegelt Geschwindigkeits- bzw. Herzfrequenzwert eines Abschnittes im Vergleich zur maximalen Geschwindigkeit bzw. Herzfrequenz aller Abschnitte.
+    Der graue Balken entspricht diesem Maximalwert. Die Länge der Farbigen Balken wird anhand dieser Länge definiert.
+    Die flachen Enden ensprechen bei der Geschwindigkeit 0 (= keine Bewegung). Bei der Herzfrequenz startet der Balken bei 80 (= HF während normalen Gehen). Sie können
+    diese Werte in den Einstellungen anpassen.
+  </div>
+</div>

@@ -40,6 +40,7 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
         {
           loader: 'postcss-loader',
           options: {
+            ident: 'postcss',
             plugins: () => [autoprefixer]
           }
         },
@@ -77,7 +78,7 @@ webpackConfig.plugins = [...webpackConfig.plugins,
   new HtmlWebpackPlugin({
     inject: true,
     template: helpers.root('/src/index.html'),
-    favicon: helpers.root('/src/favicon.ico'),
+    // favicon: helpers.root('/src/favicon.ico'),
     minify: {
       removeComments: true,
       collapseWhitespace: true,
@@ -102,7 +103,7 @@ webpackConfig.plugins = [...webpackConfig.plugins,
   new DefinePlugin({
     'process.env': env
   }),
-  new FaviconsWebpackPlugin(helpers.root('/src/icon.png'))
+  // new FaviconsWebpackPlugin(helpers.root('/src/icon.png'))
 ];
 
 module.exports = webpackConfig;

@@ -1,0 +1,23 @@
+<div class="modalTime" @click="handleClick()">
+  <div class="modalTime__headline card">
+    <img class="modalTime__image" src="../../../assets/icons/range--dark.svg">
+    <div class="modalTime__text">
+      <div class="modalTime__main">Wähle eine Zeitspanne</div>
+      <div class="modalTime__sub">Einheiten</div>
+    </div>
+  </div>
+  <div class="modalTime__box card">
+    <div class="modalTime__item">
+      <div>von:</div><input v-model="start" type="date">
+    </div>
+    <div class="modalTime__item">
+      <div>bis:</div><input v-model="end" type="date">
+    </div>
+  </div>
+  <div @click="submit()">
+    <standard-button
+      :label="'Filtern'"
+      :icon="'range'"
+    ></standard-button>
+  </div>
+</div>

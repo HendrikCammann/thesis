@@ -1,0 +1,45 @@
+.compareCompare {
+  $root: &;
+
+  #{&}__content {
+
+    .divider {
+      //width: calc(100% + 32px);
+      // transform: translate(-16px, 0);
+      margin-top: 0;
+      img {
+        left: -15px;
+      }
+    }
+
+    #{$root}__label {
+      width: 50%;
+      float: left;
+      text-align: center;
+      font-family: $font-family--main;
+      color: $colors-label;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    #{$root}__graph {
+      width: 50%;
+      float: left;
+
+      &:first-of-type {
+        text-align: right;
+        border-right: 1px solid $colors-label;
+      }
+    }
+
+    #{$root}__explanation {
+      margin-top: 32px;
+      text-align: center;
+      padding: 0 16px;
+      font-size: 10px;
+      color: #adb7bf;
+      margin-bottom: 32px;
+    }
+  }
+}

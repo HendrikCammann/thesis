@@ -1,24 +1,165 @@
-<div class="container">
-  <div class="row">
-    <span>{{ new Date(getSelectedActivity.date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ getSelectedActivity.name }}</h3>
-  </div>
+<div class="container-fluid activity" v-if="!blockRender">
+  <modal v-show="showModal">
+    <modal-box
+      :items="modalItem"
+    ></modal-box>
+  </modal>
 
-  <div class="row">
-    <div v-if="getSelectedActivity.streams">
-      <linechart
-        :valueDATA="getSelectedActivityStreams.heartrate"
-        :distanceDATA="getSelectedActivityStreams.distance"
-        :paceDATA="getSelectedActivityStreams.speed"
-        :averageHR="getSelectedActivity.average_data.heartrate"
-        :maxHR="getSelectedActivity.max_data.heartrate"
-        :maxPace="getSelectedActivity.max_data.speed"
-      ></linechart>
+  <div class="row activity__map">
+    <div class="col-md-12 no-padding">
+      <detail-map
+        :loadingStatus="loadingStatus"
+        :activity="getSelectedActivity"
+      ></detail-map>
     </div>
   </div>
 
-  <div class="row">
-    <pre class="prettyprint lang-js">
-      {{ getSelectedActivity }}
-    </pre>
+  <div class="container activity__content">
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <headline-box
+          :headline="getSelectedActivity.name"
+          :subHeadline="new Date(getSelectedActivity.date).toLocaleDateString('de-DE', { hour12: false, hour: 'numeric', minute: 'numeric'})"
+          :type="getSelectedActivity.categorization.activity_type"
+        ></headline-box>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <activity-boxes
+          :loadingStatus="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-boxes>
+      </div>
+    </div>
+
+    <divider
+      :title="'Leistungsverteilung'"
+      :color="'#4F5B64'"
+    ></divider>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <activity-zones
+          :zones="getSelectedActivityZones"
+        ></activity-zones>
+      </div>
+    </div>
+
+    <divider
+      :title="'Trainingsentwicklung'"
+      :color="'#4F5B64'"
+    ></divider>
+
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <activity-details
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-details>
+      </div>
+    </div>
   </div>
+
+
+  <!--<div class="container activityDetail__content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <headline-box
+          :headline="getSelectedActivity.name"
+          :label="new Date(getSelectedActivity.date).toLocaleDateString('de-DE', { hour12: false, hour: 'numeric', minute: 'numeric'})"
+          :image="'running--gray'"
+        ></headline-box>
+      </div>
+    </div>
+
+    <div class="row activityDetail__row-small">
+      <div class="col-md-12">
+        <activity-stats
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-stats>
+      </div>
+    </div>
+
+    <div class="row activityDetail__row">
+      <div class="col-md-12">
+        <title-box
+          :title="'Leistungsverteilung'"
+          :subtitle="'Erfahre ob dein Herzfrequenz mit deiner Geschwindigkeit übereinstimmt'"
+        ></title-box>
+      </div>
+      <div class="col-md-12">
+        <zone-module
+          :zones="getSelectedActivityZones"
+        ></zone-module>
+      </div>
+    </div>
+
+    <div class="row activityDetail__row">
+      <div class="col-md-12 headline">
+        <title-box
+          :title="'Detailansicht'"
+          :subtitle="'Erfahre wie sich die Parameter im Verlauf der Einheit entwickelt haben'"
+        ></title-box>
+      </div>
+      <div class="col-md-12">
+        <activity-graphs
+          :loaded="loadingStatus"
+          :activity="getSelectedActivity"
+        ></activity-graphs>
+      </div>
+    </div>
+
+  </div>-->
+
+  <!--<div class="container activityDetail__headline">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="activityDetail__name"> {{ getSelectedActivity.name }}</div>
+        <div class="activityDetail__date">{{ new Date(getSelectedActivity.date).toLocaleDateString('de-DE') }}</div>
+      </div>
+    </div>
+  </div>-->
+
+  <!--<div class="container">
+    <div class="row sectionLabel">
+      <div class="col-md-12">
+        {{ getSelectedActivity.name }}
+      </div>
+    </div>
+    <zone-module
+      :zones="getSelectedActivityZones"
+    ></zone-module>
+    <!--<div class="row card">
+      <div class="col-md-6">
+        <zone-chart
+          :root="'zones'"
+          :zones="getSelectedActivityZones"
+        ></zone-chart>
+      </div>
+      <div class="col-md-6 activityDetail__zone-text">
+        <p>
+          Dieser Lauf war für den Körper sehr intensiv, dadurch hast Du deine XXX
+          verbessern können.
+          Deine Herzfrequenz- und Pacezonen weichen stark voneinander ab. In
+          diesem Fall war die Herzfrequenz zu hoch für das gelaufene Tempo.
+          Wenn dies häufiger passiert, überlege dir etwas langsamer zu trainieren,
+          oder passe die Zonen an deinen aktuellen Leistungsstand an.
+        </p>
+      </div>
+    </div>
+  </div>-->
+
+
+  <!--<div class="row">
+    <div class="col-md-12">
+      <bar-chart
+        :root="'barChart'"
+        :activity="getSelectedActivity"
+      ></bar-chart>
+    </div>
+  </div>-->
 </div>

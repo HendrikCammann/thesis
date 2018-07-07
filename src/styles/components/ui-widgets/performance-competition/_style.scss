@@ -1,0 +1,29 @@
+.performanceCompetition {
+  $root: &;
+
+  #{&}__chart {
+  }
+
+  #{&}__explanation {
+    margin-top: 8px;
+    text-align: justify;
+    padding: 0 16px;
+    font-size: 10px;
+    color: $colors-label;
+    margin-bottom: 70px;
+  }
+
+  .contentBox {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 667px) {
+      width: calc(50% - 8px);
+      margin-right: 16px;
+      float: left;
+
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

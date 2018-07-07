@@ -1,0 +1,65 @@
+.modalDistance {
+  $root: &;
+  color: $colors-text;
+  font-family: $font-family--main;
+
+  #{&}__headline {
+    margin-bottom: 8px;
+    font-weight: 400;
+    padding: 16px;
+
+    #{$root}__image {
+      display: inline-block;
+      height: 48px;
+      width: 48px;
+      position: absolute;
+      top: 17px;
+      left: 8px;
+    }
+
+    #{$root}__text {
+      display: inline-block;
+      margin-left: 40px;
+
+      #{$root}__main {
+        color: $colors-text;
+        font-weight: 700;
+        font-family: $font-family--secondary;
+      }
+
+      #{$root}__sub {
+        color: $colors-label;
+        font-size: 14px;
+      }
+    }
+  }
+
+  #{&}__box {
+    padding: 16px;
+
+    #{$root}__item {
+      margin-bottom: 16px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      div {
+        display: inline-block;
+        width: 40px;
+      }
+
+      input {
+        width: calc(100% - 56px);
+        margin-left: 16px;
+        border: 2px solid $colors-text;
+        border-radius: 8px;
+        padding: 8px;
+      }
+    }
+  }
+
+  .buttonStandard {
+    margin-top: 16px;
+  }
+}

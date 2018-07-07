@@ -1,0 +1,11 @@
+.dashboard {
+  $root: &;
+  // height: 100vh;
+  padding-top: 60px;
+  font-family: $font-family--main;
+  padding-bottom: 64px;
+
+  #{&}__content {
+    // padding-top: 32px;
+  }
+}

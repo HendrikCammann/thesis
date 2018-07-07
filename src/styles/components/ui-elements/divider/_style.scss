@@ -1,0 +1,47 @@
+.divider {
+  $root: &;
+  margin: 32px 0;
+  margin-top: 0;
+  font-family: $font-family--secondary;
+  overflow: visible;
+
+  height: 180px;
+  position: absolute;
+  left: 0;
+  width: 100vw;
+
+  &::after {
+    content:' ';
+    height: 180px;
+    width: 100vw;
+  }
+
+  #{&}__wrapper {
+    background-image: url('/../../../../assets/images/divider/divider_background--large.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 180px;
+    @media screen and (max-width: 768px) {
+      background-image: url('/../../../../assets/images/divider/divider_background.png');
+    }
+  }
+
+  #{&}__text {
+    width: 320px;
+    text-align: center;
+    position: absolute;
+    bottom: 56px;
+    padding: 9px 32px 7px 32px;
+    background-color: $colors-white;
+    border-radius: 40px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+    font-weight: 700;
+  }
+}
+
+.faker {
+  height: 212px;
+}

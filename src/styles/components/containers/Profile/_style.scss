@@ -1,0 +1,95 @@
+.profile {
+  $root: &;
+  #{&}__content {
+    padding-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 16px;
+
+    .box-label {
+      margin-bottom: 8px;
+    }
+
+    .buttonStandard {
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    .divider {
+      margin-top: 56px;
+      img {
+        left: -15px;
+      }
+    }
+
+    #{$root}__user {
+      text-align: center;
+      padding-top: 48px;
+      // background-color: red;
+      img {
+        height: 144px;
+        width: 144px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 16px;
+        box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+      }
+
+      #{$root}__name {
+        font-size: 20px;
+        font-weight: 700;
+        font-family: $font-family--secondary;
+      }
+
+      #{$root}__type {
+        font-size: 12px;
+        font-weight: 400;
+        color: $colors-label;
+      }
+    }
+
+    #{$root}__userStats, #{$root}__activityStats {
+      margin-top: 24px;
+    }
+
+    .boxes {
+      :nth-child(odd) {
+        margin-right: 16px;
+      }
+      .contentBox {
+        margin-bottom: 16px;
+        width: calc(50% - 8px);
+        float: left;
+      }
+    }
+
+    #{$root}__activityStats {
+      margin-top: 48px;
+    }
+
+    #{$root}__records {
+      margin-top: 48px;
+
+      .buttonStandard {
+        margin-top: 32px;
+      }
+
+      #{$root}__record {
+        padding: 16px;
+        margin-bottom: 16px;
+
+        #{$root}__type {
+          display: inline-block;
+          color: $colors-subline;
+        }
+
+        #{$root}__value {
+          display: inline-block;
+          font-family: $font-family--secondary;
+          font-weight: 700;
+          float: right;
+        }
+      }
+    }
+  }
+}

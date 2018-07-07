@@ -1,0 +1,84 @@
+.floatingMenu {
+  $root: &;
+  z-index: 9500;
+
+  #{&}__secondary {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    background-color: $colors-white;
+    box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+    border-radius: 50%;
+
+    #{$root}__icon {
+      height: 24px;
+      width: 24px;
+      transform: translate(0, 16px);
+    }
+
+    &--active {
+      border: 3px solid $colors-text;
+      #{$root}__icon {
+        height: 24px;
+        width: 24px;
+        transform: translate(0, 13px);
+      }
+    }
+
+  }
+
+  #{&}__wrapper {
+    position: relative;
+
+    #{$root}__main {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: pointer;
+      width: 72px;
+      height: 72px;
+      background-color: $colors-text;
+      box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.6);
+      border-radius: 50%;
+
+      #{$root}__icon {
+        height: 40px;
+        width: 40px;
+        transform: translate(0, 2px);
+      }
+    }
+
+    #{$root}__top {
+      position: absolute;
+      right: 10px;
+      bottom: 86px;
+
+      #{$root}__secondary {
+        margin-bottom: 12px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    #{$root}__left {
+      position: absolute;
+      right: 81px;
+      bottom: 6px;
+      width: 100vh;
+      direction: rtl;
+
+      #{$root}__secondary {
+        margin-right: 12px;
+
+        &:first-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

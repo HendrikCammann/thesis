@@ -1,0 +1,17 @@
+<div class="performanceSelect">
+  <div class="box-wrapper">
+    <div class="box-label">
+      Wähle die Basis für die Leistungsentwicklung
+    </div>
+    <div class="box-content">
+      <div class="performanceSelect__content clearfix" v-if="contentBoxData != null">
+        <div v-for="(item, i) in contentBoxData" @click="handleSelect(i)">
+          <content-box
+            :data="item"
+            :isClickable="true"
+          ></content-box>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

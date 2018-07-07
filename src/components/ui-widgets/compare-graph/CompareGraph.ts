@@ -1,0 +1,77 @@
+/* tslint:disable */
+import Vue from 'vue';
+import {Component, Prop, Watch} from 'vue-property-decorator';
+import {LoadingStatus} from '../../../models/App/AppStatus';
+import {Toggle} from '../../ui-elements/toggle';
+import {eventBus} from '../../../main';
+import {compareEvents} from '../../../events/Compare/compare';
+import {TrainChart} from '../../visualizations/train-chart';
+import {mapGetters} from 'vuex';
+import {ToggleEvents} from '../../../events/toggle/Toggle';
+
+@Component({
+  template: require('./compareGraph.html'),
+  computed: mapGetters({
+    selectedTrainingClusters: 'getSelectedTrainingClusters',
+    loaded: 'getAppLoadingStatus',
+    selectedRunType: 'getSelectedRunType',
+    selectedDisplayType: 'getSelectedDisplayType',
+    showEverything: 'getShowEverything',
+  }),
+  components: {
+    'toggle-standard': Toggle,
+    'train-chart': TrainChart,
+  }
+})
+export class CompareGraph extends Vue {
+  @Prop()
+  clusters: any[];
+
+  @Prop()
+  loadingStatus: LoadingStatus;
+
+  public toggleData: string[] = [];
+  public selectedToggle: number = 0;
+
+  public chartData = null;
+
+  public scrolling;
+  public fadeToggle = false;
+
+  private initToggleData(clusters) {
+    this.clusters.forEach(cluster => {
+      this.toggleData.push(cluster.name);
+    });
+  }
+
+  public handleScroll() {
+    window.clearTimeout( this.scrolling );
+    this.fadeToggle = true;
+    let that = this;
+    // Set a timeout to run after scrolling ends
+    this.scrolling = setTimeout(function() {
+
+      // Run the callback
+      that.fadeToggle = false;
+
+    }, 66);
+  }
+
+  private initChartData(clusters, selectedToggle) {
+    this.chartData = clusters[selectedToggle].data;
+  }
+
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+    this.initToggleData(this.clusters);
+    this.initChartData(this.clusters, this.selectedToggle);
+    eventBus.$on(ToggleEvents.set_Selection, (index) => {
+      this.selectedToggle = index;
+      this.initChartData(this.clusters, this.selectedToggle);
+    })
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+}

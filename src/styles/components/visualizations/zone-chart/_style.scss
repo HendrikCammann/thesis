@@ -1,0 +1,25 @@
+.zoneChart {
+
+  &__root {
+    text-align: center;
+  }
+
+  &__zone-number {
+    font-family: $font-family--main;
+    font-size: 12px;
+    font-weight: 400;
+    fill: $colors-label;
+  }
+
+  &__zone-perc {
+    font-family: $font-family--secondary;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__zone-label {
+    font-family: $font-family--main;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}

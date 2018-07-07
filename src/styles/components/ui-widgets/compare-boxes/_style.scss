@@ -1,0 +1,19 @@
+.compareBoxes {
+  $root: &;
+
+  .divider {
+    //width: calc(100% + 32px);
+    // transform: translate(-16px, 0);
+    img {
+      left: -15px;
+    }
+  }
+
+  .contentBox {
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

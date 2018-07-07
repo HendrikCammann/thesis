@@ -1,0 +1,62 @@
+.lineChart {
+  $root: &;
+  svg {
+    overflow: visible !important;
+  }
+
+  #{&}__pace {
+    fill: none;
+    //stroke: $colors-pace;
+    stroke: url(#pace-gradient);
+    stroke-width: 2px;
+
+    &--avg {
+      stroke: $colors-pace;
+      fill: none;
+      stroke-width: 1px;
+      stroke-dasharray: 5,5;
+    }
+  }
+
+  #{&}__heartrate {
+    fill: none;
+    stroke: url(#hr-gradient);
+    stroke-width: 2px;
+
+    &--avg {
+      stroke: $colors-hr;
+      fill: none;
+      stroke-width: 1px;
+      stroke-dasharray: 5,5;
+    }
+  }
+
+  #{&}__scale {
+    font-family: $font-family--main;
+    &--pace {
+      text {
+        fill: $colors-pace
+      }
+    }
+
+    &--heartrate {
+      text {
+        fill: $colors-hr
+      }
+    }
+  }
+
+  #{&}__label {
+    &--pace {
+      font-size: 12px;
+      font-family: $font-family--main;
+      fill: $colors-pace
+    }
+
+    &--heartrate {
+      font-size: 12px;
+      font-family: $font-family--main;
+        fill: $colors-hr
+    }
+  }
+}

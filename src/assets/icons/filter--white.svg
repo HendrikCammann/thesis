@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>filter--light</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M19.3871386,5.21565217 C19.3342691,5.08347826 19.2062691,5 19.0650517,5 L4.34783429,5 C4.2066169,5 4.07931255,5.08347826 4.02574734,5.21565217 C3.97287777,5.34782609 4.00279081,5.49391304 4.10296473,5.59895652 L9.96731255,11.386087 L9.96731255,17.5843478 C9.96731255,17.7026087 10.0340952,17.8208696 10.1405299,17.8834783 C10.1947908,17.9113043 10.2553126,17.9328696 10.3151386,17.9328696 C10.3749647,17.9328696 10.4347908,17.9113043 10.4876604,17.8834783 L13.2702691,16.2973913 C13.3787908,16.2354783 13.4455734,16.1234783 13.4455734,15.9982609 L13.4455734,11.386087 L19.3099212,5.59895652 C19.4100952,5.49391304 19.4407039,5.34782609 19.3871386,5.21565217" id="path-1"></path>
+    </defs>
+    <g id="filter--light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+    </g>
+</svg>

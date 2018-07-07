@@ -1,0 +1,78 @@
+<div class="container-fluid profile">
+  <div class="container profile__content" v-if="weight !== null">
+    <div class="profile__user">
+      <img class="profile__img" src="../../../assets/images/Hendrik.jpg">
+      <div class="profile__name">
+        Hendrik Cammann
+      </div>
+      <div class="profile__type">
+        Marathonläufer
+      </div>
+    </div>
+    <div class="profile__userStats clearfix">
+      <div class="boxes clearfix">
+        <content-box
+          :data="weight"
+        ></content-box>
+        <content-box
+          :data="Vo2max"
+        ></content-box>
+        <content-box
+          :data="maxHF"
+        ></content-box>
+        <content-box
+          :data="restHF"
+        ></content-box>
+      </div>
+      <button-standard
+        :label="'Bearbeiten'"
+        :icon="'edit'"
+      ></button-standard>
+    </div>
+
+    <divider
+      :title="'Statistiken'"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="profile__activityStats clearfix">
+      <div class="boxes clearfix">
+        <content-box
+          :data="totalActivities"
+        ></content-box>
+
+        <content-box
+          :data="totalDistance"
+        ></content-box>
+
+        <content-box
+          :data="totalCompetitions"
+        ></content-box>
+      </div>
+    </div>
+
+    <divider
+      :title="'Bestzeiten'"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="profile__records clearfix">
+      <div class="profile__record card" @click="handleClick(Marathon.activityId)">
+        <div class="profile__type">{{ Marathon.type }}</div>
+        <div class="profile__value">{{ Marathon.time }}</div>
+      </div>
+      <div class="profile__record card" @click="handleClick(HalfMarathon.activityId)">
+        <div class="profile__type">{{ HalfMarathon.type }}</div>
+        <div class="profile__value">{{ HalfMarathon.time }}</div>
+      </div>
+      <div class="profile__record card" @click="handleClick(Tenk.activityId)">
+        <div class="profile__type">{{ Tenk.type }}</div>
+        <div class="profile__value">{{ Tenk.time }}</div>
+      </div>
+      <button-standard
+        :label="'Bearbeiten'"
+        :icon="'edit'"
+      ></button-standard>
+    </div>
+  </div>
+</div>

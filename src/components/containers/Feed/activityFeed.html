@@ -1,0 +1,25 @@
+<div class="container-fluid activityFeed">
+  <modal v-show="showModal">
+    <modal-time></modal-time>
+  </modal>
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="null"
+    :hasPopups="true"
+    :selectedMenu="selectedMenu"
+    :selectedItems="[rangeType, selectedRunTyp]"
+  ></bottomMenu>
+
+  <div class="container activityFeed__content">
+    <div class="row">
+      <div class="col-md-12 no-padding">
+        <feed
+          :listItems="[activities]"
+          :isDashboard="false"
+          :selectedRunType="selectedRunTyp"
+          :timeRange="timeRange"
+        ></feed>
+      </div>
+    </div>
+  </div>
+</div>

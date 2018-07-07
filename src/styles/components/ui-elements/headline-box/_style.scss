@@ -1,0 +1,44 @@
+.headlineBox {
+  $root: &;
+  padding-top: 4px;
+  font-family: $font-family--main;
+
+  #{&}__type {
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+    transform: rotate(-8deg);
+    text-align: center;
+
+    #{$root}__icon {
+      height: 40px;
+      width: 40px;
+      transform: translate(0, 5px);
+    }
+  }
+
+  #{&}__text {
+    display: inline-block;
+    margin-left: 16px;
+
+    #{$root}__name {
+      font-family: $font-family--secondary;
+      max-width: 70vw;
+      font-size: 20px;
+      font-weight: 700;
+      color: $colors-text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #{$root}__date {
+      transform: translate(0, -2px);
+      font-size: 14px;
+      font-weight: 400;
+      color: $colors-label;
+    }
+  }
+}

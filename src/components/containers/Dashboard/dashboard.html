@@ -1,0 +1,54 @@
+<div class="container-fluid dashboard">
+  <modal v-show="showModal">
+    <modal-box
+      :items="modalItem"
+    ></modal-box>
+  </modal>
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="viewType"
+  ></bottomMenu>
+  <div class="container dashboard__content">
+    <divider
+      class="no-margin-top"
+      :title="firstHeadline"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="row">
+      <div class="col-md-12 no-padding" v-if="actualWeek">
+        <dashboard-boxes
+          :data="activities"
+          :actualWeek="actualWeek"
+          :viewType="viewType"
+          :currentPreparation="currentPreparation"
+        ></dashboard-boxes>
+      </div>
+    </div>
+
+    <divider
+      :title="secondHeadline"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="row" v-if="viewType === 'Week' || viewType === 'Month'">
+      <div class="col-md-12 no-padding">
+        <history-chart
+          :loadingStatus="loadingStatus"
+          :data="activities"
+          :viewType="viewType"
+          :currentPreparation="currentPreparation"
+        ></history-chart>
+      </div>
+    </div>
+
+    <div class="row" v-if="viewType === 'Day'">
+      <div class="col-md-12 no-padding">
+        <feed
+          :listItems="actualWeek"
+          :isDashboard="true"
+        ></feed>
+      </div>
+    </div>
+  </div>
+</div>

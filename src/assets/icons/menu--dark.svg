@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="24px" viewBox="0 0 35 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>menu--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="menu--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Burger" fill="#4F5B64">
+            <rect id="Rectangle-2" x="0" y="0" width="34.2857143" height="3.42857143" rx="1.71428571"></rect>
+            <rect id="Rectangle-2" x="0" y="10.2857143" width="34.2857143" height="3.42857143" rx="1.71428571"></rect>
+            <rect id="Rectangle-2" x="13.7142857" y="20.5714286" width="20.5714286" height="3.42857143" rx="1.71428571"></rect>
+        </g>
+    </g>
+</svg>

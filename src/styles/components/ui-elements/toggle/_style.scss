@@ -1,0 +1,40 @@
+.toggleStandard {
+  $root: &;
+  height: 50px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  background-color: #F1F1F1;
+  font-family: $font-family--main;
+
+  #{&}__item {
+    overflow: visible;
+    height: 100%;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: rgba(0,0,0,0);
+    color: $colors-text;
+    text-align: center;
+    padding-top: 15px;
+    cursor: pointer;
+
+    &:first-of-type {
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
+
+    &:last-of-type {
+      transform: translate(-2px, 0);
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    &--active {
+      color: $colors-text;
+      background-color: $color-white;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+    }
+  }
+}

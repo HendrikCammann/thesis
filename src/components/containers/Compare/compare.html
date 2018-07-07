@@ -1,0 +1,44 @@
+<div class="container-fluid compare">
+  <modal v-show="showModal">
+    <modal-box v-if="useModalBox"
+      :items="modalItem"
+    ></modal-box>
+    <modal-list v-if="!useModalBox"
+       :items="modalItem"
+       :range="modalRange"
+    ></modal-list>
+  </modal>
+  <bottomMenu v-if="showResult()"
+    :menuItems="menuItems"
+    :selected="null"
+    :hasPopups="true"
+    :selectedMenu="selectedMenu"
+    :selectedItems="[showEverything, selectedDisplayType, selectedRunTyp]"
+  ></bottomMenu>
+
+  <div v-if="!showResult()" class="container compare__content">
+    <compare-select
+      :clusters="existingClusters"
+      :selectedClusters="selectedTrainingClusters"
+      :loadingStatus="loadingStatus"
+    ></compare-select>
+  </div>
+
+  <div v-if="showResult()" class="container compare__content">
+    <compare-compare
+      :clusters="selectedTrainingClustersFull"
+      :clusterData="selectedTrainingClustersData"
+      :loadingStatus="loadingStatus"
+      :displayType="selectedDisplayType"
+    ></compare-compare>
+    <compare-boxes
+      :clusters="selectedTrainingClustersFull"
+      :clusterData="selectedTrainingClustersData"
+      :loadingStatus="loadingStatus"
+    ></compare-boxes>
+    <compare-graph
+      :clusters="selectedTrainingClustersFull"
+      :loadingStatus="loadingStatus"
+    ></compare-graph>
+  </div>
+</div>

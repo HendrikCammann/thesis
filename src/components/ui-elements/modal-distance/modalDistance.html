@@ -1,0 +1,23 @@
+<div class="modalDistance" @click="handleClick()">
+  <div class="modalDistance__headline card">
+    <img class="modalDistance__image" src="../../../assets/icons/solid/map--dark.svg">
+    <div class="modalDistance__text">
+      <div class="modalDistance__main">Wähle eine Distanzspanne</div>
+      <div class="modalDistance__sub">in Kilometern</div>
+    </div>
+  </div>
+  <div class="modalDistance__box card">
+    <div class="modalDistance__item">
+      <div>von:</div><input v-model="start" type="number">
+    </div>
+    <div class="modalDistance__item">
+      <div>bis:</div><input v-model="end" type="number">
+    </div>
+  </div>
+  <div @click="submit()">
+    <standard-button
+      :label="'Anwenden'"
+      :icon="'map'"
+    ></standard-button>
+  </div>
+</div>

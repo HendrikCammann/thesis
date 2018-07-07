@@ -1,43 +1,18 @@
-<div class="container">
-  <bubble-chart
-    :valueData="activities"
-  ></bubble-chart>
-  <div
-    class="row activity"
-    v-for="item in activities">
-    <span>{{ new Date(item.date).toLocaleDateString('de-DE') }} | </span><h3 style="display: inline-block">{{ item.name }}</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">distance</th>
-          <th scope="col">time</th>
-          <th scope="col">ø heartrate</th>
-          <th scope="col">max. heartrate</th>
-          <th scope="col">ø cadence</th>
-          <th scope="col">max. speed</th>
-          <th scope="col">ø speed</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ (item.base_data.distance / 1000).toFixed(2) }}km</td>
-          <td>{{ item.base_data.duration }}</td>
-          <td>{{ item.average_data.heartrate }}</td>
-          <td>{{ item.max_data.heartrate }}</td>
-          <td>{{ item.average_data.cadence * 2 }}</td>
-          <td>{{ (item.max_data.speed * 3.6).toFixed(2) }}km/h</td>
-          <td>{{ (item.average_data.speed * 3.6).toFixed(2) }}km/h</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="logActivity(item.id)">
-              Show Details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <hr class="activity__line">
+<div class="container-fluid activities">
+  <bottomMenu
+    :menuItems="menuItems"
+    :selected="null"
+    :hasPopups="true"
+    :selectedMenu="selectedMenu"
+    :selectedItems="[showEverything, selectedDisplayType, selectedRunTyp]"
+  ></bottomMenu>
+
+  <div class="container activities__content">
+    <div class="row">
+      <div class="col-sm-12">
+        <activities-graph
+        ></activities-graph>
+      </div>
+    </div>
   </div>
 </div>

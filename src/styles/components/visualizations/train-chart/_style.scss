@@ -1,0 +1,30 @@
+.trainChart {
+  $root: &;
+  position: relative;
+
+  &__root {
+    text-align: center;
+  }
+
+  &__checkbox {
+    cursor: pointer;
+  }
+
+  &__divider-label {
+    font-family: $font-family--main;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  &__bar-label {
+    font-family: $font-family--secondary;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  &__arc-label {
+    font-family: $font-family--secondary;
+    font-weight: 700;
+    font-size: 16px;
+  }
+}

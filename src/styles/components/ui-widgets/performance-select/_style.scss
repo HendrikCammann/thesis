@@ -1,0 +1,12 @@
+.performanceSelect {
+  $root: &;
+
+  .contentBox {
+    margin-bottom: 16px;
+    width: 100%;
+
+    @media screen and (min-width: 767px) and (max-width: 770px) {
+      width: calc(100% - 16px);
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="modalList" v-if="items">
+  <div class="modalList__headline card">
+    <img class="modalList__image" src="../../../assets/icons/run--dark.svg">
+    <div class="modalList__text">
+      <div class="modalList__main">{{ getTime(items[0].date, range) }}</div>
+      <div class="modalList__sub">{{ items.length }} Einheiten</div>
+    </div>
+  </div>
+  <div class="modalList__box card">
+    <div class="modalList__item" :style="{ color: getColor(ac) }" v-for="(ac, i) in items" @click="openDetail(ac.id)">
+        <div class="modalList__label">{{ getTime(ac.date, 0) }}</div>
+        <div class="modalList__name">{{ ac.name }}</div>
+        <img class="modalList__link" src="../../../assets/icons/next--dark.svg">
+
+    </div>
+  </div>
+</div>

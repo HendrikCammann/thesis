@@ -1,0 +1,35 @@
+.modal {
+  $root: &;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  margin: auto auto;
+
+  @media screen and (min-width: 901px) {
+    padding: 200px;
+  }
+
+  #{&}__content {
+    width: calc(100vw - 32px);
+    color: $colors-white;
+
+    @media screen and (min-width: 901px) {
+      width: calc(100vw - 400px);
+    }
+  }
+
+  &__backdrop {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-black--blur;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

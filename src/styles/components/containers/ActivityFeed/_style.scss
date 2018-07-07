@@ -1,0 +1,12 @@
+.activityFeed {
+  $root: &;
+  padding-top: 60px;
+  font-family: $font-family--main;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 60px;
+
+  #{&}__content {
+    padding-top: 32px;
+  }
+}

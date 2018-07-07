@@ -5,13 +5,13 @@ let activities: any[] = [];
  * gets an athlete
  */
 
-export function getAthlete(athletheId, accessToken) {
+export function getAthlete(athletheId, accessToken, cb) {
   strava.athlete.get({
     access_token: accessToken,
     id: athletheId
   }, function(err, payload, limits) {
     if (!err) {
-      console.log('athlete', payload);
+      cb(payload);
     }
     else {
       console.log(err);

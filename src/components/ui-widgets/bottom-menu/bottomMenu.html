@@ -1,0 +1,35 @@
+<div class="bottomMenu">
+  <div class="bottomMenu__content vcenter-content clearfix" v-if="!hasPopups">
+    <div class="bottomMenu__item" v-for="item in menuItems"
+         :style="{width: (100 / menuItems.length) + '%'}"
+         @click="emitEvent(item.action)"
+         :class="{'bottomMenu__item--active' : item.action === selected}"
+    >
+      <img v-if="item.action === selected" :src="'../../../assets/icons/' + item.icon + '--dark.svg'">
+      <img v-if="item.action !== selected" :src="'../../../assets/icons/' + item.icon + '--light.svg'">
+      <div class="bottomMenu__label">{{item.name}}</div>
+    </div>
+  </div>
+
+  <div class="bottomMenu__content vcenter-content clearfix" v-if="hasPopups">
+    <div class="bottomMenu__overlay" v-if="popupOpen">
+      <div v-if="popupItems !== null">
+        <div class="bottomMenu__overlayItem" v-for="(item, i) in popupItems"
+             :class="{'bottomMenu__overlayItem--active' : item.action === selectedItems[selectedMenu]}"
+             @click="emitEvent(item.action)">
+          <img v-if="item.icon !== 'hide'" :src="'../../../assets/icons/' + item.icon + '.svg'">
+          <div class="bottomMenu__label">{{item.name}}</div>
+          <img v-if="item.action === selectedItems[selectedMenu]" class="bottomMenu__check" :src="'../../../assets/icons/' + 'check--dark' + '.svg'">
+        </div>
+      </div>
+    </div>
+    <div class="bottomMenu__item" v-for="(item, i) in menuItems"
+         :style="{width: (100 / menuItems.length) + '%'}"
+         @click="togglePopup(item, i)"
+         :class="{'bottomMenu__item--active' : item.action === selected}"
+    >
+      <img :src="'../../../assets/icons/' + item.icon + '.svg'">
+      <div class="bottomMenu__label">{{item.name}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="compareGraph">
+  <div class="box-wrapper">
+    <div class="box-content">
+      <div class="compareGraph__portrait">
+        <toggle-standard
+          :class="{faded : fadeToggle}"
+          :options="toggleData"
+          :selectedOption="selectedToggle"
+        ></toggle-standard>
+        <div class="box-label">
+          Trainingsentwicklung im wöchentlichen Überblick
+        </div>
+        <div class="compareGraph__chart card">
+          <train-chart v-if="toggleData.length !== 0"
+                       :root="'train-chart'"
+                       :anchors="selectedTrainingClusters"
+                       :preparation="toggleData[selectedToggle]"
+                       :loadingStatus="loadingStatus"
+                       :selectedRunType="selectedRunType"
+                       :selectedDisplayType="selectedDisplayType"
+                       :showEverything="showEverything"
+                       :clustering="'byWeeks'"
+                       :showDate="true"
+                       :index="0"
+          ></train-chart>
+        </div>
+      </div>
+      <div class="compareGraph__landscape clearfix">
+        <div class="compareGraph__label" v-for="(cluster,i) in clusters">
+          {{ cluster.name }}
+        </div>
+        <div class="compareGraph__chart card" v-for="(cluster,i) in clusters">
+          <train-chart
+             :root="'train-chart_' + i"
+             :anchors="selectedTrainingClusters"
+             :preparation="cluster.name"
+             :loadingStatus="loadingStatus"
+             :selectedRunType="selectedRunType"
+             :selectedDisplayType="selectedDisplayType"
+             :showEverything="showEverything"
+             :clustering="'byWeeks'"
+             :showDate="true"
+             :isDual="true"
+             :index="i + 1"
+          ></train-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

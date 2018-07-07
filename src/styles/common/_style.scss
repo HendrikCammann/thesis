@@ -1,61 +1,137 @@
-:global {
-  body {
-    margin: 0;
-    font-size: 2rem;
-    font-family: -apple-system, BlinkMacSystemFont,
-                'avenir next', avenir,
-                helvetica, 'helvetica neue',
-                Ubuntu,
-                'segoe ui', arial,
-                sans-serif;
-  }
-  .page {
-    text-align: center;
-  }
-  code {
-    background-color: #f0f0f0;
-    padding: 3px 5px;
-    border-radius: 2px;
-  }
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  color: $colors-text;
+  background-color: #FBFAFA;
+}
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.vcenter-content {
+ display: flex;
+ align-items: center;
+ height: 100%;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.2);
+  background-color: $colors-white;
+  border: solid 1px $colors-white--dirty;
 }
 
 
-$color-red: #E12D53;
-/* tell the SVG path to be a thin blue line without any area fill */
-.heartrate {
-  stroke: $color-red;
-  stroke-width: 1;
-  fill: none;
-  opacity: 0.3;
 
-  &__scale {
-    text {
-      fill: $color-red;
+.box-wrapper {
+  .box-label {
+    font-family: 'Nunito', sans-serif;
+    color: $colors-label;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .box-scale {
+    font-family: 'Nunito', sans-serif;
+    color: $colors-label;
+    font-size: 12px;
+    font-weight: 400;
+
+    div {
+      display: inline-block;
+      float: left;
+      color: $colors-pace;
+
+      &:last-of-type {
+        float: right;
+        color: $colors-hr;
+      }
     }
   }
 
-  &__avg {
-    stroke: $color-red;
-    stroke-width: 1;
-    stroke-dasharray: 5,5;
-    stroke-opacity: 0.5;
+  .box-content {
+    // margin-top: 16px;
+  }
+
+  .box-explaination {
+    margin-top: 8px;
+    padding: 0 16px;
+    text-align: justify;
+    font-size: 10px;
+    color: $colors-label;
+    margin-bottom: 32px;
   }
 }
 
-.pace {
-  stroke: blue;
-  stroke-width: 1;
-  fill: none;
-  opacity: 0.3;
 
-  &__scale {
-    text {
-      fill: blue;
+.column {
+  display: inline-block;
+  width: 100%;
+
+  &--half {
+    width: calc(50% - 8px);
+    margin-right: 16px;
+
+    &:nth-of-type(2n) {
+      margin-right: 0;
     }
   }
 }
 
-.axis {
-  shape-rendering: crispEdges;
+.box-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  color: $colors-label;
+  text-align: center;
+  margin-bottom: 4px;
 }
+
+.faker {
+  margin-top: 32px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 770px) {
+  .row {
+    margin-right: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/*.vue2leaflet-map {
+  border-radius: 24px;
+}*/
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin-top {
+  margin-top: 0 !important;
+}
+
+
 

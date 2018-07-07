@@ -1,0 +1,46 @@
+<div class="navigationModule container-fluid">
+  <transition name="slide">
+    <div class="navigationModule__slide" v-show="menuOpen">
+      <div class="navigationModule__wrapper">
+        <img class="navigationModule__close" src="../../../assets/icons/close--dark.svg" @click="closeMenu()">
+        <div class="navigationModule__user"
+             @click="handleNavigation('/user')"
+        >
+          <img class="navigationModule__img" src="../../../assets/images/Hendrik.jpg">
+          <div class="navigationModule__name">
+            Hendrik Cammann
+          </div>
+          <div class="navigationModule__type">
+            Marathonläufer
+          </div>
+        </div>
+        <div class="navigationModule__entries">
+          <div class="navigationModule__entry" v-for="link in links"
+             :class="{'navigationModule__entry--active' : $route.name == link.name}"
+             @click="handleNavigation(link.path)"
+          >
+            <img class="navigationModule__icon" :src="'../../../assets/icons/' + link.illustration + '--dark.svg'">
+            {{ link.name }}
+            <img class="navigationModule__link" src="../../../assets/icons/next--dark.svg">
+          </div>
+        </div>
+        <div class="navigationModule__legal">
+          Mit der Nutzung von <span>bidh.io</span> erklären Sie unseren
+          <span>Datenschutzbestimmungen</span> zu zustimmen.
+        </div>
+      </div>
+    </div>
+  </transition>
+  <div class="navigationModule__content">
+    <img class="navigationModule__back" src="../../../assets/icons/back--dark.svg" @click="$router.go(-1)">
+    <div class="navigationModule__label">
+      <div class="navigationModule__page-name">
+        {{ this.$route.name }}
+      </div>
+      <div class="navigationModule__state">
+        <div>{{ state }}</div>
+      </div>
+    </div>
+    <img class="navigationModule__burger" src="../../../assets/icons/menu--dark.svg" @click="openMenu()">
+  </div>
+</div>

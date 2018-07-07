@@ -7,15 +7,25 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://d3js.org/d3.v5.js"></script>
+  <!-- iPhone 6 startup image -->
+  <link href="assets/splashScreen/splash.png"
+        media="(device-width: 375px) and (device-height: 667px)
+                and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+
+  <link href="assets/splashScreen/splash--tablet.png"
+        media="(device-width: 768px) and (device-height: 1024px)
+                and (-webkit-device-pixel-ratio: 2)
+                and (orientation: portrait)"
+        rel="apple-touch-startup-image">
+
+  <!--<link rel="manifest" href="../static/manifest.json">-->
 </head>
 
 <body>
-  <!--[if lt IE 8]>
-    <p class="browsehappy">ブラウザを最新にしてください. <a href="http://browsehappy.com/">ブラウザの更新方法</a></p>
-  <![endif]-->
   <div id="app-main">
-    <navbar :inverted="false"></navbar>
+    <navigation-module></navigation-module>
+    <app-dimension v-if="show"></app-dimension>
     <router-view>loading...</router-view>
   </div>
 </body>

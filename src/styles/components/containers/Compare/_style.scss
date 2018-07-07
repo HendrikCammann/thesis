@@ -1,0 +1,21 @@
+.compare {
+  $root: &;
+  padding-top: 60px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .floatingMenu {
+    position: fixed;
+    right: 16px;
+    bottom: 32px;
+  }
+
+  #{&}__content {
+    padding: 0;
+    padding-bottom: 16px;
+
+    @media screen and (min-width: 767px) and (max-width: 780px) {
+      padding-right: 16px;
+    }
+  }
+}

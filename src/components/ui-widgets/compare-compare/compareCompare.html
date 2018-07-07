@@ -1,0 +1,27 @@
+<div class="compareCompare">
+  <div class="compareCompare__content clearfix" v-if="data !== null">
+    <divider
+      :title="'Trainingsverteilung'"
+      :color="'#4f5b64'"
+    ></divider>
+
+    <div class="compareCompare__label" v-for="item in clusterData">
+      {{ item.clusterName }}
+    </div>
+    <div class="compareCompare__graph" v-for="(item, i) in data.data" @click="showExplanation()">
+      <compare-chart
+        :root="'compareCompare' + i"
+        :index="i"
+        :data="item"
+        :loadingStatus="loadingStatus"
+        :displayType="displayType"
+      ></compare-chart>
+    </div>
+    <div class="compareCompare__explanation">
+      Die Länge eines Balkens spiegelt Geschwindigkeits- bzw. Herzfrequenzwert eines Abschnittes im Vergleich zur maximalen Geschwindigkeit bzw. Herzfrequenz aller Abschnitte.
+      Der graue Balken entspricht diesem Maximalwert. Die Länge der Farbigen Balken wird anhand dieser Länge definiert.
+      Die flachen Enden ensprechen bei der Geschwindigkeit 0 (= keine Bewegung). Bei der Herzfrequenz startet der Balken bei 80 (= HF während normalen Gehen). Sie können
+      diese Werte in den Einstellungen anpassen.
+    </div>
+  </div>
+</div>

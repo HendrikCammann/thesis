@@ -1,0 +1,102 @@
+.bottomMenu {
+  $root: &;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 8999;
+  left: 0;
+  height: 60px;
+  text-align: center;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  font-family: $font-family--main;
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 1000px)
+  and (orientation: landscape) {
+    opacity: 0.1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  #{&}__content {
+    position: relative;
+
+    #{$root}__overlay {
+      text-align: left;
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      width: 100%;
+      background-color: $colors-white;
+      height: fit-content;
+      border-bottom: 2px solid $colors-text;
+      box-shadow: 0 -1px 10px 0 rgba(69, 69, 69, 0.2);
+
+      #{$root}__overlayItem {
+        padding: 16px;
+        border-bottom: 1px solid #E7E7E7;
+
+        &--active {
+          background-color: $colors-white--dirty;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        img {
+          height: 32px;
+          width: 32px;
+          display: inline-block;
+          margin-right: 8px;
+        }
+
+        #{$root}__check {
+          transform: translate(0, 11px);
+          height: 12px;
+          width: 12px;
+          display: inline-block;
+          float: right;
+        }
+
+        #{$root}__label {
+          transform: translate(0, 2px);
+          display: inline-block;
+          font-size: 16px;
+          color: $colors-text
+        }
+      }
+    }
+
+    #{$root}__item {
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      height: 100%;
+      padding-top: 12px;
+      position: relative;
+
+      &--active {
+        font-weight: 700;
+      }
+
+      img {
+        height: 24px;
+        width: 24px;
+      }
+
+      #{$root}__label {
+        left: 50%;
+        transform: translate(-50%, 0);
+        position: absolute;
+        bottom: 8px;
+        font-size: 10px;
+        color: $colors-text
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>check--dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3.89341153,13.4288004 L10.2252493,17.8723481 L19.7007753,1.84385346 C20.206837,1.01954654 21.2995997,0.753462963 22.1395573,1.25009543 C22.9797212,1.74787665 23.2518209,2.81892704 22.7445886,3.64343652 L12.2169252,21.3866924 C11.9517731,21.8187103 11.5092701,22.1167766 11.0035884,22.2042806 C10.4979066,22.2917845 9.9782096,22.1602188 9.57848387,21.8432523 L1.66034223,16.1415034 C1.31280246,15.8664386 1.09892432,15.4888857 1.02709669,15.089121 C0.941027369,14.6100927 1.05904822,14.0981172 1.39477316,13.6894212 C2.01099176,12.9408098 3.13058666,12.8240636 3.89341153,13.4288004 L3.89341153,13.4288004 Z" id="path-1"></path>
+    </defs>
+    <g id="check--dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#4F5B64" xlink:href="#path-1"></use>
+    </g>
+</svg>

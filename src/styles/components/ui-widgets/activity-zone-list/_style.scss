@@ -1,0 +1,68 @@
+.activityZoneList {
+  $root: &;
+  font-family: $font-family--main;
+  color: $colors-text;
+
+  #{&}__icons {
+    img {
+      width: 24px;
+      height: 24px;
+    }
+    margin-bottom: 4px;
+  }
+
+  #{&}__column {
+    display: inline-block;
+    width: 40%;
+    text-align: center;
+    float: left;
+
+    &--small {
+      width: 20%;
+    }
+
+    &--half {
+      width: 50%;
+    }
+  }
+
+  #{&}__content {
+    padding: 16px;
+
+    #{$root}__item {
+      padding-bottom: 12px;
+      border-bottom: 1px solid $colors-label;
+      margin-bottom: 8px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      #{$root}__value {
+        font-size: 12px;
+        font-weight: 700;
+        font-family: $font-family--main;
+
+        &--pace {
+          font-size: 20px;
+          color: $colors-pace;
+          font-family: $font-family--secondary;
+        }
+
+        &--hr {
+          font-size: 20px;
+          color: $colors-hr;
+          font-family: $font-family--secondary;
+        }
+      }
+
+      #{$root}__label {
+        font-size: 10px;
+        font-weight: 400;
+        color: $colors-label;
+      }
+    }
+  }
+}

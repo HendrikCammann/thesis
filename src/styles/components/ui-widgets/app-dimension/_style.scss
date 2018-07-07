@@ -1,0 +1,46 @@
+.dimension {
+  $root: &;
+  background-color: $colors-white;
+  border: 2px solid $colors-text;
+  z-index: 10000;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  box-shadow: 0 0 10px 0 rgba(69, 69, 69, 0.4);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  #{&}__content {
+    padding: 16px;
+
+    #{$root}__headline {
+      font-family: $font-family--secondary;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    #{$root}__buttons {
+      display: flex;
+      margin-top: 16px;
+      justify-content: space-between;
+
+      input {
+        color: $color-white;
+        border-radius: 4px;
+        padding: 8px 0px;
+        width: 100%;
+
+        &.reject {
+          border: 1px solid #A72523;
+          background-color: #A72523;
+        }
+
+        &.accept {
+          border: 1px solid #A72523;
+          background-color: #A72523;
+        }
+      }
+    }
+  }
+}

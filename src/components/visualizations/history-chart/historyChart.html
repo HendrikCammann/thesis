@@ -1,0 +1,61 @@
+<div class="historyChart">
+    <div class="historyChart__maxima clearfix">
+      <div class="historyChart__maxima--wrapper">
+        <div class="historyChart__box"
+             :style="{ backgroundColor: '#4F5B64'}"
+        >
+          {{ label }}
+        </div>
+      </div>
+      <div class="historyChart__maxima--wrapper">
+        <div class="historyChart__label">
+          Gesamt
+        </div>
+      </div>
+      <div class="historyChart__maxima--wrapper">
+        <div class="historyChart__box"
+             :style="{ backgroundColor: '#4F5B64'}"
+        >
+          {{ labelLast }}
+        </div>
+      </div>
+    </div>
+
+    <div id="history">
+      <div class="historyChart__circle">
+        <img src="../../../assets/icons/run--white.svg">
+      </div>
+    </div>
+
+    <div class="historyChart__list" v-if="listData !== null">
+      <div class="historyChart__list-item clearfix" v-for="item in listData" v-if="item[0].label !== 'All'">
+        <div class="historyChart__maxima">
+          <div class="historyChart__maxima--wrapper">
+            <div class="historyChart__box"
+                 :style="{ backgroundColor: getColor(item[0].label)}"
+            >
+              {{ outputValue(item[0].values.upper[0]) }}
+            </div>
+          </div>
+          <div class="historyChart__maxima--wrapper">
+            <div class="historyChart__label">
+              {{ item[0].label }}
+            </div>
+          </div>
+          <div class="historyChart__maxima--wrapper">
+            <div class="historyChart__box"
+                 :style="{ backgroundColor: getColor(item[0].label)}"
+            >
+              {{ outputValue(item[0].values.lower[0]) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="historyChart__explanation">
+      Die äußeren Linien visualisieren den aufsummierten Gesamtwert der gewählten Kategorie. Die farbigen Kreisbögen stehen für die einzelen Trainingsarten.
+      Die Länge der Kreise wird anhand des größten Gesamtwertes berechnet. So beschreibt ein 180-Grad Bogen 100% des Gesamtwertes.
+    </div>
+</div>
+

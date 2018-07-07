@@ -1,0 +1,12 @@
+<div class="toggleStandard center-content">
+  <div class="toggleStandard__item"
+       :class="{'toggleStandard__item--active': isActive(i)}"
+       :style="{width: width() + '%'}"
+       v-for="(option, i) in options"
+       @click="handleToggle(i)"
+  >
+    <div>
+      {{ option }}
+    </div>
+  </div>
+</div>

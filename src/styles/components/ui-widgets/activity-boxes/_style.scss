@@ -1,0 +1,12 @@
+.activityBoxes {
+  $root: &;
+
+  .contentBox {
+    margin-bottom: 16px;
+  }
+
+  .buttonStandard {
+    margin-top: 32px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,14 @@
+.feed {
+  $root: &;
+  margin-bottom: 16px;
+
+  #{&}__content {
+    .feedItem {
+      margin-bottom: 32px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

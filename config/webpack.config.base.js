@@ -50,8 +50,8 @@ let config = {
       excludes: ['**/.*', '**/*.map', '*.html'],
     }),
     new WebpackPwaManifest({
-      name: 'Bidh',
-      short_name: 'Bidh',
+      name: 'bidh.io',
+      short_name: 'bidh.io',
       description: 'Marathon Training Analysis',
       display: "standalone",
       orientation: "portrait",
@@ -59,7 +59,7 @@ let config = {
       theme_color: "#4F5B64",
       inject: true,
       ios: {
-        'apple-mobile-web-app-title': 'Bidh',
+        'apple-mobile-web-app-title': 'bidh.io',
         'apple-mobile-web-app-status-bar-style': 'white'
       },
       start_url: '.',
